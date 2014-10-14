@@ -66,11 +66,20 @@ of this software, even if advised of the possibility of such damage.
       <desc>Defines whether or not a word paragraph is a first level heading.</desc></doc>
     <xsl:function name="tei:is-firstlevel-heading" as="xs:boolean">
         <xsl:param name="p"/>
-        
+        <xsl:variable name="s" select="$p/w:pPr/w:pStyle/@w:val"/>         
         <xsl:choose>
             <xsl:when test="matches($p/w:pPr/w:pStyle/@w:val,'[Hh]eading[ ]?1')">true</xsl:when>
-            <xsl:otherwise>false</xsl:otherwise>
+            <xsl:otherwise><xsl:value-of select="tei:custom-is-firstlevel-heading($p, $s)"></xsl:value-of></xsl:otherwise>
         </xsl:choose>
+    </xsl:function>
+    
+    <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
+        <desc>Write a function superseeding this one to provide your own definiton of what style represents a first level heading.</desc>
+    </doc>
+    <xsl:function name="tei:custom-is-firstlevel-heading" as="xs:boolean">
+        <xsl:param name="p" as="node()"/>
+        <xsl:param name="s" as="xs:string*"/>
+        <xsl:value-of select="false()"/>
     </xsl:function>
     
         <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
@@ -82,10 +91,21 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="matches($s,'[Hh]eading.+')">true</xsl:when>
             <xsl:when test="matches($s,'[Cc]aption')">true</xsl:when>
             <xsl:when test="matches($s,'Figure[ ]?title')">true</xsl:when>
-            <xsl:otherwise>false</xsl:otherwise>
+            <xsl:otherwise>
+                <xsl:value-of select="tei:custom-is-heading($p, $s)"></xsl:value-of>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-
+    
+    <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
+        <desc>Write a function superseeding this one to provide your own definiton of what style represents a heading.</desc>
+    </doc>
+    <xsl:function name="tei:custom-is-heading" as="xs:boolean">
+        <xsl:param name="p" as="node()"/>
+        <xsl:param name="s" as="xs:string*"/>
+        <xsl:value-of select="false()"/>
+    </xsl:function>
+    
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
         <desc>Defines whether or not a word paragraph is a front page element.</desc></doc>
     <xsl:function name="tei:is-front" as="xs:boolean">
