@@ -147,21 +147,35 @@ of this software, even if advised of the possibility of such damage.
 	  </xsl:element>
 	</xsl:when>
        
-       <xsl:when test="not($style='')">
-	 <hi rend="{replace($style,' ','_')}">
-	   <xsl:call-template name="basicStyles">
-	     <xsl:with-param name="parented">true</xsl:with-param>
-	   </xsl:call-template>
-	 </hi>
-       </xsl:when>
-       
-       <xsl:otherwise>
-	 <xsl:call-template name="basicStyles"/>
-       </xsl:otherwise>
-       
+     	<xsl:when test="not($style='')">
+     		<xsl:call-template name="onUnknownStyle">
+     			<xsl:with-param name="style" select="$style"/>
+     		</xsl:call-template>
+     	</xsl:when>
+     	
+     	<xsl:otherwise>
+     		<xsl:call-template name="basicStyles"/>
+     	</xsl:otherwise>
+     	
      </xsl:choose>
-        
+   	
    </xsl:template>
+	
+	<xsl:template name="onUnknownStyle">
+		<xsl:param name="style"/>
+		<xsl:call-template name="onUnknownStyle-base">
+			<xsl:with-param name="style" select="$style"/>
+		</xsl:call-template>
+	</xsl:template>
+	
+	<xsl:template name="onUnknownStyle-base">
+		<xsl:param name="style"/>
+		<hi rend="{replace($style,' ','_')}">
+			<xsl:call-template name="basicStyles">
+				<xsl:with-param name="parented">true</xsl:with-param>
+			</xsl:call-template>
+		</hi>
+	</xsl:template>
     
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
       <desc>Look at the Word
