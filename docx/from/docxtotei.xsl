@@ -116,8 +116,15 @@ of this software, even if advised of the possibility of such damage.
 
 
 	  <xsl:variable name="wordDirectory">
-	    <xsl:value-of
-		select="translate($word-directory,'\\','/')"/>
+		<xsl:choose>
+			<xsl:when
+				test="doc-available(concat(translate($word-directory,'\\','/'), '/word/document.xml'))">
+				<xsl:value-of select="translate($word-directory,'\\','/')"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:value-of select="concat(base-uri(/), '/../..')"/>
+			</xsl:otherwise>
+		</xsl:choose>
 	  </xsl:variable>
 	  <xsl:variable name="customFile" select="concat($wordDirectory,'/docProps/custom.xml')"/>
 	  <xsl:variable name="docProps" select="doc(concat($wordDirectory,'/docProps/core.xml'))"/>
@@ -128,7 +135,10 @@ of this software, even if advised of the possibility of such damage.
 	<xsl:strip-space elements="*"/>
 	  <xsl:preserve-space elements="w:t"/>
 	  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no"/>
-
+	
+	<xsl:param name="pass0-to-disk" as="xs:boolean" select="false()"/>
+	<xsl:param name="skip-pass2" as="xs:boolean" select="false()"/>
+	
 	  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
       <desc>
          <p>The main template that starts the conversion from docx to TEI</p>
@@ -182,16 +192,29 @@ of this software, even if advised of the possibility of such damage.
 	<xsl:message terminate="yes">The file <xsl:value-of
 	select="$styleDoc"/> cannot be read</xsl:message>
       </xsl:if>
-     <xsl:variable name="pass0">
+   	<!-- see mecmua.xsl -->
+   	<!--     <xsl:variable name="pass0">
        <xsl:apply-templates mode="pass0"/>
-     </xsl:variable>
+     </xsl:variable>-->
+   	<xsl:if test="$pass0-to-disk">
+   		<xsl:result-document href="pass0.xml">
+   			<xsl:copy-of select="$pass0"/>
+   		</xsl:result-document>
+   	</xsl:if>
      
-     <!-- Do the main transformation and store everything in the variable pass1 -->
-     <xsl:variable name="pass1">
-       <xsl:for-each select="$pass0">
-	 <xsl:apply-templates/>
-       </xsl:for-each>
-     </xsl:variable>		  
+   	<!-- Do the main transformation and store everything in the variable pass1 -->
+   	<xsl:if test="$skip-pass2">
+   		<xsl:for-each select="$pass0">
+   			<xsl:apply-templates/>
+   		</xsl:for-each>   			
+   	</xsl:if>
+   	<xsl:variable name="pass1">
+   		<xsl:if test="not($skip-pass2)">
+   			<xsl:for-each select="$pass0">
+   				<xsl:apply-templates/>
+   			</xsl:for-each>
+   		</xsl:if>
+   	</xsl:variable>	  
      
      <!--
 	 <xsl:result-document href="/tmp/foo.xml">
@@ -200,7 +223,9 @@ of this software, even if advised of the possibility of such damage.
 	 -->
      <!-- Do the final parse and create valid TEI -->
 
-     <xsl:apply-templates select="$pass1" mode="pass2"/>
+   	<xsl:if test="not($skip-pass2)">
+   		<xsl:apply-templates select="$pass1" mode="pass2"/>
+   	</xsl:if>
      
      <xsl:call-template name="fromDocxFinalHook"/>
    </xsl:template>
