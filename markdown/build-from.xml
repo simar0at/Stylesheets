@@ -19,7 +19,7 @@
         Copyright: 2011, TEI Consortium<
 -->
   <!--
- Convert TEI documents into TXT files.
+ Convert Markdown documents into TEI
  -->
   <property name="markdowntotei" value="${profiledir}/${profile}/markdown/from.xsl"/>
 

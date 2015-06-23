@@ -12,7 +12,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -50,7 +50,7 @@ of this software, even if advised of the possibility of such damage.
   <xsl:key name="Object" match="tei:when" use="substring(@corresp,2)"/>
   <xsl:key name="objectOnPage" match="tei:*[@xml:id]" use="generate-id(preceding::tei:pb[1])"/>
   <xsl:key name="PB"
-	   match="tei:pb[not(@facs='') and not(starts-with(@facs,'tcp:')) and not(tei:match(@rend,'none'))]" use="1"/>
+	   match="tei:pb[not(@facs='') and not(starts-with(@facs,'tcp:')) and not(starts-with(@facs,'unknown:')) and not(tei:match(@rend,'none'))]" use="1"/>
   <xsl:key name="Timeline" match="tei:timeline" use="1"/>
   <xsl:param name="mediaoverlay">false</xsl:param>
   <xsl:param name="coverimage"/>
@@ -145,10 +145,11 @@ of this software, even if advised of the possibility of such damage.
   </doc>
   <xsl:template name="purgeCSS">
     <xsl:choose>
-      <xsl:when test="contains(.,'line-height:')"/>
+      <xsl:when test="starts-with(.,'@import')"/>
+      <!--
       <xsl:when test="contains(.,'max-width:')"/>
       <xsl:when test="contains(.,'height:')"/>
-      <!--
+      <xsl:when test="contains(.,'line-height:')"/>
       <xsl:when test="contains(.,'clear:')"/>
       <xsl:when test="contains(.,'padding')"/>
       <xsl:when test="contains(.,'float:')"/>
@@ -156,7 +157,7 @@ of this software, even if advised of the possibility of such damage.
       <xsl:when test="contains(.,'width:')"/>
       <xsl:when test="contains(.,'margin')"/>
       <xsl:when test="contains(.,'border')"/>
--->
+      -->
       <xsl:otherwise>
         <xsl:value-of select="."/>
         <xsl:text>&#10;</xsl:text>
@@ -508,15 +509,7 @@ of this software, even if advised of the possibility of such damage.
      <xsl:result-document href="{concat($directory,'/copy.xml')}">
      <project xmlns="" basedir="." default="dist" name="imagecopy">
        <target name="dist">
-	 <xsl:if test="key('PB',1) or key('G',1)">
-	   <mkdir>
-	     <xsl:attribute name="dir">
-	       <xsl:value-of select="replace($outputDir,'file:///','')"/>
-	       <xsl:text>/</xsl:text>
-	       <xsl:value-of select="$mediaDir"/>
-	     </xsl:attribute>
-	   </mkdir>
-	 </xsl:if>
+	 <xsl:variable name="contents">
 	 <xsl:if test="not($coverimage='')">
 	     <copy toFile="{$coverDir}/{tokenize($coverimage,'/')[last()]}" file="{$coverimage}"/>
 	 </xsl:if>
@@ -623,7 +616,17 @@ of this software, even if advised of the possibility of such damage.
 	     </xsl:otherwise>
 	   </xsl:choose>
 	 </xsl:for-each>
-
+	 </xsl:variable>
+	 <xsl:if test="not($contents='')">
+	   <mkdir>
+	     <xsl:attribute name="dir">
+	       <xsl:value-of select="replace($outputDir,'file:///','')"/>
+	       <xsl:text>/</xsl:text>
+	       <xsl:value-of select="$mediaDir"/>
+	     </xsl:attribute>
+	   </mkdir>
+	 </xsl:if>
+	 <xsl:copy-of select="$contents"/>
        </target>
      </project>
      </xsl:result-document>

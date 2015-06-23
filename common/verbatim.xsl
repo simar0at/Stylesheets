@@ -10,7 +10,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -816,7 +816,4 @@ of this software, even if advised of the possibility of such damage.
   </xsl:template>
 
 
-<xsl:template match="processing-instruction()[name(.)='entity']" mode="#all">
-    <xsl:value-of select="concat('&amp;',normalize-space(.),';')"/>
-</xsl:template>
 </xsl:stylesheet>

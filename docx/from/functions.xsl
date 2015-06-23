@@ -31,7 +31,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -64,7 +64,7 @@ of this software, even if advised of the possibility of such damage.
     
         <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
       <desc>Defines whether or not a word paragraph is a first level heading.</desc></doc>
-    <xsl:function name="tei:is-firstlevel-heading" as="xs:boolean">
+    <xsl:function name="tei:isFirstlevel-heading" as="xs:boolean">
         <xsl:param name="p"/>
         <xsl:variable name="s" select="$p/w:pPr/w:pStyle/@w:val"/>         
         <xsl:choose>
@@ -243,19 +243,22 @@ of this software, even if advised of the possibility of such damage.
 
   <xsl:function name="tei:processInstruction"  as="xs:string">
     <xsl:param name="instr"/>
+    <xsl:variable name="instr">
+      <xsl:value-of select="replace($instr, '^\s+|\s+$', '')"></xsl:value-of>
+    </xsl:variable>
     <xsl:choose>
       <xsl:when test="matches($instr,'REF _')"> <!-- this will also catch NOTEREF _ -->
 	  <xsl:value-of select="concat('#',substring-before(substring-after($instr,'_'),'&#32;'))"/>
       </xsl:when>
-      <xsl:when test="matches($instr,' HYPERLINK \\l ')">
+      <xsl:when test="matches($instr,'HYPERLINK \\l ')">
 	<xsl:variable name="target">
-	  <xsl:value-of   select="translate(tokenize($instr,' ')[4],$dq,'')"/>
+	  <xsl:value-of   select="translate(tokenize($instr,' ')[3],$dq,'')"/>
 	</xsl:variable>
 	<xsl:value-of select="if (matches($target,'^_')) then  concat('#',substring($target,2)) else $target"/>
       </xsl:when>
-      <xsl:when test="matches($instr,' HYPERLINK')">
+      <xsl:when test="matches($instr,'HYPERLINK')">
 	<xsl:variable name="target">
-	  <xsl:value-of   select="translate(tokenize($instr,' ')[2],$dq,'')"/>
+	  <xsl:value-of   select="translate(tokenize($instr,' ')[1],$dq,'')"/>
 	</xsl:variable>
 	<xsl:value-of select="if (matches($target,'^_')) then  concat('#',substring($target,2)) else $target"/>
       </xsl:when>
@@ -276,6 +279,7 @@ of this software, even if advised of the possibility of such damage.
       <xsl:when test="matches($instr,'^[ ]?QUOTE')">true</xsl:when>
       <xsl:when test="matches($instr,'^[ ]?XE')">true</xsl:when>
       <xsl:when test="contains($instr,'SEQ')">true</xsl:when>
+      <xsl:when test="contains($instr,'FORMTEXT')">true</xsl:when>
       <xsl:otherwise>false</xsl:otherwise>
     </xsl:choose>
 </xsl:function>

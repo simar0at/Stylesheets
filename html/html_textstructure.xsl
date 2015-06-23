@@ -24,7 +24,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -76,8 +76,8 @@ of this software, even if advised of the possibility of such damage.
          </xsl:when>
          <xsl:when test="starts-with(local-name(),'div')">
             <xsl:if test="not(preceding-sibling::tei:*) or preceding-sibling::tei:titlePage">
-               <xsl:call-template name="doDivBody">
-		 <xsl:with-param name="Depth">2</xsl:with-param>
+               <xsl:call-template name="makeDivBody">
+		 <xsl:with-param name="depth">2</xsl:with-param>
 		 <xsl:with-param name="nav">true</xsl:with-param>
 	       </xsl:call-template>
             </xsl:if>
@@ -200,7 +200,7 @@ of this software, even if advised of the possibility of such damage.
 	     </xsl:variable>
 	     
 	     <xsl:if test="$verbose='true'">
-	       <xsl:message>Opening file <xsl:value-of select="$outName"/>
+	       <xsl:message>Opening file (process TEI)<xsl:value-of select="$outName"/>
 	       </xsl:message>
 	     </xsl:if>
 	     <xsl:result-document doctype-public="{$doctypePublic}" doctype-system="{$doctypeSystem}"
@@ -317,8 +317,8 @@ of this software, even if advised of the possibility of such damage.
                   </xsl:call-template>
                </xsl:when>
                <xsl:when test="starts-with(local-name(),'div')   or      $pageLayout='Complex'">
-                  <xsl:call-template name="doDivBody">
-		    <xsl:with-param name="Depth">2</xsl:with-param>
+                  <xsl:call-template name="makeDivBody">
+		    <xsl:with-param name="depth">2</xsl:with-param>
 		    <xsl:with-param name="nav">true</xsl:with-param>
 		  </xsl:call-template>
                </xsl:when>
@@ -454,7 +454,7 @@ of this software, even if advised of the possibility of such damage.
       </xsl:variable>
     
       <xsl:if test="$verbose='true'">
-         <xsl:message>Opening file <xsl:value-of select="$outName"/>
+         <xsl:message>Opening file (split TEI)<xsl:value-of select="$outName"/>
          </xsl:message>
       </xsl:if>
       <xsl:result-document doctype-public="{$doctypePublic}" doctype-system="{$doctypeSystem}"
@@ -486,6 +486,7 @@ of this software, even if advised of the possibility of such damage.
    </doc>
   <xsl:template match="tei:closer">
 	<xsl:choose>
+	  <xsl:when test="not(node())"/>
 	  <xsl:when test="tei:signed">
 	    <div class="closer">
 	      <xsl:apply-templates/>
@@ -593,7 +594,7 @@ of this software, even if advised of the possibility of such damage.
 	    <tei:TERM>
 	      <xsl:value-of select="tei:term"/>
 	    </tei:TERM>	    
-	    <xsl:for-each select="ancestor-or-self::*[tei:is-identifiable(.)][1]">
+	    <xsl:for-each select="ancestor-or-self::*[tei:isIdentifiable(.)][1]">
 	      <tei:LINK>
 		  <xsl:apply-templates mode="generateLink"
 				       select="."/>
@@ -637,8 +638,8 @@ of this software, even if advised of the possibility of such damage.
     <xsl:choose>
       <xsl:when test="tei:keepDivOnPage(.) or 
 		      number($depth)  &gt; number($splitLevel)">
-	<xsl:call-template name="doDivBody">
-	  <xsl:with-param name="Depth" select="$depth"/>
+	<xsl:call-template name="makeDivBody">
+	  <xsl:with-param name="depth" select="$depth"/>
 	</xsl:call-template>
       </xsl:when>
       <!-- 1. We have gone far enough -->
@@ -662,8 +663,8 @@ of this software, even if advised of the possibility of such damage.
 	</xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-	<xsl:call-template name="doDivBody">
-	  <xsl:with-param name="Depth" select="$depth"/>
+	<xsl:call-template name="makeDivBody">
+	  <xsl:with-param name="depth" select="$depth"/>
 	</xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
@@ -685,7 +686,7 @@ of this software, even if advised of the possibility of such damage.
       </xsl:variable>
       
       <xsl:if test="$verbose='true'">
-	<xsl:message>Opening file <xsl:value-of select="$outName"/>
+	<xsl:message>Opening file (makeDivPage)<xsl:value-of select="$outName"/>
 	</xsl:message>
       </xsl:if>
       <xsl:result-document doctype-public="{$doctypePublic}" doctype-system="{$doctypeSystem}"
@@ -733,6 +734,11 @@ of this software, even if advised of the possibility of such damage.
          </xsl:when>
          <xsl:when test="ancestor::tei:group and $splitLevel=0">
 	   <xsl:call-template name="makeDivPage">
+	     <xsl:with-param name="depth">-1</xsl:with-param>
+	   </xsl:call-template>
+         </xsl:when>
+         <xsl:when test="ancestor::tei:group">
+	   <xsl:call-template name="makeDivBody">
 	     <xsl:with-param name="depth">-1</xsl:with-param>
 	   </xsl:call-template>
          </xsl:when>
@@ -858,30 +864,30 @@ of this software, even if advised of the possibility of such damage.
 
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
       <desc>[html] Make a section heading
-      <param name="Depth">which head level to make</param>
+      <param name="depth">which head level to make</param>
       </desc>
    </doc>
-  <xsl:template name="doDivBody">
-      <xsl:param name="Depth"/>
+  <xsl:template name="makeDivBody">
+      <xsl:param name="depth"/>
       <xsl:param name="nav">false</xsl:param>
       <xsl:choose>
 	<xsl:when test="$filePerPage='true'">
 	    <xsl:call-template name="startDivHook"/>
 	    <xsl:call-template name="divContents">
-	      <xsl:with-param name="Depth" select="$Depth"/>
+	      <xsl:with-param name="depth" select="$depth"/>
 	      <xsl:with-param name="nav" select="$nav"/>
 	    </xsl:call-template>
 	</xsl:when>
 	<xsl:otherwise>
-	  <xsl:element name="{if ($outputTarget='html5' and number($Depth)
+	  <xsl:element name="{if ($outputTarget='html5' and number($depth)
 			     &lt; 1) then 'section' else 'div'}">
 	    <xsl:call-template name="microdata"/>
 	    <xsl:call-template name="divClassAttribute">
-	      <xsl:with-param name="depth" select="$Depth"/>
+	      <xsl:with-param name="depth" select="$depth"/>
 	    </xsl:call-template>	
 	    <xsl:call-template name="startDivHook"/>
 	    <xsl:call-template name="divContents">
-	      <xsl:with-param name="Depth" select="$Depth"/>
+	      <xsl:with-param name="depth" select="$depth"/>
 	      <xsl:with-param name="nav" select="$nav"/>
 	    </xsl:call-template>
 	  </xsl:element>
@@ -894,22 +900,16 @@ of this software, even if advised of the possibility of such damage.
    </doc>
 
   <xsl:template name="divContents">
-      <xsl:param name="Depth"/>
+      <xsl:param name="depth"/>
       <xsl:param name="nav">false</xsl:param>
       <xsl:variable name="ident">
 	<xsl:apply-templates mode="ident" select="."/>
       </xsl:variable>
-      <xsl:variable name="headertext">
-	<xsl:call-template name="header">
-	  <xsl:with-param name="display">full</xsl:with-param>
-	</xsl:call-template>
-      </xsl:variable>
-      
       <xsl:choose>
 	<xsl:when test="parent::tei:*/tei:match(@rend,'multicol')">
 	  <td style="vertical-align:top;">
-	    <xsl:if test="not($Depth = '')">
-	      <xsl:element name="h{$Depth + $divOffset}">
+	    <xsl:if test="not($depth = '')">
+	      <xsl:element name="h{$depth + $divOffset}">
 		<xsl:for-each select="tei:head[1]">		
 		  <xsl:call-template name="makeRendition">
 		    <xsl:with-param name="default">false</xsl:with-param>
@@ -927,7 +927,7 @@ of this software, even if advised of the possibility of such damage.
 	    <xsl:apply-templates/>
 	  </td>
 	</xsl:when>
-	<xsl:when test="tokenize(@rend,' ')=('multicol')">
+	<xsl:when test="tei:match(@rend,'multicol')">
 	  <xsl:apply-templates select="*[not(local-name(.)='div')]"/>
 	  <table>
 	    <tr>
@@ -935,37 +935,25 @@ of this software, even if advised of the possibility of such damage.
 	    </tr>
 	  </table>
 	</xsl:when>
-	<xsl:when test="tei:match(@rend,'nohead') or $headertext=''">
+	<xsl:when test="tei:match(@rend,'nohead')">
 	  <xsl:apply-templates/>
 	</xsl:when>
-	<xsl:otherwise>
-	  <xsl:if test="not($Depth = '')">
-	    <xsl:variable name="Heading">
-	      <xsl:variable name="ename" select="if (number($Depth)+$divOffset &gt;6) then 'div'
-						       else
-						       concat('h',number($Depth)+$divOffset)">
-	      </xsl:variable>
+	<xsl:when test="not(tei:head)">
 	      <xsl:call-template name="splitHTMLBlocks">
-		<xsl:with-param name="element" select="$ename"/>
+		<xsl:with-param name="element" select="if (number($depth)+$divOffset &gt;6) then 'div'
+					       else
+					       concat('h',number($depth)+$divOffset)"/>
 		<xsl:with-param name="content">
-		  <xsl:apply-templates select="tei:head"/>
 		  <xsl:call-template name="sectionHeadHook"/>
-		  <xsl:copy-of select="$headertext"/>	 
+		  <xsl:call-template name="header">
+		    <xsl:with-param name="display">full</xsl:with-param>
+		  </xsl:call-template>
 		</xsl:with-param>
 		<xsl:with-param name="copyid">false</xsl:with-param>
 	      </xsl:call-template>
-	      </xsl:variable>
-	      <xsl:choose>
-	      <xsl:when test="$outputTarget='html5' and number($Depth)  &lt; 1">
-		<header>
-		  <xsl:copy-of select="$Heading"/>
-		</header>
-	      </xsl:when>
-	      <xsl:otherwise>
-		<xsl:copy-of select="$Heading"/>
-	      </xsl:otherwise>
-	    </xsl:choose>
-	    
+	      <xsl:apply-templates/>
+	</xsl:when>
+	<xsl:otherwise>   
 	    <xsl:if test="$topNavigationPanel='true' and
 			  $nav='true'">
 	       <xsl:element name="{if ($outputTarget='html5') then 'nav'
@@ -976,8 +964,9 @@ of this software, even if advised of the possibility of such damage.
 		 </xsl:call-template>
 	       </xsl:element>
 	     </xsl:if>
-	   </xsl:if>
+	   
 	   <xsl:apply-templates/>
+
 	   <xsl:if test="$bottomNavigationPanel='true' and
 			 $nav='true'">
 	     <xsl:element name="{if ($outputTarget='html5') then 'nav' else
@@ -998,6 +987,7 @@ of this software, even if advised of the possibility of such damage.
   <xsl:template name="doDivs">
       <xsl:for-each select="tei:TEI/tei:text">
          <xsl:for-each select="tei:front|tei:body|tei:back">
+	   <xsl:comment>TEI <xsl:value-of select="name()"/></xsl:comment>
             <xsl:for-each select="tei:div|tei:div1">
                <xsl:variable name="currentID">
                   <xsl:apply-templates mode="ident" select="."/>
@@ -1041,7 +1031,7 @@ of this software, even if advised of the possibility of such damage.
 	   </xsl:call-template>
 	 </xsl:variable>	
 	 <xsl:if test="$verbose='true'">
-	   <xsl:message>Opening file <xsl:value-of select="$outName"/>
+	   <xsl:message>Opening file (doPage) <xsl:value-of select="$outName"/>
 	   </xsl:message>
 	 </xsl:if>
 	 <xsl:result-document doctype-public="{$doctypePublic}" doctype-system="{$doctypeSystem}"
@@ -1152,6 +1142,7 @@ of this software, even if advised of the possibility of such damage.
       <xsl:call-template name="metaHTML">
 	<xsl:with-param name="title" select="$pagetitle"/>
       </xsl:call-template>
+
       <xsl:choose>
 	<xsl:when test="count(key('TREES',1))=0"/>
 	<xsl:when test="$treestyle='googlechart'">
@@ -1160,6 +1151,53 @@ of this software, even if advised of the possibility of such damage.
 	google.load('visualization', '1', {packages:['orgchart']});
 	google.setOnLoadCallback(drawCharts);
 	  </script>
+	</xsl:when>
+	<xsl:when test="$treestyle='d3DragDropTree'">
+	  <!-- from  http://www.robschmuecker.com/d3-js-drag-and-drop-zoomable-tree/ -->
+          <script type="text/javascript"
+		  src="http://d3js.org/d3.v3.min.js"/>
+	  <style type="text/css">
+  
+	.node {
+    cursor: pointer;
+  }
+
+  .overlay{
+      background-color:#EEE;
+  }
+   
+  .node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+  }
+   
+  .node text {
+    font-size:10px; 
+    font-family:sans-serif;
+  }
+   
+  .link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1.5px;
+  }
+
+  .templink {
+    fill: none;
+    stroke: red;
+    stroke-width: 3px;
+  }
+
+  .ghostCircle.show{
+      display:block;
+  }
+
+  .ghostCircle, .activeDrag .ghostCircle{
+       display: none;
+  }
+
+</style>
 	</xsl:when>
 	<xsl:when test="$treestyle='d3CollapsableTree'">
           <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"/>
@@ -1175,6 +1213,9 @@ of this software, even if advised of the possibility of such damage.
 	    <style>	    	      
 	      .treediagram {background-color: #eee}
 	      .node {	      cursor: pointer;	      }	      
+	      .nodediv.desc {
+	           font: 8px sans-serif;
+	      }
 	      .nodediv {
 	      border: solid black 1px;
 	      background-color: white; 
@@ -1307,8 +1348,6 @@ function click(d) {
   }
   update(d);
 }
-
-	    
 	  </script>
 	</xsl:when>
 	<xsl:when test="$treestyle='d3verticaltree'">
@@ -1421,14 +1460,16 @@ function click(d) {
 	</link>
       </xsl:if>
       
-      <xsl:if test="$cssInlineFile">
+      <xsl:if test="$cssInlineFiles">
 	<style type="text/css" title="inline_css">
-	  <xsl:for-each select="tokenize(unparsed-text($cssInlineFile),
-				'\r?\n')">
-	    <xsl:if test="not(starts-with(.,'$Id:'))">
-	      <xsl:value-of select="normalize-space(.)"/>
-	    </xsl:if>
-	    <xsl:text>&#10;</xsl:text>
+	  <xsl:for-each   select="tokenize(normalize-space($cssInlineFiles),' ')">
+	    <xsl:for-each select="tokenize(unparsed-text(.),
+				  '\r?\n')">
+	      <xsl:if test="not(starts-with(.,'$Id:') or starts-with(.,'@import'))">
+		<xsl:value-of select="normalize-space(.)"/>
+	      </xsl:if>
+	      <xsl:text>&#10;</xsl:text>
+	    </xsl:for-each>
 	  </xsl:for-each>
 	</style>
       </xsl:if>
@@ -1619,7 +1660,9 @@ function click(d) {
 			 </xsl:call-template>
 		       </xsl:element>
 		     </xsl:if>
-                     <xsl:call-template name="doDivBody"/>
+                     <xsl:call-template name="makeDivBody">
+		       <xsl:with-param name="depth" select="count(ancestor::tei:div)+1"/>
+		     </xsl:call-template>
                      <xsl:if test="$bottomNavigationPanel='true'">
 		       <xsl:element name="{if ($outputTarget='html5') then 'nav' else 'div'}">
 			 <xsl:call-template name="xrefpanel">
@@ -2031,7 +2074,7 @@ function click(d) {
 	              <xsl:call-template name="col3"/>
 	           </div>
          </xsl:when>
-         <xsl:when test="tokenize(@rend,' ')=('frontpage')">
+         <xsl:when test="tei:match(@rend,'frontpage')">
 	           <div class="column-wrapper">
 	              <div id="rh-col">
 	                 <xsl:for-each select="descendant-or-self::tei:TEI/tei:text/tei:body">
@@ -2141,7 +2184,7 @@ function click(d) {
 	       </xsl:call-template>
 	     </div>
 	   </xsl:if>
-	    <xsl:comment> front matter </xsl:comment>
+	    <xsl:comment>TEI  front matter </xsl:comment>
 	    <xsl:apply-templates select="tei:text/tei:front"/>
 	    <xsl:if test="$autoToc='true' and (descendant::tei:div or descendant::tei:div1) and not(descendant::tei:divGen[@type='toc'])">
 	      <h2>
@@ -2153,7 +2196,7 @@ function click(d) {
 	      <xsl:when test="tei:text/tei:group">
 		<xsl:apply-templates select="tei:text/tei:group"/>
 	      </xsl:when>
-	      <xsl:when test="tokenize(@rend,' ')=('multicol')">
+	      <xsl:when test="tei:match(@rend,'multicol')">
 		<table>
 		  <tr>
 		    <xsl:apply-templates select="tei:text/tei:body"/>
@@ -2161,7 +2204,7 @@ function click(d) {
 		</table>
 	      </xsl:when>
 	      <xsl:otherwise>
-		<xsl:comment>body matter </xsl:comment>
+		<xsl:comment>TEI body matter </xsl:comment>
 		<xsl:call-template name="startHook"/>
 		<xsl:variable name="ident">
 		  <xsl:apply-templates mode="ident" select="."/>
@@ -2169,7 +2212,7 @@ function click(d) {
 		<xsl:apply-templates select="tei:text/tei:body"/>
 	      </xsl:otherwise>
 	    </xsl:choose>
-	    <xsl:comment>back matter </xsl:comment>
+	    <xsl:comment>TEI back matter </xsl:comment>
 	    <xsl:apply-templates select="tei:text/tei:back"/>
             <xsl:call-template name="printNotes"/>
             <xsl:call-template name="htmlFileBottom"/>
@@ -2223,7 +2266,7 @@ function click(d) {
     <xsl:apply-templates select="tei:sourceDoc"/>
     <xsl:choose>
       <xsl:when test="tei:text/tei:group">
-	<xsl:apply-templates select="tei:text/tei:group"/>
+	<xsl:apply-templates select="tei:text/*"/>
       </xsl:when>
       <xsl:when test="$filePerPage='true'">
 	<xsl:variable name="pass1">	 
@@ -2275,7 +2318,7 @@ function click(d) {
 	</xsl:choose>
       </xsl:when>
       <xsl:otherwise>
-	<!-- front matter -->
+	<xsl:comment>TEI front</xsl:comment>
 	<xsl:apply-templates select="tei:text/tei:front"/>
 	<xsl:if test="$autoToc='true' and (descendant::tei:div or descendant::tei:div1) and not(descendant::tei:divGen[@type='toc'])">
 	  <h2>
@@ -2283,12 +2326,12 @@ function click(d) {
 	  </h2>
 	  <xsl:call-template name="mainTOC"/>
 	</xsl:if>
-	<!-- main text -->
+	<xsl:comment>TEI body</xsl:comment>
 	<xsl:apply-templates select="tei:text/tei:body"/>
+	<xsl:comment>TEI back</xsl:comment>
+	<xsl:apply-templates select="tei:text/tei:back"/>
       </xsl:otherwise>
     </xsl:choose>
-    <!-- back matter -->
-    <xsl:apply-templates select="tei:text/tei:back"/>
       <xsl:call-template name="printNotes"/>
   </xsl:template>
 
@@ -2302,7 +2345,7 @@ function click(d) {
       </xsl:call-template>
     </xsl:variable>
     <xsl:if test="$verbose='true'">
-      <xsl:message>Opening file <xsl:value-of select="$outName"/></xsl:message>
+      <xsl:message>Opening file (pageperfile) <xsl:value-of select="$outName"/></xsl:message>
     </xsl:if>
     
     <xsl:result-document href="{$outName}">
@@ -2319,7 +2362,10 @@ function click(d) {
 	</body>
       </html>
     </xsl:result-document>
-    <xsl:if test="@facs">
+    <xsl:choose>
+      <xsl:when test="not(@facs)"/>
+      <xsl:when test="starts-with(@facs,'unknown:')"/>
+      <xsl:otherwise>
       <xsl:variable name="outNameFacs">
 	<xsl:call-template name="outputChunkName">
 	  <xsl:with-param name="ident">
@@ -2343,7 +2389,8 @@ function click(d) {
 	  </body>
 	</html>
       </xsl:result-document>      
-    </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="html:PAGEBREAK" mode="copy"/>
@@ -2366,7 +2413,7 @@ function click(d) {
       <div class="stdfooter autogenerated">
          <xsl:if test="$linkPanel='true'">
             <div class="footer">
-	      <xsl:comment>standard links to project, instiution etc</xsl:comment>
+	      <xsl:comment>standard links to project, institution etc</xsl:comment>
                <xsl:if test="not($parentURL='')">
 		 <a class="{$style}" href="{$parentURL}">
 		   <xsl:value-of select="$parentWords"/>
@@ -2406,6 +2453,7 @@ function click(d) {
             <xsl:value-of select="$date"/>
             <br/>
             <xsl:call-template name="copyrightStatement"/>
+	    <xsl:if test="$generationComment='true'">
             <xsl:comment>
                <xsl:text>
 	  Generated </xsl:text>
@@ -2416,7 +2464,7 @@ function click(d) {
                <xsl:text> using XSLT stylesheets version </xsl:text>
 	       <xsl:value-of select="tei:stylesheetVersion(/)"/>
 	       based on <xsl:value-of select="$teixslHome"/>
-	       on <xsl:call-template name="whatsTheDate"/>.
+	       on <xsl:sequence select="tei:whatsTheDate()"/>.
 	       <xsl:choose>
 		 <xsl:when test="$useFixedDate='true'">
 		   <xsl:value-of
@@ -2429,6 +2477,7 @@ function click(d) {
 		 </xsl:otherwise>
 	       </xsl:choose>
             </xsl:comment>
+	    </xsl:if>
          </address>
       </div>
   </xsl:template>
@@ -2467,15 +2516,19 @@ function click(d) {
 	     <xsl:with-param name="level">2</xsl:with-param>
 	   </xsl:call-template>
 	   
-
 	   <xsl:if test="$showTitleAuthor='true'">
 	     <xsl:if test="$verbose='true'">
 	       <xsl:message>displaying author and date</xsl:message>
 	     </xsl:if>
-	     <xsl:call-template name="generateAuthorList"/>
-	     <xsl:sequence select="tei:generateDate(.)"/>
-	     <xsl:sequence select="tei:generateEdition(.)"/>
-	   </xsl:if>
+	     <xsl:call-template name="makeHTMLHeading">
+	       <xsl:with-param name="class">subtitle</xsl:with-param>
+	       <xsl:with-param name="text">
+		 <xsl:call-template name="generateAuthorList"/>
+		 <xsl:sequence select="tei:generateDate(.)"/>
+		 <xsl:sequence select="tei:generateEdition(.)"/>
+	       </xsl:with-param>
+	     </xsl:call-template>
+	     </xsl:if>
 	 </xsl:when>
 	 <xsl:otherwise>
 	   <xsl:call-template name="makeHTMLHeading">
@@ -2888,7 +2941,9 @@ function click(d) {
                   <xsl:call-template name="subtoc"/>
                </xsl:if>
                <xsl:call-template name="startHook"/>
-               <xsl:call-template name="doDivBody"/>
+               <xsl:call-template name="makeDivBody">
+		 <xsl:with-param name="depth" select="count(ancestor::tei:div)+1"/>
+	       </xsl:call-template>
                <xsl:call-template name="printNotes"/>
                <xsl:if test="$bottomNavigationPanel='true'">
 		 <xsl:element name="{if ($outputTarget='html5') then 'nav' else 'div'}">

@@ -27,7 +27,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -230,6 +230,9 @@ of this software, even if advised of the possibility of such damage.
 	    <xsl:when test="starts-with(.,'#')">
 	      <xsl:sequence select="substring-after(.,'#')"/>
 	    </xsl:when>
+	    <xsl:when test="starts-with(.,'simple:')">
+	      <xsl:value-of select="substring(.,8)"/>
+	    </xsl:when>
 	    <xsl:otherwise>
 	      <xsl:for-each select="document(.)">
 		<xsl:sequence select="@xml:id"/>
@@ -321,15 +324,16 @@ of this software, even if advised of the possibility of such damage.
     should be (ie plain &lt;p&gt; or &lt;div class="p"&gt; if the
     content is complex).</desc>
   </doc>
-  <xsl:function name="tei:is-DivOrP" as="node()*">
+  <xsl:function name="tei:isDivOrP" as="node()*">
     <xsl:param name="element"/>
     <xsl:for-each select="$element">
       <xsl:choose>
         <xsl:when test="tei:specList">div</xsl:when>
+        <xsl:when test="parent::tei:note[@place='display']">div</xsl:when>
+        <xsl:when test="parent::tei:note[@place='block']">div</xsl:when>
         <xsl:when test="parent::tei:figure and (tei:q/tei:l or tei:figure or parent::tei:figure/parent::tei:div)">div</xsl:when>
         <xsl:when test="ancestor::tei:notesStmt">div</xsl:when>
         <xsl:when test="tei:table">div</xsl:when>
-        <xsl:when test="parent::tei:note[not(@place or @rend)]">span</xsl:when>
         <xsl:when test="$outputTarget='epub' or $outputTarget='epub3'">div</xsl:when>
         <xsl:when test="tei:eg">div</xsl:when>
         <xsl:when test="tei:figure">div</xsl:when>
@@ -337,8 +341,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:when test="tei:l">div</xsl:when>
         <xsl:when test="tei:list">div</xsl:when>
         <xsl:when test="tei:moduleSpec">div</xsl:when>
-        <xsl:when test="parent::tei:note[@place='display'  or tei:isMarginal(@place)]">div</xsl:when>
-        <xsl:when test="tei:note[@place='display'  or tei:isMarginal(@place)]">div</xsl:when>
+        <xsl:when test="tei:note[@place='display'  or @place='block' or tei:isMarginal(@place)]">div</xsl:when>
         <xsl:when test="tei:note[tei:q]">div</xsl:when>
         <xsl:when test="tei:q/tei:figure">div</xsl:when>
         <xsl:when test="tei:q/tei:list">div</xsl:when>
@@ -349,7 +352,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:when test="tei:q[tei:p]">div</xsl:when>
         <xsl:when test="tei:q[tei:sp]">div</xsl:when>
         <xsl:when test="tei:q[tei:floatingText]">div</xsl:when>
-        <xsl:when test="tei:quote[not(tei:is-inline(.))]">div</xsl:when>
+        <xsl:when test="tei:quote[not(tei:isInline(.))]">div</xsl:when>
         <xsl:when test="tei:specGrp">div</xsl:when>
         <xsl:when test="tei:specGrpRef">div</xsl:when>
         <xsl:when test="tei:specList">div</xsl:when>
@@ -418,7 +421,7 @@ of this software, even if advised of the possibility of such damage.
   </doc>
   <xsl:template name="makeBlock">
     <xsl:param name="style"/>
-    <xsl:element name="{if (tei:is-inline(.)) then 'span' else 'div'}">
+    <xsl:element name="{if (tei:isInline(.)) then 'span' else 'div'}">
       <xsl:call-template name="microdata"/>
       <xsl:call-template name="makeRendition">
 	<xsl:with-param name="default" select="$style"/>
@@ -469,7 +472,7 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
 
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
-      <desc>Process any element and work out a unique identififying string</desc>
+      <desc>Process any element and work out a unique identifying string</desc>
    </doc>
   <xsl:template match="*" mode="ident">
     <xsl:variable name="BaseFile">
@@ -495,7 +498,8 @@ of this software, even if advised of the possibility of such damage.
 	</xsl:variable>
 	<xsl:value-of select="$BaseFile"/>
 	<xsl:text>-</xsl:text>
-	<xsl:value-of select="substring-after(substring-after($xpath,'_text.'),'_')"/>
+	    <xsl:value-of
+		select="substring-after(substring-after($xpath,'_text.'),'_')"/>
       </xsl:when>
       <xsl:when test="self::tei:TEI and parent::tei:teiCorpus">
 	<xsl:value-of select="$masterFile"/>

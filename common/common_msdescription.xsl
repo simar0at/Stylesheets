@@ -10,7 +10,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -373,9 +373,9 @@ of this software, even if advised of the possibility of such damage.
       <xsl:variable name="Notes">
         <tei:list type="ordered">
           <xsl:for-each select="../tei:handNote">
-            <item>
+            <tei:item>
               <xsl:copy-of select="*|text()"/>
-            </item>
+            </tei:item>
           </xsl:for-each>
         </tei:list>
       </xsl:variable>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet 
-    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    exclude-result-prefixes="tei html"
+    exclude-result-prefixes="#all"
     version="2.0">
     <!-- import base conversion style -->
 
@@ -19,7 +20,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -107,7 +108,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:call-template name="hdr"/>
       </div>
 
-      <div id="mainMenu">
+      <div id="main-menu">
 	<xsl:call-template name="additionalMenu"/>
       </div>
 
@@ -144,46 +145,6 @@ of this software, even if advised of the possibility of such damage.
   </xsl:template>
 
 
-  <xsl:function name="tei:generateDate">
-    <xsl:param name="context"/>
-    <xsl:for-each select="$context">
-      <xsl:choose>	
-         <xsl:when test="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:date">
-	   <xsl:analyze-string
-	       select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:date"
-	       regex="([0-9][0-9][0-9][0-9]) ([A-z]+)( \(TCP [^\)]+\))?">
-	     <xsl:matching-substring>
-	       <xsl:value-of select="regex-group(1)"/>
-	       <xsl:text>-</xsl:text>
-	       <xsl:choose>
-		 <xsl:when test="regex-group(2)='January'">01</xsl:when>
-		 <xsl:when test="regex-group(2)='February'">02</xsl:when>
-		 <xsl:when test="regex-group(2)='March'">03</xsl:when>
-		 <xsl:when test="regex-group(2)='April'">04</xsl:when>
-		 <xsl:when test="regex-group(2)='May'">05</xsl:when>
-		 <xsl:when test="regex-group(2)='June'">06</xsl:when>
-		 <xsl:when test="regex-group(2)='July'">07</xsl:when>
-		 <xsl:when test="regex-group(2)='August'">08</xsl:when>
-		 <xsl:when test="regex-group(2)='September'">09</xsl:when>
-		 <xsl:when test="regex-group(2)='October'">10</xsl:when>
-		 <xsl:when test="regex-group(2)='November'">11</xsl:when>
-		 <xsl:when test="regex-group(2)='December'">12</xsl:when>
-	       </xsl:choose>  
-	     </xsl:matching-substring>
-	     <xsl:non-matching-substring>
-	       <xsl:value-of select="."/>
-	     </xsl:non-matching-substring>
-	   </xsl:analyze-string>
-         </xsl:when>
-         <xsl:when test="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:editionStmt/tei:edition">
-	   <xsl:apply-templates select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:editionStmt/tei:edition"/>
-         </xsl:when>
-	 <xsl:otherwise>
-	   <xsl:value-of select="format-dateTime(current-dateTime(),'[Y]-[M02]-[D02]')"/>
-	 </xsl:otherwise>
-      </xsl:choose>
-    </xsl:for-each>
-  </xsl:function>
 
   <xsl:template match="tei:body/tei:lb"/>
 
@@ -247,5 +208,11 @@ of this software, even if advised of the possibility of such damage.
    
      </style>
    </xsl:template>
+
+  <xsl:function name="tei:escapeChars" as="xs:string">
+    <xsl:param name="letters"/>
+    <xsl:param name="context"/>
+    <xsl:value-of select="translate($letters,'ſ','s')"/>
+  </xsl:function>
 
 </xsl:stylesheet>

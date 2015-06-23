@@ -10,7 +10,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -356,7 +356,7 @@ of this software, even if advised of the possibility of such damage.
           </xsl:element>
           <xsl:value-of select="$spaceCharacter"/>
         </xsl:if>
-        <xsl:call-template name="bitOut">
+        <xsl:call-template name="schemaOut">
           <xsl:with-param name="grammar"/>
           <xsl:with-param name="element">code</xsl:with-param>
           <xsl:with-param name="content">
@@ -824,7 +824,7 @@ of this software, even if advised of the possibility of such damage.
               </rng:element>
             </Wrapper>
 	</xsl:variable>
-        <xsl:call-template name="bitOut">
+        <xsl:call-template name="schemaOut">
           <xsl:with-param name="grammar"/>
           <xsl:with-param name="content" select="$content"/>
         </xsl:call-template>
@@ -833,18 +833,11 @@ of this software, even if advised of the possibility of such damage.
           <xsl:text>:</xsl:text>
           <xsl:call-template name="valListChildren"/>
         </xsl:for-each>
-        <xsl:if test="s:*">
-          <xsl:element namespace="{$outputNS}" name="{$divName}">
-            <xsl:attribute name="{$rendName}">
-              <xsl:text>pre</xsl:text>
-            </xsl:attribute>
-            <xsl:apply-templates select="s:*" mode="verbatim"/>
-          </xsl:element>
-        </xsl:if>
       </xsl:element>
     </xsl:element>
   </xsl:template>
-  <xsl:template match="tei:constraintSpec[parent::tei:elementSpec or
+
+  <xsl:template match="tei:constraintSpec[parent::tei:schemaSpec or parent::tei:elementSpec or
 		       parent::tei:classSpec or parent::tei:attDef]" mode="weave">
     <xsl:element namespace="{$outputNS}" name="{$rowName}">
       <xsl:element namespace="{$outputNS}" name="{$cellName}">
@@ -1268,7 +1261,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:attribute name="{$rendName}">
           <xsl:text>wovenodd-col2</xsl:text>
         </xsl:attribute>
-        <xsl:call-template name="bitOut">
+        <xsl:call-template name="schemaOut">
           <xsl:with-param name="grammar">true</xsl:with-param>
           <xsl:with-param name="content">
             <Wrapper>
@@ -1635,21 +1628,17 @@ of this software, even if advised of the possibility of such damage.
         <xsl:text>valList</xsl:text>
       </xsl:attribute>
       <xsl:for-each select="tei:valItem">
-        <xsl:variable name="name">
-          <xsl:choose>
-            <xsl:when test="tei:altIdent">
-              <xsl:value-of select="tei:altIdent"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:value-of select="@ident"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:variable>
+        <xsl:variable name="name" select="if (tei:altIdent) then tei:altIdent else @ident"/>
         <xsl:element namespace="{$outputNS}" name="{$dtName}">
           <xsl:attribute name="{$rendName}">
             <xsl:text>odd_label</xsl:text>
           </xsl:attribute>
           <xsl:value-of select="$name"/>
+	  <xsl:if test="tei:paramList">
+	    <xsl:text> (</xsl:text>
+	    <xsl:value-of select="tei:paramList/tei:paramSpec/@ident" separator=","/>
+	    <xsl:text>)</xsl:text>
+	  </xsl:if>
         </xsl:element>
         <xsl:element namespace="{$outputNS}" name="{$ddName}">
           <xsl:attribute name="{$rendName}">
@@ -2485,7 +2474,7 @@ of this software, even if advised of the possibility of such damage.
           <xsl:text>ANY</xsl:text>
         </xsl:element>
       </xsl:when>
-      <xsl:when test="tei:content/@allowText='true' and not(tei:content/*)">
+      <xsl:when test="tei:content/tei:textNode and count(tei:content/*)=1">
         <xsl:element namespace="{$outputNS}" name="{$segName}">
           <xsl:attribute name="{$langAttributeName}">
             <xsl:value-of select="$documentationLanguage"/>
@@ -2597,6 +2586,8 @@ of this software, even if advised of the possibility of such damage.
       </xsl:choose>
     </xsl:for-each>
   </xsl:template>
+
+
   <xsl:template name="followRef">
       <xsl:if test=".//rng:text or .//rng:data">
 	<Element prefix="{@prefix}"  type="TEXT"/>
@@ -2605,6 +2596,8 @@ of this software, even if advised of the possibility of such damage.
       <xsl:if test="not(starts-with(@name,'any')        or starts-with(@name,'macro.any') or starts-with(@key,'macro.any')       or @name='AnyThing')">
         <xsl:variable name="Name"
 	  select="replace(@name|@key,'_(alternation|sequenceOptionalRepeatable|sequenceOptional|sequenceRepeatable|sequence)','')"/>
+	<xsl:variable name="except" select="@except"/>
+	<xsl:variable name="include" select="@include"/>
         <xsl:for-each select="key('IDENTS',$Name)">
           <xsl:choose>
             <xsl:when test="self::tei:elementSpec">
@@ -2623,23 +2616,34 @@ of this software, even if advised of the possibility of such damage.
               </xsl:for-each>
             </xsl:when>
             <xsl:when test="self::tei:classSpec">
-              <xsl:call-template name="followMembers"/>
+              <xsl:call-template name="followMembers">
+		<xsl:with-param name="include" select="$include"/>
+		<xsl:with-param name="except" select="$except"/>
+	      </xsl:call-template>
             </xsl:when>
           </xsl:choose>
         </xsl:for-each>
       </xsl:if>
     </xsl:for-each>
   </xsl:template>
+
   <xsl:template name="followMembers">
+    <xsl:param name="include"/>
+    <xsl:param name="except"/>
     <xsl:for-each select="key('CLASSMEMBERS',@ident)">
       <xsl:choose>
         <xsl:when test="self::tei:elementSpec">
-          <Element prefix="{@prefix}"  module="{@module}"
-		   type="{local-name()}"
-		   name="{tei:createSpecName(.)}"/>
+	      <xsl:if test="tei:includeMember(@ident,$except,$include)">
+		<Element prefix="{@prefix}"  module="{@module}"
+			 type="{local-name()}"
+			 name="{tei:createSpecName(.)}"/>
+	      </xsl:if>
         </xsl:when>
         <xsl:when test="self::tei:classSpec">
-          <xsl:call-template name="followMembers"/>
+          <xsl:call-template name="followMembers">
+		<xsl:with-param name="include" select="$include"/>
+		<xsl:with-param name="except" select="$except"/>
+	  </xsl:call-template>
         </xsl:when>
       </xsl:choose>
     </xsl:for-each>
@@ -2698,4 +2702,8 @@ of this software, even if advised of the possibility of such damage.
       </xsl:element>
     </xsl:if>
   </xsl:template>
+
+  <xsl:template name="processSchematron"/>
+
+
 </xsl:stylesheet>

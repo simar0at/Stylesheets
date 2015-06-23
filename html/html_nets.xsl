@@ -11,7 +11,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -41,7 +41,7 @@ of this software, even if advised of the possibility of such damage.
       <p>Copyright: 2013, TEI Consortium</p>
     </desc>
   </doc>
-  <xsl:variable name="squo">'</xsl:variable>
+  <xsl:variable name="quo">'</xsl:variable>
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
     <desc>Process element eTree</desc>
   </doc>
@@ -141,6 +141,26 @@ of this software, even if advised of the possibility of such damage.
 	</xsl:choose>
       </xsl:when>
 
+      <xsl:when test="$thistreestyle='d3DragDropTree'">
+        <xsl:variable name="TREEID" select="generate-id()"/>
+	
+        <xsl:choose>
+          <xsl:when test="not(ancestor::tei:eTree or ancestor::tei:forest)">
+	    <div  id="viz{$TREEID}"></div>
+	    <script src="dndTree.js"></script>
+            <script type="text/javascript">
+	      treeData = {<xsl:call-template name="treelabel"/>};
+	      dragndrop("#viz<xsl:value-of select="$TREEID"/>");
+	    </script>
+	  </xsl:when>
+          <xsl:otherwise>{<xsl:call-template
+	  name="treelabel"/><xsl:text>} </xsl:text>
+	  <xsl:if test="following-sibling::tei:*">, 
+	  </xsl:if>
+	  </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+
       <xsl:when test="$thistreestyle='d3CollapsableTree'">
         <xsl:choose>
           <xsl:when test="not(ancestor::tei:eTree or ancestor::tei:forest)">
@@ -150,7 +170,7 @@ of this software, even if advised of the possibility of such damage.
 			  select="max(descendant-or-self::*[self::tei:eTree
 				  or
 				  self::tei:eLeaf]/(count(tei:eLeaf)+count(tei:eTree)))
-				  * 150"/>
+				  * 155"/>
             <xsl:variable name="treewidth"
 			  select="count(descendant-or-self::*[self::tei:eTree]) * 130"/>
             <xsl:variable name="treedepth"
@@ -169,8 +189,10 @@ of this software, even if advised of the possibility of such damage.
 
     </script>
           </xsl:when>
-          <xsl:otherwise>{<xsl:call-template name="treelabel"/><xsl:text>}, 
-	    </xsl:text>
+          <xsl:otherwise>{<xsl:call-template
+	  name="treelabel"/><xsl:text>} </xsl:text>
+	  <xsl:if test="following-sibling::tei:*">, 
+	  </xsl:if>
 	  </xsl:otherwise>
         </xsl:choose>
       </xsl:when>
@@ -178,10 +200,14 @@ of this software, even if advised of the possibility of such damage.
   </xsl:template>
 
   <xsl:template name="treelabel">
-    <xsl:text>"name":'</xsl:text><xsl:for-each select="tei:label"><xsl:apply-templates/></xsl:for-each><xsl:text>', </xsl:text>
-    <xsl:text>"style":'</xsl:text>
-    <xsl:value-of select="tei:label/@rend"/>
+    <xsl:text>"name":'</xsl:text>
+      <xsl:for-each select="tei:label">
+	<xsl:apply-templates/>
+      </xsl:for-each>
     <xsl:text>', </xsl:text>
+    <xsl:if test="tei:label/@rend"><xsl:text>"style":"</xsl:text>
+    <xsl:value-of select="tei:label/@rend"/>
+    <xsl:text>", </xsl:text></xsl:if>
     <xsl:choose>
       <xsl:when test="tei:label/@xml:id">
 	<xsl:text>"id":"</xsl:text>
@@ -206,17 +232,14 @@ of this software, even if advised of the possibility of such damage.
 	<xsl:text>", </xsl:text>
       </xsl:when>
     </xsl:choose>
-    <xsl:text>"showlink":'</xsl:text>
+    <xsl:text>"showlink":"</xsl:text>
     <xsl:value-of select="if (self::tei:forest) then 'invisible' else ''"/>
-    <xsl:text>', </xsl:text>
-    <xsl:text>"type":'</xsl:text>
-    <xsl:apply-templates select="@type"/>
-    <xsl:if test="self::tei:eLeaf">
-      <xsl:text> leaf</xsl:text>
-    </xsl:if>
-    <xsl:text>', </xsl:text>
+    <xsl:text>", </xsl:text>
+    <xsl:text>"type":"</xsl:text>
+    <xsl:value-of select="(if (@type) then @type else '', if (self::tei:eLeaf) then 'leaf'  else '')"/>
+    <xsl:text>" </xsl:text>
     <xsl:if test="tei:eTree|tei:eLeaf">
-      <xsl:text>"children":[</xsl:text>
+      <xsl:text>,"children":[</xsl:text>
       <xsl:apply-templates select="*[not(self::tei:label)]"/>
       <xsl:text>]</xsl:text>
     </xsl:if>
@@ -231,7 +254,7 @@ of this software, even if advised of the possibility of such damage.
   </xsl:template>
 
   <xsl:template match="tei:eLeaf/tei:label/text()|tei:eTree/tei:label/text()">
-    <xsl:value-of select="replace(.,$squo,concat('\\',$squo))"/>
+    <xsl:value-of select="replace(.,$quo,concat('\\',$quo))"/>
   </xsl:template>
 
 

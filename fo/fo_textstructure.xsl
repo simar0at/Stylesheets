@@ -23,7 +23,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -97,6 +97,9 @@ of this software, even if advised of the possibility of such damage.
          <xsl:otherwise>
             <page-sequence format="{$formatBackpage}" text-align="{$alignment}" hyphenate="{$hyphenate}"
                            language="{$language}">
+              <xsl:if test="$lineheightApplicationRules = 'all'">
+                <xsl:attribute name="line-height" select="$lineheightBackpage"/>
+              </xsl:if>
                <xsl:call-template name="choosePageMaster">
                   <xsl:with-param name="where">
                      <xsl:value-of select="$backMulticolumns"/>
@@ -111,6 +114,12 @@ of this software, even if advised of the possibility of such damage.
                      <xsl:call-template name="headers-footers-oneside-back"/>
                   </xsl:otherwise>
                </xsl:choose>
+              <!-- insert footNote Seperator -->
+              <static-content flow-name="xsl-footnote-separator">
+                <block>
+                  <leader leader-pattern="rule" leader-length="100%" rule-style="solid" rule-thickness="0.5pt"/>
+                </block>
+              </static-content>
                <!-- now start the main flow -->
           <flow flow-name="xsl-region-body" font-family="{$bodyFont}" font-size="{$bodySize}">
                   <xsl:apply-templates/>
@@ -137,8 +146,11 @@ of this software, even if advised of the possibility of such damage.
        <xsl:otherwise>
 	 <!-- start page sequence -->
 	 <page-sequence format="{$formatBodypage}" text-align="{$alignment}" hyphenate="{$hyphenate}"
-			language="{$language}"
-			initial-page-number="1">
+	         language="{$language}"
+	         initial-page-number="1">
+	   <xsl:if test="$lineheightApplicationRules = 'all'">
+	     <xsl:attribute name="line-height" select="$lineheightBodypage"/>
+	   </xsl:if>
 	   <xsl:call-template name="choosePageMaster">
 	     <xsl:with-param name="where">
 	       <xsl:value-of select="$bodyMulticolumns"/>
@@ -153,6 +165,12 @@ of this software, even if advised of the possibility of such damage.
 	       <xsl:call-template name="headers-footers-oneside"/>
 	     </xsl:otherwise>
 	   </xsl:choose>
+	   <!-- insert footNote Seperator -->
+	   <static-content flow-name="xsl-footnote-separator">
+	     <block>
+	       <leader leader-pattern="rule" leader-length="100%" rule-style="solid" rule-thickness="0.5pt"/>
+	     </block>
+	   </static-content>
 	   <!-- now start the main  flow -->
 	   <flow flow-name="xsl-region-body" font-family="{$bodyFont}" font-size="{$bodySize}">
 	     <xsl:if test="not($flowMarginLeft='')">
@@ -344,6 +362,9 @@ of this software, even if advised of the possibility of such damage.
 	     <page-sequence format="{$formatFrontpage}" force-page-count="end-on-even"
 			    hyphenate="{$hyphenate}"
 			    language="{$language}">
+	       <xsl:if test="$lineheightApplicationRules = 'all'">
+	         <xsl:attribute name="line-height" select="$lineheightBackpage"/>
+	       </xsl:if>
 	       <xsl:call-template name="choosePageMaster">
 		 <xsl:with-param name="where">
 		   <xsl:value-of select="$frontMulticolumns"/>
@@ -377,6 +398,12 @@ of this software, even if advised of the possibility of such damage.
 		   <xsl:call-template name="headers-footers-oneside"/>
 		 </xsl:otherwise>
                </xsl:choose>
+	     <!-- insert footNote Seperator -->
+	     <static-content flow-name="xsl-footnote-separator">
+	       <block>
+	         <leader leader-pattern="rule" leader-length="100%" rule-style="solid" rule-thickness="0.5pt"/>
+	       </block>
+	     </static-content>
                <!-- now start the main flow -->
 	       <flow flow-name="xsl-region-body" font-family="{$bodyFont}" font-size="{$bodySize}">
 		 <xsl:for-each select="tei:*">
@@ -638,49 +665,50 @@ of this software, even if advised of the possibility of such damage.
                </xsl:call-template>
             </xsl:if>
          </xsl:variable>
+        
+        <xsl:if test="$divRunningheads='true'">
+          <!-- markers for use in running heads -->
+          <xsl:choose>
+            <xsl:when test="$level=0">
+              <marker marker-class-name="section1"/>
+              <marker marker-class-name="section2"/>
+              <marker marker-class-name="section3"/>
+              <marker marker-class-name="section4"/>
+              <marker marker-class-name="section5"/>
+            </xsl:when>
+            <xsl:when test="$level=1">
+              <marker marker-class-name="section2"/>
+              <marker marker-class-name="section3"/>
+              <marker marker-class-name="section4"/>
+              <marker marker-class-name="section5"/>
+            </xsl:when>
+            <xsl:when test="$level=2">
+              <marker marker-class-name="section3"/>
+              <marker marker-class-name="section4"/>
+              <marker marker-class-name="section5"/>
+            </xsl:when>
+            <xsl:when test="$level=3">
+              <marker marker-class-name="section4"/>
+              <marker marker-class-name="section5"/>
+            </xsl:when>
+            <xsl:when test="$level=4">
+              <marker marker-class-name="section5"/>
+            </xsl:when>
+            <xsl:when test="$level=5"/>                     
+          </xsl:choose>
+          <marker marker-class-name="section{$level}">
+            <xsl:if test="$numberHeadings='true'">
+              <xsl:value-of select="$Number"/>
+            </xsl:if>
+            <xsl:value-of select="tei:head"/>
+          </marker>
+        </xsl:if>
          <!--
 <xsl:message>**  Calculated   [<xsl:value-of select="$Number"/>] [<xsl:value-of select="$headingNumberSuffix"/>] for <xsl:value-of select="@xml:id"/></xsl:message>
 -->
       <xsl:value-of select="$Number"/>
          <xsl:apply-templates mode="section" select="tei:head"/>
-         <xsl:if test="$divRunningheads='true'">
-<!-- markers for use in running heads -->
-        <xsl:choose>
-               <xsl:when test="$level=0">
-                  <marker marker-class-name="section1"/>
-                  <marker marker-class-name="section2"/>
-                  <marker marker-class-name="section3"/>
-                  <marker marker-class-name="section4"/>
-                  <marker marker-class-name="section5"/>
-               </xsl:when>
-               <xsl:when test="$level=1">
-                  <marker marker-class-name="section2"/>
-                  <marker marker-class-name="section3"/>
-                  <marker marker-class-name="section4"/>
-                  <marker marker-class-name="section5"/>
-               </xsl:when>
-               <xsl:when test="$level=2">
-                  <marker marker-class-name="section3"/>
-                  <marker marker-class-name="section4"/>
-                  <marker marker-class-name="section5"/>
-               </xsl:when>
-               <xsl:when test="$level=3">
-                  <marker marker-class-name="section4"/>
-                  <marker marker-class-name="section5"/>
-               </xsl:when>
-               <xsl:when test="$level=4">
-                  <marker marker-class-name="section5"/>
-               </xsl:when>
-               <xsl:when test="$level=5"/>                     
-            </xsl:choose>
-            <marker marker-class-name="section{$level}">
-               <xsl:if test="$numberHeadings='true'">
-                  <xsl:value-of select="$Number"/>
-                  <xsl:call-template name="headingNumberSuffix"/>
-               </xsl:if>
-               <xsl:value-of select="tei:head"/>
-            </marker>
-         </xsl:if>
+         
          <xsl:choose>
             <xsl:when test="$foEngine='passivetex'">
 <!-- Passive TeX extension, to get PDF bookmarks -->
@@ -1322,6 +1350,9 @@ of this software, even if advised of the possibility of such damage.
          <xsl:attribute name="text-indent">
             <xsl:value-of select="$tocindent"/>
          </xsl:attribute>
+        <xsl:if test="$tocJustify = 'true'">
+          <xsl:attribute name="text-align-last">justify</xsl:attribute>
+        </xsl:if>
          <xsl:variable name="Number">
             <xsl:if test="$numberHeadings='true' and $numberHeadingsDepth &gt; $level">
                <xsl:call-template name="calculateNumber">
@@ -1334,7 +1365,18 @@ of this software, even if advised of the possibility of such damage.
          <inline>
             <xsl:apply-templates mode="section" select="tei:head"/>
          </inline>
-         <leader rule-thickness="0pt"/>
+          <leader>
+            <xsl:attribute name="leader-pattern" select="$tocLeaderPattern"/>
+            <xsl:choose>
+              <xsl:when test="$tocLeaderPattern = 'use-content'">
+                <xsl:value-of select="$tocLeaderPatternContent"/>
+              </xsl:when>
+              <xsl:when test="$tocLeaderPattern = 'rule'">
+                <xsl:attribute name="rule-style" select="$tocRuleStyle"/>
+                <xsl:attribute name="rule-thickness" select="$tocRuleThickness"/>
+              </xsl:when>
+            </xsl:choose>
+          </leader>
          <inline>
             <xsl:call-template name="linkStyle"/>
             <xsl:variable name="pagref">

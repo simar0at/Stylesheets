@@ -18,7 +18,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -183,6 +183,35 @@ of this software, even if advised of the possibility of such damage.
 </desc>
    </doc>
   <xsl:param name="formatFrontpage">i</xsl:param>
+  
+  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="layout" type="string">
+    <desc>Set line-height for back matter
+    </desc>
+  </doc>
+  <xsl:param name="lineheightApplicationRules" select="('p')"></xsl:param>
+  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="layout" type="string">
+    <desc>
+      Sequence of identifiers for lineheight application (has to be evaluated as XPath). Add the following values to the sequence in order to:
+      <ul>
+        <li>'p' : apply lineheight to tei:p elements, excluding those in tei:note, and in tei:quote elements returning false from tei:isInline.</li>
+        <li>'footnote' :  in addition to 'p' apply lineheight to all tei:note elements with @place ='foot'</li>
+        <li>'block-quote' : in addition to 'p' apply lineheight to block quotes</li>
+        <li>'all' : apply lineheight parameters respectively to the whole page sequences</li>
+      </ul>
+    </desc>
+  </doc>
+  <xsl:param name="lineheightBackpage">1</xsl:param>
+  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="layout" type="string">
+    <desc>Set line-height for main matter
+    </desc>
+  </doc>
+  <xsl:param name="lineheightBodypage">1</xsl:param>
+  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="layout" type="string">
+    <desc>Set line-height for front matter
+    </desc>
+  </doc>
+  <xsl:param name="lineheightFrontpage">1</xsl:param>
+  
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="layout" type="boolean">
       <desc>Put front matter in multiple columns</desc>
    </doc>
@@ -409,12 +438,14 @@ there are no bookmarks or other such features. Possible values are
    </doc>
   <xsl:param name="footnoteSize">
       <xsl:value-of select="$bodyMaster * 0.9"/>
+      <xsl:text>pt</xsl:text>
   </xsl:param>
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="style" type="string">
       <desc>Font size for footnote numbers</desc>
    </doc>
   <xsl:param name="footnotenumSize">
     <xsl:value-of select="$bodyMaster * 0.7"/>
+    <xsl:text>pt</xsl:text>
   </xsl:param>
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="style" type="string">
       <desc>Colour for display of element names</desc>
@@ -658,7 +689,39 @@ or columns</desc>
       <desc>Page number on which TOC should start</desc>
    </doc>
   <xsl:param name="tocStartPage">1</xsl:param>
-
+  
+  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="toc" type="boolean">
+    <desc>TOC justify</desc>
+  </doc>
+  <xsl:param name="tocJustify">false</xsl:param>
+  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="toc" type="string">
+    <desc>TOC leader pattern, options are:
+      - rule	A rule. If this choice is selected, the "rule-thickness" and "rule-style" properties are used to set the leader's style.
+      - dots	A repeating sequence of dots. The choice of dot character is dependent on the user agent.
+      - use-content	A repeating pattern as specified by $tocLeaderPatternContent.
+      inherit</desc>
+  </doc>
+  <xsl:param name="tocLeaderPattern">space</xsl:param>
+  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" class="toc" type="string">
+    <desc>TOC leader pattern content, will only be applied if $tocLeaderPattern is set to 'use-content'</desc>
+  </doc>
+  <xsl:param name="tocLeaderPatternContent">-.</xsl:param>
+  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
+    <desc>TOC rule style as specified by FO:
+      none	No rule, forces rule-thickness to 0.
+      dotted	A series of dots.
+      dashed	A series of short line segments.
+      solid	A single line segment.
+      double	Two solid lines. The sum of the two lines and the space between them equals the value of "rule-thickness".
+      groove	The rule looks as though it were carved into the canvas. (Top/left half of the rule's thickness is the color specified; the other half is white.)
+      ridge	The opposite of "groove", the rule looks as though it were coming out of the canvas. (Bottom/right half of the rule's thickness is the color specified; the other half is white.)
+      inherit	</desc>
+  </doc>
+  <xsl:param name="tocRuleStyle">none</xsl:param>
+  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
+    <desc>TOC rule thickness: Pattern: [\+\-]?\d+(\.?\d+)?(pc|px|pt|mm|cm|in|em)</desc>
+  </doc>
+  <xsl:param name="tocRuleThickness">0pt</xsl:param>
   <xsl:template name="Element">
     <xsl:param name="content"/>
     <inline>

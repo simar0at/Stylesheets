@@ -838,8 +838,8 @@
         <xsl:text>TEI Guidelines </xsl:text> 
         <xsl:apply-templates
 	    select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:editionStmt/tei:edition"/>
-        <xsl:text> This page generated on </xsl:text> 
-	<xsl:call-template name="whatsTheDate"/>
+        <xsl:text>. This page generated on </xsl:text> 
+	<xsl:sequence select="tei:whatsTheDate()"/><xsl:text>.</xsl:text>
 
     </address>
     </div>

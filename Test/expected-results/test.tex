@@ -204,6 +204,8 @@
   \pagenumbering{roman}
   \def\thechapter{\@roman\c@chapter}
   \def\theHchapter{\roman{chapter}}
+  \def\thesection{\@roman\c@section}
+  \def\theHsection{\roman{section}}
   \def\@chapapp{}%
 }
 \def\mainmatter{%
@@ -215,6 +217,8 @@
   \setcounter{secnumdepth}{6}
   \def\@chapapp{\chaptername}%
   \def\theHchapter{\arabic{chapter}}
+  \def\thesection{\@arabic\c@section}
+  \def\theHsection{\arabic{section}}
 }
 \def\backmatter{%
   \cleardoublepage
@@ -412,7 +416,7 @@ I am changed: I'll go sell all my land.\end{description}
 Iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod\footnote{It is time to begin the beguine.} Iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod\par
 Iriure dolor in hendrerit in vulputate\endnote{Not Vulture} velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit\endnote{Not Blandings} praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
 \section[{Assorted elements and links}]{Assorted elements and links}\par
-Fit the first The \texttt{<emph>} element is used for linguistic emph\textit{asis}. ‘highlighting’ (\texttt{<soCalled>}) nor with \textit{shouting} (\texttt{<mentioned>}), \textit{transmogrification}, (a technical \texttt{<term>}), for which the \texttt{<gloss>} tag might be used to supply  \textit{a technical definition}).\par
+\textbf{Fit the first} The \texttt{<emph>} element is used for linguistic emph\textit{asis}. ‘highlighting’ (\texttt{<soCalled>}) nor with \textit{shouting} (\texttt{<mentioned>}), \textit{transmogrification}, (a technical \texttt{<term>}), for which the \texttt{<gloss>} tag might be used to supply  \textit{a technical definition}).\par
 Now for some links! We will start by cross-referring to a later section.\par
 Here is a simple \texttt{<ptr>} to it: \textit{\hyperref[P1]{9. Lists}}. Here is a simple \texttt{<ref>}, a \hyperref[P1]{reference to it}.\par
 An \xref{http://www.bbc.co.uk}{external link} as ref and as ptr: \url{http://www.bbc.co.uk} and \url{http://www.ox.ac.uk/}.
@@ -463,7 +467,8 @@ The preceding lists was between paragraphs.\par
 \end{itemize} \par
 What's wrong with this list?\begin{description}
 
-\item[{apricot}]\begin{itemize}
+\item[{apricot}]\hspace{1em}\hfill\linebreak
+\begin{itemize}
 \item one \begin{itemize}
 \item one-hay
 \item one-bee
@@ -471,7 +476,8 @@ What's wrong with this list?\begin{description}
 \item two
 \item three
 \end{itemize} 
-\item[{banana}]\begin{itemize}
+\item[{banana}]\hspace{1em}\hfill\linebreak
+\begin{itemize}
 \item one
 \item two
 \item three
@@ -610,7 +616,7 @@ Ampersands: Fit the first\& Fit the first\& more Fit the first\&amp; more Fit th
 \hspace*{6pt}{<\textbf{seg}>}Fit the first\& more{</\textbf{seg}>}\mbox{}\newline 
 \hspace*{6pt}{<\textbf{seg}>}Fit the first\&amp; more{</\textbf{seg}>}\mbox{}\newline 
 \hspace*{6pt}{<\textbf{seg}>}Fit the first\&\&{</\textbf{seg}>}\mbox{}\newline 
-\hspace*{6pt}{<\textbf{seg}>}Fit the first\&quot; (as opposed to &quot;){</\textbf{seg}>}\mbox{}\newline 
+\hspace*{6pt}{<\textbf{seg}>}Fit the first\&quot; (as opposed to \&quot;){</\textbf{seg}>}\mbox{}\newline 
 \hspace*{6pt}{<\textbf{seg}>}Fit the first @ {<\textbf{ref}\hspace*{6pt}{target}="{http://www.example.com/?foo=bar\&bar=foo\&\#3}">}http://www.example.com/?foo=bar\&bar=foo\&\#3{</\textbf{ref}>}\mbox{}\newline 
 \hspace*{6pt}{</\textbf{seg}>}.\mbox{}\newline 
 {</\textbf{p}>}\end{shaded}\egroup\par \par

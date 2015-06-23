@@ -106,7 +106,7 @@
 </xsl:template>
 
 <xsl:template name="cols">
-  <milestone unit="cols">
+  <milestone unit="column">
     <xsl:apply-templates 
 	select="@*|*|text()|comment()|processing-instruction()"/>  
   </milestone>
@@ -138,7 +138,7 @@
    <xsl:template match="smcap">
       <xsl:call-template name="smcap"/>
    </xsl:template>
-   <xsl:template match="cols">
+   <xsl:template match="cols|colShift">
       <xsl:call-template name="cols"/>
    </xsl:template>
    <xsl:template match="ornament">

@@ -11,10 +11,11 @@
                 version="2.0"
                 xpath-default-namespace="http://www.tei-c.org/ns/1.0"
                 exclude-result-prefixes="#all">
+  <xsl:import href="../common/functions.xsl"/>
 
   <d:doc scope="stylesheet" type="stylesheet">
     <d:desc>
-      <d:p> TEI stylesheet for simplifying TEI ODD markup </d:p>
+      <d:p> TEI stylesheet for extracting Schematron rules from  TEI ODD </d:p>
       <d:p>This software is dual-licensed:
 
 1. Distributed under a Creative Commons Attribution-ShareAlike 3.0
@@ -22,7 +23,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
                 
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -48,7 +49,6 @@ theory of liability, whether in contract, strict liability, or tort
 of this software, even if advised of the possibility of such damage.
 </d:p>
       <d:p>Author: See AUTHORS</d:p>
-      <d:p>Id: $Id$</d:p>
       <d:p>Copyright: 2014, TEI Consortium</d:p>
       <d:p/>
       <d:p>Modified 2014-01-01/09 by Syd Bauman:
@@ -134,6 +134,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:apply-templates select="$input-with-NSs" mode="schematron-extraction">
       <xsl:with-param name="P5deco" select="$input-with-NSs/TEI"/>
     </xsl:apply-templates>
+      
     <!-- Note: to see decorated tree for debugging, change mode of above -->
     <!-- from "schematron-extraction" to "copy". -->
   </xsl:template>
@@ -201,8 +202,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="P5deco" as="element( tei:TEI )"/>
     <schema queryBinding="xslt2">
       <title>ISO Schematron rules</title>
-      <xsl:comment> This file generated <xsl:value-of
-        select="current-dateTime()"/> by 'extract-isosch.xsl'. </xsl:comment>
+      <xsl:comment> This file generated <xsl:sequence select="tei:whatsTheDate()"/> by 'extract-isosch.xsl'. </xsl:comment>
 
       <xsl:call-template name="blockComment">
         <xsl:with-param name="content" select="'namespaces, declared:'"/>
@@ -350,6 +350,9 @@ of this software, even if advised of the possibility of such damage.
           </xsl:when>
         </xsl:choose>
       </xsl:for-each>
+
+      <xsl:apply-templates select="//paramList"/>
+
     </schema>
   </xsl:template>
   
@@ -456,5 +459,28 @@ of this software, even if advised of the possibility of such damage.
     </xsl:for-each>
   </xsl:function>
 
+  <xsl:template match="paramList">
+    <xsl:variable name="N">
+      <xsl:number from="elementSpec" level="any"/>
+    </xsl:variable>
+    <xsl:variable name="B">
+      <xsl:value-of select="parent::valItem/@ident"/>
+    </xsl:variable>
+    <pattern id="teipm-{ancestor::elementSpec/@ident}-paramList-{$N}">
+          <rule context="tei:param[parent::tei:model/@behaviour='{$B}']">
+            <assert role="error">
+	      <xsl:attribute name="test">
+		<xsl:text>@name='</xsl:text>
+		<xsl:value-of select="(paramSpec/@ident)" separator="'   or  @name='"/>
+		<xsl:text>'</xsl:text>
+	      </xsl:attribute>
+	      Parameter name '<value-of select="@name"/>'  (on <value-of select="ancestor::tei:elementSpec/@ident"/>) not allowed.
+	      Must  be  drawn from the list: <xsl:value-of separator=", " select="(paramSpec/@ident)" />
+	    </assert>
+	    
+          </rule>
+        </pattern>
+
+  </xsl:template>
 
 </xsl:stylesheet>

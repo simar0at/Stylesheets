@@ -18,7 +18,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -104,27 +104,24 @@ of this software, even if advised of the possibility of such damage.
       <desc>Process element eg|tei:q[tei:match(@rend,'eg')]</desc>
    </doc>
   <xsl:template match="tei:seg[tei:match(@rend,'pre')]|tei:eg|tei:q[tei:match(@rend,'eg')]">
-      <xsl:choose>
-         <xsl:when test="ancestor::tei:cell and count(*)=1 and string-length(.)&lt;60">
-	           <xsl:variable name="stuff">
-	              <xsl:apply-templates mode="eg"/>
-	           </xsl:variable>
-	           <xsl:text>\fbox{\ttfamily </xsl:text>
-	           <xsl:value-of select="tei:escapeCharsVerbatim($stuff)"/>
-	           <xsl:text>} </xsl:text>
+    <xsl:variable name="stuff">
+      <xsl:apply-templates mode="eg"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="ancestor::tei:cell and count(*)=1 and string-length(.)&lt;60">
+	<xsl:text>\fbox{\ttfamily </xsl:text>
+	<xsl:value-of select="tei:escapeCharsVerbatim($stuff)"/>
+	<xsl:text>} </xsl:text>
          </xsl:when>
          <xsl:when test="ancestor::tei:cell and not(*)  and string-length(.)&lt;60">
-	           <xsl:variable name="stuff">
-	              <xsl:apply-templates mode="eg"/>
-	           </xsl:variable>
-	           <xsl:text>\fbox{\ttfamily </xsl:text>
-	           <xsl:value-of select="tei:escapeCharsVerbatim($stuff)"/>
-	           <xsl:text>} </xsl:text>
+	   <xsl:text>\fbox{\ttfamily </xsl:text>
+	   <xsl:value-of select="tei:escapeCharsVerbatim($stuff)"/>
+	   <xsl:text>} </xsl:text>
          </xsl:when>
          <xsl:when test="ancestor::tei:cell or tei:match(@rend,'pre')">
 	           <xsl:text>\mbox{}\hfill\\[-10pt]\begin{Verbatim}[fontsize=\small]
 </xsl:text>
-	           <xsl:apply-templates mode="eg"/>
+	           <xsl:copy-of select="$stuff"/>
 	           <xsl:text>
 \end{Verbatim}
 </xsl:text>
@@ -134,7 +131,7 @@ of this software, even if advised of the possibility of such damage.
 	           <xsl:text>\bgroup\exampleFont</xsl:text>
 	           <xsl:text>\vskip 10pt\begin{shaded}
 \noindent\obeyspaces{}</xsl:text>
-	           <xsl:apply-templates mode="eg"/>
+	           <xsl:value-of select="tei:escapeCharsVerbatim($stuff)"/>
 	           <xsl:text>\end{shaded}
 \egroup 
 </xsl:text>
@@ -143,7 +140,7 @@ of this software, even if advised of the possibility of such damage.
 	           <xsl:text>\par\hfill\bgroup\exampleFont</xsl:text>
 	           <xsl:text>\vskip 10pt\begin{shaded}
 \obeyspaces </xsl:text>
-	           <xsl:apply-templates mode="eg"/>
+	           <xsl:value-of select="tei:escapeCharsVerbatim($stuff)"/>
 	           <xsl:text>\end{shaded}
 \par\egroup 
 </xsl:text>
@@ -351,6 +348,7 @@ of this software, even if advised of the possibility of such damage.
 \item[{</xsl:text>
       <xsl:apply-templates select="preceding-sibling::tei:label[1]" mode="gloss"/>
       <xsl:text>}]</xsl:text>
+      <xsl:if test="tei:list">\hspace{1em}\hfill\linebreak&#10;</xsl:if>
       <xsl:apply-templates/>
   </xsl:template>
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
@@ -670,7 +668,7 @@ of this software, even if advised of the possibility of such damage.
    </doc>
   <xsl:template match="tei:q|tei:said">
       <xsl:choose>
-	<xsl:when test="not(tei:is-inline(.))">
+	<xsl:when test="not(tei:isInline(.))">
 	  <xsl:text>&#10;\begin{</xsl:text><xsl:value-of select="$quoteEnv"/><xsl:text>}</xsl:text>
 	  <xsl:apply-templates/>
 	  <xsl:text>\end{</xsl:text><xsl:value-of select="$quoteEnv"/><xsl:text>}&#10;</xsl:text>
@@ -690,7 +688,7 @@ of this software, even if advised of the possibility of such damage.
 	  <xsl:sequence select="tei:makeHyperTarget(@xml:id)"/>
 	  <xsl:apply-templates/>
 	</xsl:when>
-	<xsl:when test="not(tei:is-inline(.))">
+	<xsl:when test="not(tei:isInline(.))">
 	  <xsl:text>\begin{</xsl:text><xsl:value-of select="$quoteEnv"/><xsl:text>}</xsl:text>
 	  <xsl:sequence select="tei:makeHyperTarget(@xml:id)"/>
 	  <xsl:apply-templates/>
@@ -815,7 +813,7 @@ of this software, even if advised of the possibility of such damage.
       </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="tei:del[tei:match(@rend,'overstrike')]">
+  <xsl:template match="tei:del[tei:match(@rend,'strikethrough')]">
     <xsl:text>\sout{</xsl:text>
     <xsl:apply-templates/>
     <xsl:text>}</xsl:text>

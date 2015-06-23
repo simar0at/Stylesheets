@@ -42,7 +42,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -168,7 +168,7 @@ of this software, even if advised of the possibility of such damage.
         
     </desc>
    </doc>
-    <xsl:template match="*[not(tei:is-inline(.))]" priority="-10">
+    <xsl:template match="*[not(tei:isInline(.))]" priority="-10">
         <xsl:param name="style"/>
         <xsl:param name="pPr" as="node()*"/>
         <xsl:param name="nop"/>
@@ -205,7 +205,7 @@ of this software, even if advised of the possibility of such damage.
     </desc>
    </doc>
 
-    <xsl:template match="*[tei:is-inline(.)]" priority="-10">
+    <xsl:template match="*[tei:isInline(.)]" priority="-10">
         <xsl:param name="character-style"/>
         <xsl:param name="style"/>
         <xsl:param name="pPr" as="node()*"/>

@@ -23,7 +23,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -187,7 +187,7 @@ of this software, even if advised of the possibility of such damage.
       </xsl:when>
       <xsl:otherwise>
 	<xsl:element name="{if ($outputTarget='html5') then 'figure'
-			   else if (tei:is-inline(.)) then 'span'
+			   else if (tei:isInline(.)) then 'span'
 			   else 'div'}">
           <xsl:call-template name="makeRendition">
 	    <xsl:with-param name="auto">figure</xsl:with-param>

@@ -36,7 +36,10 @@
 	  <xsl:import href="functions.xsl"/>
 	  <xsl:import href="../variables.xsl"/>
 	  <xsl:import href="omml2mml.xsl"/>
-
+	  <xsl:import href="pass0.xsl"/>
+	  <xsl:import href="pass2.xsl"/>
+	
+	  
 	  <xsl:param name="convertGraphics">true</xsl:param>	  
 	  <xsl:param name="mathMethod">mml</xsl:param>	  
 	  <xsl:param name="termMethod">tei</xsl:param>	  
@@ -46,15 +49,14 @@
 	  <xsl:param name="preserveSoftPageBreaks">false</xsl:param>    	  
 	  <xsl:param name="preserveEffects">false</xsl:param>	  
 	  <xsl:param name="preserveFontSizeChanges">false</xsl:param>
-	  <xsl:param name="preserveObject">false</xsl:param>	  
+	  <xsl:param name="preserveObject">false</xsl:param>
+	  <xsl:param name="preserveSpace">false</xsl:param>
 	  <xsl:param name="verbose">false</xsl:param>	  
 	  <xsl:param name="processChangeInformation">false</xsl:param>
 	  <xsl:param name="pageHeight">890</xsl:param>
 	  <xsl:param name="pageWidth">576</xsl:param>
 
-	  <xsl:include href="pass0.xsl"/>
-	  <xsl:include href="pass2.xsl"/>
-	
+
 	  <xsl:include href="fields.xsl"/>
 	  <xsl:include href="toc.xsl"/>
 	  <xsl:include href="graphics.xsl"/>
@@ -77,7 +79,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -126,8 +128,8 @@ of this software, even if advised of the possibility of such damage.
 			</xsl:otherwise>
 		</xsl:choose>
 	  </xsl:variable>
-	  <xsl:variable name="customFile" select="concat($wordDirectory,'/docProps/custom.xml')"/>
-	  <xsl:variable name="docProps" select="doc(concat($wordDirectory,'/docProps/core.xml'))"/>
+	  <xsl:variable name="customProps" select="concat($wordDirectory,'/docProps/custom.xml')"/>
+	  <xsl:variable name="docProps" select="concat($wordDirectory,'/docProps/core.xml')"/>
 	  <xsl:variable name="numberFile" select="concat($wordDirectory,'/word/numbering.xml')"/>
 	  <xsl:variable name="relsDoc" select="concat($wordDirectory,'/word/_rels/document.xml.rels')"/>
 	  <xsl:variable name="relsFile"  select="concat($wordDirectory,'/word/_rels/document.xml.rels')"/>
@@ -216,11 +218,13 @@ of this software, even if advised of the possibility of such damage.
    		</xsl:if>
    	</xsl:variable>	  
      
+
      <!--
 	 <xsl:result-document href="/tmp/foo.xml">
 	 <xsl:copy-of select="$pass1"/>
 	 </xsl:result-document>
-	 -->
+     -->
+
      <!-- Do the final parse and create valid TEI -->
 
    	<xsl:if test="not($skip-pass2)">
@@ -274,7 +278,7 @@ of this software, even if advised of the possibility of such damage.
 		 group all paragraphs that form a first level section.
 	    -->
 	    <xsl:for-each-group select="w:sdt|w:p|w:tbl"
-				group-starting-with="w:p[tei:is-firstlevel-heading(.)]">
+				group-starting-with="w:p[tei:isFirstlevel-heading(.)]">
 	      
 	      <xsl:choose>
 		
@@ -598,7 +602,7 @@ of this software, even if advised of the possibility of such damage.
 	    <p>unknown</p>
 	  </publicationStmt>
 	  <sourceDesc>
-	    <p>Converted from a Word document </p>
+	    <p>Converted from a Word document</p>
 	  </sourceDesc>
 	</fileDesc>
 	<encodingDesc>
@@ -633,11 +637,11 @@ of this software, even if advised of the possibility of such damage.
 
     <xsl:template name="generateAppInfo">
       <appInfo>
-	        <application xml:id="doxtotei" ident="TEI_fromDOCX" version="2.15.0">
+	        <application xml:id="docxtotei" ident="TEI_fromDOCX" version="2.15.0">
 	           <label>DOCX to TEI</label>
 	        </application>
-	        <xsl:if test="doc-available(concat($wordDirectory,'/docProps/custom.xml'))">
-	           <xsl:for-each select="document(concat($wordDirectory,'/docProps/custom.xml'))/prop:Properties">
+	        <xsl:if test="doc-available($customProps)">
+	           <xsl:for-each select="doc($customProps)/prop:Properties">
 	              <xsl:for-each select="prop:property">
 	                 <xsl:choose>
 		                   <xsl:when test="@name='TEI_fromDOCX'"/>
@@ -662,15 +666,36 @@ of this software, even if advised of the possibility of such damage.
     </xsl:template>
 
     <xsl:template name="getDocTitle">
-      <xsl:value-of select="$docProps/cp:coreProperties/dc:title"/>
+      <xsl:choose>
+	<xsl:when test="doc-available($docProps)">
+	  <xsl:value-of select="doc($docProps)/cp:coreProperties/dc:title"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:text>unknown title</xsl:text>
+	</xsl:otherwise>
+      </xsl:choose>
     </xsl:template>
 
     <xsl:template name="getDocAuthor">
-      <xsl:value-of select="$docProps/cp:coreProperties/dc:creator"/>
+      <xsl:choose>
+	<xsl:when test="doc-available($docProps)">
+	  <xsl:value-of select="doc($docProps)/cp:coreProperties/dc:creator"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:text>unknown author</xsl:text>
+	</xsl:otherwise>
+      </xsl:choose>
     </xsl:template>
 
     <xsl:template name="getDocDate">
-      <xsl:value-of select="substring-before($docProps/cp:coreProperties/dcterms:created,'T')"/>
+      <xsl:choose>
+	<xsl:when test="doc-available($docProps)">
+	  <xsl:value-of select="substring-before(doc($docProps)/cp:coreProperties/dcterms:created,'T')"/>
+	</xsl:when>
+	<xsl:otherwise>
+	  <xsl:text>unknown date</xsl:text>
+	</xsl:otherwise>
+      </xsl:choose>
     </xsl:template>
 
     <xsl:template name="identifyChange">

@@ -19,7 +19,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -52,7 +52,7 @@ of this software, even if advised of the possibility of such damage.
 
   <xsl:param name="splitLevel">-1</xsl:param>
   <xsl:param name="cssFile"></xsl:param>
-  <xsl:param name="cssInlineFile">../tei.css</xsl:param>
+  <xsl:param name="cssInlineFiles">../tei.css ../odd.css</xsl:param>
   <xsl:param name="institution"></xsl:param>
   <xsl:param name="feedbackURL"/>
   <xsl:param name="searchURL"/>

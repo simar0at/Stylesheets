@@ -334,8 +334,7 @@ p.box {
 
 td.label {
     font-weight: bold;
-    color: white;
-    background-color: black;
+    background-color: #D3D3D3;
 }
 tr.label td {
     font-weight: bold;
@@ -459,9 +458,12 @@ span.previousLink {
 span.upLink {
     font-style: italic;
 }
-p, div.p {
+p, div.p, span.p {
     margin-top: 0.5em;
     line-height: 125%;
+}
+span.p {
+    display: block;
 }
 /* bibl */
 span.titlem {
@@ -475,6 +477,10 @@ span.titleu {
 span.titles {
 }
 
+aside,span.notemargin,
+span.notemarginOuter,
+span.notemarginLeft,
+span.notemarginRight,
 div.notemargin,span.notemargin {
     display: block;
     font-size: smaller;
@@ -483,8 +489,17 @@ div.notemargin,span.notemargin {
     font-style: italic;
     width: 15%;
     float:right; 
-    border: solid green 1pt; 
+    background-color: #F8F8FF;
     margin: 6pt;
+}
+span.notemargin,
+span.notemarginOuter,
+span.notemarginRight,
+span.notemargin,div.notemargin {
+    float:right; 
+}
+span.notemarginLeft {
+    float:left; 
 }
 
 div.floatingText_back {
@@ -638,20 +653,15 @@ span.decorInit {
     font-size : 6em;
     font-family: cursive;
     font-weight : bold;
+    vertical-align: top;
+    height: 1em;
+    line-height: 1em;
     float : left;
     width : 1em;
     color : #c00;
-    line-height: 1em; 
     margin: 0em;
     padding: 0px; 
 }
-
-span.wordtypeNN, span.wordtypeNNS {
-    color: green;
-    }
-span.wordtypeVVD,span.wordtypeVVN,span.wordtypeVVN,span.wordtypeVVZ,span.wordtypeVVG, span.wordtypeVV {
-    color: red;
-    }
 
 /* for ePub */
 div.EpubCoverPage {
@@ -677,3 +687,15 @@ table.braced tbody tr td {
     vertical-align: center;
 }
 
+span.listhead {
+    display: block;
+    margin-top: 0em;
+    margin-right: 1em;
+    padding-left: 3px;
+    padding-right: 3px;
+    font-weight: bold;
+}
+
+table {
+    font-size: smaller;
+}

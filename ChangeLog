@@ -1,3 +1,1251 @@
+2015-06-07  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	limit affect of fooling around with lists
+
+	look again at page breaks within lists
+
+2015-06-07  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	Merge branch 'master' of github.com:TEIC/Stylesheets
+
+	long s escaping in TCP epub profile
+
+2015-06-07  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	updated results
+
+2015-06-06  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	stop duplication of notes; updated results
+
+2015-06-05  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	changed test results, notes have returned
+
+	look at lists again; try to sort out breaks between items and handling of gloss lists
+
+	tidy up formatting
+
+	add escapechars to ota profile to zap long s
+
+2015-06-04  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	changed results
+
+	dont call makeDivBody without passing in a depth
+
+2015-05-27  Sebastian Rahtz  <sebastian.rahtz@it.ox.ac.uk>
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+	copy over any top-level <rendition> elements from schemaSpec when doing odd2odd
+
+2015-05-27  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	Merge branch 'master' of github.com:TEIC/Stylesheets
+
+2015-05-27  Sebastian Rahtz  <sebastian.rahtz@it.ox.ac.uk>
+
+	allow for rendition
+2015-05-26  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	error in workOutSource, didnt allow for base-uri being empty
+2015-05-25  Sebastian Rahtz  <sebastian.rahtz@it.ox.ac.uk>
+
+	add rendition to TEI generated from docx for Simple
+
+	change mind about margin again
+
+2015-05-24  Sebastian Rahtz  <sebastian.rahtz@it.ox.ac.uk>
+
+	fix changed resuts (typo in old code)
+
+	make sure all @rend attributes are processed in pass2 mode, enabling conversion to @rendition
+
+	add new profile, simple, for Word to TEI. Makes stuff compatible with TEI Simple
+
+	get rid of FORMTEXT instrText, and allow for table rendition more cleanly
+2015-05-24  Sebastian Rahtz  <sebastian.rahtz@it.ox.ac.uk>
+
+	make sure all @rend attributes are processed in pass2 mode, enabling conversion to @rendition
+
+	add new profile, simple, for Word to TEI. Makes stuff compatible with TEI Simple
+
+	get rid of FORMTEXT instrText, and allow for table rendition more cleanly
+
+2015-05-23  Sebastian Rahtz  <sebastian.rahtz@it.ox.ac.uk>
+
+	finish handling of paramList in making schematron
+
+2015-05-22  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	need new release to deal with things in ODDs for TEI Simple
+
+	need new release to deal with things in ODDs for TEI Simple
+2015-05-21  Sebastian Rahtz  <sebastian.rahtz@it.ox.ac.uk>
+
+	make finding source doc more robust
+
+2015-05-17  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	result changed
+
+	try to get rid of more XMLNS decls, and avoid perpetuating @mode attribute
+
+2015-05-15  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	ensure models pass through odd2odd ok
+
+2015-05-14  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	Merge branch 'master' of github.com:TEIC/Stylesheets
+
+	allow for paramSpec _pro tem_
+
+2015-05-10  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	make a new release, 7.38
+
+2015-05-09  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	revisited whitespace preservation again, and added top-level param preserveSpace (set to false by default, true in profile sciencejournal)
+2015-05-09  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	revisited whitespace preservation again, and added top-level param preserveSpace (set to false by default, true in profile sciencejournal)
+
+2015-05-07  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	be more generous adding xml:space=preserve to elements from docx
+
+2015-05-04  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	use tei:whatsTheDate function conistently, and remove a couple of spurious characters
+
+	add xml:space=preserve into <hi> elements which start or end with space. issue 106. I hope this is the right answer
+
+	we dont need a function and a template doing the same thing
+
+	closing issue 99, the processing of a ref with a PI inside it assuming a structure we dont have
+
+2015-04-26  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+	fix working out of schema version
+
+2015-04-22  Martin Holmes  <mholmes@uvic.ca>
+
+	Merge pull request #105 from rvdb/master
+	relaxed processing of bibliography entries without author or date
+
+2015-04-22  rvdb  <ron.vandenbranden@kantl.be>
+
+	relaxed processing of bibliography entries without author or date
+
+2015-04-21  rvdb  <ron.vandenbranden@kantl.be>
+
+	don't wrap <eg> content in <![CDATA[]> (avoid double escaping of &lt; and &gt;)
+
+2015-04-21  Martin Holmes  <mholmes@uvic.ca>
+
+	Merge pull request #104 from rvdb/master
+	don't wrap <eg> content in <![CDATA[]> (avoid double escaping of &lt; an...
+
+	Merge pull request #100 from rvdb/master
+	-improved rendering of <eg>: always displayed as block, irrelevant leadi...
+
+2015-04-21  rvdb  <ron.vandenbranden@kantl.be>
+
+	-improved rendering of <eg>: always displayed as block, irrelevant leading whitespace (due to indentation) is removed -added support for list[@rend='simple'] and lb in PDF
+
+2015-04-19  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	adjust mapping for TEI Simple
+
+	tei simple mapping changes
+
+2015-04-18  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	kill line-height
+
+2015-04-17  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	adjust line heights
+
+2015-04-11  Martin Holmes  <mholmes@uvic.ca>
+
+	Merge pull request #95 from rvdb/master
+	calculate base URL for embedded graphics directly from current file URL
+
+2015-04-11  rvdb  <ron.vandenbranden@kantl.be>
+
+	calculate base URL for embedded graphics directly from current file URL
+
+2015-04-10  Martin Holmes  <mholmes@uvic.ca>
+
+	Merge pull request #94 from rvdb/master
+	added row spanning for table cells
+
+2015-04-10  rvdb  <ron.vandenbranden@kantl.be>
+
+	added row spanning for table cells
+
+2015-04-09  Martin Holmes  <mholmes@uvic.ca>
+
+	Merge pull request #93 from rvdb/master
+	-improved processing of main and subtitles
+
+2015-04-09  rvdb  <ron.vandenbranden@kantl.be>
+
+	added pdf transformation to jTEI profile
+
+2015-04-08  martindholmes  <mholmes@uvic.ca>
+
+	Fixing a typo in a comment. PDF transformations create PDFs, not HTML.
+
+2015-04-06  rvdb  <ron.vandenbranden@kantl.be>
+
+	-improved processing of main and subtitles -skip seriesStmt and some attributes on row that aren't permitted in OpenEdition
+2015-04-06  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	quite a signicant change to the way the <head> element is treated in HTML. instead of being special-cased at the start of a <div>, it is now simply handled with the ordinary apply-templates. this is to allow <pb> elements to occur before the heading
+
+	results
+
+	results
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+	fix some errors in HTML list processing, which in turn threw up a mistake with <handNote>
+
+2015-04-03  Martin Holmes  <mholmes@uvic.ca>
+
+	Merge pull request #92 from rvdb/master
+	fixed a bug w.r.t. calculation of table columns
+
+2015-04-02  rvdb  <ron.vandenbranden@kantl.be>
+
+	fixed generation of references to images occurring inside lists
+
+2015-04-01  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	Version 7.33 release
+
+2015-03-31  rvdb  <ron.vandenbranden@kantl.be>
+
+	fixed a bug w.r.t. calculation of table columns
+
+2015-03-26  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	revise teitosimple
+2015-03-25  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	revise teitosimple
+
+2015-03-24  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	starting work on implementing dataSpec/dataNode/dataRef
+
+2015-03-24  Peter Stadler  <stadlerpeter@yahoo.fr>
+
+	Merge pull request #90 from rvdb/master
+	-don't copy /TEI/@rend[. = ('jTEI', 'jTEI.internal')] attribute
+
+2015-03-24  rvdb  <ron.vandenbranden@kantl.be>
+
+	don't copy /TEI/@rend[. = ('jTEI', 'jTEI.internal')] attribute
+
+2015-03-23  Peter Stadler  <stadlerpeter@yahoo.fr>
+
+	Merge pull request #89 from rvdb/master
+	added openedition transformation to jTEI profile
+
+2015-03-23  rvdb  <ron.vandenbranden@kantl.be>
+
+	added openedition transformation to jTEI profile
+
+2015-03-20  Martin Holmes  <mholmes@uvic.ca>
+
+	Merge pull request #88 from rvdb/master
+	added jTEI profile with jTEI-to-ODT transformation
+
+2015-03-20  rvdb  <ron.vandenbranden@kantl.be>
+
+	added jTEI profile with jTEI-to-ODT transformation
+
+2015-03-17  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	docx file showing problems with multifield ref
+
+	Merge pull request #87 from jure/missing_text
+	Add text from the node, in addition to the processed bibliography instruction.
+
+2015-03-17  Jure Triglav  <juretriglav@gmail.com>
+
+	A different way to address both missing text situations, one when there is missing opening text before a reference, and the second situation, when there is a missing reference all together.
+
+2015-03-16  Jure Triglav  <juretriglav@gmail.com>
+
+	Add text from the node, in addition to the processed bibliography instruction.
+
+2015-03-15  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	allow for email and affiliation in name better, and change slightly rule about processing two authors next to each other
+
+	fixing results after small change to name handling
+
+2015-03-13  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	Merge pull request #85 from jure/hyperlinks_without_leading_space
+	Trim leading whitespace in instrText, which may or may not be present.
+
+2015-03-12  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	some json library stuff
+
+2015-03-12  Jure Triglav  <juretriglav@gmail.com>
+
+	Trim leading whitespace, which may or may not be present.
+
+2015-03-06  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	new version for release
+
+	needs table wrapper around free-standing constraints in a schemaSpec
+2015-03-06  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	needs table wrapper around free-standing constraints in a schemaSpec
+
+2015-02-23  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	allow for docProps file to not be present (eg from Google docs)
+
+2015-02-19  Lou  <lou.burnard@retired.ox.ac.uk>
+
+	handle meeting data more convincingly
+
+2015-02-18  Lou  <lou.burnard@retired.ox.ac.uk>
+
+	Update for v9 of word styles
+
+2015-02-15  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	Merge pull request #84 from peterstadler/currentDir-fix
+	added param for currentDir and added slash as separator
+
+	add tei to simple conversion
+
+2015-02-14  Peter Stadler  <stadlerpeter@yahoo.fr>
+
+	added param for currentDir and added slash as separator
+
+2015-02-12  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	changed FO results
+
+2015-02-12  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	Merge pull request #83 from bwbohl/feature-FO_lineheight_rules
+	add paramete for FO lineheight application rules
+
+2015-02-12  Benjamin W. Bohl  <bohl@edirom.de>
+
+	add paramete for FO lineheight application rules
+
+2015-02-12  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	Merge pull request #81 from bwbohl/feature_FO_lineHeight
+	add parameters for front, body, back line-height
+
+2015-02-12  Benjamin W. Bohl  <bohl@edirom.de>
+
+	add parameters for front, body, back line-height
+	at the moment only applied to tei:p[not(parent::tei:note)]
+2015-02-08  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+	
+	release 7.31.0
+
+2015-02-07  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	put in better fix to self-eating <p>
+
+2015-02-03  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	overenthusiastic eating contents of a <p> in TCP conversion
+
+2015-02-02  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+	clear up case of attRef to specific attribute from otherwise unused class
+
+2015-01-30  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	when adding a new elenent, do not restruct the types of attribute (eg changed from classes) than it can have
+
+2015-01-29  Lou  <lou.burnard@retired.ox.ac.uk>
+
+	recognise some changed word styles and delete unused ones
+
+2015-01-28  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+	start supporting constraintSpec as child of schemaSpec
+
+2015-01-25  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	closer implementation of preserveOrder
+
+	allow for macroRef inside datatype
+
+	support @preserveOrder on <sequence>
+
+2015-01-24  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	allow for an empty content being specified in change
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+	allow for an empty content being specified in change
+
+2015-01-15  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	Merge pull request #75 from bwbohl/fix_FO_markerPosition
+	fo:marker position
+
+2015-01-15  Benjamin W. Bohl  <bohl@edirom.de>
+
+	remove superfluous headingNumberSuffix in fo:marker
+	closes #76
+
+	reverse order of processing tei:head and generation of fo:markers in order to conform to xsl-fo 1.1 definition, that markers have to be initial childern. closes #74
+
+2015-01-14  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	release 7.30.0
+
+2015-01-13  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	make sure title is processed properly, even in simple mode
+
+	try to change defauly font
+2015-01-13  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	make sure title is processed properly, even in simple mode
+
+	try to change defauly font
+
+2015-01-12  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	changed FO results
+2015-01-12  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	dont need odt-dir, just dir already present
+
+	Merge pull request #71 from mpetris/master
+	profile for DHConvalidator
+
+2015-01-12  mpetris  <marco.petris@web.de>
+
+	Merge pull request #1 from TEIC/master
+	reintegrate latest changes from base
+
+2015-01-12  Marco Petris  <marco.petris@web.de>
+
+	clean up
+
+2015-01-09  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	changed test results
+
+2015-01-08  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	updated FO results
+
+	Merge pull request #69 from bwbohl/feature_FO__footNoteSeperator
+	add xsl-footnote-seperator as static content
+
+	Merge pull request #68 from bwbohl/fix_FO_footNoteSizes
+	add 'pt' to footNoteSize and footNoteNumSize
+
+	Merge pull request #70 from bwbohl/feature_FO_tocConfig
+	added XSL-FO TOC config options
+
+	number chapters in front matter using roman
+
+2015-01-08  Benjamin W. Bohl  <bohl@edirom.de>
+
+	added XSL-FO TOC config options
+	this includes parameters in the fo_params for:
+	- tocJustify
+	- tocLeaderPattern
+	- tocLeaderPAtternContent (for own pattern)
+	- tocRuleStyle
+	- tocRuleThickness
+
+	Revert "Merge branch 'fix_FO_footNoteSizes' into feature_FO__footNoteSeperator"
+	This reverts commit eea0243ae3360ab318f34a32d56c717351ac065d, reversing
+	changes made to 197fedbcd79fde60b8758118da975d66706cced9.
+
+	Merge branch 'fix_FO_footNoteSizes' into feature_FO__footNoteSeperator
+
+	Merge remote-tracking branch 'upstream/master' into feature_FO__footNoteSeperator
+
+	add xsl-footnote-seperator as static content
+	identical in front, body, and back
+
+	add 'pt' to footNoteSite and footNoteNumSize
+	$footNoteSize and $footNoteNumSize were being calculated without
+	appending dimension. Added 'pt' after value.
+
+2015-01-07  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	display processing model better
+
+2015-01-07  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	documenting plain ODD
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+2015-01-07  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	typo, missing space
+
+	Merge pull request #66 from bwbohl/fix_isInline
+	Fix tei:isInline() return 'false' on (parent:: | self::)(tei:front | tei:body | tei:back)
+
+	show date consistently
+
+2015-01-07  Benjamin W. Bohl  <bohl@edirom.de>
+
+	tei:isInline false on self::(front|tei:body|back)
+	if tei:pb is direct child of tei:front, tei:body or tei:back it should
+	be rendered as block (e.g. in FO transformations)
+
+	tei:isInine() should return false on tei:back
+
+	tei:isInine() should return false on tei:front
+
+2015-01-05  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	restore CSS
+
+2015-01-05  Marco Petris  <marco.petris@web.de>
+
+	profile for DHConvalidator
+
+2015-01-04  Syd Bauman  <s.bauman@neu.edu>
+
+	Found that some cells in an Excel spreadsheet were losing some or all of their content. Upon investigating found that problem only occured when the <si> referred to in the xl/sharedStrings.xml file had <r> children, not just a single <t> child. Found the template that handles those <si> elements, and found that if there were any <r> children, it was only processing <r> those that themselves had <rPr> children. I.e., si/r[rPr] were being processed, but si/r[not(rPr)] were not. Now, I don't know what <si>, <t>, <r>, or <rPr> mean, but processing all the <r> children rather than just those that themselves have <rPr> children solved my problem.
+
+2015-01-03  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	pass through unrecognized schematron elements
+
+	add test of constraint as child of schemaSpec
+
+2015-01-02  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	deal with URL schema unknown:
+
+	invent new url schema of unknown:
+
+	typo
+
+	dont make tcp: refs for page images unless a VID was found
+
+2014-12-31  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	rendering of uncooked tagdoc elements to HTML, with some CSS additions
+
+2014-12-29  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	reverse default translation of long s
+2014-12-29  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	reverse default translation of long s
+
+2014-12-27  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	spelling
+
+2014-12-27  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	add availability to HTML TCP output
+2014-12-27  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	spelling
+
+2014-12-27  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	add availability to HTML TCP output
+
+2014-12-24  sebastianrahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+	tcp css
+
+2014-12-23  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	more css from for TCP
+2014-12-22  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	minimum height for TCP header, not fixed
+
+	change the delicate balance of verbatim handling in latex, to avoid double escaping
+
+2014-12-21  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	dont double escape verbatim in latex. dont test teitoslides
+
+	can't resolve did problem
+
+	changes to CSS for TCP
+
+	update changelog and fix typo in Makefile
+
+	change names of a few things for consistency, and do better with <text> in <group>
+2014-12-21  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	change names of a few things for consistency, and do better with <text> in <group>
+
+	reverse logo for tcp
+
+2014-12-20  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	rename an id. better CSS for TCP
+
+2014-12-19  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	still fixing milestones in TCP
+
+2014-12-18  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	tweak milestones in TCP to TEI
+
+2014-12-17  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	more changed results
+
+2014-12-17  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	slew of changed results resulting changes to text in plain mode
+
+	more conditions under which milestone stays as milestone in TCP conversion
+
+	CSS for TCP
+
+	take explicit label handling out of html
+
+	move label and milestone handling to common area
+
+	text(0 manipulation applies in plain mode too
+
+	milestones as child of body stay as is, in TCP conversion
+
+	fix typo, better resyyls
+
+	use char:EOLhyphen in rendering; handle FLOATEXT|LICENSE|LETTER in TCP conversion more regularly
+
+2014-12-16  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	allowing for label/@type=milestone
+
+	simple handling of milestone in TCP
+
+2014-12-16  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	remove duplicate template and adjust expected results
+
+	replace editorialDecl and availability in TCP; make sure comments are preserved
+
+2014-12-15  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	tweak TCP display
+
+2014-12-12  lb42  <lou.burnard@retired.ox.ac.uk>
+
+	tweak slide production for oulipo
+
+2014-12-09  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	tel to nlm cant access functions
+
+2014-12-08  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	adding comments
+
+2014-12-07  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	misunderstood change
+
+	allow for change in Tite from <cols> to <colShift>
+2014-12-05  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	correct a universal typo
+
+2014-12-03  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	results cghanged
+
+	tcp css
+
+	tcp CSS location
+
+	improve word tokenzing
+
+	rename ecco profile to tcp, adjust slightly and add HTML
+
+2014-12-01  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	make sure @role values are lower case
+
+2014-12-01  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	extra changed results
+
+2014-11-30  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	remove debug
+
+	redo metadata generated in schema, to show the docDate from the ODD if present
+
+2014-11-27  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	use empty <g> for EOLhyphen
+
+2014-11-26  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	get the EOLhyphen right
+
+	change the way EOLhyphen handled (use a <g> to be safe)
+
+2014-11-25  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	remove dross
+
+2014-11-23  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	tweaking inline/block generation in HTML
+
+2014-11-20  Martin  <mholmes@uvic.ca>
+
+	Adding one more period to the footer as part of http://sourceforge.net/p/tei/bugs/690/.
+
+2014-11-19  Martin  <mholmes@uvic.ca>
+
+	Adding a period to the footer.
+
+2014-11-19  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	typo in Makefile
+
+2014-11-19  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	fix incorrect doc summary
+
+	apply NFC normalize-unicode to text
+
+	change to results cos of TCP2TEI
+
+	prefixDef for char: scheme
+
+2014-11-18  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	lets use Unicode 00AD instead of complex <lb/> markup
+
+2014-11-16  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	dont try and reload header (TCP)
+
+2014-11-13  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	make sure encoding right
+
+2014-11-12  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	update tags
+
+	rename and improve documentation, clean up and minimally document profiles
+
+2014-11-12  martindholmes  <mholmes@uvic.ca>
+
+	Fixing typo.
+
+	Expanding explanation of profiles and fixing a broken attribute name in teixsl.xml.
+
+2014-11-11  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	very shakespeare specific
+
+2014-11-10  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	typo, missing @mode
+
+	lb/pb make spaces in plain text
+
+	adjust tcp2tei again
+
+	whoops lost @resp on GAP
+
+2014-11-09  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	tcp sample changed
+
+2014-11-09  lb42  <lou.burnard@retired.ox.ac.uk>
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+	update word style names
+
+2014-11-09  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+	only omit Q if it has no text
+
+2014-11-09  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	make sure @place attributes are lower-case
+2014-11-07  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	make new release 7.26
+
+	fall out from long s
+
+	we can safely drop a wrapper q around a floatingText
+
+	turn long s into short s
+
+	results files changed because of adding gaiji module, IDs vary
+
+	update oddbyexample output
+
+2014-11-06  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	explicit sypport for <g>, improve <expan>
+
+	changed test results
+
+2014-11-06  lb42  <lou.burnard@retired.ox.ac.uk>
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+	revert to using @include rather than elementRefs (since the latter loses declaration order)
+
+2014-11-04  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	more special cases for marginal notes; process p in sp more like other p
+
+	drop double-nested Q
+
+	changed results (order of attributes)
+
+	gloss lists
+
+2014-11-03  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	changed results
+
+	more special cases of notes in block objects
+
+2014-11-02  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	and another
+
+	more situations where a marg note is a div
+
+	plain <q> is much more often a span. changed tests to show this
+
+	change in TCP processing
+
+2014-11-02  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	tcp dates
+
+	tcp dates
+
+2014-11-02  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	allow for month names in dates
+
+	limit date hacking
+
+	no, dont force @n
+
+	keep @n on <pb> in TCP
+
+	a set of tweaks to make valid and nicer epub from TCP
+
+2014-11-01  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	changed results
+
+	use aside for all marginal notes inside <p> or <head>, adjust into <span> in pass 2
+
+	update TCP sample text
+
+	create @when on publication date
+
+	dont special-case generateDate in OTA profile
+
+	when producing dates, check for existence of @when
+
+	add @when to <date> if it contains parenthetical info
+
+	adjust splitHTMLBlocks code to render marginal notes using only span
+
+2014-10-31  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	typo
+
+	restore @module to classSpec and only remove it at the last minute
+
+	@style is global too
+
+	trust version control, Luke
+
+2014-10-31  lb42  <lou.burnard@retired.ox.ac.uk>
+
+	update test resuylts
+
+	remoue redundant module= which was upsetting schematron
+
+2014-10-31  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	dont sort things
+
+2014-10-30  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	changed results
+
+	rules about when a p is div
+
+2014-10-30  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	avoid dependency on local file names
+
+	move <aside> to end of current paragraph
+
+	change expected results from extra note tests
+
+2014-10-30  lb42  <lou.burnard@retired.ox.ac.uk>
+
+	make output p5 conformant
+
+2014-10-30  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	restore oddbyexample
+
+2014-10-30  Lou Burnard  <lou.burnard@retired.ox.ac.uk>
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+	Conflicts:
+		tools/oddbyexample.xsl
+
+2014-10-29  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	starting to look at using <aside> for marginal notes
+
+	make <aside> like marginal note
+
+	singleton figure in singleton p in note can skip its p
+
+2014-10-29  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	make footnote lists used consistent criteria
+
+	add @type onto all milestone->note transforms
+
+2014-10-28  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	make sure oddbyexample copies over macros and model classes which are not in tei module
+
+2014-10-28  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	rewrite oddbyexample a lot. dont use moduleRef any more
+
+2014-10-27  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	deleted attributes have no effect when making schenas
+
+	allow for subsets by module
+
+	rethinking bits of oddbyexample, to do with inherited class attributes
+
+2014-10-27  Lou Burnard  <lou.burnard@retired.ox.ac.uk>
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+
+2014-10-27  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	typo
+
+	keep better track of deleted attributes
+
+	milestone inside speech should be marginal note too
+
+2014-10-24  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	improve ODD to CSV
+
+2014-10-23  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	can't use profiles for simple transforms
+
+	add test for "oucs" course docs
+
+	typo
+
+	declare tei: prefix
+
+2014-10-22  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	typo
+
+	supporting output format of verbatimxml
+
+2014-10-21  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	useful script for analyzing odd
+
+	preparing for new version
+2014-10-20  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+	RELEASE 7.25
+
+	changed test files
+
+2014-10-19  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	test results
+
+	odd2json changes to get title right
+
+	default to JSON not js
+
+	show source being read
+
+2014-10-17  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	force line break in gloss list where item content is a list
+
+2014-10-15  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	put more options into odd to tree; add d3 drag n drop tree to options for tree rendering
+
+	move utilities into right place
+
+	make cleaner JSON
+
+	updated test results after CSS change
+
+2014-10-14  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	avoid too brutal a test
+
+	not understanding how to compare multiple values of @place
+
+	rename functions consistently
+
+	<p> within margin note changed to span, which needs extra CSS
+
+2014-10-13  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	add teitoschematron script
+
+2014-10-13  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	rename bitOut to schemaOut, and clear up constraintSpec processinh in weave mode
+
+	undo overenthusiastic filtering of classRefs
+
+	making sure pure odd comes out right in documentation
+
+2014-10-11  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	handle minOccurs default
+
+	handle *Ref properly in <content> in odd2odd
+
+	rethink handling of maxOccurs and minOccurs
+
+	remove phrase "all rights reserved" as its meaningless
+
+2014-10-10  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	remove all reference to @allowText
+
+2014-10-10  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	fix typo which was zapping datatypes from DTDs
+
+	switch to using textNode in test files
+
+	correct error in odd2dtd over handling classes; fixed tests
+
+	correcting DTD generation from Pure ODD
+
+2014-10-09  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	textNode in DTD
+
+	starting trying to do textNode in DTD
+
+	start implementing <textNode>
+
+2014-10-08  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	clean up mess around CSS
+
+	keep odd CSS separate
+
+	more working on checking @rend  against possibility of multiple values
+
+2014-10-07  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	recast expression
+
+	if a label has an xml:id, means @id in HTML
+
+	tweaking TCP conversion for more edge cases
+
+2014-10-06  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	bibl as parent of label means make a marginal note
+
+	@role on row
+
+	leave @role alone on cell and row
+
+	need access to functions in doc/param.xsl
+
+	redo the way we look at @rend, allowing always for multiple values
+	change values for some of the rend attributes
+
+2014-10-02  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	change to rule over whether pb makes a span or div
+	from ancestor::lg to parent::lg
+
+	make sure dc:date in epub only has numbers in
+
+	add code to TCP to conversion to unravel nested <p>
+
+	changed results
+
+2014-10-02  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	tortuous TCP processing rules
+
+2014-10-02  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	ota profile does not need to do anything special with pb
+
+	@facs targets starting with tcp: dont get processed
+
+	being more explicit about images on <pb>
+
+2014-10-01  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	a publicationStmt with no publisher generates a wrapper <p>
+	in TCP to TEI conversion. child pubPlace turns to a <name>
+
+2014-09-30  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	simplify previous change to allow for more circumstances
+
+	catch one more situation of ambiguous content
+	when a zeroOrMore is following by an optional with an identical
+	zeroOrMore
+
+2014-09-30  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	chanegd test file
+
+	use protocol tcp: instead of eebopage:
+
+2014-09-29  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	allow stage/stage in TCP; find funny dates in TCP for epub
+
+	fixes to epub and TCP conversion
+
+	make sure publicationStmt obeys new rules about order of elements
+
+2014-09-28  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	changed slides to default to Helvetica
+
+	extra parameter to permit oddbyexample ignore the header when calculating results for attribute lists
+
+2014-09-24  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	allow for filename prefix when running oddbyexample
+
+2014-09-23  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	treat @rendition like @rend in oddbyexample
+
+2014-09-23  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	fix error making table row about deprecation in tagdoc output
+	mistakenly made 2-column span if on atttribute
+
+2014-09-21  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	start new version
+
+2014-09-20  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+	RELEASE 7.24
+	amusing ourselves fixing Cocoa converter a bit
+
+	Merge branch 'master' of https://github.com/TEIC/Stylesheets
+	Conflicts:
+		profiles/default/csv/from.xsl
+
+	clean up,  embed and test Cocoa conversion
+
+	discard  $Id$ in comments; Git doesn't expand them
+
+2014-09-19  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	more fallout from <title> processing
+
+	correct typos
+
+	changed result after fixing series title
+
+	put space after series title
+
+2014-09-18  Sebastian Rahtz  <Sebastian.Rahtz@it.ox.ac.uk>
+
+	start support for cocoa to tei
+
+	some changes arising from textcrit changes
+
+2014-09-18  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	clean up handling of <app>
+	 make it consistent across output formats
+
+2014-09-17  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	more results changed cos of P5 release
+
+2014-09-16  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
+
+	fall  out from marginal note changes
+
+	fallout of marginal note handling
+
+	changed results from P5 2.7.0 release
+
+	better handling of @place on <note>. avoid throwing away marginal notes!
+
+	allow for multi-value @rend, and test better against possibilities
 2014-09-16  Sebastian Rahtz  <sebastian.rahtz@gmail.com>
 
 	allow for multi-value @rend, and test better against possibilities

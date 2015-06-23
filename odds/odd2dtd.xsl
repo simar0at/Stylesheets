@@ -25,7 +25,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -121,7 +121,7 @@ of this software, even if advised of the possibility of such damage.
 	                    <xsl:text>DTD module </xsl:text>
 	                    <xsl:value-of select="@ident"/>
 	                    <xsl:text>. generated from ODD source </xsl:text>
-	                    <xsl:call-template name="showDate"/>
+	                    <xsl:sequence select="tei:whatsTheDate()"/>
 	                    <xsl:text>. </xsl:text>
 			    <xsl:call-template name="copyright"/>
 	                    <xsl:call-template name="makeTEIVersion"/>
@@ -177,7 +177,7 @@ of this software, even if advised of the possibility of such damage.
 		                      <xsl:text>TEI P5 entity declaration module for </xsl:text>
 		                      <xsl:value-of select="@ident"/>
 		                      <xsl:text>. generated from ODD source </xsl:text>
-		                      <xsl:call-template name="showDate"/>
+		                      <xsl:sequence select="tei:whatsTheDate()"/>
 		                      <xsl:text>.&#10;</xsl:text>
 				      <xsl:call-template name="copyright"/>
 		                      <xsl:call-template name="makeTEIVersion"/>
@@ -215,11 +215,7 @@ of this software, even if advised of the possibility of such damage.
       </xsl:for-each>
   </xsl:template>
   <xsl:template name="entityModules">
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>Module declarations</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+    <xsl:sequence select="tei:dtdcomment('Module declarations')"/>
       <xsl:for-each select="key('Modules',1)">
          <xsl:sort order="descending" select="@ident"/>
          <xsl:if test="not(@type='core')">
@@ -244,11 +240,7 @@ of this software, even if advised of the possibility of such damage.
       </xsl:for-each>
   </xsl:template>
   <xsl:template name="omissability">
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>legacy declaration of omissability indicators</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+    <xsl:sequence select="tei:dtdcomment('legacy declaration of omissability indicators')"/>
       <xsl:text>&lt;!ENTITY % TEI.XML 'INCLUDE' &gt;&#10;</xsl:text>
       <xsl:text>&lt;![%TEI.XML;[&#10;</xsl:text>
       <xsl:text>&lt;!ENTITY % om.RO '' &gt;&#10;</xsl:text>
@@ -258,81 +250,49 @@ of this software, even if advised of the possibility of such damage.
       <xsl:text>&lt;!ENTITY % om.RR '- -' &gt;&#10;</xsl:text>
   </xsl:template>
   <xsl:template name="datatypeMacros">
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>Start datatype macro declarations</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
-      <xsl:for-each select="key('MacroModule',@ident)">
-         <xsl:if test="@type='dt'">
-            <xsl:apply-templates mode="tangle" select="."/>
-         </xsl:if>
-      </xsl:for-each>
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>End of datatype macro declarations</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+      <xsl:if test="key('DataMacroModule',@ident)">
+	<xsl:sequence select="tei:dtdcomment('Start datatype macro declarations')"/>
+        <xsl:apply-templates mode="tangle" select="key('DataMacroModule',@ident)"/>
+	<xsl:sequence select="tei:dtdcomment('End of datatype macro declarations')"/>
+      </xsl:if>
   </xsl:template>
   <xsl:template name="predeclaredMacros">
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>Start of pre-declared macros</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+    <xsl:if test="key('PredeclareMacrosModule',@ident)">
+      <xsl:sequence select="tei:dtdcomment('Start of pre-declared macros')"/>
       <xsl:for-each select="key('PredeclareMacrosModule',@ident)">
          <xsl:apply-templates mode="tangle" select="."/>
       </xsl:for-each>
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>End of pre-declared macros</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+      <xsl:sequence select="tei:dtdcomment('End of pre-declared macros')"/>
+    </xsl:if>
   </xsl:template>
   <xsl:template name="normalClasses">
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>Start of classes</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+    <xsl:if test="key('ClassModule',@ident)">
+      <xsl:sequence select="tei:dtdcomment('Start of classes')"/>
       <xsl:apply-templates mode="tangle" select="key('ClassModule',@ident)"/>
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>End of classes</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+      <xsl:sequence select="tei:dtdcomment('End of classes')"/>
+    </xsl:if>
   </xsl:template>
   <xsl:template name="predeclaredClasses">
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>Start of pre-declared classes</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+    <xsl:if test="key('predeclaredClasses',1)">
+      <xsl:sequence select="tei:dtdcomment('Start of pre-declared classes')"/>
       <xsl:for-each select="key('predeclaredClasses',1)">
-         <xsl:choose>
-            <xsl:when test="@type='atts'">
+        <xsl:choose>
+          <xsl:when test="@type='atts'">
                <xsl:call-template name="classAtt">
-                  <xsl:with-param name="declare">false</xsl:with-param>
+                 <xsl:with-param name="declare">false</xsl:with-param>
                </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="@type='model'">
+            <xsl:call-template name="classModel"/>
             </xsl:when>
-            <xsl:when test="@type='model'">
-               <xsl:call-template name="classModel"/>
-            </xsl:when>
-         </xsl:choose>
+        </xsl:choose>
       </xsl:for-each>
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>End of pre-declared classes</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+      <xsl:sequence select="tei:dtdcomment('End of pre-declared classes')"/>
+    </xsl:if>
   </xsl:template>
   <xsl:template name="normalMacros">
-      <xsl:if test="@type='core'">
-         <xsl:call-template name="dtdComment">
-            <xsl:with-param name="text">
-               <xsl:text>Global pre-declared macros</xsl:text>
-            </xsl:with-param>
-         </xsl:call-template>
+      <xsl:if test="@type='core' and key('PredeclareAllMacros',1)">
+	<xsl:sequence select="tei:dtdcomment('Global pre-declared macros')"/>
          <xsl:for-each select="key('PredeclareAllMacros',1)">
             <xsl:text>&#10;&lt;!ENTITY % </xsl:text>
             <xsl:value-of select="@ident"/>
@@ -340,11 +300,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:text>&gt;&#10;</xsl:text>
          </xsl:for-each>
       </xsl:if>
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>Start rest of  macro declarations</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+      <xsl:sequence select="tei:dtdcomment('Start rest of  macro declarations')"/>
       <xsl:for-each select="key('MacroModule',@ident)">
          <xsl:if test="not(@type='dt')">
             <xsl:choose>
@@ -356,11 +312,7 @@ of this software, even if advised of the possibility of such damage.
             </xsl:choose>
          </xsl:if>
       </xsl:for-each>
-      <xsl:call-template name="dtdComment">
-         <xsl:with-param name="text">
-            <xsl:text>End macros</xsl:text>
-         </xsl:with-param>
-      </xsl:call-template>
+      <xsl:sequence select="tei:dtdcomment('End macros')"/>
   </xsl:template>
   <xsl:template match="tei:schemaSpec">
       <xsl:if test="$verbose='true'">
@@ -369,25 +321,28 @@ of this software, even if advised of the possibility of such damage.
       </xsl:if>
       <xsl:choose>
          <xsl:when test="$outputDir='' or $outputDir='-'">
-            <xsl:call-template name="schemaOut"/>
+            <xsl:call-template name="writeSchema"/>
          </xsl:when>
          <xsl:otherwise>
             <xsl:call-template name="generateOutput">
                <xsl:with-param name="suffix">.dtd</xsl:with-param>
                <xsl:with-param name="method">text</xsl:with-param>
                <xsl:with-param name="body">
-                  <xsl:call-template name="schemaOut"/>
+                  <xsl:call-template name="writeSchema"/>
                </xsl:with-param>
             </xsl:call-template>
          </xsl:otherwise>
       </xsl:choose>
   </xsl:template>
-  <xsl:template name="schemaOut">
+  <xsl:template name="writeSchema">
       <xsl:call-template name="dtdComment">
          <xsl:with-param name="text">
             <xsl:text>DTD generated from ODD source </xsl:text>
-            <xsl:call-template name="showDate"/>
+            <xsl:sequence select="tei:whatsTheDate()"/>
             <xsl:text>. </xsl:text>
+		  <xsl:value-of
+		      select="(/tei:TEI/tei:text/tei:front/tei:titlePage/tei:docDate,'.')"
+		      separator=""/>
 	    <xsl:call-template name="copyright"/>
             <xsl:call-template name="makeTEIVersion"/>
             <xsl:sequence select="tei:makeDescription(.,true())"/>
@@ -419,11 +374,15 @@ of this software, even if advised of the possibility of such damage.
       <xsl:if test="$parameterize='true'">
          <xsl:call-template name="NameList"/>
       </xsl:if>
-      <xsl:text>&#10;&lt;!-- start datatypes --&gt;&#10;</xsl:text>
-      <xsl:apply-templates mode="tangle" select="tei:macroSpec[@type='dt']"/>
-      <xsl:text>&#10;&lt;!-- end datatypes --&gt;&#10;</xsl:text>
+
+      <xsl:if test="tei:dataSpec|tei:macroSpec[@type='dt']">
+	<xsl:sequence select="tei:dtdcomment('start datatypes')"/>
+	<xsl:apply-templates mode="tangle" select="tei:dataSpec|tei:macroSpec[@type='dt']"/>
+	<xsl:sequence select="tei:dtdcomment('end datatypes')"/>
+      </xsl:if>
+
       <xsl:if test="tei:classSpec[@predeclare='true']">
-         <xsl:text>&#10;&lt;!--predeclared classes --&gt;&#10;</xsl:text>
+	<xsl:sequence select="tei:dtdcomment('predeclared classes')"/>
          <xsl:for-each select="tei:classSpec[@predeclare='true']">
 	   <xsl:choose>
 	     <xsl:when test="@type='atts'">
@@ -438,39 +397,36 @@ of this software, even if advised of the possibility of such damage.
 	     </xsl:when>
 	   </xsl:choose>
          </xsl:for-each>
-         <xsl:text>&#10;&lt;!--end of predeclared classes --&gt;&#10;</xsl:text>
+	 <xsl:sequence select="tei:dtdcomment('end of predeclared classes')"/>
          <xsl:apply-templates mode="tangle" select="tei:classSpec"/>
       </xsl:if>
-      <xsl:text>&#10;&lt;!-- start predeclared patterns --&gt;&#10;</xsl:text>
-      <xsl:for-each select="tei:macroSpec">
-	<xsl:if test="@predeclare='true'">
-	  <xsl:apply-templates mode="tangle" select="."/>
-	</xsl:if>
-      </xsl:for-each>
-      <xsl:text>&#10;&lt;!-- end predeclared patterns --&gt;&#10;</xsl:text>
-      <xsl:text>&#10;&lt;!-- start rest of patterns --&gt;&#10;</xsl:text>
-      <xsl:for-each select="tei:macroSpec">
-	<xsl:choose>
-	  <xsl:when test="@predeclare='true'"/>
-	  <xsl:when test="@type='dt'"/>
-	  <xsl:otherwise>
-	    <xsl:apply-templates mode="tangle" select="."/>
-	  </xsl:otherwise>
-	</xsl:choose>
-      </xsl:for-each>
-      <xsl:text>&#10;&lt;!-- end patterns --&gt;&#10;</xsl:text>
-      <xsl:if test="not(tei:classSpec[@predeclare='true'])">
-         <xsl:text>&#10;&lt;!-- start classes --&gt;&#10;</xsl:text>
-         <xsl:apply-templates mode="tangle" select="tei:classSpec[@type='atts']"/>
-         <xsl:apply-templates mode="tangle" select="tei:classSpec[@type='model']"/>
-         <xsl:text>&#10;&lt;!-- stop classes --&gt;&#10;</xsl:text>
+
+      <xsl:if test="tei:macroSpec[@predeclare='true']">
+	<xsl:sequence select="tei:dtdcomment('start predeclared patterns')"/>
+	<xsl:apply-templates mode="tangle" select="tei:macroSpec[@predeclare='true']"/>
+	<xsl:sequence select="tei:dtdcomment('end predeclared patterns')"/>
       </xsl:if>
-      <xsl:text>&#10;&lt;!-- start elements --&gt;&#10;</xsl:text>
+
+      <xsl:if test="tei:macroSpec[not(@type='dt' or @predeclare='true')]">
+	<xsl:sequence select="tei:dtdcomment('start rest of patterns')"/>
+        <xsl:apply-templates mode="tangle" select="tei:macroSpec[not(@type='dt' or @predeclare='true')]"/>
+	<xsl:sequence select="tei:dtdcomment('end patterns')"/>
+      </xsl:if>
+
+      <xsl:if test="not(tei:classSpec[@predeclare='true'])">
+	<xsl:sequence select="tei:dtdcomment('start classes')"/>
+         <xsl:apply-templates mode="tangle"  select="tei:classSpec[@type='atts']"/>
+         <xsl:apply-templates mode="tangle" select="tei:classSpec[@type='model']"/>
+	 <xsl:sequence select="tei:dtdcomment('stop classes')"/>
+      </xsl:if>
+      
+      <xsl:sequence select="tei:dtdcomment('start elements')"/>
       <xsl:apply-templates mode="tangle" select="tei:elementSpec">
          <xsl:sort select="@ident"/>
       </xsl:apply-templates>
-      <xsl:text>&#10;&lt;!-- end elements --&gt;&#10;</xsl:text>
+      <xsl:sequence select="tei:dtdcomment('end elements')"/>
   </xsl:template>
+
   <xsl:template match="tei:macroSpec[@xml:id='TEIGIS']" mode="tangle"/>
   <xsl:template name="NameList">
       <xsl:choose>
@@ -808,6 +764,9 @@ of this software, even if advised of the possibility of such damage.
   <xsl:template match="tei:macroSpec[@type='dt']/tei:content/rng:list">
       <xsl:text> CDATA</xsl:text>
   </xsl:template>
+  <xsl:template match="tei:dataSpec/tei:content/rng:list">
+      <xsl:text> CDATA</xsl:text>
+  </xsl:template>
   <xsl:template match="tei:macroSpec[@type='dt']/tei:content/rng:choice">
       <xsl:choose>
          <xsl:when test="rng:value and rng:data">
@@ -831,6 +790,9 @@ of this software, even if advised of the possibility of such damage.
   </xsl:template>
   <xsl:template match="rng:text" mode="simple">
       <xsl:choose>
+         <xsl:when test="parent::tei:content/parent::tei:dataSpec">
+            <xsl:text> CDATA</xsl:text>
+         </xsl:when>
          <xsl:when test="parent::tei:content/parent::tei:macroSpec[@type='dt']">
             <xsl:text> CDATA</xsl:text>
          </xsl:when>
@@ -1017,7 +979,7 @@ of this software, even if advised of the possibility of such damage.
 	  <xsl:when test=".//rng:anyName">
 	    <xsl:text> ANY</xsl:text>
 	  </xsl:when>
-	  <xsl:when test="@allowText='true' and not(*)">
+	  <xsl:when test="tei:textNode">
 	    <xsl:text> CDATA</xsl:text>
 	  </xsl:when>
 	  <xsl:when test="processing-instruction()[name()='NameList']">
@@ -1111,25 +1073,11 @@ of this software, even if advised of the possibility of such damage.
 	  <xsl:when test="tei:valList[@type='closed']">
 	    <xsl:text> (#PCDATA)</xsl:text>
 	  </xsl:when>
-          <xsl:when test="(tei:content/tei:sequence ) and  tei:content/@allowText='true'">
-	      <xsl:apply-templates select="tei:content/*"/>
-	  </xsl:when>
-          <xsl:when test="tei:content/tei:elementRef and  tei:content/@allowText='true'">
-	      <xsl:text>(#PCDATA</xsl:text>
-	      <xsl:for-each select="tei:content/*">
-		<xsl:text>|</xsl:text>
-		<xsl:apply-templates select="."/>
-	      </xsl:for-each>
-	      <xsl:text>)*</xsl:text>
-	  </xsl:when>
-          <xsl:when test="tei:content/@allowText='true' and not(tei:content/*)">
+          <xsl:when test="tei:content/tei:textNode and count(tei:content/*)=1">
             <xsl:text>(#PCDATA)</xsl:text>
 	  </xsl:when>
           <xsl:when test="tei:content/*">
 	      <xsl:apply-templates select="tei:content/*"/>
-	  </xsl:when>
-          <xsl:when test="tei:content/@allowText='true'">
-            <xsl:text>#PCDATA</xsl:text>
 	  </xsl:when>
 	</xsl:choose>
 	</Contents>
@@ -1221,7 +1169,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:value-of select="$thisclass"/>
             <xsl:text>.attributes</xsl:text>
             <xsl:text> ''&gt;</xsl:text>
-	   <xsl:for-each select="tei:attList/tei:attDef">
+	   <xsl:for-each select="tei:attList/tei:attDef[not(@mode='delete')]">
 	     <xsl:text>&#10;&lt;!ENTITY % </xsl:text>
 	     <xsl:value-of select="$thisclass"/>
 	     <xsl:text>.attribute.</xsl:text>
@@ -1230,7 +1178,7 @@ of this software, even if advised of the possibility of such damage.
 	   </xsl:for-each>
          </xsl:when>
          <xsl:otherwise>
-	   <xsl:for-each select="tei:attList/tei:attDef">
+	   <xsl:for-each select="tei:attList/tei:attDef[not(@mode='delete')]">
 	     <xsl:text>&#10;&lt;!ENTITY % </xsl:text>
 	     <xsl:value-of select="$thisclass"/>
 	     <xsl:text>.attribute.</xsl:text>
@@ -1243,7 +1191,7 @@ of this software, even if advised of the possibility of such damage.
 	   <xsl:value-of select="$thisclass"/>
 	   <xsl:text>.attributes '</xsl:text>
 	   <xsl:call-template name="attclasses"/>
-	   <xsl:for-each select="tei:attList/tei:attDef">
+	   <xsl:for-each select="tei:attList/tei:attDef[not(@mode='delete')]">
 	     <xsl:text>&#10; %</xsl:text>
 	     <xsl:value-of select="$thisclass"/>
 	     <xsl:text>.attribute.</xsl:text>
@@ -1535,7 +1483,7 @@ of this software, even if advised of the possibility of such damage.
          </xsl:otherwise>
       </xsl:choose>
   </xsl:template>
-  <xsl:template name="bitOut">
+  <xsl:template name="schemaOut">
       <xsl:param name="grammar"/>
       <xsl:param name="element"/>
       <xsl:param name="content"/>
@@ -1590,78 +1538,33 @@ of this software, even if advised of the possibility of such damage.
          </xsl:choose>
       </xsl:for-each>
   </xsl:template>
-  <xsl:template name="dtdComment">
-      <xsl:param name="text"/>
-      <xsl:text>&#10;&lt;!--&#10;</xsl:text>
-      <xsl:value-of select="$text"/>
-      <xsl:text>&#10;--&gt;&#10;</xsl:text>
-  </xsl:template>
-  <xsl:template name="checkEnd">
-      <xsl:if test="count(parent::tei:content[parent::tei:elementSpec]/rng:*)&gt;1 and     not(following-sibling::rng:*)">
-         <xsl:text>)</xsl:text>
-      </xsl:if>
-  </xsl:template>
-  <xsl:template name="checkStart">
-      <xsl:if test="count(parent::tei:content[parent::tei:elementSpec]/rng:*)&gt;1">
-         <xsl:choose>
-            <xsl:when test="preceding-sibling::rng:*">
-               <xsl:text>,</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:text>(</xsl:text>
-            </xsl:otherwise>
-         </xsl:choose>
-      </xsl:if>
-  </xsl:template>
 
-
-  <xsl:template name="copyright">
-    <xsl:for-each
-	select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:availability">
-      <xsl:if test="count(tei:licence)&gt;1">
-	<xsl:text>This material is dual-licensed.&#10;</xsl:text>
-      </xsl:if>
-      <xsl:apply-templates/>
-    </xsl:for-each>
-  </xsl:template>
-
-  <xsl:template match="tei:licence">
-    <xsl:if test="@target">
-      <xsl:text>[</xsl:text>
-      <xsl:value-of select="@target"/>
-      <xsl:text>] </xsl:text>
-    </xsl:if>
-    <xsl:apply-templates/>
-  </xsl:template>
-
-  <xsl:template name="typewriter">
-    <xsl:param name="text"/>
-  </xsl:template>
 
   <xsl:template match="tei:sequence">
     <xsl:variable name="innards">
-      <xsl:variable name="suffix" 
-		    select="tei:generateIndicators(.,@minOccurs,@maxOccurs)"/>
       <token>
-        <xsl:text>(</xsl:text>
-        <xsl:call-template name="innards">
-	  <xsl:with-param name="sep" select="if   (ancestor-or-self::*[@allowText='true']) then '|' else ','"/>
-	</xsl:call-template>
-        <xsl:text>)</xsl:text>          
-        <xsl:value-of select="if
-			      (ancestor-or-self::*/@allowText='true'
-			      and ($suffix='+' or $suffix='?')) then
-			      '*' else $suffix"/>
+	<xsl:choose>
+	  <xsl:when test="tei:textNode or parent::*/tei:textNode">
+            <xsl:call-template name="innards"/>
+	  </xsl:when>
+	  <xsl:otherwise>
+            <xsl:text>(</xsl:text>
+            <xsl:call-template name="innards">
+	      <xsl:with-param name="sep">,</xsl:with-param>
+	    </xsl:call-template>
+            <xsl:text>)</xsl:text>          
+            <xsl:value-of select="tei:generateIndicators(.,@minOccurs,@maxOccurs)"/> 
+	  </xsl:otherwise>
+	</xsl:choose>
       </token>
     </xsl:variable>
+
     <xsl:choose>
-      <xsl:when test="parent::tei:content and count($innards/*)&gt;1">
+      <xsl:when test="parent::tei:content">
 	<xsl:text>(</xsl:text>
 	<xsl:value-of select="$innards/*" separator=","/>
 	<xsl:text>)</xsl:text>
-      </xsl:when>
-      <xsl:when test="parent::tei:content">
-	<xsl:value-of select="$innards/*" separator=","/>
+        <xsl:value-of select="tei:generateIndicators(.,@minOccurs,@maxOccurs)"/> 
       </xsl:when>
       <xsl:otherwise>
 	<token>
@@ -1677,11 +1580,12 @@ of this software, even if advised of the possibility of such damage.
       <xsl:text>(</xsl:text>
       <xsl:call-template name="innards"/>
       <xsl:text>)</xsl:text>
-      <xsl:value-of select="if
-			    (ancestor-or-self::*/@allowText='true'
-			    and ($suffix='+' or $suffix='?')) then
-			    '*' else $suffix"/>
+      <xsl:value-of select="$suffix"/>
     </token>
+  </xsl:template>
+
+  <xsl:template match="tei:textNode">
+    <token>#PCDATA</token>
   </xsl:template>
 
   <xsl:template match="tei:interleave">
@@ -1736,7 +1640,7 @@ of this software, even if advised of the possibility of such damage.
 	  </xsl:variable>
 	  <xsl:value-of select="$members/*" separator="|"/>
 	</xsl:when>
-	<xsl:when test="parent::*/@allowText='true'">
+	<xsl:when test="parent::*/tei:textNode">
 	  <xsl:value-of select="$ename"/>
 	</xsl:when>
         <xsl:when test="@expand">
@@ -1760,7 +1664,7 @@ of this software, even if advised of the possibility of such damage.
 	  <xsl:value-of select="$ename"/>
       </xsl:otherwise>
       </xsl:choose>
-      <xsl:if test="not(parent::*/@allowText='true')">
+      <xsl:if test="not(parent::*/tei:textNode)">
 	<xsl:value-of select="$suffix"/>
       </xsl:if>
     </token>
@@ -1769,14 +1673,58 @@ of this software, even if advised of the possibility of such damage.
   <xsl:template name="innards">
     <xsl:param name="sep">|</xsl:param>
     <xsl:variable name="innards">
-      <xsl:if test="ancestor::tei:*/@allowText='true'">
-	<token>
-	  <xsl:text>#PCDATA</xsl:text>
-	</token>
-      </xsl:if>
       <xsl:apply-templates/>
     </xsl:variable>
     <xsl:value-of select="$innards/*" separator="{$sep}"/>
+  </xsl:template>
+
+  <xsl:template name="dtdComment">
+      <xsl:param name="text"/>
+      <xsl:text>&#10;&lt;!--&#10;</xsl:text>
+      <xsl:value-of select="$text"/>
+      <xsl:text>&#10;--&gt;&#10;</xsl:text>
+  </xsl:template>
+  <xsl:template name="checkEnd">
+      <xsl:if test="count(parent::tei:content[parent::tei:elementSpec]/rng:*)&gt;1 and     not(following-sibling::rng:*)">
+         <xsl:text>)</xsl:text>
+      </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="checkStart">
+      <xsl:if test="count(parent::tei:content[parent::tei:elementSpec]/rng:*)&gt;1">
+         <xsl:choose>
+            <xsl:when test="preceding-sibling::rng:*">
+               <xsl:text>,</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:text>(</xsl:text>
+            </xsl:otherwise>
+         </xsl:choose>
+      </xsl:if>
+  </xsl:template>
+
+
+  <xsl:template name="copyright">
+    <xsl:for-each
+	select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:availability">
+      <xsl:if test="count(tei:licence)&gt;1">
+	<xsl:text>This material is dual-licensed.&#10;</xsl:text>
+      </xsl:if>
+      <xsl:apply-templates/>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="tei:licence">
+    <xsl:if test="@target">
+      <xsl:text>[</xsl:text>
+      <xsl:value-of select="@target"/>
+      <xsl:text>] </xsl:text>
+    </xsl:if>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template name="typewriter">
+    <xsl:param name="text"/>
   </xsl:template>
 
   <xsl:function name="tei:generateIndicators">
@@ -1784,6 +1732,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="min"/>
     <xsl:param name="max"/>
     <xsl:choose>
+      <xsl:when test="$context/tei:textNode">*</xsl:when>
       <xsl:when test="$min='0' and $max='1'">?</xsl:when>
       <xsl:when test="$min='0' and not($max)">?</xsl:when>
       <xsl:when test="$min='1' and $max='unbounded'">+</xsl:when>
@@ -1791,6 +1740,11 @@ of this software, even if advised of the possibility of such damage.
       <xsl:when test="$min='0' and $max='unbounded'">*</xsl:when>
       <xsl:otherwise></xsl:otherwise>
     </xsl:choose>
+  </xsl:function>
+
+  <xsl:function name="tei:dtdcomment">
+    <xsl:param name="text"/>
+    <xsl:value-of select="concat('&#10;&lt;!-- ',$text,' --&gt;&#10;')"/>
   </xsl:function>
 
 </xsl:stylesheet>

@@ -17,6 +17,15 @@
   <text>
     <body>
       <schemaSpec ident="testbasic" prefix="T" xml:lang="en" start="TEI div">
+	      <constraintSpec scheme="isoschematron" ident="outerconstraint">
+		<constraint>
+		  <sch:rule context="tei:TEI">
+		    <sch:report test="count(*)=1">
+		      I need more than 1 child for a TEI element
+		    </sch:report>
+		  </sch:rule>
+		</constraint>
+	      </constraintSpec>
         <moduleRef key="core"/>
         <moduleRef key="tei"/>
         <moduleRef key="header"/>
@@ -83,7 +92,7 @@
           </content>
 	  <attList>
 	    <attRef class="att.global" name="xml:id"/>
-	    <attRef class="att.global" name="rend"/>
+	    <attRef class="att.global.rendition" name="rend"/>
 	  </attList>
         </elementSpec>
         <elementSpec ident="p" mode="change">
@@ -94,7 +103,7 @@
 	    <attRef class="att.global" name="xml:id"/>
 	  </attList>
         </elementSpec>
-        <classSpec ident="att.global" module="tei" mode="change" type="atts">
+        <classSpec ident="att.global.rendition" module="tei" mode="change" type="atts">
           <attList>
             <attDef ident="rend" mode="change">
               <valList type="closed" mode="add">

@@ -22,7 +22,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -53,8 +53,9 @@ of this software, even if advised of the possibility of such damage.
       </desc>
    </doc>
 
-  <xsl:key name="ALL-EXTRENDITION" match="@rendition[not(starts-with(.,'#'))]" use="1"/>
-  <xsl:key name="EXTRENDITION"     match="@rendition[not(starts-with(.,'#'))]" use="."/>
+  <xsl:key name="ALL-EXTRENDITION" match="@rendition[not(starts-with(.,'simple:') or starts-with(.,'#'))]" use="1"/>
+  <xsl:key name="EXTRENDITION"
+	   match="@rendition[not(starts-with(.,'simple:') or starts-with(.,'#'))]" use="."/>
   <xsl:key name="ALL-LOCALRENDITION" match="tei:rendition" use='1'/>
 
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">

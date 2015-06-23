@@ -13,7 +13,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -44,10 +44,6 @@ of this software, even if advised of the possibility of such damage.
     </desc>
   </doc>
 
-  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
-    <desc>[epub] Local mode to rewrite names of graphics inclusions;
-      default is identity transform</desc>
-  </doc>
   <xsl:template match="@*|text()|comment()|processing-instruction()" mode="preflight">
     <xsl:copy-of select="."/>
   </xsl:template>

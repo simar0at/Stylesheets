@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet 
-xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+    xmlns:ann="http://relaxng.org/ns/compatibility/annotations/1.0"
+ xmlns:sch="http://purl.oclc.org/dsdl/schematron"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 xmlns:cals="http://www.oasis-open.org/specs/tm9901"
 xmlns:tei="http://www.tei-c.org/ns/1.0"
@@ -21,7 +22,8 @@ xmlns:mml="http://www.w3.org/1998/Math/MathML"
 xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html"
 xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"
 xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0" version="2.0"
-exclude-result-prefixes="sch cals ve o r m v wp w10 w wne mml tbx iso tei a xs pic fn">
+    exclude-result-prefixes="#all"
+>
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet" type="stylesheet">
     <desc>
       <p> TEI Utility stylesheet defining functions for use in all
@@ -33,7 +35,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -104,7 +106,7 @@ of this software, even if advised of the possibility of such damage.
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
     <desc>Whether a section is "identifiable"</desc>
   </doc>
-  <xsl:function name="tei:is-identifiable" as="xs:boolean">
+  <xsl:function name="tei:isIdentifiable" as="xs:boolean">
     <xsl:param name="element"/>
     <xsl:for-each select="$element">
       <xsl:choose>
@@ -124,7 +126,7 @@ of this software, even if advised of the possibility of such damage.
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
     <desc>Whether a section is "transcribable"</desc>
   </doc>
-  <xsl:function name="tei:is-transcribable" as="xs:boolean">
+  <xsl:function name="tei:isTranscribable" as="xs:boolean">
     <xsl:param name="element"/>
     <xsl:for-each select="$element">
       <xsl:choose>
@@ -167,17 +169,17 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="element"/>
     <xsl:for-each select="$element">
       <xsl:choose>
-        <xsl:when test="tokenize(@rend,' ')=('odd_label')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'odd_label')">true</xsl:when>
         <xsl:when test="parent::tei:hi[starts-with(@rend,'specList-')]">true</xsl:when>
         <xsl:when test="self::tei:docAuthor">true</xsl:when>
         <xsl:when test="self::tei:label[following-sibling::tei:item]">true</xsl:when>
         <xsl:when test="starts-with(@rend,'specList-')">true</xsl:when>
         <xsl:when test="starts-with(parent::tei:hi/@rend,'specList-')">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('label')">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('wovenodd')">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('important')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'label')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'wovenodd')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'important')">true</xsl:when>
         <xsl:when test="tokenize(@rend,' ')=('Heading_2_Char')">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('specChildModule')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'specChildModule')">true</xsl:when>
         <xsl:when test="ancestor-or-self::tei:cell[tei:match(@rend,'wovenodd-col1')]">true</xsl:when>
         <xsl:when test="ancestor-or-self::tei:cell[@role='label']">true</xsl:when>
         <xsl:when test="ancestor-or-self::*[@rend][tei:match(@rend,'bold')]">true</xsl:when>
@@ -229,10 +231,10 @@ of this software, even if advised of the possibility of such damage.
         <xsl:when test="self::tei:emph">true</xsl:when>
         <xsl:when test="self::tei:hi[not(@rend)]">true</xsl:when>
         <xsl:when test="self::tbx:hi[@style='italics']">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('ital')">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('it')">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('i')">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('att')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'ital')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'it')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'i')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'att')">true</xsl:when>
         <xsl:when test="self::tei:att">true</xsl:when>
         <xsl:when test="self::tei:speaker">true</xsl:when>
         <xsl:when test="self::tei:gloss">true</xsl:when>
@@ -242,6 +244,7 @@ of this software, even if advised of the possibility of such damage.
       </xsl:choose>
     </xsl:for-each>
   </xsl:function>
+
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
     <desc>Whether to render something in typewriter-like code.</desc>
   </doc>
@@ -318,29 +321,35 @@ of this software, even if advised of the possibility of such damage.
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
     <desc>Is given an element and defines whether or not this element is to be rendered inline.</desc>
   </doc>
-  <xsl:function name="tei:is-inline" as="xs:boolean">
+  <xsl:function name="tei:isInline" as="xs:boolean">
     <xsl:param name="element"/>
     <xsl:choose>
       <xsl:when test="empty($element)">true</xsl:when>
       <xsl:otherwise>
         <xsl:for-each select="$element">
           <xsl:choose>
+            <xsl:when test="parent::tei:div">false</xsl:when>
+            <xsl:when test="parent::tei:titlePage">false</xsl:when>
+            <xsl:when test="parent::tei:body">false</xsl:when>
+            <xsl:when test="parent::tei:front">false</xsl:when>
+            <xsl:when test="parent::tei:back">false</xsl:when>
+            <xsl:when test="self::tei:body">false</xsl:when>
+            <xsl:when test="self::tei:front">false</xsl:when>
+            <xsl:when test="self::tei:back">false</xsl:when>
             <xsl:when test="not(self::*)">true</xsl:when>
+            <xsl:when test="parent::tei:bibl/parent::tei:q">true</xsl:when>
             <xsl:when test="tei:match(@rend,'inline') and not(tei:p or tei:l)">true</xsl:when>
             <xsl:when test="self::tei:note[@place='display']">false</xsl:when>
+            <xsl:when test="self::tei:note[@place='block']">false</xsl:when>
             <xsl:when test="self::tei:note[tei:isEndNote(.)]">true</xsl:when>
             <xsl:when test="self::tei:note[tei:isFootNote(.)]">true</xsl:when>
             <xsl:when test="tei:match(@rend,'display') or tei:match(@rend,'block')">false</xsl:when>
             <xsl:when test="@type='display' or @type='block'">false</xsl:when>
             <xsl:when test="tei:table or tei:figure or tei:list or tei:lg    or tei:q/tei:l or tei:l or tei:p or tei:biblStruct or tei:sp or tei:floatingText">false</xsl:when>
-            <xsl:when test="parent::tei:div">false</xsl:when>
-            <xsl:when test="parent::tei:titlePage">false</xsl:when>
             <xsl:when test="self::tei:cit[not(@rend)]">true</xsl:when>
             <xsl:when test="parent::tei:cit[tei:match(@rend,'display')]">false</xsl:when>
             <xsl:when test="parent::tei:cit and (tei:p or tei:l)">false</xsl:when>
             <xsl:when test="parent::tei:cit and parent::cit/tei:bibl">false</xsl:when>
-            <xsl:when test="parent::tei:body">false</xsl:when>
-            <xsl:when test="parent::tei:titlePage">false</xsl:when>
             <xsl:when test="self::tei:docAuthor and parent::tei:byline">true</xsl:when>
             <xsl:when test="self::tei:note[tei:cit/tei:bibl]">false</xsl:when>
             <xsl:when test="self::tei:note[parent::tei:biblStruct]">true</xsl:when>
@@ -355,7 +364,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="self::tei:am">true</xsl:when>
             <xsl:when test="self::tei:att">true</xsl:when>
             <xsl:when test="self::tei:author">true</xsl:when>
-            <xsl:when test="self::tei:bibl and not (tei:is-inline(preceding-sibling::*[1]))">false</xsl:when>
+            <xsl:when test="self::tei:bibl and not (tei:isInline(preceding-sibling::*[1]))">false</xsl:when>
             <xsl:when test="self::tei:bibl and not (parent::tei:listBibl)">true</xsl:when>
             <xsl:when test="self::tei:biblScope">true</xsl:when>
             <xsl:when test="self::tei:br">true</xsl:when>
@@ -382,6 +391,7 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="self::tei:floatingText">false</xsl:when>
             <xsl:when test="self::tei:foreign">true</xsl:when>
             <xsl:when test="self::tei:forename">true</xsl:when>
+            <xsl:when test="self::tei:g">true</xsl:when>
             <xsl:when test="self::tei:gap">true</xsl:when>
             <xsl:when test="self::tei:genName">true</xsl:when>
             <xsl:when test="self::tei:geogName">true</xsl:when>
@@ -396,7 +406,6 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="self::tei:imprint">true</xsl:when>
             <xsl:when test="self::tei:institution">true</xsl:when>
             <xsl:when test="self::tei:label[not(parent::tei:list)]">true</xsl:when>
-            <xsl:when test="self::tei:list">false</xsl:when>
             <xsl:when test="self::tei:locus">true</xsl:when>
             <xsl:when test="self::tei:mentioned">true</xsl:when>
             <xsl:when test="self::tei:monogr">true</xsl:when>
@@ -445,23 +454,14 @@ of this software, even if advised of the possibility of such damage.
             <xsl:when test="self::m:oMath">true</xsl:when>
             <xsl:when test="parent::tei:note[tei:isEndNote(.)]">false</xsl:when>
             <xsl:when test="empty($element/..)">false</xsl:when>
-            <xsl:when test="not(self::tei:p) and tei:is-inline($element/..)">true</xsl:when>
+            <xsl:when test="not(self::tei:p) and tei:isInline($element/..)">true</xsl:when>
             <xsl:otherwise>false</xsl:otherwise>
           </xsl:choose>
         </xsl:for-each>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
-    <desc>Returns the current date.</desc>
-  </doc>
-  <xsl:function name="tei:whatsTheDate">
-    <xsl:value-of select="format-dateTime(current-dateTime(),'[Y]-[M02]-[D02]T[H02]:[m02]:[s02]Z')"/>
-  </xsl:function>
-  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
-    <desc>Whether an element has any more (useful) text in its parent</desc>
-  </doc>
-  <xsl:function name="tei:is-last" as="xs:boolean">
+  <xsl:function name="tei:isLast" as="xs:boolean">
     <xsl:param name="element"/>
     <xsl:for-each select="$element">
       <xsl:choose>
@@ -474,7 +474,7 @@ of this software, even if advised of the possibility of such damage.
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
     <desc>Whether an element has any  (useful) text before it</desc>
   </doc>
-  <xsl:function name="tei:is-first" as="xs:boolean">
+  <xsl:function name="tei:isFirst" as="xs:boolean">
     <xsl:param name="element"/>
     <xsl:for-each select="$element">
       <xsl:choose>
@@ -493,7 +493,7 @@ of this software, even if advised of the possibility of such damage.
       trim trailing space on the last text node in an element,
       trim both if a text node is both first and last, i.e., is the only text node in the element.</desc>
   </doc>
-  <xsl:template match="text()">
+  <xsl:template match="text()" mode="#default plain">
     <xsl:choose>
       <xsl:when test="ancestor::*[@xml:space][1]/@xml:space='preserve'">
         <xsl:value-of select="tei:escapeChars(.,parent::*)"/>
@@ -507,10 +507,12 @@ of this software, even if advised of the possibility of such damage.
 	  <xsl:choose>
 	    <xsl:when test="(tei:isFootNote(..) or tei:isEndNote(..))
 			    and position()=1"/>
-	    <!-- but if its in a run on inline objects with the same
+	    <!-- but if its in a run of inline objects with the same
 	    name (like a sequence of <hi>), then the space needs
 	    keeping -->
-	    <xsl:when test="(tei:is-inline(parent::*)  and parent::*/preceding-sibling::node()[1][name()=$context])">
+	    <xsl:when test="(tei:isInline(parent::*)  and
+			    parent::*/preceding-sibling::node()[1][name()=$context])">
+		      <xsl:call-template name="space"/>
               <xsl:call-template name="space"/>
 	    </xsl:when>
 	    <xsl:when test="position()=1"/>
@@ -542,7 +544,7 @@ of this software, even if advised of the possibility of such damage.
   </xsl:template>
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
     <desc>[common] allow for further handling of text. By default,
-      just normalize, but some formats may escape some characters.</desc>
+      just convert long s to short s, but some formats may escape some characters.</desc>
   </doc>
   <xsl:function name="tei:escapeChars" as="xs:string">
     <xsl:param name="letters"/>
@@ -695,7 +697,8 @@ of this software, even if advised of the possibility of such damage.
 	    <xsl:apply-templates select="tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[not(@type='subordinate')]"/>
 	  </xsl:when>
 	  <xsl:otherwise>
-	    <xsl:for-each select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt">
+	    <xsl:for-each
+		select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt">
 	      <xsl:choose>
 		<xsl:when test="tei:title[@type='main']">
 		  <xsl:apply-templates select="tei:title[@type='main']"/>
@@ -873,22 +876,24 @@ of this software, even if advised of the possibility of such damage.
   <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
     <desc>[common] Work out the publish date of the document </desc>
   </doc>
+  <xsl:function name="tei:checkNormalizedDate">
+    <xsl:param name="context"/>
+    <xsl:value-of select="if ($context/@when) then $context/@when else $context"/>
+  </xsl:function>
+
   <xsl:function name="tei:generateDate">
     <xsl:param name="context"/>
     <xsl:for-each select="$context">
       <xsl:choose>
         <xsl:when test="$useFixedDate='true'">1970-01-01</xsl:when>
         <xsl:when test="$useHeaderFrontMatter='true' and ancestor-or-self::tei:TEI/tei:text/tei:front//tei:docDate">
-          <xsl:apply-templates mode="date" select="ancestor-or-self::tei:TEI/tei:text/tei:front//tei:docDate"/>
-        </xsl:when>
-        <xsl:when test="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:editionStmt/descendant::tei:date[@when]">
-          <xsl:value-of select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:editionStmt/descendant::tei:date[@when][1]/@when"/>
+          <xsl:apply-templates mode="date" select="tei:checkNormalizedDate(ancestor-or-self::tei:TEI/tei:text/tei:front//tei:docDate)"/>
         </xsl:when>
         <xsl:when test="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:editionStmt/descendant::tei:date">
-          <xsl:value-of select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:editionStmt/descendant::tei:date[1]"/>
+          <xsl:value-of select="tei:checkNormalizedDate(ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:editionStmt/descendant::tei:date[1])"/>
         </xsl:when>
         <xsl:when test="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:date">
-          <xsl:value-of select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:date"/>
+          <xsl:value-of select="tei:checkNormalizedDate(ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:date)"/>
         </xsl:when>
         <xsl:when test="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:editionStmt/tei:edition">
           <xsl:apply-templates select="ancestor-or-self::tei:TEI/tei:teiHeader/tei:fileDesc/tei:editionStmt/tei:edition"/>
@@ -1006,7 +1011,11 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="context"/>
     <xsl:for-each select="$context">
       <xsl:choose>
-        <xsl:when test="(@place)=('foot','bottom','parend','tablefoot')     and not(parent::tei:bibl or  ancestor::tei:teiHeader)">true</xsl:when>
+	<xsl:when test="ancestor::tei:listBibl">false</xsl:when>
+        <xsl:when test="@place='foot'">true</xsl:when>
+        <xsl:when test="@place='bottom'">true</xsl:when>
+        <xsl:when test="@place='parend'">true</xsl:when>
+        <xsl:when test="@place='tablefoot'">true</xsl:when>
         <xsl:otherwise>false</xsl:otherwise>
       </xsl:choose>
     </xsl:for-each>
@@ -1030,8 +1039,8 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="context"/>
     <xsl:for-each select="$context">
       <xsl:choose>
-        <xsl:when test="tokenize(@rend,' ')=('numbered')">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('ordered')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'numbered')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'ordered')">true</xsl:when>
         <xsl:when test="@type='ordered'">true</xsl:when>
         <xsl:otherwise>false</xsl:otherwise>
       </xsl:choose>
@@ -1045,8 +1054,8 @@ of this software, even if advised of the possibility of such damage.
     <xsl:for-each select="$context">
       <xsl:choose>
         <xsl:when test="not(@rend or @type)">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('unordered')">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('bulleted')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'unordered')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'bulleted')">true</xsl:when>
         <xsl:when test="@type='unordered'">true</xsl:when>
         <xsl:otherwise>false</xsl:otherwise>
       </xsl:choose>
@@ -1059,8 +1068,8 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="context"/>
     <xsl:for-each select="$context">
       <xsl:choose>
-        <xsl:when test="tokenize(@rend,' ')=('valList')">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('gloss')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'valList')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'gloss')">true</xsl:when>
         <xsl:when test="@type='gloss'">true</xsl:when>
         <xsl:when test="tei:label">true</xsl:when>
         <xsl:otherwise>false</xsl:otherwise>
@@ -1075,7 +1084,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:for-each select="$context">
       <xsl:choose>
         <xsl:when test="@type='valList'">true</xsl:when>
-        <xsl:when test="tokenize(@rend,' ')=('glosstable')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'glosstable')">true</xsl:when>
         <xsl:when test="@type='glosstable'">true</xsl:when>
         <xsl:otherwise>false</xsl:otherwise>
       </xsl:choose>
@@ -1088,7 +1097,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="context"/>
     <xsl:for-each select="$context">
       <xsl:choose>
-        <xsl:when test="tokenize(@rend,' ')=('inline')">true</xsl:when>
+        <xsl:when test="tei:match(@rend,'inline')">true</xsl:when>
         <xsl:when test="@type='inline'">true</xsl:when>
         <xsl:when test="ancestor::tei:head or parent::tei:label">true</xsl:when>
         <xsl:otherwise>false</xsl:otherwise>
@@ -1533,5 +1542,26 @@ of this software, even if advised of the possibility of such damage.
     <xsl:sequence select="if (tokenize($att,' ')=($value)) then true()
       else false()"/>
   </xsl:function>
+
+ <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
+    <desc>Returns the current date.</desc>
+  </doc>
+  <xsl:function name="tei:whatsTheDate" as="node()+">
+    <xsl:choose>
+      	<xsl:when test="$useFixedDate='true'">1970-01-01</xsl:when>
+	<xsl:otherwise>
+	  <xsl:value-of
+	      select="format-dateTime(current-dateTime(),'[Y]-[M02]-[D02]T[H02]:[m02]:[s02]Z')"/>
+	</xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
+    <desc>Whether an element has any more (useful) text in its parent</desc>
+  </doc>
+  
+<xsl:template match="processing-instruction()[name(.)='entity']" mode="#all">
+    <xsl:value-of select="tei:escapeChars(concat('&amp;',normalize-space(.),';'),parent::*)"/>
+</xsl:template>
 
 </xsl:stylesheet>

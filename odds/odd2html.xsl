@@ -15,7 +15,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -69,7 +69,7 @@ of this software, even if advised of the possibility of such damage.
   <xsl:param name="searchURL"/>
   <xsl:param name="searchWords"/>
   <xsl:param name="showNamespaceDecls">false</xsl:param>
-  <xsl:param name="showTitleAuthor">1</xsl:param>
+  <xsl:param name="showTitleAuthor">true</xsl:param>
   <xsl:param name="splitBackmatter">yes</xsl:param>
   <xsl:param name="splitFrontmatter">yes</xsl:param>
   <xsl:param name="splitLevel">-1</xsl:param>

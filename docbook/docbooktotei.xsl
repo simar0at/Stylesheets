@@ -12,7 +12,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -145,7 +145,7 @@ of this software, even if advised of the possibility of such damage.
 		  <xsl:apply-templates select="pubdate"/>
 		</xsl:when>
 		<xsl:otherwise>
-		  <xsl:call-template name="whatsTheDate"/> 
+		  <xsl:sequence select="tei:whatsTheDate()"/>
 		</xsl:otherwise>
 	      </xsl:choose>
             </date>
@@ -705,10 +705,10 @@ of this software, even if advised of the possibility of such damage.
     </xsl:if>
 </xsl:template>
 
-  <xsl:template name="whatsTheDate">
-      <xsl:value-of select="format-dateTime(current-dateTime(),'[Y]-[M02]-[D02]T[H02]:[m02]:[s02]Z')"/>
-  </xsl:template>
-
+  <xsl:function name="tei:whatsTheDate">
+	  <xsl:value-of
+	      select="format-dateTime(current-dateTime(),'[Y]-[M02]-[D02]T[H02]:[m02]:[s02]Z')"/>
+  </xsl:function>
 
 
 </xsl:stylesheet>

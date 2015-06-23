@@ -18,7 +18,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -58,7 +58,7 @@ of this software, even if advised of the possibility of such damage.
     \item <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match="tei:affiliation">
+  <xsl:template match="tei:affiliation|tei:email">
       <xsl:text>\mbox{}\\ </xsl:text>
       <xsl:apply-templates/>
   </xsl:template>

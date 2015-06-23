@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet 
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    exclude-result-prefixes="tei html"
+    exclude-result-prefixes="tei html skos"
     version="2.0">
     <!-- import base conversion style -->
-
     <xsl:import href="../../../html5/html5.xsl"/>
     <xsl:import href="../../../html5/microdata.xsl"/>
 
@@ -20,7 +20,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -52,13 +52,39 @@ of this software, even if advised of the possibility of such damage.
    </doc>
 
   <xsl:param name="splitLevel">-1</xsl:param>
-  <xsl:param name="cssFile"></xsl:param>
-  <xsl:param name="cssInlineFile">../tei.css</xsl:param>
   <xsl:param name="institution"></xsl:param>
   <xsl:param name="feedbackURL"/>
   <xsl:param name="searchURL"/>
   <xsl:template name="copyrightStatement"></xsl:template>
   <xsl:param name="parentURL">http://www.tei-c.org/</xsl:param>
   <xsl:param name="parentWords">TEI</xsl:param>
+
+<xsl:template match="skos:exactMatch">
+  <tt>'<xsl:value-of select="."/>'</tt>
+</xsl:template>
+
+<xsl:template match="tei:valItem">
+  <tr>
+    <td><xsl:sequence select="tei:showMode(@ident,@mode)"/>
+	  <xsl:if test="tei:paramList">
+	    <xsl:text> (</xsl:text>
+	    <xsl:value-of select="tei:paramList/tei:paramSpec/@ident" separator=","/>
+	    <xsl:text>)</xsl:text>
+	  </xsl:if>
+    </td>
+    <td><xsl:value-of select="tei:desc"/>
+    <xsl:if test="skos:exactMatch">
+      [also   <xsl:apply-templates select="skos:exactMatch"/>]
+    </xsl:if>
+    </td>
+  </tr>
+</xsl:template>
+
+<xsl:template match="tei:att">
+    <span>
+      <xsl:call-template name="makeRendition"/>
+      <xsl:apply-templates/>
+    </span>
+  </xsl:template>
 
 </xsl:stylesheet>

@@ -34,7 +34,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -137,7 +137,7 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="letters"/>
     <xsl:param name="context"/>
       <xsl:value-of
-	  select="replace(replace(replace(replace(replace(translate($letters,'&#10;',' '), 
+	  select="replace(replace(replace(replace(replace(translate($letters,'ſ&#10;','s '), 
 		  '\\','\\textbackslash '),
 		  '_','\\textunderscore '),
 		  '\^','\\textasciicircum '),
@@ -193,10 +193,10 @@ of this software, even if advised of the possibility of such damage.
   <xsl:template match="text()" mode="eg">
       <xsl:choose>
          <xsl:when test="starts-with(.,'&#xA;')">
-            <xsl:value-of select="substring-after(tei:escapeCharsVerbatim(.),'&#xA;')"/>
+            <xsl:value-of select="substring-after(.,'&#xA;')"/>
          </xsl:when>
          <xsl:otherwise>
-	   <xsl:value-of select="tei:escapeCharsVerbatim(.)"/>
+	   <xsl:value-of select="."/>
          </xsl:otherwise>
       </xsl:choose>
   </xsl:template>
@@ -244,7 +244,12 @@ of this software, even if advised of the possibility of such damage.
 	  <xsl:value-of select="tei:escapeChars(normalize-space(.),.)"/>
 	  <xsl:text>}</xsl:text>	    
 	</xsl:when>
-	<xsl:when test="$style=''">
+	<xsl:when test="local-name()='label'">
+	  <xsl:text>\textbf{</xsl:text>
+	  <xsl:apply-templates/>
+	  <xsl:text>}</xsl:text>
+	</xsl:when>
+	<xsl:when test="not($style)">
 	  <xsl:sequence select="concat('{\',local-name(),' ')"/>
 	  <xsl:apply-templates/>
 	  <xsl:text>}</xsl:text>

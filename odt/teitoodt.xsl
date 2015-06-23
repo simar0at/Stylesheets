@@ -16,7 +16,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -331,7 +331,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:for-each-group select="node()" group-adjacent="if        (self::text())        then 1        else if        (tei:is-inline(.))        then 1        else 2        ">
+    <xsl:for-each-group select="node()" group-adjacent="if        (self::text())        then 1        else if        (tei:isInline(.))        then 1        else 2        ">
       <xsl:choose>
         <xsl:when test="current-grouping-key()=2">
           <xsl:apply-templates select="current-group()"/>
@@ -681,7 +681,7 @@ of this software, even if advised of the possibility of such damage.
       </text:note-citation>
       <text:note-body>
 
-	<xsl:for-each-group select="node()" group-adjacent="if        (self::text())        then 1        else if        (tei:is-inline(.))        then 1        else 2        ">
+	<xsl:for-each-group select="node()" group-adjacent="if        (self::text())        then 1        else if        (tei:isInline(.))        then 1        else 2        ">
 	  <xsl:choose>
 	    <xsl:when test="current-grouping-key()=2">
 	      <xsl:apply-templates select="current-group()"/>
@@ -881,7 +881,7 @@ of this software, even if advised of the possibility of such damage.
       <xsl:when test="tei:p">
 	  <xsl:apply-templates/>
       </xsl:when>
-      <xsl:when test="not(tei:is-inline(.))">
+      <xsl:when test="not(tei:isInline(.))">
 	<text:p text:style-name="Quote">
 	  <xsl:apply-templates/>
 	</text:p>

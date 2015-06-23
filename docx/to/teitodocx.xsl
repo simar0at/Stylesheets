@@ -151,7 +151,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -263,8 +263,8 @@ of this software, even if advised of the possibility of such damage.
   <xsl:key name="HEADERS" match="tei:fw[@type='header']" use="@xml:id"/>
   <xsl:key name="ALLFOOTERS" match="tei:fw[@type='footer']" use="1"/>
   <xsl:key name="ALLHEADERS" match="tei:fw[@type='header']" use="1"/>
-  <xsl:key name="ENDNOTES" match="tei:note[@place='end']" use="1"/>
-  <xsl:key name="FOOTNOTES" match="tei:note[@place='foot' or @place='bottom' ]" use="1"/>
+  <xsl:key name="ENDNOTES" match="tei:note[tei:isEndNote(.)]" use="1"/>
+  <xsl:key name="FOOTNOTES" match="tei:note[tei:isFootNote(.) ]" use="1"/>
   <xsl:key name="OL" match="tei:list[tei:isOrderedList(.)]" use="1"/>
   <xsl:key name="BLIP" match="a:blip" use="1"/>
   <xsl:key name="Styles" match="w:style/w:name" use="@w:val"/>
@@ -476,12 +476,12 @@ of this software, even if advised of the possibility of such damage.
     <xsl:param name="bookmark-id"/>
     <xsl:param name="bookmark-name"/>
     <!-- Process Child elements -->
-    <xsl:for-each-group select="current-group()" group-starting-with="*[not(tei:is-inline(.))]">
+    <xsl:for-each-group select="current-group()" group-starting-with="*[not(tei:isInline(.))]">
       <xsl:choose>
         <!-- if the current item is a block element, we process that one,
                      and then call this function recursively over all the other
                      elements -->
-        <xsl:when test="self::*[not(tei:is-inline(.))]">
+        <xsl:when test="self::*[not(tei:isInline(.))]">
           <!-- process block element -->
           <xsl:apply-templates select=".">
             <xsl:with-param name="style" select="$style"/>
@@ -980,7 +980,7 @@ of this software, even if advised of the possibility of such damage.
     </w:r>
     </xsl:variable>
     <xsl:choose>
-      <xsl:when test="tei:is-inline(.)">
+      <xsl:when test="tei:isInline(.)">
 	<xsl:copy-of select="$note"/>
       </xsl:when>
       <xsl:otherwise>
@@ -1122,12 +1122,12 @@ of this software, even if advised of the possibility of such damage.
 
   <xsl:template match="tei:quote|tei:q|tei:said|tei:soCalled">
     <xsl:choose>
-      <xsl:when test="*[not(tei:is-inline(.))] or parent::tei:div">
+      <xsl:when test="*[not(tei:isInline(.))] or parent::tei:div">
         <xsl:call-template name="block-element">
 	  <xsl:with-param name="style">teiquote</xsl:with-param>
 	</xsl:call-template>
       </xsl:when>
-      <xsl:when test="not(tei:is-inline(.))">
+      <xsl:when test="not(tei:isInline(.))">
         <xsl:call-template name="block-element">
 	  <xsl:with-param name="style">teiquote</xsl:with-param>
 	</xsl:call-template>
@@ -1426,7 +1426,7 @@ of this software, even if advised of the possibility of such damage.
         </xsl:otherwise>
       </xsl:choose>
       <xsl:choose>
-        <xsl:when test="not(text()) and count(*)=1 and not(tei:is-inline(*))">
+        <xsl:when test="not(text()) and count(*)=1 and not(tei:isInline(*))">
           <xsl:apply-templates/>
         </xsl:when>
         <xsl:otherwise>
@@ -2305,7 +2305,7 @@ of this software, even if advised of the possibility of such damage.
 	</xsl:for-each>
       </xsl:variable>
       <xsl:choose>
-	<xsl:when test="tei:is-inline($context)">
+	<xsl:when test="tei:isInline($context)">
 	  <xsl:copy-of select="$rContent"/>
 	</xsl:when>
 	<xsl:otherwise>
@@ -2623,7 +2623,7 @@ of this software, even if advised of the possibility of such damage.
       <xsl:when test="parent::tei:body"/>
       <xsl:when test="parent::tei:back"/>
       <xsl:when test="parent::tei:front"/>
-      <xsl:when test="not(tei:is-inline(..)) and (tei:is-last(.) or tei:is-first(.))"/>
+      <xsl:when test="not(tei:isInline(..)) and (tei:isLast(.) or tei:isFirst(.))"/>
       <xsl:otherwise>
 	<xsl:copy-of select="."/>
       </xsl:otherwise>
@@ -2751,7 +2751,7 @@ of this software, even if advised of the possibility of such damage.
 	    <xsl:choose>
 	      <xsl:when test="$style='italic'"/>
 	      <xsl:when test="$style='bold'"/>
-	      <xsl:when test="$style=''">
+	      <xsl:when test="not($style)">
 		<xsl:text>tei</xsl:text>
 		<xsl:value-of select="local-name()"/>
 	      </xsl:when>

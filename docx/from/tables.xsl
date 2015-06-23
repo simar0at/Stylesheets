@@ -42,7 +42,7 @@ Unported License http://creativecommons.org/licenses/by-sa/3.0/
 
 2. http://www.opensource.org/licenses/BSD-2-Clause
 		
-All rights reserved.
+
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -371,7 +371,8 @@ of this software, even if advised of the possibility of such damage.
 	      </xsl:for-each>
 	    </xsl:when>
 	    <xsl:otherwise>
-	      <table rend="rules">
+	      <table>
+		<xsl:call-template name="table-rendition"/>
 		<xsl:call-template name="table-header"/>
 		<xsl:for-each select="w:tr">
 		  <xsl:variable name="overrideRow">
@@ -603,6 +604,10 @@ of this software, even if advised of the possibility of such damage.
 
 
 
+	  <xsl:template name="table-rendition">
+	    <xsl:attribute name="rend">rules</xsl:attribute>
+	  </xsl:template>
+	  
     <xsl:template name="table-header">
         <xsl:variable name="precedingTableTitle"
                     select="preceding-sibling::w:p[w:pPr/w:pStyle/@w:val='TableTitle'             or w:pPr/w:pStyle/@w:val=$Tabletitle][1]"/>

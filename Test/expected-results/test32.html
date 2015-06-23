@@ -11,7 +11,7 @@
     <meta name="DC.Format" content="text/html"/>
     <link rel="stylesheet" media="print" type="text/css" href="http://www.tei-c.org/release/xml/tei/stylesheet/tei-print.css"/>
     <style type="text/css" title="inline_css">/*
-** Copyright 2011 TEI Consortium
+** Copyright 2015 TEI Consortium
 
 This software is dual-licensed:
 
@@ -49,1363 +49,1044 @@ of this software, even if advised of the possibility of such damage.
 
 /* main layout */
 
-body.simple {
-color: #000000;
-background-color: #FFFFFF;
-margin: 10pt;
+body.simple{
+color:#000000;
+background-color:#FFFFFF;
+margin:10pt;
 }
 
 body{
-color: #000000;
-background-color: #FFFFFF;
-margin: 10pt;
+color:#000000;
+background-color:#FFFFFF;
+margin:10pt;
 padding:0;
-font-family: Verdana, Tahoma, Geneva, Arial, Helvetica, sans-serif;
+font-family:Verdana, Tahoma, Geneva, Arial, Helvetica, sans-serif;
 }
 
-body.pagetable {
-color: #000000;
-background-color: #FFFFFF;
+body.pagetable{
+color:#000000;
+background-color:#FFFFFF;
 }
 
 /* 3 columns allowed for, or just a right and left */
 #col1{
-width: 20%;
-background: #FFFFFF;
-margin: 0;
-margin-top: 10px;
-color: #000066;
-padding: 5px;
-position : absolute;
-float: left;
-border-style: solid;
-border-width: 1px;
-border-color: red;
+width:20%;
+background:#FFFFFF;
+margin:0;
+margin-top:10px;
+color:#000066;
+padding:5px;
+position:absolute;
+float:left;
+border-style:solid;
+border-width:1px;
+border-color:red;
 }
 
 #col2{
-background: #FFFFFF;
-color: #333333;
-border-style: solid;
-border-width: 1px;
-border-color: #000000;
-margin: 0;
-margin-top: 10px;
-padding: 5px ;
-left: 22%;
-width: 51%;
-position : absolute;
+background:#FFFFFF;
+color:#333333;
+border-style:solid;
+border-width:1px;
+border-color:#000000;
+margin:0;
+margin-top:10px;
+padding:5px;
+left:22%;
+width:51%;
+position:absolute;
 }
 
 #col3{
-width: 24%;
-left: 75%;
-color: #000066;
-background: #FFFFFF;
-border-style: solid;
-border-width: 1px;
-border-color: red;
-margin: 0;
-margin-top: 10px;
-padding: 5px;
-position : absolute;
-float: right;
+width:24%;
+left:75%;
+color:#000066;
+background:#FFFFFF;
+border-style:solid;
+border-width:1px;
+border-color:red;
+margin:0;
+margin-top:10px;
+padding:5px;
+position:absolute;
+float:right;
 }
 
 #lh-col{
-width: 16%;
-color: #000000;
-margin-top: 2pt;
-margin-right: 10pt;
-padding: 5px;
-background-color: #FFFFFF;
-float: left;
+width:16%;
+color:#000000;
+margin-top:2pt;
+margin-right:10pt;
+padding:5px;
+background-color:#FFFFFF;
+float:left;
 font-weight:normal;
 }
 
 #rh-col{
-background-color: #FFFFFF;
-color: #333333;
-margin: 2pt;
-padding: 5px ;
-float: right;
-width: 75%;
+background-color:#FFFFFF;
+color:#333333;
+margin:2pt;
+padding:5px;
+float:right;
+width:75%;
 font-weight:normal;
 }
 
 /* now the layers of the header */
 
 /* the main title */
-div.stdheader {
-border-bottom: 1pt solid black;
+div.stdheader{
+border-bottom:1pt solid black;
 }
 
 #hdr{
-width: auto;
-margin: 0;
-background-repeat : no-repeat;
-overflow : inherit;
+width:auto;
+margin:0;
+background-repeat:no-repeat;
+overflow:inherit;
 }
 
 /* a navigation bar */
 #hdr2{
-width: auto;
-color: #000000;
-font-family: Arial,Helvetica,sans-serif;
-font-weight: bold;
-background-color : #99CCFF;
-padding-left : 5px;
-padding-bottom : 2px;
-padding-top : 2px;
-padding-right : 5px;
+width:auto;
+color:#000000;
+font-family:Arial, Helvetica, sans-serif;
+font-weight:bold;
+background-color:#99CCFF;
+padding-left:5px;
+padding-bottom:2px;
+padding-top:2px;
+padding-right:5px;
 }
 
 /* a breadcrumb trail */
 #hdr3{
-width: auto;
-color: #000000;
-background-color : #AD06BC;
-padding-left : 5px;
-padding-bottom : 2px;
-padding-top : 2px;
-padding-right : 5px;
-font-family: Arial,Helvetica,sans-serif;
-font-weight : bold;
-font-size: smaller;
+width:auto;
+color:#000000;
+background-color:#AD06BC;
+padding-left:5px;
+padding-bottom:2px;
+padding-top:2px;
+padding-right:5px;
+font-family:Arial, Helvetica, sans-serif;
+font-weight:bold;
+font-size:smaller;
 }
 
-.bannerright {
-float: right ;
-color: #FFFFFF;
-font-family : Arial, Helvetica, sans-serif;
-font-size : 0.8em;
-font-weight : bold;
-text-decoration: none;
+.bannerright{
+float:right;
+color:#FFFFFF;
+font-family:Arial, Helvetica, sans-serif;
+font-size:0.8em;
+font-weight:bold;
+text-decoration:none;
 }
 
 /* section headings */
-#hdr h1 { color: red; }
-h1 {
-font-weight: bold;
-font-size: 2em;
-line-height: 34pt;
+#hdr h1{
+color:red;
+}
+h1{
+font-weight:bold;
+font-size:1.8em;
+margin-bottom:0.8em;
 }
 
-h2 {
-font-size: larger;
-line-height: 20pt;
-margin-top: 18pt;
-font-weight: bold;
+h2{
+font-size:1.3em;
+margin-bottom:0.7em;
+font-weight:bold;
 }
 
-h3 {
-font-size: larger;
-line-height: 18pt;
-font-weight: bold;
-font-style: italic;
+h3{
+font-size:1.2em;
+font-weight:bold;
+margin-bottom:0.5em;
+font-style:italic;
 }
 
-h1.maintitle {
-margin-left: 100px;
-font-family: Arial,Helvetica,sans-serif;
-font-weight: bold;
-bottom: 5px;
+h1.maintitle{
+margin-left:100px;
+font-family:Arial, Helvetica, sans-serif;
+font-weight:bold;
+bottom:5px;
 }
 
-h1.title {
-margin-left: 100px;
-font-family: Arial,Helvetica,sans-serif;
-font-weight: bold;
-bottom: 5px;
+h1.title{
+margin-left:100px;
+font-family:Arial, Helvetica, sans-serif;
+font-weight:bold;
+bottom:5px;
 }
 
-h2.institution {
-margin-left: 100px;
-font-family: Arial,Helvetica,sans-serif;
+h2.institution{
+margin-left:100px;
+font-family:Arial, Helvetica, sans-serif;
 }
 
-h2.department {
-margin-left: 100px;
-font-family: Arial,Helvetica,sans-serif;
+h2.department{
+margin-left:100px;
+font-family:Arial, Helvetica, sans-serif;
 }
 
-h2.subtitle {
-margin-left: 100px;
-font-family: Arial,Helvetica,sans-serif;
-font-weight: bold;
+h2.subtitle{
+margin-left:100px;
+font-family:Arial, Helvetica, sans-serif;
+font-weight:bold;
 }
 
-.footer {
-text-align : center;
-font-family: Arial,Helvetica,sans-serif;
-font-size : 0.8em;
+.footer{
+text-align:center;
+font-family:Arial, Helvetica, sans-serif;
+font-size:0.8em;
 }
 
 
 /* components of the breadcrumb trail */
 a.breadcrumb{
-color: #FFFFFF;
-text-decoration: none;
-padding-right : 5px;
-font-family: Arial,Helvetica,sans-serif;
-font-weight : bold;
-font-size : 0.8em;
+color:#FFFFFF;
+text-decoration:none;
+padding-right:5px;
+font-family:Arial, Helvetica, sans-serif;
+font-weight:bold;
+font-size:0.8em;
 }
 
 ul.breadcrumb
 {
-display: inline;
-font-size: 1.1em;
+display:inline;
+font-size:1.1em;
 }
 
-li.breadcrumb:before {
-content: "▶";
+li.breadcrumb:before{
+content:"▶";
 }
-li.breadcrumb-first:before {
-content: "▶";
+li.breadcrumb-first:before{
+content:"▶";
 }
 li.breadcrumb
 {
-padding-left: 12px;
-padding-right: 5px;
-display: inline;
-color: #000000;
+padding-left:12px;
+padding-right:5px;
+display:inline;
+color:#000000;
 }
 li.breadcrumb-first
 {
-padding-left: 12px;
-padding-right: 5px;
-display: inline;
-color: #000000;
+padding-left:12px;
+padding-right:5px;
+display:inline;
+color:#000000;
 }
 
-div.breadcrumb {
-display: inline;
+div.breadcrumb{
+display:inline;
 }
 
 .skiplinks{
-font-family: arial, sans-serif;
-color: #FFFFFF;
-font-weight : bold;
-font-size : 0.8em;
-text-decoration: none;
-padding-right : 15px;
+font-family:arial, sans-serif;
+color:#FFFFFF;
+font-weight:bold;
+font-size:0.8em;
+text-decoration:none;
+padding-right:15px;
 }
 
 .tocontent{
-color : #000066;
-display : none;
+color:#000066;
+display:none;
 }
 
 .hide{
-display : none;
+display:none;
 }
 
 a:hover
 {
-text-decoration: underline;
+text-decoration:underline;
 }
 
 a.navbar:link
 {
-color: #FFFFFF;
-text-decoration: none;
+color:#FFFFFF;
+text-decoration:none;
 }
 
 a.navbar:visited
 {
-color: #FFFFFF;
-text-decoration: none;
+color:#FFFFFF;
+text-decoration:none;
 }
 
-a.navbar:hover {
-color: #FFFFFF;
-text-decoration: underline;
+a.navbar:hover{
+color:#FFFFFF;
+text-decoration:underline;
 }
 
 
 /* an inner &lt;text&gt;, eg inside a &lt;q&gt; */
-div.innertext {
-margin: 6pt;
-border: 1pt solid red;
+div.innertext{
+margin:6pt;
+border:1pt solid red;
 }
 /* literal code */
 
-div.cdata {
-white-space: pre;
+div.cdata{
+white-space:pre;
 clear:both;
 }
 
-pre,div.pre,div.pre_eg,pre.eg,div.eg {
+pre,
+div.pre,
+div.pre_eg,
+pre.eg,
+div.eg{
 clear:both;
-margin-top: 1em;
+margin-top:1em;
 margin-bottom:1em;
-border-top-width: 4px;
-border-bottom-width: 4px;
-border-left-width: 2px;
-border-right-width: 2px;
-border-style: solid;
-padding-top: 10px;
-padding-right: 10px;
-padding-bottom: 10px;
-padding-left: 10px;
-color: #000000;
-line-height: 1.1em;
-font-family: monospace;
-font-size: 10pt;
-white-space: pre;
+border-top-width:4px;
+border-bottom-width:4px;
+border-left-width:2px;
+border-right-width:2px;
+border-style:solid;
+padding-top:10px;
+padding-right:10px;
+padding-bottom:10px;
+padding-left:10px;
+color:#000000;
+line-height:1.1em;
+font-family:monospace;
+font-size:10pt;
+white-space:pre;
 }
 
-div.egXML_valid {
-background-color: #f7f9f6;
-border-color: #c5d8bb;
+div.egXML_valid{
+background-color:#f7f9f6;
+border-color:#c5d8bb;
 }
-div.egXML_feasible {
-background-color: #fff9f3;
-border-color: #ffe1ad;
+div.egXML_feasible{
+background-color:#fff9f3;
+border-color:#ffe1ad;
 }
-div.egXML_invalid {
-border-color: #ffe7e8 ;
-background-color: #fdbbac;
+div.egXML_invalid{
+border-color:#ffe7e8;
+background-color:#fdbbac;
 }
 
 /* table of contents */
-ul.toc {list-style: none;}
-li.toc {list-style: none;}
+ul.toc{
+list-style:none;
+}
+li.toc{
+list-style:none;
+}
 
 /* table of contents links */
 
-a.inlinetoc:link,a.inlinetoc:visited
+a.inlinetoc:link,
+a.inlinetoc:visited
 {
-color: #7A7A7A;
-font-size: smaller;
-text-decoration: none;
+color:#7A7A7A;
+font-size:smaller;
+text-decoration:none;
 }
 
-a.inlinetoc-this:visited,a.inlinetoc-this:link
+a.inlinetoc-this:visited,
+a.inlinetoc-this:link
 {
-font-size: smaller;
-color: #000000;
-font-weight: bold;
-text-decoration: underline;
+font-size:smaller;
+color:#000000;
+font-weight:bold;
+text-decoration:underline;
 }
 
-a.inlinetoc-sub:visited,a.inlinetoc-sub:link
+a.inlinetoc-sub:visited,
+a.inlinetoc-sub:link
 {
-text-decoration: none;
-color: #000000;
-font-weight: normal;
-font-size: smaller;
+text-decoration:none;
+color:#000000;
+font-weight:normal;
+font-size:smaller;
 }
 
 span.toclist{
-font-size: smaller;
-font-family: Arial,Helvetica,sans-serif;
-font-weight: bold;
+font-size:smaller;
+font-family:Arial, Helvetica, sans-serif;
+font-weight:bold;
 }
 
-p.toclist0 {
-margin-left: 0.5em;
-margin-top: 1pt;
-margin-bottom: 3pt;
-text-indent: -0.5em;
-font-size: small;
+p.toclist0{
+margin-left:0.5em;
+margin-top:1pt;
+margin-bottom:3pt;
+text-indent:-0.5em;
+font-size:small;
 }
 
-p.toclist1 {
-margin-left: 1em;
-margin-top: 1pt;
-margin-bottom: 2pt;
-text-indent: -0.7em;
-font-size: small;
+p.toclist1{
+margin-left:1em;
+margin-top:1pt;
+margin-bottom:2pt;
+text-indent:-0.7em;
+font-size:small;
 }
 
-p.toclist2 {
-margin-left: 1.5em;
-text-indent: -1em;
-font-size: small;
+p.toclist2{
+margin-left:1.5em;
+text-indent:-1em;
+font-size:small;
 }
 
-p.toclist3 {
-margin-left: 2em;
-text-indent: -1.5em;
-font-size: small;
+p.toclist3{
+margin-left:2em;
+text-indent:-1.5em;
+font-size:small;
 }
 
-span.toclist-this {
-color: red;
+span.toclist-this{
+color:red;
 }
 
-a.toclist:visited,a.toclist:link
+a.toclist:visited,
+a.toclist:link
 {
-font-weight: bold;
-color: #000000;
-text-decoration: none;
+font-weight:bold;
+color:#000000;
+text-decoration:none;
 }
 
 /* notes */
-div.noteHeading {
-margin-top: 9pt;
-border: 0;
-border-top: 1pt;
-border-style: solid;
-padding-top: 6pt;
-font-size: larger;
-font-weight: bold;
+div.noteHeading{
+margin-top:9pt;
+border:0;
+border-top:1pt;
+border-style:solid;
+padding-top:6pt;
+font-size:larger;
+font-weight:bold;
 }
-div.noteBody {
+div.noteBody{
 display:inline;
 }
 
-div.note {
-margin-left: 2em;
-margin-right: 2em;
-margin-bottom: 3pt;
-margin-top: 3pt;
-text-indent: -1em;
+div.note{
+margin-left:2em;
+margin-right:2em;
+margin-bottom:3pt;
+margin-top:3pt;
+text-indent:-1em;
 }
 
-span.noteLabel {
-vertical-align: super;
-font-size: smaller;
-font-style: italic;
+span.noteLabel{
+vertical-align:super;
+font-size:smaller;
+font-style:italic;
 }
-span.note:before {
-content: " [";
+span.note:before{
+content:" [";
 }
-span.note:after {
-content: "] ";
+span.note:after{
+content:"] ";
 }
 
-span.note {
-font-size: smaller;
+span.note{
+font-size:smaller;
 }
 /* images */
-img.display {
-margin-top: 10pt;
-margin-bottom: 10pt;
-display: block;
+img.display{
+margin-top:10pt;
+margin-bottom:10pt;
+display:block;
 }
 
-.floatimage {
-float : left;
-margin-right : 6px;
-vertical-align : top;
+.floatimage{
+float:left;
+margin-right:6px;
+vertical-align:top;
 }
 /* specialized divs */
-div.letter {
-margin-left: 2em;
-margin-right: 2em;
-margin-top: 6pt;
-margin-bottom: 6pt;
-border-top: 1pt solid green;
-border-bottom: 1pt solid green;
+div.letter{
+margin-left:2em;
+margin-right:2em;
+margin-top:6pt;
+margin-bottom:6pt;
+border-top:1pt solid green;
+border-bottom:1pt solid green;
 }
 /* title page */
-div.titlePage,div.titlepage {
-border-top: 2pt solid #000000;
-border-bottom: 2pt solid #000000;
-padding-top: 6pt;
-padding-bottom: 6pt;
-font-size: larger;
-text-align: center;
+div.titlePage,
+div.titlepage{
+border-top:2pt solid #000000;
+border-bottom:2pt solid #000000;
+padding-top:6pt;
+padding-bottom:6pt;
+font-size:larger;
+text-align:center;
 }
-div.docImprint {
-margin-top: 6pt;
-display: block;
-font-style: italic;
+div.docImprint{
+margin-top:6pt;
+display:block;
+font-style:italic;
 }
-div.docDate {
-font-style: italic;
+div.docDate{
+font-style:italic;
 }
-div.docTitle {
-display: block;
-margin-top: 6pt;
-font-weight: bold;
-margin-bottom: 18pt;
+div.docTitle{
+display:block;
+margin-top:6pt;
+font-weight:bold;
+margin-bottom:18pt;
 }
-div.docAuthor {
-font-style: italic;
+div.docAuthor{
+font-style:italic;
 }
 
-div.byline {
-display: block;
+div.byline{
+display:block;
 }
 
 div.dateline{
-text-align: right;
+text-align:right;
 }
 
 /* paragraphs */
-p, div.p {
-margin-top: 0.3em;
+p,
+span.p,
+div.p{
+margin-top:0.3em;
 }
-div.p blockquote p {
-margin-top: 0.0em;
--webkit-margin-before: 0em;
--webkit-margin-after: 0em;
--webkit-margin-start: 0px;
--webkit-margin-end: p0px;
+span.p{
+display:block;
 }
-p.box {
-border: 1pt solid #000000;
+div.p blockquote p{
+margin-top:0.0em;
+-webkit-margin-before:0em;
+-webkit-margin-after:0em;
+-webkit-margin-start:0px;
+-webkit-margin-end:p0px;
+}
+p.box{
+border:1pt solid #000000;
 }
 
 /* verse */
-div.lg {
-margin-left: 10px;
-margin-bottom: 10px;
+div.lg{
+margin-left:10px;
+margin-bottom:10px;
 }
-div.l {
+div.l{
 text-align:left;
-margin-left: 1em;
+margin-left:1em;
 }
 /* misc */
-div.epigraph {
-margin: 20pt;
+div.epigraph{
+margin:20pt;
 }
-div.numbering {
+div.numbering{
 float:left;
 font-size:smaller;
-width: 2em;
+width:2em;
 }
 
-div.linenumber { }
+div.linenumber{
+}
 
-div.signed {
+div.signed{
 text-align:left;
 }
-div.salute {
+div.salute{
 text-align:left;
 }
-div.indent1 {
-margin-left: 1em;
+div.indent1{
+margin-left:1em;
 }
-div.indent2 {
-margin-left: 2em;
+div.indent2{
+margin-left:2em;
 }
-div.indent3 {
-margin-left: 3em;
+div.indent3{
+margin-left:3em;
 }
-div.indent4 {
-margin-left: 4em;
+div.indent4{
+margin-left:4em;
 }
-div.indent5 {
-margin-left: 5em;
+div.indent5{
+margin-left:5em;
 }
-div.indent6 {
-margin-left: 6em;
-}
-
-td.label {
-font-weight: bold;
-background-color: #AAAAAA;
-}
-tr.label td {
-font-weight: bold;
-background-color: #AAAAAA;
+div.indent6{
+margin-left:6em;
 }
 
-span.label {
-font-weight: bold;
+td.label{
+font-weight:bold;
+background-color:#AAAAAA;
+}
+tr.label td{
+font-weight:bold;
+background-color:#AAAAAA;
 }
 
-h5 {
-font-size: 100%;
-}
-h6 {
-font-size: 100%;
+span.label{
+font-weight:bold;
 }
 
-div.tocFront {
-border-bottom: 1pt solid #000000;
+h5{
+font-size:100%;
 }
-div.tocBack {
-border-bottom: 1pt solid #000000;
+h6{
+font-size:100%;
 }
-div.tocBody {
-border-bottom: 1pt solid #000000;
+
+div.tocFront{
+border-bottom:1pt solid #000000;
+}
+div.tocBack{
+border-bottom:1pt solid #000000;
+}
+div.tocBody{
+border-bottom:1pt solid #000000;
 }
 /* a listBibl rend='labels' */
-div.listBibl {
-margin-top: 6pt;
-margin-bottom: 6pt;
+div.listBibl{
+margin-top:6pt;
+margin-bottom:6pt;
 }
-span.bibl {
-font-style: italic;
+span.bibl{
+font-style:italic;
 }
-div.bibl {
-margin-left: 0.5em;
-text-indent: -0.5em;
+div.bibl{
+margin-left:0.5em;
+text-indent:-0.5em;
 }
-div.biblfree {
-font-size: smaller;
-margin-left: 0.5em;
-text-indent: -0.5em;
-margin-bottom: 6pt;
+div.biblfree{
+font-size:smaller;
+margin-left:0.5em;
+text-indent:-0.5em;
+margin-bottom:6pt;
 }
 
-span.biblLabel {
-font-weight: bold;
-margin-right: 1em;
+span.biblLabel{
+font-weight:bold;
+margin-right:1em;
 }
 
 /* a &lt;bibl&gt; inside a &lt;cit&gt; */
-div.citbibl:before {
-content: "(";
+div.citbibl:before{
+content:"(";
 }
-div.citbibl:after {
-content: ")";
+div.citbibl:after{
+content:")";
 }
-div.citbibl {
-font-style: italic;
-font-size: smaller;
+div.citbibl{
+font-style:italic;
+font-size:smaller;
 }
 /* a &lt;quote&gt; inside a &lt;cit&gt; */
-div.citquote {
-margin-left: 10pt;
-margin-right: 10pt;
+div.citquote{
+margin-left:10pt;
+margin-right:10pt;
 }
 
 /* gloss lists with bold labels */
-dt {
-font-weight: bold;
+dt{
+font-weight:bold;
 }
 /* quotation */
 div.blockquote
 {
-margin-top: 10pt;
-margin-bottom: 10pt;
-margin-left: 40px;
-margin-right: 40px;
+margin-top:10pt;
+margin-bottom:10pt;
+margin-left:40px;
+margin-right:40px;
 }
 /* opener */
 div.opener
 {
-margin: 10pt;
+margin:10pt;
 }
-div.q {
-margin: 10pt;
+div.q{
+margin:10pt;
 }
 /* figures */
-.figure {
-display: block;
-border-top: solid 1pt blue;
-border-bottom: solid 1pt blue;
+.figure{
+display:block;
+border-top:solid 1pt blue;
+border-bottom:solid 1pt blue;
 }
-.caption {
-margin-top: 6pt;
-margin-bottom: 12pt;
-display: block;
-font-style: italic;
+.caption{
+margin-top:6pt;
+margin-bottom:12pt;
+display:block;
+font-style:italic;
 }
 /* inline quote */
-span.q {
+span.q{
 }
 
 /* from drama */
 /* speeches in drama */
-div.p-in-sp {
-margin-left: 1em;
+.p-in-sp{
+margin-left:1em;
 }
-div.sp {
-margin-top: 4pt;
+div.sp{
+margin-top:4pt;
 }
-div.spProse {
-text-indent: -1em;
-margin-left: 1em;
+div.spProse{
+text-indent:-1em;
+margin-left:1em;
 }
-div.speaker {
-font-style: italic;
-}
-span.speaker {
-font-style: italic;
-}
-
-span.actor {
+div.speaker{
 font-style:italic;
 }
-span.camera {
-font-style: italic;
-}
-span.role {
-font-style: italic;
-}
-span.set {
-font-style: italic;
-}
-span.sound {
-font-style: italic;
-}
-span.stage {
-font-style: italic;
-}
-span.tech {
-font-style: italic;
-}
-span.view {
-font-style: italic;
-}
-span.nextLink {
-font-style: italic;
-}
-span.previousLink {
-font-style: italic;
-}
-span.upLink {
-font-style: italic;
-}
-/* bibl */
-span.titlem {
-font-style: italic;
-}
-span.titlej {
-font-style: italic;
-}
-span.titleu {
-}
-span.titles {
+span.speaker{
+font-style:italic;
 }
 
+span.actor{
+font-style:italic;
+}
+span.camera{
+font-style:italic;
+}
+span.role{
+font-style:italic;
+}
+span.set{
+font-style:italic;
+}
+span.sound{
+font-style:italic;
+}
+span.stage{
+font-style:italic;
+}
+span.tech{
+font-style:italic;
+}
+span.view{
+font-style:italic;
+}
+span.nextLink{
+font-style:italic;
+}
+span.previousLink{
+font-style:italic;
+}
+span.upLink{
+font-style:italic;
+}
+/* bibl */
+span.titlem{
+font-style:italic;
+}
+span.titlej{
+font-style:italic;
+}
+span.titleu{
+}
+span.titles{
+}
+
+aside,
 span.notemargin,
 span.notemarginOuter,
 span.notemarginLeft,
 span.notemarginRight,
-span.notemargin,div.notemargin {
-display: block;
-font-size: smaller;
-clear: right;
-padding: 4pt;
-font-style: italic;
-width: 10%;
-border: solid green 1pt;
-margin: 6pt;
+span.notemargin,
+div.notemargin{
+display:block;
+font-size:smaller;
+clear:right;
+padding:4pt;
+font-style:italic;
+width:10%;
+border:solid green 1pt;
+margin:6pt;
 }
 span.notemargin,
 span.notemarginOuter,
 span.notemarginRight,
-span.notemargin,div.notemargin {
+span.notemargin,
+div.notemargin{
 float:right;
 }
-span.notemarginLeft {
+span.notemarginLeft{
 float:left;
 }
 
-div.floatingText_back {
-border-top: solid black 1pt;
+div.floatingText_back{
+border-top:solid black 1pt;
 }
-div.floatingText_front {
-border-top: solid black 1pt;
+div.floatingText_front{
+border-top:solid black 1pt;
 }
-div.floatingText {
-margin: 6pt;
-border: solid black 1pt;
+div.floatingText{
+margin:6pt;
+border:solid black 1pt;
 }
-div.pagebreak,span.pagebreak {
-display: block;
-color: grey;
-float: right;
+div.pagebreak,
+span.pagebreak{
+display:block;
+color:grey;
+float:right;
 }
-span.element {
-font-weight: bold;
-color: black;
+span.element{
+font-weight:bold;
+color:black;
 }
-span.unclear {
-font-style: italic;
-}
-span.wordtypeNN, span.wordtypeNNS {
-color: green;
-}
-span.wordtypeVVD,span.wordtypeVVN,span.wordtypeVVN,span.wordtypeVVZ,span.wordtypeVVG, span.wordtypeVV {
-color: red;
-}
-
-li.headless {
-display: none;
-}
-
-div.footer {
-border-top: solid black 1pt;
-}
-
-div.stdfooter {
-clear:both;
-border-top: solid black 1pt;
-border-bottom: solid black 1pt;
-}
-
-div.altfigure {
-border-top: solid black 1pt;
-border-bottom: solid black 1pt;
-}
-
-table.table, table.table tr, table.table td {
-border: solid black 1pt;
-}
-table.table td {
-padding: 1ex 1ex 1ex 1ex;
-}
-p.mainAuthor {
-display: block;
-margin: 1ex 0ex 1ex 0ex;
-}
-p.mainEditor {
-display: block;
-margin: 1ex 0ex 1ex 0ex;
-}
-
-/* ODD-specific styles */
-/* tables for reference display */
-table.wovenodd {
-width: 100%;
-clear: both;
-}
-td.wovenodd-col1 {
-width:15%;
-vertical-align: top;
-}
-td.wovenodd-col2 {
-width:85%;
-}
-table.wovenodd tr td {
-border: 1px solid #555;
-padding:1%;
-}
-table.wovenodd {
-border-spacing:0px;
-border-collapse:collapse;
-}
-table.wovenodd tr td {
-border-spacing:0px;
-}
-table.wovenodd tr {
-border-spacing:0px;
-border-collapse:collapse;
-}
-table.wovenodd tr td table.attList {
-border-spacing:0px;
-border:none;
-}
-table.wovenodd tr td table.attList tr {
-border-spacing:0px;
-border:none;
-}
-table.wovenodd tr td table.attList tr td {
-border-spacing:0px;
-border:none;
-}
-table.attList {
-table-layout: fixed;
-width: 100%;
-margin: 0pt;
-padding: 0pt;
-}
-td.odd_label {
-vertical-align: top;
-width: 10%;
-font-weight: bold;
-}
-td.odd_value {
-vertical-align: top;
-width: 90%;
-}
-table.attDef {
-table-layout: fixed;
-width: 100%;
-}
-table.attDef td.odd_label {
-width: 10%;
-vertical-align: top;
-font-weight: normal;
-}
-table.attDef td.odd_value {
-vertical-align: top;
-width: 90%;
-}
-table.attList td.odd_label:before {
-content: "@";
-}
-table.attDef td.odd_label:before {
-content: "";
-}
-table.valList td.odd_label:before {
-content: "";
-}
-table.valList {
-table-layout: fixed;
-width: 100%;
-}
-table.valList td.odd_label {
-width: 10%;
-vertical-align: top;
-font-style: normal;
-font-weight: normal;
-}
-table.valList td.odd_value {
-vertical-align: top;
-width: 90%;
-}
-table.specDesc td.Attribute {
-font-weight: bold;
-vertical-align: top;
-}
-table.specDesc {
-margin-left: 1em;
-}
-td p {
-margin-top: 0pt;
-margin-bottom: 2pt;
-}
-
-div.cdata {
-white-space: pre;
-clear:both;
-}
-
-span.tag:before {
-
-}
-span.tag:after {
-
-}
-span.gi,span.tag {
-}
-span.att {
-
-}
-span.att:before {
-content: "@";
-}
-span.ident,
-span.ident-class, span.ident-datatype, span.ident-frag,
-span.ident-ge, span.ident-macro, span.ident-module,
-span.ident-pe, span.ident-rng, span.ident-schema {
-font-weight: bold;
-}
-
-span.ident-file, span.ident-ns {
-font-style: italic;
-}
-
-button.displayRelaxButton {
-margin-right: 2px;
-margin-top: 2px;
-font-size: 70%;
-float: right;
-cursor: pointer;
-}
-pre.RNG_XML {
-display: none;
-}
-
-span.RNG_XML {
-display: none;
-}
-
-/* pretty printing of XML */
-td.classSpec, td.macroSpec {
-font-weight: bold;
-}
-a.link_odd_element:link,a.link_odd_element:visited {
-/* color: #006400; */
-}
-a.link_odd_macro:link,a.link_odd_macro:visited {
-
-}
-a.link_odd_class:link,a.link_odd_class:visited {
-
-}
-span.element {
-font-weight: bold;
-color: black;
-}
-td.elementSpec,span.elementname {
-font-weight: bold;
-color: #222288;
-}
-span.highlightelementname {
-color: red;
-}
-
-span.attribute {
-color: #222288;
-}
-span.attributevalue {
-font-weight: normal;
-color: black;
-}
-span.comment {
-color: black;
+span.unclear{
 font-style:italic;
 }
-span.namespace {
-color: #222288;
+span.wordtypeNN,
+span.wordtypeNNS{
+color:green;
 }
-/* pretty print rnc */
-span.rnc_nc {
-color: #006400;
+span.wordtypeVVD,
+span.wordtypeVVN,
+span.wordtypeVVN,
+span.wordtypeVVZ,
+span.wordtypeVVG,
+span.wordtypeVV{
+color:red;
 }
-span.rnc_decl {
-color: green;
-}
-span.rnc_prefix {
-color: blue;
-}
-span.rnc_param {
-color: gray;
-}
-span.rnc_atom {
-color: yellow;
-}
-span.rnc_annot {
-color: #FF8040;
-}
-span.rnc_comment {
-color: #FF00FF;
-}
-span.rnc_annot {
-color: #00FFFF;
-}
-span.rnc_type {
-color: purple;
-}
-span.rnc_keyword {
-color: teal;
-}
-span.defaultVal {
-font-weight: bold;
-}
-span.required {
-font-weight: bold;
-}
-div.moduleSpec {
-padding: 1px;
-margin: 1px;
-background-color: #C0C0C0;
-color:inherit;
-clear:right;
-}
-span.moduleSpecHead {
-font-style: italic;
-}
-ul.specList li {
-list-style: none;
-}
-span.specList-macroSpec {
-font-weight: bold;
-}
-span.specList-elementSpec {
-font-weight: bold;
-}
-span.specList-elementSpec:before {
-content: "&lt;";
 
+li.headless{
+display:none;
 }
-span.specList-elementSpec:after {
-content: "&gt;";
 
+div.footer{
+border-top:solid black 1pt;
 }
-span.specList-classSpec {
-font-weight: bold;
+
+div.stdfooter{
+clear:both;
+border-top:solid black 1pt;
+border-bottom:solid black 1pt;
 }
-span.specName {
-color: #223377;
-font-weight: bold;
+
+div.altfigure{
+border-top:solid black 1pt;
+border-bottom:solid black 1pt;
 }
-/* A -Z Styles From http://www.smileycat.com/miaow/archives/000211.php -styling the a to z */
-#azindex {
-background-color: #ddd;
-color:inherit;
-display: block;
-margin: 0px;
-float: left;
-padding: 5px;
-width: 75%;
-border: 1px solid #999;
+
+table.table,
+table.table tr,
+table.table td{
+border:solid black 1pt;
 }
-#azindex p {
-color: #fff;
-background-color: #000060;
-padding: 4px;
-display: block;
-margin: 0;
-border-bottom: 1px solid #333;
-font-size: 0.95em;
+table.table td{
+padding:1ex 1ex 1ex 1ex;
 }
-.index {
-font: bold 100% Verdana, Helvetica, sans-serif;
-margin: 0;
-padding: 0;
+p.mainAuthor{
+display:block;
+margin:1ex 0ex 1ex 0ex;
 }
-.index li {
-float: left;
-height: 1.5em;
-list-style-type: none;
-margin: 0.35em 0.15em;
-padding: 0;
-width: 1.5em;
+p.mainEditor{
+display:block;
+margin:1ex 0ex 1ex 0ex;
 }
-.index a:link, .index a:visited {
-background: #fff;
-color: navy;
-display: block;
-height: 1.5em;
-padding: 0.37em 0 0 0;
-text-align: center;
-text-decoration: none;
-width: 1.5em;
-border: 1px solid #999;
-}
-li.showall, li.showall a:visited,li.showall a:link {
-width: 10em;
-}
-* html .index li {
-margin: 0.2em 0.2em;
-}
-ul.index li a:hover {
-background-color: #93D1E4;
-color: #fff;
-text-decoration: underline;
-}
-div.atozwrapper {
-float: left;
-width: 70%;
-}
-div.atoz {
-clear: left;
-float: left;
-}
-#byMod {
-margin-top: 12px;
-clear: left;
-}
-ul.atoz {
-list-style: none;
-text-align:left;
-margin: 2px;
-padding: 2px;
-background-color: #eef;
-color:inherit;
-}
-.atoz li {
-padding: 0px;
-display: inline;
-}
-span.listhead {
-margin-top: 0em;
-margin-right: 1em;
-padding-left: 3px;
-padding-right: 3px;
-color: #000066;
-font-weight: bold;
-font-size: large;
-}
-/* End of A - Z styles */
-div.specChildren {
-margin: 0em;
-padding: 0em;
-}
-span.specChildModule {
-font-weight: bold;
-}
-div.specChild {
-margin-bottom: 4pt;
-margin-left: 25px;
-text-indent: -30px;
-}
-span.emptySlash:after {
-content: "/";
-}
-/* status notation */
-.status_deprecated:after {
-content: " (deprecated)";
-color: red;
-}
-.status_changed:after {
-content: " (changed)";
-color: blue;
-}
-.status_unstable:after {
-content: " (unstable)";
-color: orange;
-}
-.status_deprecated {
-border: solid red 1pt;
-}
-.status_changed {
-border: solid blue 1pt;
-}
-.status_unstable {
-border: solid orange 1pt;
-}
+
 /* for ePub */
-div.EpubCoverPage {
+div.EpubCoverPage{
 -webkit-hyphens:none;
-font-family: serif;
-height:860;
+font-family:serif;
+height:860pt;
 font-size:30pt;
-font-weight: bold;
-padding-top: 15pt;
-margin: 12pt;
-border: solid red 1pt;
+font-weight:bold;
+padding-top:15pt;
+margin:12pt;
+border:solid red 1pt;
 text-align:center;
 }
 /* general purpose block aligns */
-.centerbold {
+.centerbold{
 text-align:center;
-font-weight: bold;
+font-weight:bold;
 }
-.center {
+.center{
 text-align:center;
 }
-.right {
+.right{
 text-align:right;
 }
-.left {
+.left{
 text-align:left;
 }
 
 /* &lt;hi&gt; rend values */
 span.typewriter{
-font-family: monospace;
+font-family:monospace;
 }
 span.normalweight{
-font-weight: normal;
+font-weight:normal;
 }
 span.smallcaps{
-font-variant: small-caps;
+font-variant:small-caps;
 }
 span.bold{
-font-weight: bold;
+font-weight:bold;
 }
 span.italic{
 font-style:italic;
 }
-span.callcaps{
-text-transform: uppercase;
+span.allcaps{
+text-transform:uppercase;
 }
 span.strikethrough{
-text-decoration: line-through;
+text-decoration:line-through;
 }
 span.doublestrikethrough{
-text-decoration: line-through;
+text-decoration:line-through;
 }
 span.underline{
-text-decoration: underline;
+text-decoration:underline;
 }
 span.wavyunderline{
-text-decoration-line: underline;
-text-decoration-style: wavy;
+text-decoration-line:underline;
+text-decoration-style:wavy;
 }
 span.doubleunderline{
-text-decoration: underline;
+text-decoration:underline;
 }
-span.superscript {
-vertical-align: super;
-font-size: smaller;
+span.superscript{
+vertical-align:super;
+font-size:smaller;
 }
-span.subscript {
-vertical-align: bottom;
-font-size: smaller;
+span.subscript{
+vertical-align:bottom;
+font-size:smaller;
 }
-span.numberParagraph:before {
+span.numberParagraph:before{
 content:"[";
 }
-span.numberParagraph:after {
+span.numberParagraph:after{
 content:"] ";
 }
-span.numberParagraph {
-font-size: smaller;
-color: grey;
+span.numberParagraph{
+font-size:smaller;
+color:grey;
 }
 
 /* misc inline*/
 
-span.foreign {
-font-style: italic;
+span.foreign{
+font-style:italic;
 }
 
 /* generic rendition */
-.plain {
-text-decoration: none;
+.plain{
+text-decoration:none;
 }
 
-.small {
-font-size: small;
+.small{
+font-size:small;
 }
-.term {
-font-style: italic;
+.term{
+font-style:italic;
 }
-.hi {
-font-style: italic;
+.hi{
+font-style:italic;
 }
-.emph {
-font-weight: bold;
+.emph{
+font-weight:bold;
 }
-.label {
-font-weight: bold;
+.label{
+font-weight:bold;
 }
-.mentioned {
-font-style: italic;
+.mentioned{
+font-style:italic;
 }
 
 /* transcription */
 
-div.sourceDoc {
+div.sourceDoc{
 }
 
-div.surfaceGrp {
-border-bottom-width: 1pt;
-border-bottom-color: green;
-border-bottom-style: solid;
+div.surfaceGrp{
+border-bottom-width:1pt;
+border-bottom-color:green;
+border-bottom-style:solid;
 clear:both;
 }
 
-div.surface {
+div.surface{
 clear:both;
-border-width: 1pt;
-border-style: solid;
-border-color: grey;
-margin-bottom: 1ex;
+border-width:1pt;
+border-style:solid;
+border-color:grey;
+margin-bottom:1ex;
 }
 
-div.zone {
-border-width: 1pt;
-border-style: solid;
-border-color: lightgrey;
-margin-bottom: 0.5ex;
+div.zone{
+border-width:1pt;
+border-style:solid;
+border-color:lightgrey;
+margin-bottom:0.5ex;
 }
 
-div.line {
+div.line{
 }
 
-div.facsimage {
-float: right;
+div.facsimage{
+float:right;
 }
-div.facsimage img {
-max-height: 100%;
-width: auto
+div.facsimage img{
+max-height:100%;
+width:auto
 }
 
-span.damage {
-border-bottom: 1px dashed red;
+span.damage{
+border-bottom:1px dashed red;
 }
 /* app crit */
-div.appcrit {
-border-top: solid black 1pt;
-margin-top: 2pt;
-padding-top: 2pt;
-margin-bottom: 2pt;
-margin-left: 1em;
+div.appcrit{
+border-top:solid black 1pt;
+margin-top:2pt;
+padding-top:2pt;
+margin-bottom:2pt;
+margin-left:1em;
 }
-div.app {
-margin-top: 1pt;
-font-size: smaller;
+div.app{
+margin-top:1pt;
+font-size:smaller;
 }
-span.lemma {
+span.lemma{
 }
-span.lemmawitness {
-font-weight: bold;
+span.lemmawitness{
+font-weight:bold;
+}
+span.listhead{
+display:block;
+margin-top:0em;
+margin-right:1em;
+padding-left:3px;
+padding-right:3px;
+font-weight:bold;
+}
+table.border td{
+vertical-align:top;
+border:1px solid black;
+padding:2px;
+}
+table.border td.norules{
+border-width:0px;
+padding-top:6px;
+}
+table.border{
+border-collapse:collapse;
+border-spacing:0;
+}
+.del{
+text-decoration:line-through;
+}
+.red{
+color:red;
+}
+.green{
+color:green;
+}
+.orange{
+color:orange;
 }
 
 </style>
@@ -2224,13 +1905,13 @@ font-weight: bold;
       </div>
     </div>
     <span id="sl1o.1_return">
-      <a class="notelink" title="1825. XIII. – Slomšek je svoje pridige številčil z rimskimi številkami. Gre torej za njegovo trinajsto pridigo (dejansko …" href="#sl1o.1">
+      <a class="notelink" title="1825. XIII. – Slomšek je svoje pridige številčil z rimskimi številkami. Gre torej za njegovo trinajsto pridigo (dejansko štirinajsto, prim. KRAMBERGER…" href="#sl1o.1">
         <sup>1</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl1o.2_return">
-      <a class="notelink" title="Slomšek je bil 27. avgusta 1825 imenovan za kaplana na Bizeljskem, po tedanjem poimenovanju Sv. Lovrenc v …" href="#sl1o.2">
+      <a class="notelink" title="Slomšek je bil 27. avgusta 1825 imenovan za kaplana na Bizeljskem, po tedanjem poimenovanju Sv. Lovrenc v Krajini. Pridigal je že pred tem, to besedil…" href="#sl1o.2">
         <sup>2</sup>
       </a>
       <sup>,</sup>
@@ -2242,37 +1923,37 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl1o.4_return">
-      <a class="notelink" title="Izreke in misli cerkvenih učiteljev ter raznih svetnikov je Slomšek utegnil črpati iz različnih (tematsko …" href="#sl1o.4">
+      <a class="notelink" title="Izreke in misli cerkvenih učiteljev ter raznih svetnikov je Slomšek utegnil črpati iz različnih (tematsko urejenih) homiletičnih priročnikov. Še bolj …" href="#sl1o.4">
         <sup>4</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl1o.5_return">
-      <a class="notelink" title="Slomšek verjetno misli na odlomke o prvenstvu ljubezni do Boga pred ljubeznijo do ljudi (Mt 10,37–39; Mt 19,29; …" href="#sl1o.5">
+      <a class="notelink" title="Slomšek verjetno misli na odlomke o prvenstvu ljubezni do Boga pred ljubeznijo do ljudi (Mt 10,37–39; Mt 19,29; Lk 18,29–30; Mr 10,28–30) in jih po…" href="#sl1o.5">
         <sup>5</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl1o.6_return">
-      <a class="notelink" title="kolko potijo – pútijo ali pótijo: napotujejo, svetujejo, usmerjajo. PLETERŠNIK: »pótiti: 1) potiti ko…" href="#sl1o.6">
+      <a class="notelink" title="kolko potijo – pútijo ali pótijo: napotujejo, svetujejo, usmerjajo. PLETERŠNIK: »pótiti: 1) potiti koga, jemandem den Weg Weisen, Cig.; – Weisungen ge…" href="#sl1o.6">
         <sup>6</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl1o.7_return">
-      <a class="notelink" title="Slomšek je sestavil ta navedek iz dveh vrstic pisma apostola Pavla Hebrejcem: »Poslušajte svoje voditelje …" href="#sl1o.7">
+      <a class="notelink" title="Slomšek je sestavil ta navedek iz dveh vrstic pisma apostola Pavla Hebrejcem: »Poslušajte svoje voditelje in jih ubogajte. Oni namreč bedijo nad vašim…" href="#sl1o.7">
         <sup>7</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl1o.8_return">
-      <a class="notelink" title="Ker je navajal po spominu, je Slomšek kot vir pomotoma navedel evangelista Mateja, dejansko pa gre za evangelij po Janezu …" href="#sl1o.8">
+      <a class="notelink" title="Ker je navajal po spominu, je Slomšek kot vir pomotoma navedel evangelista Mateja, dejansko pa gre za evangelij po Janezu 10,11." href="#sl1o.8">
         <sup>8</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl1o.9_return">
-      <a class="notelink" title="To mesto je značilen primer, kako je Slomšek sestavil tri odlomke iz različnih besedil Svetega pisma (Mt …" href="#sl1o.9">
+      <a class="notelink" title="To mesto je značilen primer, kako je Slomšek sestavil tri odlomke iz različnih besedil Svetega pisma (Mt 10,24, Jan 15,20, Mt 5,12 ali Lk 6,23) in jih…" href="#sl1o.9">
         <sup>9</sup>
       </a>
       <sup>,</sup>
@@ -2296,31 +1977,31 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl1o.13_return">
-      <a class="notelink" title="Slomšek je imel pri tem morda v mislih tudi slab zgled, ki ga je faranom dajal tedanji bizeljski župnik Ludovik Batistik, zat…" href="#sl1o.13">
+      <a class="notelink" title="Slomšek je imel pri tem morda v mislih tudi slab zgled, ki ga je faranom dajal tedanji bizeljski župnik Ludovik Batistik, zato je uporabil Jezusove be…" href="#sl1o.13">
         <sup>13</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl1o.14_return">
-      <a class="notelink" title="Prvi del navedka ni iz pisma apostola Pavla Korinčanom, ampak Galačanom (Ko bi še ljudem hotel ugajati, …" href="#sl1o.14">
+      <a class="notelink" title="Prvi del navedka ni iz pisma apostola Pavla Korinčanom, ampak Galačanom (Ko bi še ljudem hotel ugajati, bi ne bil Kristusov služabnik. Gal 1,10), drug…" href="#sl1o.14">
         <sup>14</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl1o.15_return">
-      <a class="notelink" title="Slomšek se sklicuje na znameniti odlomek iz 1. pisma apostola Pavla Korinčanom (13,1–13): »Ko bi človeške …" href="#sl1o.15">
+      <a class="notelink" title="Slomšek se sklicuje na znameniti odlomek iz 1. pisma apostola Pavla Korinčanom (13,1–13): »Ko bi človeške in angelske jezike govoril, ljubezni pa bi n…" href="#sl1o.15">
         <sup>15</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl1o.16_return">
-      <a class="notelink" title="Ni bilo mogoče dognati, na katero vrstico 1. Janezovega pisma se Slomšek tu sklicuje, sa je ta navedek prepoznaven, a zelo …" href="#sl1o.16">
+      <a class="notelink" title="Ni bilo mogoče dognati, na katero vrstico 1. Janezovega pisma se Slomšek tu sklicuje, sa je ta navedek prepoznaven, a zelo svobodno preoblikovan povze…" href="#sl1o.16">
         <sup>16</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl1o.17_return">
-      <a class="notelink" title="Slomšek je svobodno preoblikoval znani verz iz 42. psalma: »Kakor jelen hrepeni po potokih voda, / tako …" href="#sl1o.17">
+      <a class="notelink" title="Slomšek je svobodno preoblikoval znani verz iz 42. psalma: »Kakor jelen hrepeni po potokih voda, / tako hrepeni moja duša po tebi, o Bog,« (Ps 42,2), …" href="#sl1o.17">
         <sup>17</sup>
       </a>
       <sup>,</sup>
@@ -3513,31 +3194,31 @@ font-weight: bold;
       </div>
     </div>
     <span id="sl2o.19_return">
-      <a class="notelink" title="Slomšek je pridigo napisal l. 1829 kot deseto pridigo v tem letu – odtod X v zgornjem desnem kotu (prim. KRAMBERGER, str. 24 …" href="#sl2o.19">
+      <a class="notelink" title="Slomšek je pridigo napisal l. 1829 kot deseto pridigo v tem letu – odtod X v zgornjem desnem kotu (prim. KRAMBERGER, str. 24 ) – in jo ponovil dvanajs…" href="#sl2o.19">
         <sup>19</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl2o.20_return">
-      <a class="notelink" title="Slomšek je tokrat natančno navedel biblični vir – Sirah 51,30; ta navedba je točna za vulgato in Japljev prevod Svetega pisma…" href="#sl2o.20">
+      <a class="notelink" title="Slomšek je tokrat natančno navedel biblični vir – Sirah 51,30; ta navedba je točna za vulgato in Japljev prevod Svetega pisma, Dalmatin in novejši pre…" href="#sl2o.20">
         <sup>20</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl2o.21_return">
-      <a class="notelink" title="Ta navedek iz psalma 15 (po vulgati 14) je Slomšek vnesel v pridigo takole: prvotno, leta 1829, je imela …" href="#sl2o.21">
+      <a class="notelink" title="Ta navedek iz psalma 15 (po vulgati 14) je Slomšek vnesel v pridigo takole: prvotno, leta 1829, je imela pridiga le prvi moto (iz Sirahove knjige) in …" href="#sl2o.21">
         <sup>21</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl2o.22_return">
-      <a class="notelink" title="Tudi primerjava tega navedka z Japljevim prevodom Svetega pisma potrjuje, da je Slomšek leta 1829 še …" href="#sl2o.22">
+      <a class="notelink" title="Tudi primerjava tega navedka z Japljevim prevodom Svetega pisma potrjuje, da je Slomšek leta 1829 še uporabljal vulgato in sam slovenil iz nje." href="#sl2o.22">
         <sup>22</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl2o.23_return">
-      <a class="notelink" title="potoki terji hudobije – Po mnenju Marka Snoja je terje pri Slomšku in drugih starejših avtorjih (denimo pri Janezu Svetokrišk…" href="#sl2o.23">
+      <a class="notelink" title="potoki terji hudobije – Po mnenju Marka Snoja je terje pri Slomšku in drugih starejših avtorjih (denimo pri Janezu Svetokriškem) treba preprosto brati…" href="#sl2o.23">
         <sup>23</sup>
       </a>
       <sup>,</sup>
@@ -3549,25 +3230,25 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl2o.25_return">
-      <a class="notelink" title="Besedilo uničeno. – Odlomek, ki se tu začenja, povzema dve vrstici iz Matejevega evangelija (18,6–7): …" href="#sl2o.25">
+      <a class="notelink" title="Besedilo uničeno. – Odlomek, ki se tu začenja, povzema dve vrstici iz Matejevega evangelija (18,6–7): »Gorjé svetu zaradi pohujšanja! Pohujšanje sicer…" href="#sl2o.25">
         <sup>25</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl2o.26_return">
-      <a class="notelink" title="črv hude vesti ne bode umrl – Navedeni Slomškov stavek je svobodna parafraza evangelija po Marku (9,4…" href="#sl2o.26">
+      <a class="notelink" title="črv hude vesti ne bode umrl – Navedeni Slomškov stavek je svobodna parafraza evangelija po Marku (9,47–48): »In ako te tvoje oko pohujšuje, ga izderi;…" href="#sl2o.26">
         <sup>26</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl2o.27_return">
-      <a class="notelink" title="Tudi ta vrstica je bila vrinjena med besedilo, ko je bila pridiga že napisana, vendar ni gotovo, kdaj. Navedek je vzet iz …" href="#sl2o.27">
+      <a class="notelink" title="Tudi ta vrstica je bila vrinjena med besedilo, ko je bila pridiga že napisana, vendar ni gotovo, kdaj. Navedek je vzet iz Sirahove knjige – 25,8." href="#sl2o.27">
         <sup>27</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl2o.28_return">
-      <a class="notelink" title="V teh vrsticah prihaja do izraza Slomškova občutljivost za transcendentno funkcijo jezika: le z jezik…" href="#sl2o.28">
+      <a class="notelink" title="V teh vrsticah prihaja do izraza Slomškova občutljivost za transcendentno funkcijo jezika: le z jezikom in prek jezika lahko človek doživlja metafizič…" href="#sl2o.28">
         <sup>28</sup>
       </a>
       <sup>,</sup>
@@ -3579,19 +3260,19 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl2o.30_return">
-      <a class="notelink" title="Nejasno mesto: zadnja beseda vrstice v izvirniku ni berljiva; po smislu je malo verjetno, da bi tu stal »berač«; tudi ni …" href="#sl2o.30">
+      <a class="notelink" title="Nejasno mesto: zadnja beseda vrstice v izvirniku ni berljiva; po smislu je malo verjetno, da bi tu stal »berač«; tudi ni razloga, da bi Slomšek besedo…" href="#sl2o.30">
         <sup>30</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl2o.31_return">
-      <a class="notelink" title="545 letov – Slomšek je namesto 445 pomotoma zapisal 545. V 15. stoletju se je razširila zmotna datacija, ki je smrt sv. Janez…" href="#sl2o.31">
+      <a class="notelink" title="545 letov – Slomšek je namesto 445 pomotoma zapisal 545. V 15. stoletju se je razširila zmotna datacija, ki je smrt sv. Janeza Nepomuka pomaknila z de…" href="#sl2o.31">
         <sup>31</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl2o.32_return">
-      <a class="notelink" title="To mesto je komentirano že v opombi 3. Ta navedek iz psalma 15 (po vulgati 14) je Slomšek vnesel v pridigo …" href="#sl2o.32">
+      <a class="notelink" title="To mesto je komentirano že v opombi 3. Ta navedek iz psalma 15 (po vulgati 14) je Slomšek vnesel v pridigo takole: prvotno, leta 1829, je imela pridig…" href="#sl2o.32">
         <sup>32</sup>
       </a>
     </span>
@@ -4616,7 +4297,7 @@ font-weight: bold;
       </div>
     </div>
     <span id="sl3o.33_return">
-      <a class="notelink" title="Najbolj znana in kulturnozgodovinsko pomembna Slomškova pridiga je nastala v obdobju, ko je bil Slomšek spiritual …" href="#sl3o.33">
+      <a class="notelink" title="Najbolj znana in kulturnozgodovinsko pomembna Slomškova pridiga je nastala v obdobju, ko je bil Slomšek spiritual v celovškem bogoslovju (1829–1838) i…" href="#sl3o.33">
         <sup>33</sup>
       </a>
       <sup>,</sup>
@@ -4634,13 +4315,13 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl3o.36_return">
-      <a class="notelink" title="ki na paši na svojo stranščico piska – Pleteršnik prevaja stranščíco kot Querflötte – prečna flavta. Raziskovalci slovenskih …" href="#sl3o.36">
+      <a class="notelink" title="ki na paši na svojo stranščico piska – Pleteršnik prevaja stranščíco kot Querflötte – prečna flavta. Raziskovalci slovenskih ljudskih glasbil so prečn…" href="#sl3o.36">
         <sup>36</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl3o.37_return">
-      <a class="notelink" title="Ves uvodni odlomek 6–18 je s preprostimi primeri in v nazorni ljudski govorici izražen zelo star teološki …" href="#sl3o.37">
+      <a class="notelink" title="Ves uvodni odlomek 6–18 je s preprostimi primeri in v nazorni ljudski govorici izražen zelo star teološki topos: češčenje in slava, ki ju daje Bogu vs…" href="#sl3o.37">
         <sup>37</sup>
       </a>
       <sup>,</sup>
@@ -4652,7 +4333,7 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl3o.39_return">
-      <a class="notelink" title="Slomšek se tu opira na stavek sv. Pavla iz pisma Filipljanom (2,11): »da vsak jezik prizna v slavo Boga Očeta, da je Jezus Kr…" href="#sl3o.39">
+      <a class="notelink" title="Slomšek se tu opira na stavek sv. Pavla iz pisma Filipljanom (2,11): »da vsak jezik prizna v slavo Boga Očeta, da je Jezus Kristus Gospod.«" href="#sl3o.39">
         <sup>39</sup>
       </a>
       <sup>,</sup>
@@ -4664,25 +4345,25 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl3o.41_return">
-      <a class="notelink" title="v enem jeziki marnvali – PLETERŠNIK: marnováti in marnjeváti – govoriti, pogovarjati se – po Megišarju, Jarniku, Murku, Janež…" href="#sl3o.41">
+      <a class="notelink" title="v enem jeziki marnvali – PLETERŠNIK: marnováti in marnjeváti – govoriti, pogovarjati se – po Megišarju, Jarniku, Murku, Janežiču, Trubarju, Slomšku." href="#sl3o.41">
         <sup>41</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl3o.42_return">
-      <a class="notelink" title="s hvaležnim srcom štimá – Prim. pomene, ki jih navaja PLETERŠNIK po gradivu Krelja, Murka, Janežiča i…" href="#sl3o.42">
+      <a class="notelink" title="s hvaležnim srcom štimá – Prim. pomene, ki jih navaja PLETERŠNIK po gradivu Krelja, Murka, Janežiča in Valjavca: štimáti – meniti, ceniti, spoštovati…" href="#sl3o.42">
         <sup>42</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl3o.43_return">
-      <a class="notelink" title="terji jeziki – Po mnenju Marka Snoja je terje pri Slomšku in drugih starejših avtorjih (denimo pri Janezu Svetokriškem) treba…" href="#sl3o.43">
+      <a class="notelink" title="terji jeziki – Po mnenju Marka Snoja je terje pri Slomšku in drugih starejših avtorjih (denimo pri Janezu Svetokriškem) treba preprosto brati kot trij…" href="#sl3o.43">
         <sup>43</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl3o.44_return">
-      <a class="notelink" title="bom vam drugič povedal – v drugem delu pridige, t.j. v vrsticah 175–300; formulacija je verjetno nastala kot pomota urednika …" href="#sl3o.44">
+      <a class="notelink" title="bom vam drugič povedal – v drugem delu pridige, t.j. v vrsticah 175–300; formulacija je verjetno nastala kot pomota urednika prve objave." href="#sl3o.44">
         <sup>44</sup>
       </a>
       <sup>,</sup>
@@ -4694,7 +4375,7 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl3o.46_return">
-      <a class="notelink" title="zarodnikom – prednikom, začetnikom rodu; PLETERŠNIK je na podlagi Cigaletovega gradiva sprejel za izr…" href="#sl3o.46">
+      <a class="notelink" title="zarodnikom – prednikom, začetnikom rodu; PLETERŠNIK je na podlagi Cigaletovega gradiva sprejel za izraz zaródnik pomen der Stammvater – praoče, začet…" href="#sl3o.46">
         <sup>46</sup>
       </a>
       <sup>,</sup>
@@ -4706,7 +4387,7 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl3o.48_return">
-      <a class="notelink" title="Človeški jezik je talent – Slomšek se v svoji teološki utemeljitvi upravičenosti slovenskega jezika kot …" href="#sl3o.48">
+      <a class="notelink" title="Človeški jezik je talent – Slomšek se v svoji teološki utemeljitvi upravičenosti slovenskega jezika kot materinščine opre na priliko o talentih iz Mat…" href="#sl3o.48">
         <sup>48</sup>
       </a>
       <sup>,</sup>
@@ -4718,7 +4399,7 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl3o.50_return">
-      <a class="notelink" title="Spoštovanje in ohranjanje materinščine umešča Slomšek znotraj človekove moralne obveznosti, da spoštuje …" href="#sl3o.50">
+      <a class="notelink" title="Spoštovanje in ohranjanje materinščine umešča Slomšek znotraj človekove moralne obveznosti, da spoštuje svoje starše, in s tem celoten odnos do materi…" href="#sl3o.50">
         <sup>50</sup>
       </a>
       <sup>,</sup>
@@ -4730,13 +4411,13 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl3o.51_return">
-      <a class="notelink" title="Slomšek opozarja, da neposreden raznarodovalni pritisk na koroške in štajerske Slovence ni prihajal le …" href="#sl3o.51">
+      <a class="notelink" title="Slomšek opozarja, da neposreden raznarodovalni pritisk na koroške in štajerske Slovence ni prihajal le od Nemcev, ampak vsaj toliko tudi od ponemčenih…" href="#sl3o.51">
         <sup>51</sup>
       </a>
       <sup>,</sup>
     </span>
     <span id="sl3o.52_return">
-      <a class="notelink" title="Slomšek svobodno navaja in poveže dva svetopisemska odlomka: »Kaj namreč človeku pomaga, če si ves svet …" href="#sl3o.52">
+      <a class="notelink" title="Slomšek svobodno navaja in poveže dva svetopisemska odlomka: »Kaj namreč človeku pomaga, če si ves svet pridobi, svojo dušo pa pogubi?« iz Evangelija …" href="#sl3o.52">
         <sup>52</sup>
       </a>
       <sup>,</sup>
@@ -4748,10 +4429,11 @@ font-weight: bold;
       <sup>,</sup>
     </span>
     <span id="sl3o.54_return">
-      <a class="notelink" title="Verjetno je Slomšek v rokopisu pravilno navedel poglavje in prvo vrstico navedka (7,9) iz Razodetja apostola Janeza, a je v …" href="#sl3o.54">
+      <a class="notelink" title="Verjetno je Slomšek v rokopisu pravilno navedel poglavje in prvo vrstico navedka (7,9) iz Razodetja apostola Janeza, a je v tisku nastala napaka (7–9)…" href="#sl3o.54">
         <sup>54</sup>
       </a>
     </span>
+    <!--TEI front-->
     <div class="titlePage">
       <div class="docAuthor">Anton Martin Slomšek</div>
       <div class="docTitle">
@@ -4868,6 +4550,7 @@ font-weight: bold;
         <a class="toc toc_0" href="#slo-bib" title="Bibliografija">Bibliografija</a>
       </li>
     </ul>
+    <!--TEI body-->
     <div class="sermon" id="index.xml-body.1_div.1">
       <h2>
         <span class="headingNumber">1. </span>
@@ -4934,6 +4617,7 @@ font-weight: bold;
         </h3>
       </div>
     </div>
+    <!--TEI back-->
     <div class="bib" id="slo-bib">
       <h2>
         <span class="headingNumber">Appendix A </span>
@@ -5163,7 +4847,7 @@ font-weight: bold;
       </div>
       <div class="note" id="sl3o.42">
         <span class="noteLabel">42. </span>
-        <div class="noteBody">s hvaležnim srcom štimá – Prim. pomene, ki jih navaja <a class="link_ref" href="#Pletersnik" title="PLETERŠNIK  Maks Pleteršnik Slovenskonemški slovar. Založilo knezoškofijstvo Ljubljana 1894 1895.">PLETERŠNIK</a> po gradivu Krelja, Murka, Janežiča in Valjavca: štimáti – meniti, ceniti, spoštovati.</div>
+        <div class="noteBody">s hvaležnim srcom štimá – Prim. pomene, ki jih navaja <a class="link_ref" href="#Pletersnik" title="PLETERŠNIK  Maks Pleteršnik Slovenskonemški slovar. Založilo knezoškofijstvo Ljubljana 1894 1895.">PLETERŠNIK</a>  po gradivu Krelja, Murka, Janežiča in Valjavca: štimáti – meniti, ceniti, spoštovati.</div>
       </div>
       <div class="note" id="sl3o.43">
         <span class="noteLabel">43. </span>
@@ -5179,7 +4863,7 @@ font-weight: bold;
       </div>
       <div class="note" id="sl3o.46">
         <span class="noteLabel">46. </span>
-        <div class="noteBody">zarodnikom – prednikom, začetnikom rodu; <a class="link_ref" href="#Pletersnik" title="PLETERŠNIK  Maks Pleteršnik Slovenskonemški slovar. Založilo knezoškofijstvo Ljubljana 1894 1895.">PLETERŠNIK</a> je na podlagi Cigaletovega gradiva sprejel za izraz zaródnik pomen der Stammvater – praoče, začetnik rodu.</div>
+        <div class="noteBody">zarodnikom – prednikom, začetnikom rodu; <a class="link_ref" href="#Pletersnik" title="PLETERŠNIK  Maks Pleteršnik Slovenskonemški slovar. Založilo knezoškofijstvo Ljubljana 1894 1895.">PLETERŠNIK</a>  je na podlagi Cigaletovega gradiva sprejel za izraz zaródnik pomen der Stammvater – praoče, začetnik rodu.</div>
       </div>
       <div class="note" id="sl3o.47">
         <span class="noteLabel">47. </span>
@@ -5191,7 +4875,7 @@ font-weight: bold;
       </div>
       <div class="note" id="sl3o.49">
         <span class="noteLabel">49. </span>
-        <div class="noteBody">marn – marenj: govorica, govor, pogovor; tako <a class="link_ref" href="#Pletersnik" title="PLETERŠNIK  Maks Pleteršnik Slovenskonemški slovar. Založilo knezoškofijstvo Ljubljana 1894 1895.">PLETERŠNIK</a> po gradivu Janežiča, Murka, Cigaleta.</div>
+        <div class="noteBody">marn – marenj: govorica, govor, pogovor; tako <a class="link_ref" href="#Pletersnik" title="PLETERŠNIK  Maks Pleteršnik Slovenskonemški slovar. Založilo knezoškofijstvo Ljubljana 1894 1895.">PLETERŠNIK</a>  po gradivu Janežiča, Murka, Cigaleta.</div>
       </div>
       <div class="note" id="sl3o.50">
         <span class="noteLabel">50. </span>
@@ -5219,7 +4903,7 @@ font-weight: bold;
       </div>
     </div>
     <div class="stdfooter autogenerated">
-      <div class="footer"><!--standard links to project, instiution etc--><a class="plain" href="/">Home</a> </div>
+      <div class="footer"><!--standard links to project, institution etc--><a class="plain" href="/">Home</a> </div>
       <address>Anton Martin SlomšekJože FaganelMatija OgrinTomaž Erjavec.
 	    Date: 1970-01-01<br/><!--
 	  Generated from index.xml using XSLT stylesheets version 0
