@@ -174,7 +174,10 @@ This is a work in progress. If you find any new or alternative readings or have 
                     <publisher><xsl:value-of select="$docPropsCustom/csp:Properties/csp:property[@name = 'Verleger']"/></publisher>
                     <address><addrLine>Sonnenfelsgasse 19, 1010 Wien, Austria</addrLine></address>
                     <pubPlace>Vienna</pubPlace>
-                    <date when="2014">2014</date>
+                    <date>
+                        <xsl:attribute name="when"><xsl:value-of select="year-from-date(current-date())"/></xsl:attribute>
+                        <xsl:value-of select="year-from-date(current-date())"/>
+                    </date>
                     <availability status="restricted">
                         <licence></licence>
                     </availability>
@@ -709,10 +712,39 @@ This is a work in progress. If you find any new or alternative readings or have 
         <xsl:value-of select="if (exists($commentId)) then string-join($possibleWordInTextRuns[position() = (1 to $lastRunPosition)]/w:t, '')
                                                       else string-join($context/w:t, '')"/>
     </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Given a context (most probably .) this returns the words in the id of the assiciated annotation if any.</xd:desc>
+    </xd:doc>
+    <xsl:function name="mec:getAnnotationId" as="xs:string?">
+        <xsl:param name="context" as="node()"/>        
+        <xsl:variable name="numPrecedingSiblings"
+            select="count($context/preceding-sibling::*)"/>
+        <xsl:variable name="prevCommentEnd"
+            select="$context/preceding-sibling::w:commentRangeEnd[1]" as="node()?"/>
+        <xsl:variable name="numPSPrevEnd"
+            select="count($prevCommentEnd/preceding-sibling::*)"/>
+        <xsl:variable name="assocCommentStart"
+            select="$context/preceding-sibling::w:commentRangeStart[1]" as="node()?"/>
+        <xsl:variable name="numPSAssocStart"
+            select="count($assocCommentStart/preceding-sibling::*)"/>
+        <xsl:variable name="nextCommentStart"
+            select="$context/following-sibling::w:commentRangeStart[1]" as="node()?"/>
+        <xsl:variable name="numPSNextStart"
+            select="count($nextCommentStart/preceding-sibling::*)"/>           
+        <xsl:variable name="assocCommentEnd"
+            select="$context/following-sibling::w:commentRangeEnd[1]" as="node()?"/>
+        <xsl:variable name="numPSAsoocEnd"
+            select="count($assocCommentEnd/preceding-sibling::*)"/>
+        <xsl:value-of
+            select="if (empty($assocCommentStart) or ($numPSPrevEnd > $numPSAssocStart)) then 
+            if ($numPSNextStart > $numPSAsoocEnd) then $assocCommentEnd/@w:id else ()
+            else $assocCommentStart/@w:id"/>        
+    </xsl:function>
     
     <xsl:template name="generatePersonNameXML">
         <xsl:variable name="thisId"
-            select="preceding-sibling::w:commentRangeStart[1]/@w:id" as="xs:string?"/>
+            select="mec:getAnnotationId(.)"/>
         <xsl:variable name="annotationText"
             select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
         <xsl:variable name="wordInText" select="mec:words-in-text-runs(., $thisId)" as="xs:string"/>
@@ -742,8 +774,7 @@ This is a work in progress. If you find any new or alternative readings or have 
     </xsl:template>
     
     <xsl:template name="generatePlaceNameXML">
-        <xsl:variable name="thisId"
-            select="preceding-sibling::w:commentRangeStart[1]/@w:id" as="xs:string?"/>
+        <xsl:variable name="thisId" as="xs:string?" select="mec:getAnnotationId(.)"/>
         <xsl:variable name="annotationText"
             select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
         <xsl:variable name="wordInText" select="mec:words-in-text-runs(., $thisId)" as="xs:string"/>
@@ -774,7 +805,7 @@ This is a work in progress. If you find any new or alternative readings or have 
     
     <xsl:template name="generateOtherNameXML">
         <xsl:variable name="thisId"
-            select="preceding-sibling::w:commentRangeStart[1]/@w:id" as="xs:string?"/>
+            select="mec:getAnnotationId(.)"/>
         <xsl:variable name="annotationText"
             select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
         <xsl:variable name="wordInText" select="mec:words-in-text-runs(., $thisId)" as="xs:string"/>
@@ -924,7 +955,7 @@ This is a work in progress. If you find any new or alternative readings or have 
         <xsl:variable name="allPossibleMatchingNamesComment"
             select="($tagsDecl//tei:person[tei:persName/text()[1] = ($lcName, $name)]|$tagsDecl//tei:person[tei:persName/tei:addName = ($lcName, $name)])"/>
         <xsl:variable name="allMatchingNamesComment"
-            select="$allPossibleMatchingNamesComment[not(contains(.//tei:note, 'not annotated'))]"/>
+            select="$allPossibleMatchingNamesComment[not(contains(.//tei:note[1], 'not annotated'))]"/>
         <xsl:variable name="firstMatchingNamesId" select="$allMatchingNamesComment[1]/@xml:id"/>
         <xsl:choose>
             <xsl:when test="empty($allMatchingNamesComment)">
