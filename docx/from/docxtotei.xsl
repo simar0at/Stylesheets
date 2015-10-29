@@ -201,13 +201,14 @@ of this software, even if advised of the possibility of such damage.
    			<xsl:copy-of select="$pass0"/>
    		</xsl:result-document>
    	</xsl:if>
-     
-   	<!-- Do the main transformation and store everything in the variable pass1 -->
+   	
    	<xsl:if test="$skip-pass2">
    		<xsl:for-each select="$pass0">
    			<xsl:apply-templates/>
    		</xsl:for-each>   			
    	</xsl:if>
+   	
+   	<!-- Do the main transformation and store everything in the variable pass1 -->
    	<xsl:variable name="pass1">
    		<xsl:if test="not($skip-pass2)">
    			<xsl:for-each select="$pass0">
