@@ -613,14 +613,6 @@ of this software, even if advised of the possibility of such damage.
       </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="tei:valList"   mode="#default tangle">
-    <xsl:for-each select="tei:valItem">
-        <rng:value>
-          <xsl:value-of select="tei:createSpecName(.)"/>
-        </rng:value>
-    </xsl:for-each>
-  </xsl:template>
-
     <xsl:template match="tei:dataRef"   mode="#default tangle">
       <xsl:variable name="wrapperElement"
 		  select="tei:generateIndicators(@minOccurs,@maxOccurs)"/>
@@ -639,9 +631,15 @@ of this software, even if advised of the possibility of such damage.
 	  </rng:data>
 	</xsl:when>
 	<xsl:when test="@key">
-	  <xsl:variable name="context" select="."/>
-	    <xsl:for-each select="key('LOCALIDENTS',@key)">
-		<xsl:apply-templates select="*"/>
+	  <xsl:for-each select="key('LOCALIDENTS',@key)">
+	    <xsl:choose>
+	      <xsl:when test="tei:content">
+		<xsl:apply-templates select="tei:content/*"/>
+	      </xsl:when>
+	      <xsl:when test="tei:datatype">
+		<xsl:apply-templates select="tei:datatype/*"/>
+	      </xsl:when>
+	    </xsl:choose>
 	    </xsl:for-each>
 	</xsl:when>
       </xsl:choose>

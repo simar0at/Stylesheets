@@ -106,7 +106,7 @@ of this software, even if advised of the possibility of such damage.
   <xsl:key match="tei:classSpec" name="CLASSMEMBERS-CLASSES" use="tei:classes/tei:memberOf/@key"/>
   <xsl:key match="tei:elementSpec|tei:classSpec|tei:macroSpec|tei:dataSpec" name="IDENTS" use="concat(@prefix,@ident)"/>
 
-  <xsl:key match="tei:macroSpec" name="MACRODOCS" use="1"/>
+  <xsl:key match="tei:macroSpec|tei:dataSpec" name="MACRODOCS" use="1"/>
   <xsl:key match="tei:attDef" name="ATTDOCS" use="1"/>
   <xsl:key match="tei:attDef" name="ATTRIBUTES" use="@ident"/>
   <xsl:key match="tei:classSpec//tei:attDef" name="ATTRIBUTES-CLASS" use="@ident"/>
@@ -971,15 +971,6 @@ select="$makeDecls"/></xsl:message>
     <xsl:variable name="Contents">
       <TEMPTREE>
         <xsl:choose>
-          <xsl:when test="tei:valList[@type='closed' and @repeatable='true']">
-            <list xmlns="http://relaxng.org/ns/structure/1.0">
-              <oneOrMore>
-                <choice>
-                  <xsl:call-template name="valListChildren"/>
-                </choice>
-              </oneOrMore>
-            </list>
-          </xsl:when>
           <xsl:when test="tei:valList[@type='closed']">
             <xsl:call-template name="valListChildren"/>
           </xsl:when>
@@ -1025,18 +1016,18 @@ select="$makeDecls"/></xsl:message>
   </xsl:template>
 
 
-  <xsl:template match="tei:classSpec/tei:gloss"/>
-  <xsl:template match="tei:macroSpec/tei:gloss"/>
-  <xsl:template match="tei:elementSpec/tei:gloss"/>
-  <xsl:template match="tei:dataSpec/tei:gloss"/>
-  <xsl:template match="tei:classSpec/tei:desc"/>
-  <xsl:template match="tei:macroSpec/tei:desc"/>
-  <xsl:template match="tei:elementSpec/tei:desc"/>
-  <xsl:template match="tei:dataSpec/tei:desc"/>
   <xsl:template match="tei:classSpec/@ident"/>
-  <xsl:template match="tei:macroSpec/@ident"/>
-  <xsl:template match="tei:elementSpec/@ident"/>
+  <xsl:template match="tei:classSpec/tei:desc"/>
+  <xsl:template match="tei:classSpec/tei:gloss"/>
   <xsl:template match="tei:dataSpec/@ident"/>
+  <xsl:template match="tei:dataSpec/tei:desc"/>
+  <xsl:template match="tei:dataSpec/tei:gloss"/>
+  <xsl:template match="tei:elementSpec/@ident"/>
+  <xsl:template match="tei:elementSpec/tei:desc"/>
+  <xsl:template match="tei:elementSpec/tei:gloss"/>
+  <xsl:template match="tei:macroSpec/@ident"/>
+  <xsl:template match="tei:macroSpec/tei:desc"/>
+  <xsl:template match="tei:macroSpec/tei:gloss"/>
 
   
 
@@ -1104,8 +1095,7 @@ select="$makeDecls"/></xsl:message>
       </xsl:when>
       <xsl:otherwise>
         <xsl:if test="$verbose='true'">
-          <xsl:message> macro/data Spec <xsl:value-of select="@ident"/>
-          </xsl:message>
+          <xsl:message> macro/data Spec <xsl:value-of select="@ident"/>: <xsl:copy-of select="$entityContent"/></xsl:message>
         </xsl:if>
         <xsl:call-template name="schemaOut">
           <xsl:with-param name="grammar">true</xsl:with-param>
@@ -1147,8 +1137,6 @@ select="$makeDecls"/></xsl:message>
     </xsl:choose>
 
   </xsl:template>
-
-  <xsl:template match="tei:macroSpec/content/rng:*"/>
 
   <xsl:template match="tei:memberOf" mode="tangleModel">
     <!--
@@ -1291,7 +1279,7 @@ select="$makeDecls"/></xsl:message>
 
   <!-- end expand RELAX NG section -->
 
-  <xsl:template match="tei:remarks" mode="tangle"/>
+  <xsl:template match="tei:remarks" mode="#default tangle"/>
 
 
   <xsl:template match="tei:specGrp" mode="ok">
@@ -1349,31 +1337,16 @@ select="$makeDecls"/></xsl:message>
     <xsl:apply-templates/>
   </xsl:template>
 
+  <xsl:template match="tei:valList"   mode="#default tangle">
+    <xsl:for-each select="..">
+      <xsl:call-template name="valListChildren"/>
+    </xsl:for-each>
+  </xsl:template>
+
   <xsl:template name="attributeData">
     <xsl:choose>
       <xsl:when test="tei:valList[@type='closed']">
-        <choice xmlns="http://relaxng.org/ns/structure/1.0">
-          <xsl:for-each select="tei:valList/tei:valItem">
-            <value>
-              <xsl:choose>
-                <xsl:when test="tei:altIdent=@ident">
-                  <xsl:value-of select="@ident"/>
-                </xsl:when>
-                <xsl:when test="tei:altIdent">
-                  <xsl:value-of select="normalize-space(tei:altIdent)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:value-of select="@ident"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </value>
-            <xsl:if test="not($oddmode='tei')">
-              <a:documentation>
-		<xsl:sequence select="tei:makeDescription(.,true())"/>
-              </a:documentation>
-            </xsl:if>
-          </xsl:for-each>
-        </choice>
+        <xsl:call-template name="valListChildren"/>
       </xsl:when>
       <xsl:when test="tei:valList[@type='semi']">
         <choice xmlns="http://relaxng.org/ns/structure/1.0">
@@ -1401,9 +1374,6 @@ select="$makeDecls"/></xsl:message>
             <xsl:when test="tei:datatype/rng:ref[@name='data.enumerated']">
               <data type="Name"/>
             </xsl:when>
-	    <xsl:when test="tei:dataRef">
-              <xsl:apply-templates select="tei:dataRef"/>
-	    </xsl:when>
 	    <xsl:when test="not(tei:datatype)">
               <data type="Name"/>
 	    </xsl:when>
@@ -1415,9 +1385,6 @@ select="$makeDecls"/></xsl:message>
       </xsl:when>
       <xsl:when test="tei:datatype/*">
         <xsl:apply-templates select="tei:datatype/*"/>
-      </xsl:when>
-      <xsl:when test="tei:dataRef">
-        <xsl:apply-templates select="tei:dataRef"/>
       </xsl:when>
       <xsl:otherwise>
         <text xmlns="http://relaxng.org/ns/structure/1.0"/>
@@ -1584,6 +1551,7 @@ select="$makeDecls"/></xsl:message>
         </optional>
       </xsl:otherwise>
     </xsl:choose>
+    
   </xsl:template>
 
   <xsl:template name="generateClassParents">
