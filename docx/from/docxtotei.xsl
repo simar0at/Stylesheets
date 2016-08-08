@@ -17,7 +17,7 @@
                 xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
                 xmlns:rel="http://schemas.openxmlformats.org/package/2006/relationships"
                 xmlns:tbx="http://www.lisa.org/TBX-Specification.33.0.html"
-		xmlns:html="http://www.w3.org/1999/xhtml"
+		        xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns:tei="http://www.tei-c.org/ns/1.0"
                 xmlns:teidocx="http://www.tei-c.org/ns/teidocx/1.0"
                 xmlns:v="urn:schemas-microsoft-com:vml"
@@ -26,6 +26,7 @@
                 xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
                 xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
                 xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
+                xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
                 
                 xmlns="http://www.tei-c.org/ns/1.0"
                 version="2.0"
@@ -136,7 +137,13 @@ of this software, even if advised of the possibility of such damage.
 	  <xsl:preserve-space elements="w:t"/>
 	  <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="no"/>
 	
+	<xd:doc>
+		<xd:desc>If set to true pass 0 (initial scrapping) will be saved to disk.</xd:desc>
+	</xd:doc>
 	<xsl:param name="pass0-to-disk" as="xs:boolean" select="false()"/>
+	<xd:doc>
+		<xd:desc>If set to true pass 2 (final clean up) will skipped.</xd:desc>
+	</xd:doc>
 	<xsl:param name="skip-pass2" as="xs:boolean" select="false()"/>
 	
 	  <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">

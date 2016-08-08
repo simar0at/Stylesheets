@@ -14,7 +14,27 @@
     exclude-result-prefixes="#all" version="2.0">
     <xsl:import href="docxtotei.xsl"/>
     <xd:doc scope="stylesheet">
-        <xd:desc>
+        <xd:desc>Customization that reads Word specially formatted Word comments to create tei:tagUsage structures
+            <xd:p>Styles are used to mark up parts of the document
+                <xd:ul>
+                    <xd:li>Notes on the folio (identification and commentaries for example)</xd:li>
+                    <xd:li>Person names</xd:li>
+                    <xd:li>Place names</xd:li>
+                    <xd:li>Various other named entities as defined in the project mecmua:
+                        <xd:ul>
+                            <xd:li>Plant names</xd:li>
+                            <xd:li>Various substances</xd:li>
+                            <xd:li>Astronomical entities</xd:li>
+                            <xd:li>Text genres</xd:li>
+                            <xd:li>Illnesses</xd:li>
+                        </xd:ul>
+                    </xd:li>
+                </xd:ul>
+            </xd:p>
+            <xd:p>
+                <xd:i>Note:</xd:i>Foot notes and end notes are removed from the output as these are not for online use
+                in this project.
+            </xd:p>
             <xd:p><xd:b>Created on:</xd:b> Jul 30, 2012</xd:p>
             <xd:p><xd:b>Author:</xd:b>Omar Siam</xd:p>
             <xd:p/>
@@ -23,26 +43,79 @@
     
     <xsl:output method="xml" indent="yes"/>
     
+    <xd:doc>
+        <xd:desc>Links to facsimile need to be offset
+            <xd:p>This varies by script.</xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:param name="firstFolioOffset" as="xs:decimal" select="5"/>
     
+    <xd:doc>
+        <xd:desc>Style identifying folio identification</xd:desc>
+    </xd:doc>
     <xsl:variable name="folioDescStyle">folio</xsl:variable>
+    <xd:doc>
+        <xd:desc>Commentaries about the condition of script</xd:desc>
+    </xd:doc>
     <xsl:variable name="folioCommentaries">mecmua_Kommentare_zur_Handschrift</xsl:variable>
     
+    <xd:doc>
+        <xd:desc>Style identifying person names</xd:desc>
+    </xd:doc>
     <xsl:variable name="nameStyle" as="xs:string">Name</xsl:variable>
+    <xd:doc>
+        <xd:desc>Style identifying place names</xd:desc>
+    </xd:doc>
     <xsl:variable name="placeStyle" as="xs:string">Orte</xsl:variable>
     
+    <xd:doc>
+        <xd:desc>Style identifying plants</xd:desc>
+    </xd:doc>
     <xsl:variable name="plantStyle" as="xs:string">Pflanzen</xsl:variable>
+    <xd:doc>
+        <xd:desc>A type for a tag with @type describing plants</xd:desc>
+    </xd:doc>
     <xsl:variable name="plantNameType" as="xs:string">plant</xsl:variable>
+    <xd:doc>
+        <xd:desc>Style identifying various substances</xd:desc>
+    </xd:doc>
     <xsl:variable name="auxSubstStyle" as="xs:string">Zusatzstoffe</xsl:variable>
+    <xd:doc>
+        <xd:desc>A type for a tag with @type describing various substances</xd:desc>
+    </xd:doc>
     <xsl:variable name="auxSubstNameType" as="xs:string">auxSubst</xsl:variable>
+    <xd:doc>
+        <xd:desc>Style identifying astronomical entities</xd:desc>
+    </xd:doc>
     <xsl:variable name="astronomyStyle" as="xs:string">Astronomie</xsl:variable>
+    <xd:doc>
+        <xd:desc>A type for a tag with @type describing astronomical entities</xd:desc>
+    </xd:doc>
     <xsl:variable name="astronomyNameType" as="xs:string">astrEnt</xsl:variable>
+    <xd:doc>
+        <xd:desc>Style identifying text genres</xd:desc>
+    </xd:doc>
     <xsl:variable name="textGenreStyle" as="xs:string">Textgattungen</xsl:variable>
+    <xd:doc>
+        <xd:desc>A type for a tag with @type describing text genres</xd:desc>
+    </xd:doc>
     <xsl:variable name="textGenreNameType" as="xs:string">textGenre</xsl:variable>
+    <xd:doc>
+        <xd:desc>Style identifying illnesses</xd:desc>
+    </xd:doc>
     <xsl:variable name="illnessesStyle" as="xs:string">Krankheiten</xsl:variable>
+    <xd:doc>
+        <xd:desc>A type for a tag with @type describing illnesses</xd:desc>
+    </xd:doc>
     <xsl:variable name="illnessesNameType" as="xs:string">illness</xsl:variable>
     
+    <xd:doc>
+        <xd:desc>Summary of all styles identifying named entities annotated</xd:desc>
+    </xd:doc>
     <xsl:variable name="otherStyles" select="($plantStyle, $auxSubstStyle, $astronomyStyle, $textGenreStyle, $illnessesStyle)"/>
+    <xd:doc>
+        <xd:desc>Summary of all @type identifying entities annotated</xd:desc>
+    </xd:doc>   
     <xsl:variable name="otherNameTypes" select="($plantNameType, $auxSubstNameType, $astronomyNameType, $textGenreNameType, $illnessesNameType)"/>
     
     <xsl:variable name="codId" select="replace(string-join((//w:p//w:pStyle[@w:val=('folio', 'mecmuaKommentarezurHandschrift')])[1]/../..//w:t, ''), '[ .]', '')"></xsl:variable>
@@ -50,13 +123,19 @@
     <xsl:variable name="remarkMremains">1</xsl:variable>
     <xsl:variable name="remarkM">2</xsl:variable>
     
+    <xd:doc>
+        <xd:desc>RegExp for parsing comments describing a person</xd:desc>
+    </xd:doc>
     <xsl:variable name="nameRegExp" as="xs:string">(aka:(.*))?profession:(.*)died:(.*)reign:(.*)</xsl:variable>
     <!-- 1: aka: ... -->
     <xsl:variable name="nameMaka">2</xsl:variable>
     <xsl:variable name="nameMprof">3</xsl:variable>
     <xsl:variable name="nameMdied">4</xsl:variable>
     <xsl:variable name="nameMreign">5</xsl:variable>
-
+    
+    <xd:doc>
+        <xd:desc>RegExp for parsing comments describing a place</xd:desc>
+    </xd:doc>
     <xsl:variable name="placeRegExp">(aka:(.*))?type:(.*)where today:(.*)today’s name:(.*)</xsl:variable>
     <!-- 1: aka: ... -->
     <xsl:variable name="placeMaka">2</xsl:variable>
@@ -64,6 +143,9 @@
     <xsl:variable name="placeMwToday">4</xsl:variable>
     <xsl:variable name="placeMtodayN">5</xsl:variable>
     
+    <xd:doc>
+        <xd:desc>RegExp for parsing comments describing a various named entities</xd:desc>
+    </xd:doc>
     <xsl:variable name="otherRegExp">(aka:(.*))?Latin:(.*)English:(.*)|(aka:(.*))?English:(.*)</xsl:variable>
     <!-- 1: aka: ... -->
     <xsl:variable name="otherMaka">2</xsl:variable>
@@ -72,6 +154,9 @@
     <xsl:variable name="otherMeng">4</xsl:variable>
     <xsl:variable name="otherMengAlt">7</xsl:variable>     
 
+    <xd:doc>
+        <xd:desc>If pass 0 is saved to disk also save the scrapped comments.</xd:desc>
+    </xd:doc>
     <xsl:template match="/">        
         <xsl:if test="$pass0-to-disk">
             <xsl:result-document href="comments.xml">
@@ -485,10 +570,16 @@ This is a work in progress. If you find any new or alternative readings or have 
         <xsl:apply-templates mode="pass0" select="document(concat($wordDirectory,'/word/comments.xml'))"/>
     </xsl:variable>
     
+    <xd:doc>
+        <xd:desc>Contains XML describing all named entities</xd:desc>
+    </xd:doc>
     <xsl:variable name="tagsDecl">
         <xsl:call-template name="_generateTagsDecl"/>
     </xsl:variable>
     
+    <xd:doc>
+        <xd:desc>Generate a description XML snippet for a person</xd:desc>
+    </xd:doc>
     <xsl:template name="tagsDeclName">
         <xsl:param name="remark" as="xs:string" select="''"/>
         <xsl:param name="annotationText" as="xs:string"/>
@@ -563,6 +654,9 @@ This is a work in progress. If you find any new or alternative readings or have 
         </xsl:element>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Generate a description XML snippet for a place</xd:desc>
+    </xd:doc>
     <xsl:template name="tagsDeclPlace">
         <xsl:param name="remark" as="xs:string" select="''"/>
         <xsl:param name="annotationText" as="xs:string"/>
@@ -626,7 +720,10 @@ This is a work in progress. If you find any new or alternative readings or have 
             <xsl:sequence select="$contents/tei:place/@*, $contents/tei:place/node()"/>
         </place>
     </xsl:template>
-
+    
+    <xd:doc>
+        <xd:desc>Generate a description XML snippet for one of the various other entities</xd:desc>
+    </xd:doc> 
     <xsl:template name="tagsDeclOther">
         <xsl:param name="remark" as="xs:string" select="''"/>
         <xsl:param name="annotationText" as="xs:string"/>
@@ -751,6 +848,11 @@ This is a work in progress. If you find any new or alternative readings or have 
             else $assocCommentStart/@w:id"/>        
     </xsl:function>
     
+    <xd:doc>
+        <xd:desc>Try parse a description for a person
+            <xd:p>Calls another template that actually generates the XML for describing a person.</xd:p>
+        </xd:desc>
+    </xd:doc>      
     <xsl:template name="generatePersonNameXML">
         <xsl:variable name="thisId"
             select="mec:getAnnotationId(.)"/>
@@ -794,6 +896,11 @@ This is a work in progress. If you find any new or alternative readings or have 
         </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Try parse a description for a place
+        <xd:p>Calls another template that actually generates the XML for describing a place.</xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:template name="generatePlaceNameXML">
         <xsl:variable name="thisId" as="xs:string?" select="mec:getAnnotationId(.)"/>
         <xsl:variable name="annotationText"
@@ -836,6 +943,9 @@ This is a work in progress. If you find any new or alternative readings or have 
         </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Generate a description XML snippet one of the various named entities</xd:desc>
+    </xd:doc>
     <xsl:template name="generateOtherNameXML">
         <xsl:variable name="thisId"
             select="mec:getAnnotationId(.)"/>
@@ -878,6 +988,9 @@ This is a work in progress. If you find any new or alternative readings or have 
         </xsl:choose>     
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Generate an XML snippet that contains all annotated named entites</xd:desc>
+    </xd:doc>
     <!-- Clean up: http://stackoverflow.com/questions/1233702/how-to-call-named-templates-based-on-a-variable -->
     <xsl:template name="_generateTagsDecl">
         <!-- context of caller (=$pass0) -->
@@ -918,6 +1031,11 @@ This is a work in progress. If you find any new or alternative readings or have 
         </tagsDecl>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc>Try parse a description for one of the various other named entities
+            <xd:p>Calls another template that actually generates the XML for describing one of the various other named entities.</xd:p>
+        </xd:desc>
+    </xd:doc>    
     <xsl:function name="mec:otherInfo" as="node()+">
         <xsl:param name="commentString" as="xs:string"/>
         <xsl:analyze-string select="$commentString" regex="{$otherRegExp}">
