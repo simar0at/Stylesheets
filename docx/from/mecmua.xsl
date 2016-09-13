@@ -1104,10 +1104,6 @@ This is a work in progress. If you find any new or alternative readings or have 
         <xsl:copy> . </xsl:copy>
     </xsl:template>
     
-    <!--<xsl:variable name="missing_info_marker" select="'info_missing'"/>-->
-    <!-- will lead to validation failures becaus it generates ref="" -->
-    <xsl:variable name="missing_info_marker" select="''"/>
-    
     
     <xd:doc>
         <xd:desc>Sometimes one has to override the semantic style's default color.</xd:desc>
@@ -1316,7 +1312,40 @@ This is a work in progress. If you find any new or alternative readings or have 
             </xsl:when> 
         </xsl:choose>
     </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Find an id to reference for a person
+        </xd:desc>
+    </xd:doc>
+    <xsl:function name="mec:getRefIdPerson" as="xs:string?">
+        <xsl:param name="name" as="xs:string+"/>
+        <xsl:param name="commentN" as="xs:string"/>
+        <xsl:param name="commentXML" as="node()?"/>
+        <xsl:sequence select="mec:getRefIdPerson($name, $commentN, $commentXML, $tagsDecl)"/>
+    </xsl:function>
     
+    <xd:doc>
+        <xd:desc>Find an id to reference for a place
+        </xd:desc>
+    </xd:doc>
+    <xsl:function name="mec:getRefIdPlace" as="xs:string">
+        <xsl:param name="name" as="xs:string+"/>
+        <xsl:param name="commentN" as="xs:string"/>
+        <xsl:param name="commentXML" as="node()?"/>
+        <xsl:sequence select="mec:getRefIdPlace($name, $commentN, $commentXML, $tagsDecl)"></xsl:sequence>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Find an id to reference for one of the other named entities
+        </xd:desc>
+    </xd:doc>
+    <xsl:function name="mec:getRefIdOtherNames" as="xs:string">
+        <xsl:param name="name" as="xs:string+"/>
+        <xsl:param name="commentN" as="xs:string"/>
+        <xsl:param name="commentXML" as="node()?"/>
+        <xsl:sequence select="mec:getRefIdOtherNames($name, $commentN, $commentXML, $tagsDecl)"></xsl:sequence>
+    </xsl:function>
     <xd:doc>
         <xd:desc>Uses a customization in paragraphs.xsl to tap into the docx paragraph processing and simplify the meaning of some styles.
             <xd:p>Note this isn't needed much right now as the styles are propagated to html
