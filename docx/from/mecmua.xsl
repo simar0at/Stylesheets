@@ -44,6 +44,7 @@
     <xsl:output method="xml" indent="yes"/>
     
     <xsl:include href="mec-descr-processing.xsl"/>
+    <xsl:include href="mec-xml-from-annotations.xsl"/>
     
     <xd:doc>
         <xd:desc>Links to facsimile need to be offset
@@ -119,43 +120,8 @@
         <xd:desc>Summary of all @type identifying entities annotated</xd:desc>
     </xd:doc>   
     <xsl:variable name="otherNameTypes" select="($plantNameType, $auxSubstNameType, $astronomyNameType, $textGenreNameType, $illnessesNameType)"/>
-    
     <xsl:variable name="codId" select="replace(string-join((//w:p//w:pStyle[@w:val=('folio', 'mecmuaKommentarezurHandschrift')])[1]/../..//w:t, ''), '[ .]', '')"></xsl:variable>
-    <xsl:variable name="remarkRegExp">(.*)remark:(.*)</xsl:variable>
-    <xsl:variable name="remarkMremains">1</xsl:variable>
-    <xsl:variable name="remarkM">2</xsl:variable>
     
-    <xd:doc>
-        <xd:desc>RegExp for parsing comments describing a person</xd:desc>
-    </xd:doc>
-    <xsl:variable name="nameRegExp" as="xs:string">(aka:(.*))?profession:(.*)died:(.*)reign:(.*)</xsl:variable>
-    <!-- 1: aka: ... -->
-    <xsl:variable name="nameMaka">2</xsl:variable>
-    <xsl:variable name="nameMprof">3</xsl:variable>
-    <xsl:variable name="nameMdied">4</xsl:variable>
-    <xsl:variable name="nameMreign">5</xsl:variable>
-    
-    <xd:doc>
-        <xd:desc>RegExp for parsing comments describing a place</xd:desc>
-    </xd:doc>
-    <xsl:variable name="placeRegExp">(aka:(.*))?type:(.*)where today:(.*)today’s name:(.*)</xsl:variable>
-    <!-- 1: aka: ... -->
-    <xsl:variable name="placeMaka">2</xsl:variable>
-    <xsl:variable name="placeMtype">3</xsl:variable>
-    <xsl:variable name="placeMwToday">4</xsl:variable>
-    <xsl:variable name="placeMtodayN">5</xsl:variable>
-    
-    <xd:doc>
-        <xd:desc>RegExp for parsing comments describing a various named entities</xd:desc>
-    </xd:doc>
-    <xsl:variable name="otherRegExp">(aka:(.*))?Latin:(.*)English:(.*)|(aka:(.*))?English:(.*)</xsl:variable>
-    <!-- 1: aka: ... -->
-    <xsl:variable name="otherMaka">2</xsl:variable>
-    <xsl:variable name="otherMakaAlt">6</xsl:variable>
-    <xsl:variable name="otherMlat">3</xsl:variable>
-    <xsl:variable name="otherMeng">4</xsl:variable>
-    <xsl:variable name="otherMengAlt">7</xsl:variable>     
-
     <xd:doc>
         <xd:desc>If pass 0 is saved to disk also save the scrapped comments.</xd:desc>
     </xd:doc>
@@ -579,216 +545,6 @@ This is a work in progress. If you find any new or alternative readings or have 
         <xsl:call-template name="_generateTagsDecl"/>
     </xsl:variable>
     
-    <xd:doc>
-        <xd:desc>Generate a description XML snippet for a person</xd:desc>
-    </xd:doc>
-    <xsl:template name="tagsDeclName">
-        <xsl:param name="remark" as="xs:string" select="''"/>
-        <xsl:param name="annotationText" as="xs:string"/>
-        <xsl:param name="wordInText" as="xs:string"/>
-        <xsl:param name="type" as="xs:string"/>
-        <xsl:param name="generated-id" as="xs:string"/>
-        <xsl:element name="person">
-            <xsl:attribute name="xml:id">
-                <xsl:value-of select="$generated-id"/>
-            </xsl:attribute>
-            <xsl:analyze-string select="$annotationText"
-                regex="{$nameRegExp}">
-                <xsl:matching-substring>
-                    <persName xml:lang="ota-Latn-t">
-                        <xsl:value-of select="$wordInText"/>
-                        <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
-                            <addName xml:lang="ota-Latn-t">                                                    
-                                <xsl:value-of
-                                    select="normalize-space(.)"/>
-                            </addName>
-                        </xsl:for-each>
-                    </persName>
-                    <occupation>
-                        <xsl:value-of
-                            select="normalize-space(regex-group($nameMprof))"/>
-                    </occupation>
-                    <death>
-                        <xsl:value-of
-                            select="normalize-space(regex-group($nameMdied))"/>
-                    </death>
-                    <xsl:if test="normalize-space(regex-group($nameMreign)) != ''">
-                        <xsl:variable name="reign" select="normalize-space(regex-group($nameMreign))"/>
-                        <xsl:analyze-string select="$reign" regex="(.*)[-‑](.*)">
-                            <xsl:matching-substring>
-                                <floruit>                                                    
-                                    <xsl:attribute name="from-custom"
-                                        select="normalize-space(regex-group(1))"/>
-                                    <xsl:attribute name="to-custom"
-                                        select="normalize-space(regex-group(2))"/>
-                                </floruit>
-                            </xsl:matching-substring>
-                            <xsl:non-matching-substring>
-                                <floruit>                                                    
-                                    <xsl:attribute name="from-custom"
-                                        select="$reign"/>
-                                </floruit>
-                            </xsl:non-matching-substring>
-                        </xsl:analyze-string>
-                    </xsl:if>
-                    <xsl:if test="$remark ne ''">
-                        <note>
-                            <xsl:value-of select="$remark"/>
-                        </note>
-                    </xsl:if>
-                </xsl:matching-substring>
-                <xsl:non-matching-substring>
-                    <persName>
-                        <xsl:value-of select="$wordInText"/>
-                    </persName>
-                    <xsl:choose>
-                        <xsl:when test="$annotationText = ' '">
-                            <note>This name is not annotated! No annotation found.</note>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <note>
-                                <xsl:value-of select="concat('This name is not annotated correctly! Details: &quot;', $annotationText, '&quot;')"/>
-                            </note>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:non-matching-substring>
-            </xsl:analyze-string>
-        </xsl:element>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Generate a description XML snippet for a place</xd:desc>
-    </xd:doc>
-    <xsl:template name="tagsDeclPlace">
-        <xsl:param name="remark" as="xs:string" select="''"/>
-        <xsl:param name="annotationText" as="xs:string"/>
-        <xsl:param name="wordInText" as="xs:string"/>
-        <xsl:param name="type" as="xs:string"/>
-        <xsl:param name="generated-id" as="xs:string"/>
-        <xsl:variable name="contents">
-            <xsl:analyze-string select="$annotationText" regex="{$placeRegExp}">
-                <xsl:matching-substring>
-                    <place>
-                        <xsl:attribute name="type">
-                            <xsl:value-of
-                                select="if (normalize-space(regex-group($placeMtype)) ne '') then replace(normalize-space(regex-group($placeMtype)), '[ ;,:]', '_') else 'unknown'"
-                            />
-                        </xsl:attribute>
-                        <placeName xml:lang="ota-Latn-t">
-                            <xsl:value-of select="$wordInText"/>
-                            <xsl:for-each select="tokenize(regex-group($placeMaka), '[,;]')">
-                                <addName xml:lang="ota-Latn-t">
-                                    <xsl:value-of select="normalize-space(.)"/>
-                                </addName>
-                            </xsl:for-each>
-                            <addName xml:lang="en-UK">
-                                <xsl:value-of select="normalize-space(regex-group($placeMtodayN))"/>
-                            </addName>
-                        </placeName>
-                        <location>
-                            <country>
-                                <xsl:value-of select="normalize-space(regex-group($placeMwToday))"/>
-                            </country>
-                        </location>
-                        <xsl:if test="$remark">
-                            <note>
-                                <xsl:value-of select="$remark"/>
-                            </note>
-                        </xsl:if>
-                    </place>
-                </xsl:matching-substring>
-                <xsl:non-matching-substring>
-                    <place>
-                        <placeName>
-                            <xsl:value-of select="$wordInText"/>
-                        </placeName>
-                        <xsl:choose>
-                            <xsl:when test="$annotationText = ' '">
-                                <note>This name is not annotated! No annotation found.</note>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <note>
-                                    <xsl:value-of
-                                        select="concat('This name is not annotated correctly! Details: &quot;', $annotationText, '&quot;')"
-                                    />
-                                </note>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </place>
-                </xsl:non-matching-substring>
-            </xsl:analyze-string>
-        </xsl:variable>
-        <place xml:id="{$generated-id}">
-            <xsl:sequence select="$contents/tei:place/@*, $contents/tei:place/node()"/>
-        </place>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Generate a description XML snippet for one of the various other entities</xd:desc>
-    </xd:doc> 
-    <xsl:template name="tagsDeclOther">
-        <xsl:param name="remark" as="xs:string" select="''"/>
-        <xsl:param name="annotationText" as="xs:string"/>
-        <xsl:param name="wordInText" as="xs:string"/>
-        <xsl:param name="type" as="xs:string"/>
-        <xsl:param name="generated-id" as="xs:string"/>
-        <xsl:element name="nym">
-            <xsl:attribute name="xml:id">
-                <xsl:value-of select="$generated-id"/>
-            </xsl:attribute>
-            <xsl:attribute name="type">
-                <xsl:value-of select="$type"/>
-            </xsl:attribute>
-<!--            <orth xml:lang="ota-Latn-t">
-                <xsl:value-of select="$wordInText"/>
-            </orth>-->
-<!--            <xsl:if test="lower-case($wordInText) ne $wordInText">-->
-                <orth xml:lang="ota-Latn-t">
-                    <xsl:value-of select="concat(lower-case(substring($wordInText, 1, 1)), substring($wordInText, 2))"/>    
-                </orth>
-<!--            </xsl:if>-->
-            <xsl:analyze-string select="$annotationText" regex="{$otherRegExp}">
-                <xsl:matching-substring>
-                    <xsl:for-each select="tokenize(if (regex-group($otherMaka) eq '') then regex-group($otherMakaAlt) else regex-group($otherMaka), '[,;]')">
-                        <orth xml:lang="ota-Latn-t">                                                    
-                            <xsl:value-of
-                                select="normalize-space(.)"/>
-                        </orth>
-                    </xsl:for-each>
-                    <sense xml:lang="la">
-                        <xsl:value-of select="normalize-space(regex-group($otherMlat))"/>
-                    </sense>
-                    <sense xml:lang="en-UK">
-                        <xsl:value-of select="normalize-space(if (regex-group($otherMeng) eq '') then regex-group($otherMengAlt) else regex-group($otherMeng))"/>
-                    </sense>
-                    <xsl:if test="$remark ne ''">
-                    <ab>
-                        <note>
-                            <xsl:value-of select="$remark"/>
-                        </note>
-                    </ab>
-                    </xsl:if>
-                </xsl:matching-substring>                                            
-                <xsl:non-matching-substring>
-                    <ab>
-                        <xsl:choose>
-                            <xsl:when test="$annotationText = ' '">
-                                <note>This name is not annotated! No annotation found.</note>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <note>
-                                    <xsl:value-of
-                                        select="concat('This name is not annotated correctly! Details: &quot;', $annotationText, '&quot;')"
-                                    />
-                                </note>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </ab>
-                </xsl:non-matching-substring>
-            </xsl:analyze-string>
-        </xsl:element>       
-    </xsl:template>
-
     <xd:do>
         <xd:desc>Aux function to find the relative position of a particular node in within a sequence.</xd:desc>
     </xd:do>
@@ -851,146 +607,6 @@ This is a work in progress. If you find any new or alternative readings or have 
     </xsl:function>
     
     <xd:doc>
-        <xd:desc>Try parse a description for a person
-            <xd:p>Calls another template that actually generates the XML for describing a person.</xd:p>
-        </xd:desc>
-    </xd:doc>      
-    <xsl:template name="generatePersonNameXML">
-        <xsl:variable name="thisId"
-            select="mec:getAnnotationId(.)"/>
-        <xsl:variable name="annotationText"
-            select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
-        <xsl:variable name="wordInText" select="mec:getCleanName(mec:words-in-text-runs(., $thisId))" as="xs:string"/>
-        <!-- TODO: replace with lookup -->
-        <xsl:variable name="type" select="./w:rPr/w:rStyle/@w:val"
-            as="xs:string?"/>
-        <xsl:variable name="generated-id" select="generate-id()"/>
-        <xsl:choose>
-            <xsl:when test="$annotationText = ''">
-                <xsl:call-template name="tagsDeclName">
-                    <xsl:with-param name="annotationText" select="' '"/>
-                    <xsl:with-param name="type" select="$type"/>
-                    <xsl:with-param name="wordInText" select="$wordInText"/>
-                    <xsl:with-param name="generated-id" select="$generated-id"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:analyze-string select="$annotationText" regex="{$remarkRegExp}">
-                    <xsl:matching-substring>
-                        <xsl:call-template name="tagsDeclName">
-                            <xsl:with-param name="remark"><xsl:value-of select="normalize-space(regex-group($remarkM))"/></xsl:with-param>
-                            <xsl:with-param name="annotationText"><xsl:value-of select="normalize-space(regex-group($remarkMremains))"/></xsl:with-param>
-                            <xsl:with-param name="type" select="$type"/>
-                            <xsl:with-param name="wordInText" select="$wordInText"/>
-                            <xsl:with-param name="generated-id" select="$generated-id"/>
-                        </xsl:call-template>                                           
-                    </xsl:matching-substring>
-                    <xsl:non-matching-substring>
-                        <xsl:call-template name="tagsDeclName">
-                            <xsl:with-param name="annotationText"><xsl:value-of select="$annotationText"/></xsl:with-param>
-                            <xsl:with-param name="type" select="$type"/>
-                            <xsl:with-param name="wordInText" select="$wordInText"/>
-                            <xsl:with-param name="generated-id" select="$generated-id"/>
-                        </xsl:call-template>
-                    </xsl:non-matching-substring>
-                </xsl:analyze-string>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Try parse a description for a place
-        <xd:p>Calls another template that actually generates the XML for describing a place.</xd:p>
-        </xd:desc>
-    </xd:doc>
-    <xsl:template name="generatePlaceNameXML">
-        <xsl:variable name="thisId" as="xs:string?" select="mec:getAnnotationId(.)"/>
-        <xsl:variable name="annotationText"
-            select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
-        <xsl:variable name="wordInText" select="mec:getCleanName(mec:words-in-text-runs(., $thisId))" as="xs:string"/>
-        <!-- TODO: replace with lookup -->
-        <xsl:variable name="type" select="./w:rPr/w:rStyle/@w:val"
-            as="xs:string?"/>
-        <xsl:variable name="generated-id" select="generate-id()"/>
-        <xsl:choose>
-            <xsl:when test="$annotationText = ''">
-                <xsl:call-template name="tagsDeclPlace">
-                    <xsl:with-param name="annotationText" select="' '"/>
-                    <xsl:with-param name="type" select="$type"/>
-                    <xsl:with-param name="wordInText" select="$wordInText"/>
-                    <xsl:with-param name="generated-id" select="$generated-id"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:analyze-string select="$annotationText" regex="{$remarkRegExp}">
-                    <xsl:matching-substring>
-                        <xsl:call-template name="tagsDeclPlace">
-                            <xsl:with-param name="remark"><xsl:value-of select="normalize-space(regex-group($remarkM))"/></xsl:with-param>
-                            <xsl:with-param name="annotationText"><xsl:value-of select="normalize-space(regex-group($remarkMremains))"/></xsl:with-param>
-                            <xsl:with-param name="type" select="$type"/>
-                            <xsl:with-param name="wordInText" select="$wordInText"/>
-                            <xsl:with-param name="generated-id" select="$generated-id"/>
-                        </xsl:call-template>                                           
-                    </xsl:matching-substring>
-                    <xsl:non-matching-substring>
-                        <xsl:call-template name="tagsDeclPlace">
-                            <xsl:with-param name="annotationText"><xsl:value-of select="$annotationText"/></xsl:with-param>
-                            <xsl:with-param name="type" select="$type"/>
-                            <xsl:with-param name="wordInText" select="$wordInText"/>
-                            <xsl:with-param name="generated-id" select="$generated-id"/>
-                        </xsl:call-template>
-                    </xsl:non-matching-substring>
-                </xsl:analyze-string>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Generate a description XML snippet one of the various named entities</xd:desc>
-    </xd:doc>
-    <xsl:template name="generateOtherNameXML">
-        <xsl:variable name="thisId"
-            select="mec:getAnnotationId(.)"/>
-        <xsl:variable name="annotationText"
-            select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
-        <xsl:variable name="wordInText" select="mec:getCleanName(mec:words-in-text-runs(., $thisId))" as="xs:string"/>
-        <xsl:variable name="type" select="mec:mapStyle(./w:rPr/w:rStyle/@w:val)"
-            as="xs:string?"/>
-        <xsl:variable name="generated-id" select="generate-id()"/>
-        <xsl:choose>
-            <xsl:when test="$annotationText = ''">               
-                <xsl:call-template name="tagsDeclOther">
-                    <xsl:with-param name="annotationText" select="' '"/>
-                    <xsl:with-param name="type" select="$type"/>
-                    <xsl:with-param name="wordInText" select="$wordInText"/>
-                    <xsl:with-param name="generated-id" select="$generated-id"/>
-                </xsl:call-template>                
-            </xsl:when>
-            <xsl:otherwise>                  
-                <xsl:analyze-string select="$annotationText" regex="{$remarkRegExp}">
-                    <xsl:matching-substring>
-                        <xsl:call-template name="tagsDeclOther">
-                            <xsl:with-param name="remark" select="normalize-space(regex-group($remarkM))"/>
-                            <xsl:with-param name="annotationText" select="normalize-space(regex-group($remarkMremains))"/>
-                            <xsl:with-param name="type" select="$type"/>
-                            <xsl:with-param name="wordInText" select="$wordInText"/>
-                            <xsl:with-param name="generated-id" select="$generated-id"/>
-                        </xsl:call-template>                                           
-                    </xsl:matching-substring>
-                    <xsl:non-matching-substring>
-                        <xsl:call-template name="tagsDeclOther">
-                            <xsl:with-param name="annotationText"><xsl:value-of select="$annotationText"/></xsl:with-param>
-                            <xsl:with-param name="type" select="$type"/>
-                            <xsl:with-param name="wordInText" select="$wordInText"/>
-                            <xsl:with-param name="generated-id" select="$generated-id"/>
-                        </xsl:call-template>
-                    </xsl:non-matching-substring>
-                </xsl:analyze-string>                
-            </xsl:otherwise>
-        </xsl:choose>     
-    </xsl:template>
-    
-    <xd:doc>
         <xd:desc>Generate an XML snippet that contains all annotated named entites</xd:desc>
     </xd:doc>
     <!-- Clean up: http://stackoverflow.com/questions/1233702/how-to-call-named-templates-based-on-a-variable -->
@@ -1006,7 +622,7 @@ This is a work in progress. If you find any new or alternative readings or have 
                     <tagUsage gi="persName">
                         <listPerson>
                             <xsl:for-each select="$names">
-                                <xsl:call-template name="generatePersonNameXML"/>
+                                <xsl:call-template name="_generatePersonNameXML"/>
                             </xsl:for-each>
                         </listPerson>
                     </tagUsage>
@@ -1015,7 +631,7 @@ This is a work in progress. If you find any new or alternative readings or have 
                     <tagUsage gi="placeName">
                         <listPlace>
                             <xsl:for-each select="$places">
-                                <xsl:call-template name="generatePlaceNameXML"></xsl:call-template>
+                                <xsl:call-template name="_generatePlaceNameXML"></xsl:call-template>
                             </xsl:for-each>
                         </listPlace>
                     </tagUsage>
@@ -1024,13 +640,50 @@ This is a work in progress. If you find any new or alternative readings or have 
                     <tagUsage gi="name">
                         <listNym>
                             <xsl:for-each select="$otherNames">
-                                <xsl:call-template name="generateOtherNameXML"></xsl:call-template>
+                                <xsl:call-template name="_generateOtherNameXML"/>
                             </xsl:for-each>
                         </listNym>
                     </tagUsage>
                 </xsl:if>
             </namespace>
         </tagsDecl>
+    </xsl:template>
+    
+    <xsl:template name="_generatePersonNameXML">
+        <xsl:variable name="thisId" select="mec:getAnnotationId(.)" as="xs:string?"/>
+        <xsl:call-template name="generatePersonNameXML">
+            <xsl:with-param name="thisId" select="$thisId"/>
+            <xsl:with-param name="annotationText"
+            select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
+            <xsl:with-param name="wordInText" select="mec:getCleanName(mec:words-in-text-runs(., $thisId))" as="xs:string"/>
+            <!-- TODO: replace with lookup -->
+            <xsl:with-param name="type" select="./w:rPr/w:rStyle/@w:val"
+            as="xs:string?"/>            
+        </xsl:call-template>
+    </xsl:template>
+    
+    <xsl:template name="_generatePlaceNameXML">
+        <xsl:variable name="thisId" select="mec:getAnnotationId(.)" as="xs:string?"/>
+        <xsl:call-template name="generatePlaceNameXML">
+            <xsl:with-param name="thisId" select="$thisId"/>
+            <xsl:with-param name="annotationText"
+                select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
+            <xsl:with-param name="wordInText" select="mec:getCleanName(mec:words-in-text-runs(., $thisId))" as="xs:string"/>
+            <!-- TODO: replace with lookup -->
+            <xsl:with-param name="type" select="./w:rPr/w:rStyle/@w:val"
+                as="xs:string?"/>            
+        </xsl:call-template>       
+    </xsl:template>
+    
+    <xsl:template name="_generateOtherNameXML">
+        <xsl:variable name="thisId" select="mec:getAnnotationId(.)" as="xs:string?"/>
+        <xsl:call-template name="generateOtherNameXML">            
+            <xsl:with-param name="thisId" select="$thisId"/>
+            <xsl:with-param name="annotationText"
+            select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
+            <xsl:with-param name="wordInText" select="mec:getCleanName(mec:words-in-text-runs(., $thisId))"/>
+            <xsl:with-param name="type" select="mec:mapStyle(./w:rPr/w:rStyle/@w:val)"/>
+        </xsl:call-template>
     </xsl:template>
     
     <xd:doc>
@@ -1168,7 +821,7 @@ This is a work in progress. If you find any new or alternative readings or have 
         <xsl:choose>
             <xsl:when test="$style=$nameStyle">
                 <xsl:variable name="commentXML">
-                    <xsl:call-template name="generatePersonNameXML"/>
+                    <xsl:call-template name="_generatePersonNameXML"/>
                 </xsl:variable>
                 <xsl:element name="persName">
                     <xsl:attribute name="ref">
@@ -1190,7 +843,7 @@ This is a work in progress. If you find any new or alternative readings or have 
             </xsl:when>
             <xsl:when test="$style=$placeStyle">
                 <xsl:variable name="commentXML">
-                    <xsl:call-template name="generatePlaceNameXML"/>
+                    <xsl:call-template name="_generatePlaceNameXML"/>
                 </xsl:variable>
                 <xsl:element name="placeName">
                     <xsl:attribute name="ref">
@@ -1213,7 +866,7 @@ This is a work in progress. If you find any new or alternative readings or have 
             <xsl:when test="$style=$otherStyles" >
                 <xsl:element name="name">
                     <xsl:variable name="commentXML">
-                        <xsl:call-template name="generateOtherNameXML"/>
+                        <xsl:call-template name="_generateOtherNameXML"/>
                     </xsl:variable>
                     <xsl:variable name="ref"
                         select="if (empty($commentN)) then mec:getRefIdOtherNames($name, '', ())
