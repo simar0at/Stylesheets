@@ -14,6 +14,15 @@
     <xsl:output method="xml" indent="yes"/>
     
     <xd:doc>
+        <xd:desc>A string that describes that this data was not determinable
+            It separates this entity from another entity where this data is available.
+            <xd:p>Note: Whitespace is eliminated before checking against this value.
+                So currently this also matches 'n. a. '</xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:variable name="na" select="'n.a.'"/>
+    
+    <xd:doc>
         <xd:desc>remark: at the end is split of first so it's easier to have that opional.</xd:desc>
     </xd:doc>
     <xsl:variable name="remarkRegExp">(.*)remark:(.*)</xsl:variable>
@@ -224,10 +233,12 @@
                     <persName xml:lang="ota-Latn-t">
                         <xsl:value-of select="$wordInText"/>
                         <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
-                            <addName xml:lang="ota-Latn-t">                                                    
-                                <xsl:value-of
-                                    select="normalize-space(.)"/>
-                            </addName>
+                            <xsl:if test="replace(., '\s', '') ne $na">
+                                <addName xml:lang="ota-Latn-t">                                                    
+                                    <xsl:value-of
+                                        select="normalize-space(.)"/>
+                                </addName>
+                            </xsl:if>
                         </xsl:for-each>
                     </persName>
                     <occupation>
@@ -292,10 +303,12 @@
                 <persName xml:lang="ota-Latn-t">
                     <xsl:value-of select="$wordInText"/>
                     <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
-                        <addName xml:lang="ota-Latn-t">                                                    
-                            <xsl:value-of
-                                select="normalize-space(.)"/>
-                        </addName>
+                        <xsl:if test="replace(., '\s', '') ne $na">
+                            <addName xml:lang="ota-Latn-t">                                                    
+                                <xsl:value-of
+                                    select="normalize-space(.)"/>
+                            </addName>
+                        </xsl:if>
                     </xsl:for-each>
                 </persName>
                 <occupation>
