@@ -160,16 +160,148 @@
     <xsl:variable name="placeMwToday">4</xsl:variable>
     <xsl:variable name="placeMtodayN">5</xsl:variable>
     
+    <t:testData>
+        <t:setup>
+            <t:thisId>someId</t:thisId>
+            <t:type>a type</t:type>
+        </t:setup>
+        <t:case type="place">
+            <t:in>
+                <t:wordInText>all specified</t:wordInText>
+                <t:annotationText>aka: some aka; some other aka, a third aka type: someTypeOfGeoEnt where today: some country today’s name: how it is called today remark: a remark</t:annotationText>
+            </t:in>
+            <t:expected>
+                <place xml:id="d1e330" type="someTypeOfGeoEnt">
+                    <placeName xml:lang="ota-Latn-t">all specified<addName xml:lang="ota-Latn-t">some aka</addName>
+                        <addName xml:lang="ota-Latn-t">some other aka</addName>
+                        <addName xml:lang="ota-Latn-t">a third aka</addName>
+                        <addName xml:lang="en-UK">how it is called today</addName>
+                    </placeName>
+                    <location>
+                        <country>some country</country>
+                    </location>
+                    <note>a remark</note>
+                </place>
+            </t:expected>
+        </t:case>
+        <t:case type="place">
+            <t:in>
+                <t:wordInText>no aka, no remark</t:wordInText>
+                <t:annotationText>type: someTypeOfGeoEnt where today: some country today’s name: how it is called today</t:annotationText>
+            </t:in>
+            <t:expected>
+                <place xml:id="d1e330" type="someTypeOfGeoEnt">
+                    <placeName xml:lang="ota-Latn-t">no aka, no remark<addName xml:lang="en-UK">how it is called today</addName>
+                    </placeName>
+                    <location>
+                        <country>some country</country>
+                    </location>
+                </place>
+            </t:expected>
+        </t:case>
+        <t:case type="place">
+            <t:in>
+                <t:wordInText>garbage</t:wordInText>
+                <t:annotationText>today: some country today’s name: how it is called today</t:annotationText>
+            </t:in>
+            <t:expected>
+                <place>
+                    <placeName>garbage</placeName>
+                    <note>This name is not annotated correctly! Details: "today: some country today’s name: how it is called today"</note>
+                </place>
+            </t:expected>
+        </t:case>
+    </t:testData>
+    
     <xd:doc>
         <xd:desc>RegExp for parsing comments describing a various named entities</xd:desc>
     </xd:doc>
-    <xsl:variable name="otherRegExp">^\s*(aka:(.*))?Latin:(.*)English:(.*)|(aka:(.*))?English:(.*)</xsl:variable>
+    <xsl:variable name="otherRegExp">^\s*(aka:(.*))?Latin:(.*)English:(.*)|^\s*(aka:(.*))?English:(.*)</xsl:variable>
     <!-- 1: aka: ... -->
     <xsl:variable name="otherMaka">2</xsl:variable>
     <xsl:variable name="otherMakaAlt">6</xsl:variable>
     <xsl:variable name="otherMlat">3</xsl:variable>
     <xsl:variable name="otherMeng">4</xsl:variable>
     <xsl:variable name="otherMengAlt">7</xsl:variable>
+    
+    <t:testData>
+        <t:setup>
+            <t:thisId>someId</t:thisId>
+            <t:type>a type</t:type>
+        </t:setup>
+        <t:case type="other">
+            <t:in>
+                <t:wordInText>all specified</t:wordInText>
+                <t:annotationText>aka: some aka; some other aka, a third aka Latin: nomen latinum English: some English name remark: a remark</t:annotationText>
+            </t:in>
+            <t:expected>
+                <nym xml:id="d1e412" type="a type">
+                    <orth xml:lang="ota-Latn-t">all specified</orth>
+                    <orth xml:lang="ota-Latn-t">some aka</orth>
+                    <orth xml:lang="ota-Latn-t">some other aka</orth>
+                    <orth xml:lang="ota-Latn-t">a third aka</orth>
+                    <sense xml:lang="la">nomen latinum</sense>
+                    <sense xml:lang="en-UK">some English name</sense>
+                    <ab>
+                        <note>a remark</note>
+                    </ab>
+                </nym>
+            </t:expected>
+        </t:case>
+        <t:case type="other">
+            <t:in>
+                <t:wordInText>no aka, no remark</t:wordInText>
+                <t:annotationText>Latin: nomen latinum English: some English name</t:annotationText>
+            </t:in>
+            <t:expected>
+                <nym xml:id="d1e455" type="a type">
+                    <orth xml:lang="ota-Latn-t">no aka, no remark</orth>
+                    <sense xml:lang="la">nomen latinum</sense>
+                    <sense xml:lang="en-UK">some English name</sense>
+                </nym>
+            </t:expected>
+        </t:case>
+        <t:case type="other">
+            <t:in>
+                <t:wordInText>no aka, no remark, no Latin</t:wordInText>
+                <t:annotationText>English: some English name</t:annotationText>
+            </t:in>
+            <t:expected>
+                <nym xml:id="d1e482" type="a type">
+                    <orth xml:lang="ota-Latn-t">no aka, no remark, no Latin</orth>
+                    <sense xml:lang="en-UK">some English name</sense>
+                </nym>
+            </t:expected>
+        </t:case>
+        <t:case type="other">
+            <t:in>
+                <t:wordInText>garbage</t:wordInText>
+                <t:annotationText>aka: some aka Deutsch: irgendwas</t:annotationText>
+            </t:in>
+            <t:expected>
+                <nym xml:id="d1e509" type="a type">
+                    <orth xml:lang="ota-Latn-t">garbage</orth>
+                    <ab>
+                        <note>This name is not annotated correctly! Details: "aka: some aka Deutsch: irgendwas"</note>
+                    </ab>
+                </nym>
+            </t:expected>
+        </t:case>
+        <t:case type="other">
+            <t:in>
+                <t:wordInText>garbage in aka</t:wordInText>
+                <t:annotationText>aka : some aka English: some English name</t:annotationText>
+            </t:in>
+            <t:expected>
+                <nym xml:id="d1e537" type="a type">
+                    <orth xml:lang="ota-Latn-t">garbage in aka</orth>
+                    <ab>
+                        <note>This name is not annotated correctly! Details: "aka : some aka English: some English name"</note>
+                    </ab>
+                </nym>
+            </t:expected>
+        </t:case>
+    </t:testData>
     
     <xd:doc>
         <xd:desc>Try parse a description for a person
@@ -545,9 +677,11 @@
                                 select="normalize-space(.)"/>
                         </orth>
                     </xsl:for-each>
-                    <sense xml:lang="la">
-                        <xsl:value-of select="normalize-space(regex-group($otherMlat))"/>
-                    </sense>
+                    <xsl:if test="regex-group($otherMeng) ne ''">
+                        <sense xml:lang="la">
+                            <xsl:value-of select="normalize-space(regex-group($otherMlat))"/>
+                        </sense>
+                    </xsl:if>
                     <sense xml:lang="en-UK">
                         <xsl:value-of select="normalize-space(if (regex-group($otherMeng) eq '') then regex-group($otherMengAlt) else regex-group($otherMeng))"/>
                     </sense>
