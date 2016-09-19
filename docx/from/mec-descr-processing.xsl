@@ -233,8 +233,8 @@
                 </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="$comment//tei:sense/text()[1]">
-                <xsl:if test=". != '' and $candidate//tei:sense/text()[1] != '' and
-                    . != $candidate//tei:sense/text()[1]">
+                <xsl:if test=". != '' and not($candidate//tei:sense/text()[1] = '') and
+                    not(. = $candidate//tei:sense/text()[1])">
                     <mec:d type="sense"/>    
                 </xsl:if>
             </xsl:for-each>

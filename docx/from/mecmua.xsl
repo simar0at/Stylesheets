@@ -147,33 +147,38 @@
         </xd:desc>
     </xd:doc>
     <xsl:template match="w:p" mode="pass0">
-        <w:p>
-        <xsl:for-each-group select="* except w:proofErr" group-adjacent="concat('x', ./w:rPr/w:rStyle/@w:val)">
-            <xsl:choose>
-                <xsl:when test="current-grouping-key() = 'x' or count(current-group() intersect //w:r) &lt; 2">
-                    <xsl:for-each select="current-group()">
-                        <xsl:if test="empty(current-group() intersect //w:r) or not(empty(current-group()//w:t)) or (string-join(current-group()//w:t, '') ne '')">                            
-                        <xsl:copy>
-                            <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass0"/>
-                        </xsl:copy>
+        <xsl:variable name="contents" as="element()*">
+            <xsl:for-each-group select="* except w:proofErr" group-adjacent="concat('x', ./w:rPr/w:rStyle/@w:val)">
+                <xsl:variable name="cg" select="current-group()"/>
+                <xsl:variable name="key" select="current-grouping-key()"/>
+                <xsl:choose>
+                    <xsl:when test="$key = 'x' or count($cg intersect //w:r) &lt; 2">
+                        <xsl:for-each select="$cg">
+                            <xsl:if test="empty($cg intersect //w:r) or not(empty($cg//(w:t|w:tab|w:noBreakHyphen))) or (string-join($cg//w:t, '') ne '')">                            
+                                <xsl:copy>
+                                    <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass0"/>
+                                </xsl:copy>
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:for-each select="$cg except (//w:r)">
+                            <xsl:copy>
+                                <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass0"/>
+                            </xsl:copy>
+                        </xsl:for-each>
+                        <xsl:if test="empty($cg intersect //w:r) or not(empty($cg//w:t)) or (string-join($cg//w:t, '') ne '')">                            
+                            <w:r>
+                                <xsl:apply-templates select="$cg[1]/w:rPr" mode="pass0"/>
+                                <xsl:apply-templates select="$cg//(w:t|w:tab|w:noBreakHyphen)" mode="pass0"/>
+                            </w:r>
                         </xsl:if>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:for-each select="current-group() except (//w:r)">
-                        <xsl:copy>
-                            <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass0"/>
-                        </xsl:copy>
-                    </xsl:for-each>
-                    <xsl:if test="empty(current-group() intersect //w:r) or not(empty(current-group()//w:t)) or (string-join(current-group()//w:t, '') ne '')">                            
-                         <w:r>
-                            <xsl:apply-templates select="current-group()[1]/w:rPr" mode="pass0"/>
-                            <xsl:apply-templates select="current-group()//w:t|current-group()//w:noBreakHyphen" mode="pass0"/>
-                        </w:r>
-                    </xsl:if>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:for-each-group>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each-group>           
+        </xsl:variable>
+        <w:p>
+            <xsl:sequence select="$contents"/>
         </w:p>
     </xsl:template>
     
@@ -571,10 +576,12 @@ This is a work in progress. If you find any new or alternative readings or have 
         <xsl:param name="context" as="node()"/>
         <xsl:param name="commentId" as="xs:string?"/>
         <xsl:variable name="possibleWordInTextRuns" select="($context | $context/following-sibling::w:r)"/>
-        <xsl:variable name="lastRunElement" select="$context/following-sibling::w:commentRangeEnd[@w:id = $commentId]/preceding-sibling::w:r[1]"/>
+        <xsl:variable name="precedingCommentStart" select="$context/preceding-sibling::*[1][. instance of element(w:commentRangeStart)]"/>
+        <xsl:variable name="lastRunElement" select="if (exists($precedingCommentStart)) then $context/following-sibling::w:commentRangeEnd[@w:id = $commentId]/preceding-sibling::w:r[1] else $context"/>
         <xsl:variable name="lastRunPosition" select="mec:relative-position($possibleWordInTextRuns, $lastRunElement)"/>
-        <xsl:value-of select="if (exists($commentId)) then string-join($possibleWordInTextRuns[position() = (1 to $lastRunPosition)]/w:t, '')
-                                                      else string-join($context/w:t, '')"/>
+        <xsl:variable name="ret" select="if (exists($commentId)) then string-join($possibleWordInTextRuns[position() = (1 to $lastRunPosition)]/w:t, '')
+                                                      else string-join($context/w:t, '')" as="xs:string"/>
+        <xsl:sequence select="$ret"/>
     </xsl:function>
 
     <xd:doc>
@@ -600,10 +607,13 @@ This is a work in progress. If you find any new or alternative readings or have 
             select="$context/following-sibling::w:commentRangeEnd[1]" as="node()?"/>
         <xsl:variable name="numPSAsoocEnd"
             select="count($assocCommentEnd/preceding-sibling::*)"/>
-        <xsl:value-of
+        <xsl:variable name="ret"
             select="if (empty($assocCommentStart) or ($numPSPrevEnd > $numPSAssocStart)) then 
             if (empty($nextCommentStart) or $numPSNextStart > $numPSAsoocEnd) then $assocCommentEnd/@w:id else ()
-            else $assocCommentStart/@w:id"/>        
+            else $assocCommentStart/@w:id" as="xs:string?"/>
+        <xsl:if test="exists($ret)">
+            <xsl:sequence select="$ret"/>
+        </xsl:if>        
     </xsl:function>
     
     <xd:doc>
