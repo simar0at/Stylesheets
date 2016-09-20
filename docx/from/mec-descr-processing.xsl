@@ -351,9 +351,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:if test="true()">
-            <xsl:sequence select="$ret"/>
-        </xsl:if>
+         <xsl:sequence select="$ret"/>
     </xsl:function>    
     
 </xsl:stylesheet>
