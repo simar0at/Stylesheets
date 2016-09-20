@@ -66,8 +66,8 @@
         <xd:desc>Removes trailing whitespace only.</xd:desc>
     </xd:doc>
     <xsl:function name="mec:trimEntAttr" as="xs:string*">
-        <xsl:param name="nodesToClean" as="node()*"/>
-        <xsl:for-each select="$nodesToClean">
+        <xsl:param name="nodesToClean" as="element()*"/>
+        <xsl:for-each select="($nodesToClean|$nodesToClean//*)">
             <xsl:variable name="trimmedText" select="replace(string-join(./text(), ''), '\s+$', '')"/>
             <xsl:if test="$trimmedText ne ''">
                 <xsl:value-of select="$trimmedText"/>
@@ -289,7 +289,7 @@
         <xsl:param name="tagsDecl" as="node()+"/>
         <xsl:variable name="cleanName" as="xs:string+" select="mec:getCleanName($name)"/>
         <xsl:variable name="lcName" as="xs:string+" select="mec:getLcName($name)"/>
-        <xsl:variable name="allPossibleMatchingNamesComment" select="($tagsDecl//tei:place[replace(tei:placeName/text()[1], '\s+$', '') = ($cleanName, $lcName, $name)]|$tagsDecl//tei:place[tei:placeName/tei:addName = ($cleanName, $lcName, $name)])"/>
+        <xsl:variable name="allPossibleMatchingNamesComment" select="$tagsDecl//tei:place[mec:trimEntAttr((tei:placeName, tei:placeName/tei:addName[mec:trimEntAttr(.) != 'n.a.'])) = ($cleanName, $lcName, $name)]"/>
         <xsl:variable name="allMatchingNamesComment"
             select="$allPossibleMatchingNamesComment[not(contains(.//tei:note, 'not annotated'))]"/>
         <xsl:variable name="firstMatchingNamesId" select="$allMatchingNamesComment[1]/@xml:id"/>
@@ -313,8 +313,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
-    
+        
     <xd:doc>
         <xd:desc>Find an id to reference for one of the other named entities using an explicit tagsDecl XML fragment
         </xd:desc>
@@ -327,29 +326,34 @@
         <xsl:variable name="cleanName" as="xs:string+" select="mec:getCleanName($name)"/>
         <xsl:variable name="lcName" as="xs:string+" select="mec:getLcName($name)"/>
         <xsl:variable name="lcCleanName" as="xs:string+" select="mec:getCleanName(mec:getLcName($name))"/>
-        <xsl:variable name="allPossibleMatchingNamesComment" select="($tagsDecl//tei:nym[some $t in tei:orth[@xml:lang = 'ota-Latn-t']/text() satisfies replace($t, '\s+$', '') = ($cleanName, $lcName, $lcCleanName, $name)])"/>
+        <xsl:variable name="allPossibleMatchingNamesComment" select="$tagsDecl//tei:nym[mec:trimEntAttr(./tei:orth) = ($cleanName, $lcName, $lcCleanName, $name)]"/>
         <xsl:variable name="allMatchingNamesComment"
             select="$allPossibleMatchingNamesComment[not(contains(.//tei:note, 'not annotated'))]"/>
         <xsl:variable name="firstMatchingNamesId" select="$allMatchingNamesComment[1]/@xml:id"/>
-        <xsl:choose>
-            <xsl:when test="empty($allMatchingNamesComment)">
-                <xsl:value-of select="if (empty($allPossibleMatchingNamesComment[1]/@xml:id)) then $missing_info_marker else $allPossibleMatchingNamesComment[1]/@xml:id"/>                                        
-            </xsl:when>
-            <xsl:when test="empty($commentXML)">
-                <xsl:value-of select="$firstMatchingNamesId"/>
-            </xsl:when>
-            <xsl:when test="$commentN eq ''">
-                <xsl:value-of select="$firstMatchingNamesId"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:variable name="preparedCommentXML" as="element()">
-                    <xsl:apply-templates select="$commentXML" mode="prepare-comment"/>
-                </xsl:variable>
-                <xsl:value-of
-                    select="string-join(mec:disambiguate($preparedCommentXML, $allMatchingNamesComment)/@xml:id, 'error: ')"
-                />
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:variable name="ret">
+            <xsl:choose>
+                <xsl:when test="empty($allMatchingNamesComment)">
+                    <xsl:value-of select="if (empty($allPossibleMatchingNamesComment[1]/@xml:id)) then $missing_info_marker else $allPossibleMatchingNamesComment[1]/@xml:id"/>                                        
+                </xsl:when>
+                <xsl:when test="empty($commentXML)">
+                    <xsl:value-of select="$firstMatchingNamesId"/>
+                </xsl:when>
+                <xsl:when test="$commentN eq ''">
+                    <xsl:value-of select="$firstMatchingNamesId"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:variable name="preparedCommentXML" as="element()">
+                        <xsl:apply-templates select="$commentXML" mode="prepare-comment"/>
+                    </xsl:variable>
+                    <xsl:value-of
+                        select="string-join(mec:disambiguate($preparedCommentXML, $allMatchingNamesComment)/@xml:id, 'error: ')"
+                    />
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:if test="true()">
+            <xsl:sequence select="$ret"/>
+        </xsl:if>
     </xsl:function>    
     
 </xsl:stylesheet>
