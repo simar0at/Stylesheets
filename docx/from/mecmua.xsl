@@ -430,11 +430,15 @@ This is a work in progress. If you find any new or alternative readings or have 
                 </xsl:for-each>
             </xsl:if>
         </appInfo>
-<!--        <xsl:sequence select="$tagsDecl"/>-->
-        <xsl:call-template name="_generateTagsDecl"/>
-<!--        <xsl:result-document href="tagsDecl.xml">
+    </xsl:template>
+    
+    <xsl:template name="create-tei-back">
+        <back>
+        <xsl:call-template name="_generateIndexLists"/>
+        <!--        <xsl:result-document href="tagsDecl.xml">
             <xsl:call-template name="_generateTagsDecl"/>
         </xsl:result-document>-->
+        </back>
     </xsl:template>
     
     <xd:doc>
@@ -547,7 +551,7 @@ This is a work in progress. If you find any new or alternative readings or have 
         <xd:desc>Contains XML describing all named entities</xd:desc>
     </xd:doc>
     <xsl:variable name="tagsDecl">
-        <xsl:call-template name="_generateTagsDecl"/>
+        <xsl:call-template name="_generateIndexLists"/>
     </xsl:variable>
     
     <xd:do>
@@ -620,43 +624,36 @@ This is a work in progress. If you find any new or alternative readings or have 
         <xd:desc>Generate an XML snippet that contains all annotated named entites</xd:desc>
     </xd:doc>
     <!-- Clean up: http://stackoverflow.com/questions/1233702/how-to-call-named-templates-based-on-a-variable -->
-    <xsl:template name="_generateTagsDecl">
+    <xsl:template name="_generateIndexLists">
         <!-- context of caller (=$pass0) -->
         <xsl:variable name="names" select="$pass0//w:r[descendant::w:rStyle/@w:val=$nameStyle]"/>
         <xsl:variable name="places" select="$pass0//w:r[descendant::w:rStyle/@w:val=$placeStyle]"/>
-        <xsl:variable name="otherNames"
-            select="$pass0//w:r[descendant::w:rStyle/@w:val=$otherStyles]"/>
-        <tagsDecl>
-            <namespace name="http://www.tei-c.org/ns/1.0">
-                <xsl:if test="exists($pass0//w:rStyle[@w:val=$nameStyle])">
-                    <tagUsage gi="persName">
-                        <listPerson>
-                            <xsl:for-each select="$names">
-                                <xsl:call-template name="_generatePersonNameXML"/>
-                            </xsl:for-each>
-                        </listPerson>
-                    </tagUsage>
-                </xsl:if>
-                <xsl:if test="exists($pass0//w:rStyle[@w:val=$placeStyle])">
-                    <tagUsage gi="placeName">
-                        <listPlace>
-                            <xsl:for-each select="$places">
-                                <xsl:call-template name="_generatePlaceNameXML"></xsl:call-template>
-                            </xsl:for-each>
-                        </listPlace>
-                    </tagUsage>
-                </xsl:if>
-                <xsl:if test="exists($pass0//w:rStyle[@w:val=$otherStyles])">
-                    <tagUsage gi="name">
-                        <listNym>
-                            <xsl:for-each select="$otherNames">
-                                <xsl:call-template name="_generateOtherNameXML"/>
-                            </xsl:for-each>
-                        </listNym>
-                    </tagUsage>
-                </xsl:if>
-            </namespace>
-        </tagsDecl>
+        <xsl:if test="exists($pass0//w:rStyle[@w:val=$nameStyle])">
+            <listPerson>
+                <xsl:for-each select="$names">
+                    <xsl:call-template name="_generatePersonNameXML"/>
+                </xsl:for-each>
+            </listPerson>                    
+        </xsl:if>
+        <xsl:if test="exists($pass0//w:rStyle[@w:val=$placeStyle])">
+            <listPlace>
+                <xsl:for-each select="$places">
+                    <xsl:call-template name="_generatePlaceNameXML"/>
+                </xsl:for-each>
+            </listPlace>            
+        </xsl:if>
+        <xsl:if test="exists($pass0//w:rStyle[@w:val=$otherStyles])">
+            <xsl:for-each-group select="$pass0//w:r[descendant::w:rStyle/@w:val=$otherStyles]"
+                group-by="mec:mapStyle(./descendant::w:rStyle/@w:val)">
+                <xsl:variable name="currentStyle" select="current-grouping-key()"/>
+                <xsl:variable name="otherNames" select="current-group()"/>
+                <list type="index" subtype="{$currentStyle}">
+                    <xsl:for-each select="$otherNames">
+                        <xsl:call-template name="_generateOtherNameXML"/>
+                    </xsl:for-each>
+                </list>
+            </xsl:for-each-group>           
+        </xsl:if>
     </xsl:template>
     
     <xsl:template name="_generatePersonNameXML">

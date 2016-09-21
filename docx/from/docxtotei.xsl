@@ -262,11 +262,12 @@ of this software, even if advised of the possibility of such damage.
 	    <text>
 	      <!-- Create forme work -->
 	      <xsl:call-template name="extract-forme-work"/>
-	      
+	      <xsl:call-template name="create-tei-front"/>
 	      <!-- create TEI body -->
 	      <body>
 		<xsl:call-template name="mainProcess"/>
 	      </body>
+	    	<xsl:call-template name="create-tei-back"/>
 	    </text>
 	  </xsl:template>
 
@@ -626,6 +627,16 @@ of this software, even if advised of the possibility of such damage.
 	</revisionDesc>
       </teiHeader>
     </xsl:template>
+	
+	<doc>
+		<desc>Template that can be superseded in customization to provide front matter</desc>
+	</doc>
+	<xsl:template name="create-tei-front"/>
+	
+	<doc>
+		<desc>Template that can be superseded in customization to provide back matter</desc>
+	</doc>	
+	<xsl:template name="create-tei-back"/>
     
     <doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
       <desc>generates a section heading. If you need something specific, feel free

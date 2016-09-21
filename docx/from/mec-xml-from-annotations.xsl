@@ -55,13 +55,13 @@
                 <t:annotationText>aka: some aka; some other aka, a third aka profession: some profession died: some day reign: circa 910-931 BC remark: a remark</t:annotationText>
             </t:in>
             <t:expected>
-                <person xmlns="http://www.tei-c.org/ns/1.0" xml:id="d1e74">
-                    <persName xml:lang="ota-Latn-t">all specified<addName xml:lang="ota-Latn-t">some aka</addName>
-                        <addName xml:lang="ota-Latn-t">some other aka</addName>
-                        <addName xml:lang="ota-Latn-t">a third aka</addName>
-                    </persName>
+                <person xml:id="d1e85">
+                    <persName xml:lang="ota-Latn-t" type="variant">all specified</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">some aka</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">some other aka</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">a third aka</persName>
                     <occupation>some profession</occupation>
-                    <death>some day:</death>
+                    <death>some day</death>
                     <floruit from-custom="circa 910" to-custom="931 BC"/>
                     <note>a remark</note>
                 </person>
@@ -73,9 +73,9 @@
                 <t:annotationText>aka: some aka profession: some profession died: some day reign: some 10 cents</t:annotationText>
             </t:in>
             <t:expected>
-                <person xmlns="http://www.tei-c.org/ns/1.0" xml:id="d1e76">
-                    <persName xml:lang="ota-Latn-t">no remark<addName xml:lang="ota-Latn-t">some aka</addName>
-                    </persName>
+                <person xml:id="d1e126">
+                    <persName xml:lang="ota-Latn-t" type="variant">no remark</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">some aka</persName>
                     <occupation>some profession</occupation>
                     <death>some day</death>
                     <floruit from-custom="some 10 cents"/>
@@ -88,8 +88,8 @@
                 <t:annotationText>profession: some profession died: some day reign: some 10 cents</t:annotationText>
             </t:in>
             <t:expected>
-                <person xmlns="http://www.tei-c.org/ns/1.0" xml:id="d1e90">
-                    <persName xml:lang="ota-Latn-t">no aka no remark</persName>
+                <person xml:id="d1e158">
+                    <persName xml:lang="ota-Latn-t" type="variant">no aka no remark</persName>
                     <occupation>some profession</occupation>
                     <death>some day</death>
                     <floruit from-custom="some 10 cents"/>
@@ -102,8 +102,8 @@
                 <t:annotationText>profession: garbage demise: garbage</t:annotationText>
             </t:in>
             <t:expected>
-                <person xmlns="http://www.tei-c.org/ns/1.0" xml:id="d1e170">
-                    <persName>garbage</persName>
+                <person xml:id="d1e187">
+                    <persName xml:lang="ota-Latn-t">garbage</persName>
                     <note>This name is not annotated correctly! Details: "profession: garbage demise: garbage"</note>
                 </person>
             </t:expected>
@@ -114,8 +114,8 @@
                 <t:annotationText>aka; ; is a typo profession: some profession died: some day reign: some 10 cents</t:annotationText>
             </t:in>
             <t:expected>
-                <person xmlns="http://www.tei-c.org/ns/1.0" xml:id="d1e195">
-                    <persName>garbage or typo at the beginning</persName>
+                <person xml:id="d1e212">
+                    <persName xml:lang="ota-Latn-t">garbage or typo at the beginning</persName>
                     <note>This name is not annotated correctly! Details: "aka; ; is a typo profession: some profession died: some day reign: some 10 cents"</note>
                 </person>
             </t:expected>
@@ -126,9 +126,9 @@
                 <t:annotationText>aka: some aka profession: some profession reign: circa 910-931 BC died: some day remark: a remark</t:annotationText>
             </t:in>
             <t:expected> 
-                <person xmlns="http://www.tei-c.org/ns/1.0" xml:id="d1e210">
-                    <persName xml:lang="ota-Latn-t">deid reign exchanged<addName xml:lang="ota-Latn-t">some aka</addName>
-                    </persName>
+                <person xml:id="d1e236">
+                    <persName xml:lang="ota-Latn-t">deid reign exchanged</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">some aka</persName>
                     <occupation>some profession</occupation>
                     <death>some day</death>
                     <floruit from-custom="circa 910" to-custom="931 BC"/>
@@ -142,9 +142,9 @@
                 <t:annotationText/>
             </t:in>
             <t:expected>
-                <person xmlns="http://www.tei-c.org/ns/1.0" xml:id="d1e195">
-                    <persName>garbage or typo at the beginning</persName>
-                    <note>This name is not annotated correctly! Details: "aka; ; is a typo profession: some profession died: some day reign: some 10 cents"</note>
+                <person xml:id="d1e271">
+                    <persName xml:lang="ota-Latn-t">no annotation</persName>
+                    <note>This name is not annotated! No annotation found.</note>
                 </person>
             </t:expected>
         </t:case>
@@ -172,11 +172,11 @@
             </t:in>
             <t:expected>
                 <place xml:id="d1e330" type="someTypeOfGeoEnt">
-                    <placeName xml:lang="ota-Latn-t">all specified<addName xml:lang="ota-Latn-t">some aka</addName>
-                        <addName xml:lang="ota-Latn-t">some other aka</addName>
-                        <addName xml:lang="ota-Latn-t">a third aka</addName>
-                        <addName xml:lang="en-UK">how it is called today</addName>
-                    </placeName>
+                    <placeName xml:lang="ota-Latn-t" type="variant">all specified</placeName>
+                    <placeName xml:lang="ota-Latn-t" type="variant">some aka</placeName>
+                    <placeName xml:lang="ota-Latn-t" type="variant">some other aka</placeName>
+                    <placeName xml:lang="ota-Latn-t" type="variant">a third aka</placeName>
+                    <placeName xml:lang="en-UK">how it is called today</placeName>
                     <location>
                         <country>some country</country>
                     </location>
@@ -190,9 +190,9 @@
                 <t:annotationText>type: someTypeOfGeoEnt where today: some country today’s name: how it is called today</t:annotationText>
             </t:in>
             <t:expected>
-                <place xml:id="d1e330" type="someTypeOfGeoEnt">
-                    <placeName xml:lang="ota-Latn-t">no aka, no remark<addName xml:lang="en-UK">how it is called today</addName>
-                    </placeName>
+                <place xml:id="d1e372" type="someTypeOfGeoEnt">
+                    <placeName xml:lang="ota-Latn-t" type="variant">no aka, no remark</placeName>
+                    <placeName xml:lang="en-UK">how it is called today</placeName>
                     <location>
                         <country>some country</country>
                     </location>
@@ -206,7 +206,7 @@
             </t:in>
             <t:expected>
                 <place>
-                    <placeName>garbage</placeName>
+                    <placeName xml:lang="ota-Latn-t">garbage</placeName>
                     <note>This name is not annotated correctly! Details: "today: some country today’s name: how it is called today"</note>
                 </place>
             </t:expected>
@@ -227,7 +227,7 @@
     <t:testData>
         <t:setup>
             <t:thisId>someId</t:thisId>
-            <t:type>a type</t:type>
+<!--            <t:type>a Type</t:type> Items are split in different lists per type!-->
         </t:setup>
         <t:case type="other">
             <t:in>
@@ -235,17 +235,17 @@
                 <t:annotationText>aka: some aka; some other aka, a third aka Latin: nomen latinum English: some English name remark: a remark</t:annotationText>
             </t:in>
             <t:expected>
-                <nym xml:id="d1e412" type="a type">
-                    <orth xml:lang="ota-Latn-t">all specified</orth>
-                    <orth xml:lang="ota-Latn-t">some aka</orth>
-                    <orth xml:lang="ota-Latn-t">some other aka</orth>
-                    <orth xml:lang="ota-Latn-t">a third aka</orth>
-                    <sense xml:lang="la">nomen latinum</sense>
-                    <sense xml:lang="en-UK">some English name</sense>
-                    <ab>
-                        <note>a remark</note>
-                    </ab>
-                </nym>
+                <item xml:id="d1e468">
+                    <name xml:lang="ota-Latn-t" type="variant">all specified</name>
+                    <name xml:lang="ota-Latn-t" type="variant">some aka</name>
+                    <name xml:lang="ota-Latn-t" type="variant">some other aka</name>
+                    <name xml:lang="ota-Latn-t" type="variant">a third aka</name>
+                    <cit type="translation">
+                        <sense xml:lang="la">nomen latinum</sense>
+                        <sense xml:lang="en-UK">some English name</sense>
+                    </cit>
+                    <note>a remark</note>
+                </item>
             </t:expected>
         </t:case>
         <t:case type="other">
@@ -254,11 +254,13 @@
                 <t:annotationText>Latin: nomen latinum English: some English name</t:annotationText>
             </t:in>
             <t:expected>
-                <nym xml:id="d1e455" type="a type">
-                    <orth xml:lang="ota-Latn-t">no aka, no remark</orth>
-                    <sense xml:lang="la">nomen latinum</sense>
-                    <sense xml:lang="en-UK">some English name</sense>
-                </nym>
+                <item xml:id="d1e511">
+                    <name xml:lang="ota-Latn-t" type="variant">no aka, no remark</name>
+                    <cit type="translation">
+                        <sense xml:lang="la">nomen latinum</sense>
+                        <sense xml:lang="en-UK">some English name</sense>
+                    </cit>
+                </item>
             </t:expected>
         </t:case>
         <t:case type="other">
@@ -267,10 +269,12 @@
                 <t:annotationText>English: some English name</t:annotationText>
             </t:in>
             <t:expected>
-                <nym xml:id="d1e482" type="a type">
-                    <orth xml:lang="ota-Latn-t">no aka, no remark, no Latin</orth>
-                    <sense xml:lang="en-UK">some English name</sense>
-                </nym>
+                <item xml:id="d1e538">
+                    <name xml:lang="ota-Latn-t" type="variant">no aka, no remark, no Latin</name>
+                    <cit type="translation">
+                        <sense xml:lang="en-UK">some English name</sense>
+                    </cit>
+                </item>
             </t:expected>
         </t:case>
         <t:case type="other">
@@ -279,12 +283,10 @@
                 <t:annotationText>aka: some aka Deutsch: irgendwas</t:annotationText>
             </t:in>
             <t:expected>
-                <nym xml:id="d1e509" type="a type">
-                    <orth xml:lang="ota-Latn-t">garbage</orth>
-                    <ab>
-                        <note>This name is not annotated correctly! Details: "aka: some aka Deutsch: irgendwas"</note>
-                    </ab>
-                </nym>
+                <item xml:id="d1e562">
+                    <name xml:lang="ota-Latn-t" type="variant">garbage</name>
+                    <note>This name is not annotated correctly! Details: "aka: some aka Deutsch: irgendwas"</note>
+                </item>
             </t:expected>
         </t:case>
         <t:case type="other">
@@ -293,12 +295,10 @@
                 <t:annotationText>aka : some aka English: some English name</t:annotationText>
             </t:in>
             <t:expected>
-                <nym xml:id="d1e537" type="a type">
-                    <orth xml:lang="ota-Latn-t">garbage in aka</orth>
-                    <ab>
-                        <note>This name is not annotated correctly! Details: "aka : some aka English: some English name"</note>
-                    </ab>
-                </nym>
+                <item xml:id="d1e590">
+                    <name xml:lang="ota-Latn-t" type="variant">garbage in aka</name>
+                    <note>This name is not annotated correctly! Details: "aka : some aka English: some English name"</note>
+                </item>
             </t:expected>
         </t:case>
     </t:testData>
@@ -316,7 +316,7 @@
         <xsl:variable name="generated-id" select="generate-id()"/>
         <xsl:choose>
             <xsl:when test="$annotationText = ''">
-                <xsl:call-template name="tagsDeclName">
+                <xsl:call-template name="tagsIndexItemName">
                     <xsl:with-param name="annotationText" select="' '"/>
                     <xsl:with-param name="type" select="$type"/>
                     <xsl:with-param name="wordInText" select="$wordInText"/>
@@ -326,7 +326,7 @@
             <xsl:otherwise>
                 <xsl:analyze-string select="$annotationText" regex="{$remarkRegExp}">
                     <xsl:matching-substring>
-                        <xsl:call-template name="tagsDeclName">
+                        <xsl:call-template name="tagsIndexItemName">
                             <xsl:with-param name="remark"><xsl:value-of select="normalize-space(regex-group($remarkM))"/></xsl:with-param>
                             <xsl:with-param name="annotationText"><xsl:value-of select="normalize-space(regex-group($remarkMremains))"/></xsl:with-param>
                             <xsl:with-param name="type" select="$type"/>
@@ -335,7 +335,7 @@
                         </xsl:call-template>                                           
                     </xsl:matching-substring>
                     <xsl:non-matching-substring>
-                        <xsl:call-template name="tagsDeclName">
+                        <xsl:call-template name="tagsIndexItemName">
                             <xsl:with-param name="annotationText"><xsl:value-of select="$annotationText"/></xsl:with-param>
                             <xsl:with-param name="type" select="$type"/>
                             <xsl:with-param name="wordInText" select="$wordInText"/>
@@ -349,7 +349,7 @@
     <xd:doc>
         <xd:desc>Generate a description XML snippet for a person</xd:desc>
     </xd:doc>
-    <xsl:template name="tagsDeclName">
+    <xsl:template name="tagsIndexItemName">
         <xsl:param name="remark" as="xs:string" select="''"/>
         <xsl:param name="annotationText" as="xs:string"/>
         <xsl:param name="wordInText" as="xs:string"/>
@@ -362,17 +362,17 @@
             <xsl:analyze-string select="$annotationText"
                 regex="{$nameRegExp}">
                 <xsl:matching-substring>
-                    <persName xml:lang="ota-Latn-t">
+                    <persName xml:lang="ota-Latn-t" type="variant">
                         <xsl:value-of select="$wordInText"/>
-                        <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
-                            <xsl:if test="replace(., '\s', '') ne $na">
-                                <addName xml:lang="ota-Latn-t">                                                    
-                                    <xsl:value-of
-                                        select="normalize-space(.)"/>
-                                </addName>
-                            </xsl:if>
-                        </xsl:for-each>
                     </persName>
+                    <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
+                        <xsl:if test="replace(., '\s', '') ne $na">
+                            <persName xml:lang="ota-Latn-t" type="variant">                                                    
+                                <xsl:value-of
+                                    select="normalize-space(.)"/>
+                            </persName>
+                        </xsl:if>
+                    </xsl:for-each>
                     <occupation>
                         <xsl:value-of
                             select="normalize-space(regex-group($nameMprof))"/>
@@ -407,7 +407,7 @@
                     </xsl:if>
                 </xsl:matching-substring>
                 <xsl:non-matching-substring>
-                    <xsl:call-template name="tagsDeclNameRXD">
+                    <xsl:call-template name="tagsIndexItemNameRXD">
                         <xsl:with-param name="type" select="$type"/>
                         <xsl:with-param name="wordInText" select="$wordInText"/>
                         <xsl:with-param name="annotationText" select="$annotationText"/>
@@ -423,7 +423,7 @@
         <xd:desc>Workaround for an encoding error: reign and died were exchanged.
             Generate a description XML snippet for a person</xd:desc>
     </xd:doc>
-    <xsl:template name="tagsDeclNameRXD">
+    <xsl:template name="tagsIndexItemNameRXD">
         <xsl:param name="remark" as="xs:string" select="''"/>
         <xsl:param name="annotationText" as="xs:string"/>
         <xsl:param name="wordInText" as="xs:string"/>
@@ -434,15 +434,15 @@
             <xsl:matching-substring>
                 <persName xml:lang="ota-Latn-t">
                     <xsl:value-of select="$wordInText"/>
-                    <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
-                        <xsl:if test="replace(., '\s', '') ne $na">
-                            <addName xml:lang="ota-Latn-t">                                                    
-                                <xsl:value-of
-                                    select="normalize-space(.)"/>
-                            </addName>
-                        </xsl:if>
-                    </xsl:for-each>
                 </persName>
+                <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
+                    <xsl:if test="replace(., '\s', '') ne $na">
+                        <persName xml:lang="ota-Latn-t" type="variant">                                                    
+                            <xsl:value-of
+                                select="normalize-space(.)"/>
+                        </persName>
+                    </xsl:if>
+                </xsl:for-each>
                 <occupation>
                     <xsl:value-of
                         select="normalize-space(regex-group($nameMprof))"/>
@@ -477,7 +477,7 @@
                 </xsl:if>
             </xsl:matching-substring>
             <xsl:non-matching-substring>
-                <persName>
+                <persName xml:lang="ota-Latn-t">
                     <xsl:value-of select="$wordInText"/>
                 </persName>
                 <xsl:choose>
@@ -507,7 +507,7 @@
         <xsl:variable name="generated-id" select="generate-id()"/>
         <xsl:choose>
             <xsl:when test="$annotationText = ''">
-                <xsl:call-template name="tagsDeclPlace">
+                <xsl:call-template name="tagsIndexItemPlace">
                     <xsl:with-param name="annotationText" select="' '"/>
                     <xsl:with-param name="type" select="$type"/>
                     <xsl:with-param name="wordInText" select="$wordInText"/>
@@ -517,7 +517,7 @@
             <xsl:otherwise>
                 <xsl:analyze-string select="$annotationText" regex="{$remarkRegExp}">
                     <xsl:matching-substring>
-                        <xsl:call-template name="tagsDeclPlace">
+                        <xsl:call-template name="tagsIndexItemPlace">
                             <xsl:with-param name="remark"><xsl:value-of select="normalize-space(regex-group($remarkM))"/></xsl:with-param>
                             <xsl:with-param name="annotationText"><xsl:value-of select="normalize-space(regex-group($remarkMremains))"/></xsl:with-param>
                             <xsl:with-param name="type" select="$type"/>
@@ -526,7 +526,7 @@
                         </xsl:call-template>                                           
                     </xsl:matching-substring>
                     <xsl:non-matching-substring>
-                        <xsl:call-template name="tagsDeclPlace">
+                        <xsl:call-template name="tagsIndexItemPlace">
                             <xsl:with-param name="annotationText"><xsl:value-of select="$annotationText"/></xsl:with-param>
                             <xsl:with-param name="type" select="$type"/>
                             <xsl:with-param name="wordInText" select="$wordInText"/>
@@ -541,7 +541,7 @@
     <xd:doc>
         <xd:desc>Generate a description XML snippet for a place</xd:desc>
     </xd:doc>
-    <xsl:template name="tagsDeclPlace">
+    <xsl:template name="tagsIndexItemPlace">
         <xsl:param name="remark" as="xs:string" select="''"/>
         <xsl:param name="annotationText" as="xs:string"/>
         <xsl:param name="wordInText" as="xs:string"/>
@@ -558,16 +558,16 @@
                             select="if (normalize-space(regex-group($placeMtype)) ne '') then replace(normalize-space(regex-group($placeMtype)), '[ ;,:]', '_') else 'unknown'"
                         />
                     </xsl:attribute>
-                    <placeName xml:lang="ota-Latn-t">
+                    <placeName xml:lang="ota-Latn-t" type="variant">
                         <xsl:value-of select="$wordInText"/>
-                        <xsl:for-each select="tokenize(regex-group($placeMaka), '[,;]')">
-                            <addName xml:lang="ota-Latn-t">
-                                <xsl:value-of select="normalize-space(.)"/>
-                            </addName>
-                        </xsl:for-each>
-                        <addName xml:lang="en-UK">
-                            <xsl:value-of select="normalize-space(regex-group($placeMtodayN))"/>
-                        </addName>
+                    </placeName>
+                    <xsl:for-each select="tokenize(regex-group($placeMaka), '[,;]')">
+                        <placeName xml:lang="ota-Latn-t" type="variant">
+                            <xsl:value-of select="normalize-space(.)"/>
+                        </placeName>
+                    </xsl:for-each>
+                    <placeName xml:lang="en-UK">
+                        <xsl:value-of select="normalize-space(regex-group($placeMtodayN))"/>
                     </placeName>
                     <location>
                         <country>
@@ -583,7 +583,7 @@
             </xsl:matching-substring>
             <xsl:non-matching-substring>
                 <place>
-                    <placeName>
+                    <placeName xml:lang="ota-Latn-t">
                         <xsl:value-of select="$wordInText"/>
                     </placeName>
                     <xsl:choose>
@@ -610,13 +610,11 @@
         <xsl:param name="thisId" required="yes" as="xs:string?"/>
         <xsl:param name="annotationText" required="yes"/>
         <xsl:param name="wordInText" required="yes" as="xs:string"/>
-        <xsl:param name="type" required="yes" as="xs:string?"/>
         <xsl:variable name="generated-id" select="generate-id()"/>
         <xsl:choose>
             <xsl:when test="$annotationText = ''">               
-                <xsl:call-template name="tagsDeclOther">
+                <xsl:call-template name="tagsIndexItemOther">
                     <xsl:with-param name="annotationText" select="' '"/>
-                    <xsl:with-param name="type" select="$type"/>
                     <xsl:with-param name="wordInText" select="$wordInText"/>
                     <xsl:with-param name="generated-id" select="$generated-id"/>
                 </xsl:call-template>                
@@ -624,18 +622,16 @@
             <xsl:otherwise>                  
                 <xsl:analyze-string select="$annotationText" regex="{$remarkRegExp}">
                     <xsl:matching-substring>
-                        <xsl:call-template name="tagsDeclOther">
+                        <xsl:call-template name="tagsIndexItemOther">
                             <xsl:with-param name="remark" select="normalize-space(regex-group($remarkM))"/>
                             <xsl:with-param name="annotationText" select="normalize-space(regex-group($remarkMremains))"/>
-                            <xsl:with-param name="type" select="$type"/>
                             <xsl:with-param name="wordInText" select="$wordInText"/>
                             <xsl:with-param name="generated-id" select="$generated-id"/>
                         </xsl:call-template>                                           
                     </xsl:matching-substring>
                     <xsl:non-matching-substring>
-                        <xsl:call-template name="tagsDeclOther">
+                        <xsl:call-template name="tagsIndexItemOther">
                             <xsl:with-param name="annotationText"><xsl:value-of select="$annotationText"/></xsl:with-param>
-                            <xsl:with-param name="type" select="$type"/>
                             <xsl:with-param name="wordInText" select="$wordInText"/>
                             <xsl:with-param name="generated-id" select="$generated-id"/>
                         </xsl:call-template>
@@ -648,35 +644,32 @@
     <xd:doc>
         <xd:desc>Generate a description XML snippet for one of the various other entities</xd:desc>
     </xd:doc> 
-    <xsl:template name="tagsDeclOther">
+    <xsl:template name="tagsIndexItemOther">
         <xsl:param name="remark" as="xs:string" select="''"/>
         <xsl:param name="annotationText" as="xs:string"/>
         <xsl:param name="wordInText" as="xs:string"/>
-        <xsl:param name="type" as="xs:string"/>
         <xsl:param name="generated-id" as="xs:string"/>
-        <nym>
+        <item>
             <xsl:attribute name="xml:id">
                 <xsl:value-of select="$generated-id"/>
-            </xsl:attribute>
-            <xsl:attribute name="type">
-                <xsl:value-of select="$type"/>
             </xsl:attribute>
             <!--            <orth xml:lang="ota-Latn-t">
                 <xsl:value-of select="$wordInText"/>
             </orth>-->
             <!--            <xsl:if test="lower-case($wordInText) ne $wordInText">-->
-            <orth xml:lang="ota-Latn-t">
+            <name xml:lang="ota-Latn-t" type="variant">
                 <xsl:value-of select="concat(lower-case(substring($wordInText, 1, 1)), substring($wordInText, 2))"/>    
-            </orth>
+            </name>
             <!--            </xsl:if>-->
             <xsl:analyze-string select="$annotationText" regex="{$otherRegExp}">
                 <xsl:matching-substring>
                     <xsl:for-each select="tokenize(if (regex-group($otherMaka) eq '') then regex-group($otherMakaAlt) else regex-group($otherMaka), '[,;]')">
-                        <orth xml:lang="ota-Latn-t">                                                    
+                        <name xml:lang="ota-Latn-t" type="variant">                                                    
                             <xsl:value-of
                                 select="normalize-space(.)"/>
-                        </orth>
+                        </name>
                     </xsl:for-each>
+                    <cit type="translation">
                     <xsl:if test="regex-group($otherMeng) ne ''">
                         <sense xml:lang="la">
                             <xsl:value-of select="normalize-space(regex-group($otherMlat))"/>
@@ -685,32 +678,29 @@
                     <sense xml:lang="en-UK">
                         <xsl:value-of select="normalize-space(if (regex-group($otherMeng) eq '') then regex-group($otherMengAlt) else regex-group($otherMeng))"/>
                     </sense>
+                    </cit>
                     <xsl:if test="$remark ne ''">
-                        <ab>
-                            <note>
-                                <xsl:value-of select="$remark"/>
-                            </note>
-                        </ab>
+                        <note>
+                            <xsl:value-of select="$remark"/>
+                        </note>
                     </xsl:if>
                 </xsl:matching-substring>                                            
                 <xsl:non-matching-substring>
-                    <ab>
+                    <note>
                         <xsl:choose>
                             <xsl:when test="$annotationText = ' '">
-                                <note>This name is not annotated! No annotation found.</note>
+                                This name is not annotated! No annotation found.
                             </xsl:when>
                             <xsl:otherwise>
-                                <note>
-                                    <xsl:value-of
-                                        select="concat('This name is not annotated correctly! Details: &quot;', $annotationText, '&quot;')"
-                                    />
-                                </note>
+                                <xsl:value-of
+                                    select="concat('This name is not annotated correctly! Details: &quot;', $annotationText, '&quot;')"
+                                />
                             </xsl:otherwise>
                         </xsl:choose>
-                    </ab>
+                    </note>
                 </xsl:non-matching-substring>
             </xsl:analyze-string>
-        </nym>       
+        </item>       
     </xsl:template>
     
     <xsl:template match="t:testData">
@@ -758,7 +748,6 @@
                 <xsl:with-param name="thisId" select="$thisId"/>
                 <xsl:with-param name="annotationText" select="t:in/t:annotationText"/>
                 <xsl:with-param name="wordInText" select="t:in/t:wordInText"/>
-                <xsl:with-param name="type" select="$type"></xsl:with-param>
             </xsl:call-template>
         </xsl:variable>
         <xsl:sequence select="$actual"/>
