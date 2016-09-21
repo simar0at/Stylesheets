@@ -28,7 +28,7 @@
         <xsl:variable name="lcName" as="xs:string+" select="mec:getLcName($name)"/>
         <xsl:variable name="occupation" as="xs:string?" select="$commentXML//tei:occupation"/>
         <xsl:variable name="allPossibleMatchingNamesComments"
-            select="($tagsDecl//tei:person[mec:trimEntAttr((tei:persName, tei:persName/tei:addName[mec:trimEntAttr(.) != 'n.a.'])) = ($cleanName, $lcName, $name)])"/>
+            select="($tagsDecl//tei:person[mec:trimEntAttr((tei:persName[mec:trimEntAttr(.) != 'n.a.'])) = ($cleanName, $lcName, $name)])"/>
         <xsl:variable name="allPossibleMatchingComments" select="$allPossibleMatchingNamesComments"/>
         <!-- Creates more problems than it solves -->
         <!--        <xsl:variable name="allPossibleMatchingComments"
@@ -164,11 +164,11 @@
         <xsl:param name="candidate" as="element()"/>
         <xsl:param name="comment" as="element()"/>
         <xsl:param name="positionInCandidateSeq" as="xs:integer"/>
-        <xsl:variable name="ownID" as="xs:string?" select="$comment//tei:person/@xml:id | $comment//tei:place/@xml:id | $comment//tei:nym/@xml:id"/>
+        <xsl:variable name="ownID" as="xs:string?" select="$comment//tei:person/@xml:id | $comment//tei:place/@xml:id | $comment//tei:item/@xml:id"/>
         <!-- See if we already have this name tagged but with another name in the running text -->
         <!-- Here all sorts of mix and match may occur within one type. -->
-        <xsl:variable name="candidateNames" select="mec:trimEntAttr($candidate//tei:persName | $candidate//tei:placeName | $candidate//tei:orth | $candidate//tei:addName[mec:trimEntAttr(.) != 'n.a.'])"/>
-        <xsl:variable name="commentNames" select="mec:trimEntAttr($comment//tei:persName | $comment//tei:placeName | $comment//tei:orth | $comment//tei:addName[mec:trimEntAttr(.) != 'n.a.'])"/>
+        <xsl:variable name="candidateNames" select="mec:trimEntAttr($candidate//tei:persName[mec:trimEntAttr(.) != 'n.a.'] | $candidate//tei:placeName[mec:trimEntAttr(.) != 'n.a.'] | $candidate//tei:name[mec:trimEntAttr(.) != 'n.a.'])"/>
+        <xsl:variable name="commentNames" select="mec:trimEntAttr($comment//tei:persName[mec:trimEntAttr(.) != 'n.a.'] | $comment//tei:placeName[mec:trimEntAttr(.) != 'n.a.'] | $comment//tei:name[mec:trimEntAttr(.) != 'n.a.'])"/>
         <!--        <xsl:variable name="nameSimilar" as="element()*">
             <xsl:for-each select="$candidateNames">
                 <xsl:if test="some $n in $commentNames satisfies $n eq .">
@@ -241,14 +241,14 @@
             <xsl:if test="($positionInCandidateSeq eq 1 or
                 empty($candidate/@copyOf) or
                 $comment/@xml:id ne $candidate/@copyOf) and
-                not(contains($comment//tei:note, 'not determinable'))">
+                not(contains($comment/tei:note, 'not determinable'))">
                 <!-- Check of remarks/notes are part of the comment is contained in the candidate. -->
-                <xsl:if test="exists($candidate//tei:note) and exists($comment//tei:note) and
-                    contains($candidate//tei:note, $comment//tei:note)">
+                <xsl:if test="exists($candidate/tei:note) and exists($comment/tei:note) and
+                    contains($candidate/tei:note, $comment/tei:note)">
                     <mec:s type="note"/>
                 </xsl:if>        
-                <xsl:if test="exists($candidate//tei:note) and exists($comment//tei:note) and
-                    $comment//tei:note = ($candidate//tei:note, '')">
+                <xsl:if test="exists($candidate/tei:note) and exists($comment/tei:note) and
+                    $comment/tei:note = ($candidate/tei:note, '')">
                     <mec:s type="note exact"/>
                 </xsl:if>
             </xsl:if> 
@@ -289,7 +289,7 @@
         <xsl:param name="tagsDecl" as="node()+"/>
         <xsl:variable name="cleanName" as="xs:string+" select="mec:getCleanName($name)"/>
         <xsl:variable name="lcName" as="xs:string+" select="mec:getLcName($name)"/>
-        <xsl:variable name="allPossibleMatchingNamesComment" select="$tagsDecl//tei:place[mec:trimEntAttr((tei:placeName, tei:placeName/tei:addName[mec:trimEntAttr(.) != 'n.a.'])) = ($cleanName, $lcName, $name)]"/>
+        <xsl:variable name="allPossibleMatchingNamesComment" select="$tagsDecl//tei:place[mec:trimEntAttr((tei:placeName[mec:trimEntAttr(.) != 'n.a.'])) = ($cleanName, $lcName, $name)]"/>
         <xsl:variable name="allMatchingNamesComment"
             select="$allPossibleMatchingNamesComment[not(contains(.//tei:note, 'not annotated'))]"/>
         <xsl:variable name="firstMatchingNamesId" select="$allMatchingNamesComment[1]/@xml:id"/>
@@ -326,7 +326,7 @@
         <xsl:variable name="cleanName" as="xs:string+" select="mec:getCleanName($name)"/>
         <xsl:variable name="lcName" as="xs:string+" select="mec:getLcName($name)"/>
         <xsl:variable name="lcCleanName" as="xs:string+" select="mec:getCleanName(mec:getLcName($name))"/>
-        <xsl:variable name="allPossibleMatchingNamesComment" select="$tagsDecl//tei:nym[mec:trimEntAttr(./tei:orth) = ($cleanName, $lcName, $lcCleanName, $name)]"/>
+        <xsl:variable name="allPossibleMatchingNamesComment" select="$tagsDecl//tei:item[mec:trimEntAttr(./tei:name) = ($cleanName, $lcName, $lcCleanName, $name)]"/>
         <xsl:variable name="allMatchingNamesComment"
             select="$allPossibleMatchingNamesComment[not(contains(.//tei:note, 'not annotated'))]"/>
         <xsl:variable name="firstMatchingNamesId" select="$allMatchingNamesComment[1]/@xml:id"/>
@@ -350,8 +350,8 @@
                     />
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:variable>
-         <xsl:sequence select="$ret"/>
+        </xsl:variable>          
+        <xsl:sequence select="$ret"/>
     </xsl:function>    
     
 </xsl:stylesheet>

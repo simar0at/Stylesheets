@@ -876,7 +876,7 @@ This is a work in progress. If you find any new or alternative readings or have 
                     </xsl:variable>
                     <xsl:variable name="ref"
                         select="if (empty($commentN)) then mec:getRefIdOtherNames($name, '', ())
-                        else mec:getRefIdOtherNames(($name, $commentXML//tei:orth/text()), $commentN, $commentXML)"/>
+                        else mec:getRefIdOtherNames(($name, $commentXML//tei:name/text()), $commentN, $commentXML)"/>
                     <xsl:if test="exists($ref)">
                         <xsl:attribute name="ref">
                             <xsl:value-of select="$ref"/>
@@ -1078,47 +1078,21 @@ This is a work in progress. If you find any new or alternative readings or have 
     <xsl:template match="tei:persName[not(*|text())]|tei:placeName[not(*|text())]|tei:name[not(*|text())]" mode="pass2"/>    
     
     <xd:doc>
-        <xd:desc>Retain all used person references</xd:desc>
-    </xd:doc>
-    <xsl:template match="tei:person[//tei:persName/@ref = @xml:id]" mode="pass2">
-        <person>
-            <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass2"/>
-        </person>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Zap unused person referneces</xd:desc>
-    </xd:doc>
-    <xsl:template match="tei:person" mode="pass2"/>
-    
-    <xd:doc>
-        <xd:desc>Retain all used place references</xd:desc>
-    </xd:doc>
-    <xsl:template match="tei:place[//tei:placeName/@ref = @xml:id]" mode="pass2">
-        <place>
-            <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass2"/>
-        </place>
-    </xsl:template>
-    
-    <xd:doc>
         <xd:desc>Zap unused place referneces</xd:desc>
     </xd:doc>
-    <xsl:template match="tei:place" mode="pass2"/>
+    <xsl:template match="tei:person|tei:place|tei:item[parent::tei:list[@type='index']]" mode="pass2"/>
     
     <xd:doc>
-        <xd:desc>Retain all used nym references</xd:desc>
+        <xd:desc>Retain all used item references</xd:desc>
     </xd:doc>
-    <xsl:template match="tei:nym[//tei:name/@ref = @xml:id]" mode="pass2">
-        <nym>
+    <xsl:template match="tei:person[//tei:persName/@ref = @xml:id]|
+                         tei:place[//tei:placeName/@ref = @xml:id]|
+                         tei:item[//tei:name/@ref = @xml:id]" mode="pass2" priority="2">
+        <xsl:copy>
             <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass2"/>
-        </nym>
+        </xsl:copy>
     </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Zap unused nym referneces</xd:desc>
-    </xd:doc>
-    <xsl:template match="tei:nym" mode="pass2"/>
-    
+        
     <xd:doc>
         <xd:desc>Zap page breaks not marked with a reference to a particular folio</xd:desc>
     </xd:doc>
