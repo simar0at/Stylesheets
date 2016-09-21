@@ -689,7 +689,6 @@ This is a work in progress. If you find any new or alternative readings or have 
             <xsl:with-param name="annotationText"
             select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
             <xsl:with-param name="wordInText" select="mec:getCleanName(mec:words-in-text-runs(., $thisId))"/>
-            <xsl:with-param name="type" select="mec:mapStyle(./w:rPr/w:rStyle/@w:val)"/>
         </xsl:call-template>
     </xsl:template>
     
