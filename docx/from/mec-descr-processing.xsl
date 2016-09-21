@@ -37,29 +37,32 @@
         <xsl:variable name="allMatchingNameComments"
             select="$allPossibleMatchingComments[not(contains(.//tei:note[1], 'not annotated'))]"/>
         <xsl:variable name="firstMatchingNamesId" select="$allMatchingNameComments[1]/@xml:id"/>
-        <xsl:choose>
-            <xsl:when test="empty($allMatchingNameComments)">
-                <!-- Error: finds comment for the next unrelated name!! -->
-                <!--       select="concat($commentN,'-',($tagsDecl//tei:person[tei:persName/text()[1] = $name]|$tagsDecl//tei:person[tei:persName/tei:addName = $name])[1]/@xml:id)"-->
-                <xsl:value-of
-                    select="if (empty($allPossibleMatchingComments[1]/@xml:id)) then $missing_info_marker else $allPossibleMatchingComments[1]/@xml:id"
-                />
-            </xsl:when>
-            <xsl:when test="empty($commentXML)">
-                <xsl:value-of select="$firstMatchingNamesId"/>
-            </xsl:when>
-            <xsl:when test="$commentN eq ''">
-                <xsl:value-of select="$firstMatchingNamesId"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:variable name="preparedCommentXML" as="element()">
-                    <xsl:apply-templates select="$commentXML" mode="prepare-comment"/>
-                </xsl:variable>
-                <xsl:value-of
-                    select="string-join(mec:disambiguate($preparedCommentXML, $allMatchingNameComments)/@xml:id, 'error: ')"
-                />
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:variable name="ret">
+            <xsl:choose>
+                <xsl:when test="empty($allMatchingNameComments)">
+                    <!-- Error: finds comment for the next unrelated name!! -->
+                    <!--       select="concat($commentN,'-',($tagsDecl//tei:person[tei:persName/text()[1] = $name]|$tagsDecl//tei:person[tei:persName/tei:addName = $name])[1]/@xml:id)"-->
+                    <xsl:value-of
+                        select="if (empty($allPossibleMatchingComments[1]/@xml:id)) then $missing_info_marker else $allPossibleMatchingComments[1]/@xml:id"
+                    />
+                </xsl:when>
+                <xsl:when test="empty($commentXML)">
+                    <xsl:value-of select="$firstMatchingNamesId"/>
+                </xsl:when>
+                <xsl:when test="$commentN eq ''">
+                    <xsl:value-of select="$firstMatchingNamesId"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:variable name="preparedCommentXML" as="element()">
+                        <xsl:apply-templates select="$commentXML" mode="prepare-comment"/>
+                    </xsl:variable>
+                    <xsl:value-of
+                        select="string-join(mec:disambiguate($preparedCommentXML, $allMatchingNameComments)/@xml:id, 'error: ')"
+                    />
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:sequence select="$ret"/>
     </xsl:function>
         
     <xd:doc>
@@ -293,25 +296,28 @@
         <xsl:variable name="allMatchingNamesComment"
             select="$allPossibleMatchingNamesComment[not(contains(.//tei:note, 'not annotated'))]"/>
         <xsl:variable name="firstMatchingNamesId" select="$allMatchingNamesComment[1]/@xml:id"/>
-        <xsl:choose>
-            <xsl:when test="empty($allMatchingNamesComment)">
-                <xsl:value-of select="if (empty($allPossibleMatchingNamesComment[1]/@xml:id)) then $missing_info_marker else $allPossibleMatchingNamesComment[1]/@xml:id"/>                                                        
-            </xsl:when>
-            <xsl:when test="empty($commentXML)">
-                <xsl:value-of select="$firstMatchingNamesId"/>
-            </xsl:when>
-            <xsl:when test="$commentN eq ''">
-                <xsl:value-of select="$firstMatchingNamesId"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:variable name="preparedCommentXML" as="element()">
-                    <xsl:apply-templates select="$commentXML" mode="prepare-comment"/>
-                </xsl:variable>
-                <xsl:value-of
-                    select="string-join(mec:disambiguate($preparedCommentXML, $allMatchingNamesComment)/@xml:id, 'error: ')"
-                />
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:variable name="ret">
+            <xsl:choose>
+                <xsl:when test="empty($allMatchingNamesComment)">
+                    <xsl:value-of select="if (empty($allPossibleMatchingNamesComment[1]/@xml:id)) then $missing_info_marker else $allPossibleMatchingNamesComment[1]/@xml:id"/>                                                        
+                </xsl:when>
+                <xsl:when test="empty($commentXML)">
+                    <xsl:value-of select="$firstMatchingNamesId"/>
+                </xsl:when>
+                <xsl:when test="$commentN eq ''">
+                    <xsl:value-of select="$firstMatchingNamesId"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:variable name="preparedCommentXML" as="element()">
+                        <xsl:apply-templates select="$commentXML" mode="prepare-comment"/>
+                    </xsl:variable>
+                    <xsl:value-of
+                        select="string-join(mec:disambiguate($preparedCommentXML, $allMatchingNamesComment)/@xml:id, 'error: ')"
+                    />
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:sequence select="$ret"/>        
     </xsl:function>
         
     <xd:doc>
