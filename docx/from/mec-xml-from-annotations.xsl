@@ -547,9 +547,12 @@
         <xsl:param name="wordInText" as="xs:string"/>
         <xsl:param name="type" as="xs:string"/>
         <xsl:param name="generated-id" as="xs:string"/>
-        <xsl:analyze-string select="$annotationText" regex="{$placeRegExp}">
-            <xsl:matching-substring>
-                <place>
+        <place>
+            <xsl:attribute name="xml:id">
+                <xsl:value-of select="$generated-id"/>
+            </xsl:attribute>
+            <xsl:analyze-string select="$annotationText" regex="{$placeRegExp}">
+                <xsl:matching-substring>
                     <xsl:attribute name="xml:id">
                         <xsl:value-of select="$generated-id"/>
                     </xsl:attribute>
@@ -579,10 +582,9 @@
                             <xsl:value-of select="$remark"/>
                         </note>
                     </xsl:if>
-                </place>
-            </xsl:matching-substring>
-            <xsl:non-matching-substring>
-                <place>
+                    
+                </xsl:matching-substring>
+                <xsl:non-matching-substring>
                     <placeName xml:lang="ota-Latn-t">
                         <xsl:value-of select="$wordInText"/>
                     </placeName>
@@ -598,9 +600,9 @@
                             </note>
                         </xsl:otherwise>
                     </xsl:choose>
-                </place>
-            </xsl:non-matching-substring>
-        </xsl:analyze-string>       
+                </xsl:non-matching-substring>
+            </xsl:analyze-string>
+        </place>
     </xsl:template>
     
     <xd:doc>
