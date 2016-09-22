@@ -837,7 +837,7 @@ This is a work in progress. If you find any new or alternative readings or have 
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of
-                                    select="mec:getRefIdPerson(($name, $commentXML//tei:addName/text()), $commentN, $commentXML)"/>
+                                    select="mec:getRefIdPerson(($name, $commentXML//tei:persName), $commentN, $commentXML)"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
@@ -859,7 +859,7 @@ This is a work in progress. If you find any new or alternative readings or have 
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of
-                                    select="mec:getRefIdPlace(($name, $commentXML//tei:addName/text()), $commentN, $commentXML)"/>
+                                    select="mec:getRefIdPlace(($name, $commentXML//tei:placeName), $commentN, $commentXML)"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
