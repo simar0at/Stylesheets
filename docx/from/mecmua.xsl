@@ -662,7 +662,7 @@ This is a work in progress. If you find any new or alternative readings or have 
             <xsl:with-param name="thisId" select="$thisId"/>
             <xsl:with-param name="annotationText"
             select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
-            <xsl:with-param name="wordInText" select="mec:getCleanName(mec:words-in-text-runs(., $thisId))" as="xs:string"/>
+            <xsl:with-param name="wordInText" select="mec:words-in-text-runs(., $thisId)" as="xs:string"/>
             <!-- TODO: replace with lookup -->
             <xsl:with-param name="type" select="./w:rPr/w:rStyle/@w:val"
             as="xs:string?"/>            
@@ -675,7 +675,7 @@ This is a work in progress. If you find any new or alternative readings or have 
             <xsl:with-param name="thisId" select="$thisId"/>
             <xsl:with-param name="annotationText"
                 select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
-            <xsl:with-param name="wordInText" select="mec:getCleanName(mec:words-in-text-runs(., $thisId))" as="xs:string"/>
+            <xsl:with-param name="wordInText" select="mec:words-in-text-runs(., $thisId)" as="xs:string"/>
             <!-- TODO: replace with lookup -->
             <xsl:with-param name="type" select="./w:rPr/w:rStyle/@w:val"
                 as="xs:string?"/>            
@@ -688,7 +688,7 @@ This is a work in progress. If you find any new or alternative readings or have 
             <xsl:with-param name="thisId" select="$thisId"/>
             <xsl:with-param name="annotationText"
             select="if (exists($thisId)) then normalize-space(string-join($comments/w:comments/w:comment[@w:id = $thisId]//w:t, '')) else ' '"/>
-            <xsl:with-param name="wordInText" select="mec:getCleanName(mec:words-in-text-runs(., $thisId))"/>
+            <xsl:with-param name="wordInText" select="mec:words-in-text-runs(., $thisId)"/>
         </xsl:call-template>
     </xsl:template>
     
