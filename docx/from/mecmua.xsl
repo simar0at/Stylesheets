@@ -131,6 +131,9 @@
                 <xsl:sequence select="$comments"/>
             </xsl:result-document>
         </xsl:if>
+        <xsl:result-document href="tagsDecl.xml">
+            <xsl:sequence select="$tagsDecl"/>
+        </xsl:result-document>
         <xsl:apply-imports/>
     </xsl:template>
     
@@ -434,10 +437,7 @@ This is a work in progress. If you find any new or alternative readings or have 
     
     <xsl:template name="create-tei-back">
         <back>
-        <xsl:call-template name="_generateIndexLists"/>
-        <!--        <xsl:result-document href="tagsDecl.xml">
-            <xsl:call-template name="_generateTagsDecl"/>
-        </xsl:result-document>-->
+            <xsl:call-template name="_generateIndexLists"/>
         </back>
     </xsl:template>
     
@@ -735,34 +735,7 @@ This is a work in progress. If you find any new or alternative readings or have 
                 </xsl:non-matching-substring>
             </xsl:analyze-string>            
         
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Remove texts containing n.a. when comparing</xd:desc>
-    </xd:doc>
-<!--    <xsl:template match="*[contains(text()[1], 'n.a.')]" mode="prepare-comment"/>-->
-
-    <xd:doc>
-        <xd:desc>Remove attributes containing n.a. when comparing</xd:desc>
-    </xd:doc>    
-<!--    <xsl:template match="@*[contains(., 'n.a.')]" mode="prepare-comment"/>-->
-    
-    <xd:doc>
-        <xd:desc>Create a copy for comparing</xd:desc>
-    </xd:doc>
-    <xsl:template match="*" mode="prepare-comment">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="prepare-comment"/>
-        </xsl:copy>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Create a copy for comparing</xd:desc>
-    </xd:doc>
-    <xsl:template match="@*" mode="prepare-comment">
-        <xsl:copy> . </xsl:copy>
-    </xsl:template>
-    
+    </xsl:function>    
     
     <xd:doc>
         <xd:desc>Sometimes one has to override the semantic style's default color.</xd:desc>

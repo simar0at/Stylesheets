@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<back xmlns="http://www.tei-c.org/ns/1.0">
+   <listPerson>
+      <person xml:id="d24e199">
+         <persName xml:lang="ota-Latn-t" type="variant">Ebū l‑Qāsım</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Maḥmūd</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Aḥmad</persName>
+         <occupation>the Prophet of Islam</occupation>
+         <death>632</death>
+         <floruit from-custom="n.a."/>
+      </person>
+      <person xml:id="d24e368">
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Ebū l-Qāsim</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammad</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Maḥmūd</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammed Muṣṭafā</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">[Muḥammed] Muṣṭafā</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+         <occupation>the Prophet of Islam</occupation>
+         <death>632</death>
+         <floruit from-custom="n.a."/>
+      </person>
+      <person xml:id="d24e441">
+         <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammad</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammed Muṣṭafā</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammad Muṣṭafā</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammed el-Muṣṭafā</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Aḥmad</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Resūlullāh</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Ḥażret‑i Resūl</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Ḥażret‑i Resūlullāh</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Peyġamber</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Resūl</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammadin Muṣṭafā</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Muḥammad al‑Muṣṭafā</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Abī l‑Qāsimi Muḥammad</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Ḥabīb‑i ekrem</persName>
+         <persName xml:lang="ota-Latn-t" type="variant">Abi l-Qāsimi Muḥammadi bni ʿAbdillāhi bni ʿAbdilmuṭṭalib</persName>
+         <occupation>the Prophet of Islam</occupation>
+         <death>632</death>
+         <floruit from-custom="n.a."/>
+      </person>
+      <person xml:id="d24e479">
+         <persName xml:lang="ota-Latn-t">Abi [!] l‑Qāsimi // Muḥammadi bni ʿAbdillāhi bni ʿAbdilmuṭṭalib</persName>
+         <note>This name is not annotated! No annotation found.</note>
+      </person>
+      <person xml:id="d24e501">
+         <persName xml:lang="ota-Latn-t">Muḥammad</persName>
+         <note>This name is not annotated! No annotation found.</note>
+      </person>
+      <person xml:id="d24e544">
+         <persName xml:lang="ota-Latn-t" type="variant">Abū Yaʿlā</persName>
+         <occupation>qadi, one of the masters of the Ḥanbālī school in Baghdad</occupation>
+         <death>1066</death>
+         <floruit from-custom="n.a."/>
+         <note>Cf. EI2, s.v. Ibn al-Farrāʾ,</note>
+      </person>
+      <person xml:id="d24e591">
+         <persName xml:lang="ota-Latn-t" type="variant">Abī Wahb</persName>
+         <occupation>secretary, author</occupation>
+         <death>10th century</death>
+         <floruit from-custom="n.a."/>
+         <note>Cf. EI2, s.v. Ibn Wahb.</note>
+      </person>
+      <person xml:id="d24e672">
+         <persName xml:lang="ota-Latn-t" type="variant">Yaḥyā</persName>
+         <occupation>n.a.</occupation>
+         <death/>
+      </person>
+      <person xml:id="d24e708">
+         <persName xml:lang="ota-Latn-t">Yaḥyā</persName>
+         <note>This name is not annotated! No annotation found.</note>
+      </person>
+      <person xml:id="d24e2886">
+         <persName xml:lang="ota-Latn-t">Hüdāyī</persName>
+         <note>This name is not annotated! No annotation found.</note>
+      </person>
+   </listPerson>
+   <listPlace>
+      <place xml:id="d24e685" type="river">
+         <placeName xml:lang="ota-Latn-t" type="variant">Nīl</placeName>
+         <placeName xml:lang="en-UK">Nile</placeName>
+         <location>
+            <country>Egypt</country>
+         </location>
+      </place>
+      <place xml:id="d24e719">
+         <placeName xml:lang="ota-Latn-t">Nīl</placeName>
+         <note>This name is not annotated! No annotation found.</note>
+      </place>
+      <place xml:id="d24e909" type="country_name">
+         <placeName xml:lang="ota-Latn-t" type="variant">Üngürūs</placeName>
+         <placeName xml:lang="ota-Latn-t" type="variant">Macār</placeName>
+         <placeName xml:lang="en-UK">Hungary</placeName>
+         <location>
+            <country>Hungary</country>
+         </location>
+         <note>means Hungary and Hungarian</note>
+      </place>
+      <place xml:id="d24e946">
+         <placeName xml:lang="ota-Latn-t">Üngürūs</placeName>
+         <note>This name is not annotated correctly! Details: "English: title: Qānūn‑nāme‑i vilāyet‑i Üngürūs – “Code of regulations of the Hungarian province”"</note>
+      </place>
+   </listPlace>
+   <list type="index" subtype="textGenre">
+      <item xml:id="d24e560">
+         <name xml:lang="ota-Latn-t" type="variant">ḥayāti l‑qulūb</name>
+         <name xml:lang="ota-Latn-t" type="variant">Ḥayāt al‑qulūb</name>
+         <cit type="translation">
+            <sense xml:lang="en-UK"/>
+         </cit>
+      </item>
+      <item xml:id="d24e656">
+         <name xml:lang="ota-Latn-t" type="variant">ḥayāti l‑qulūb</name>
+         <note>
+                                This name is not annotated! No annotation found.
+                            </note>
+      </item>
+      <item xml:id="d24e923">
+         <name xml:lang="ota-Latn-t" type="variant">qānūn‑nāme‑i vilāyet‑i Üngürūs</name>
+         <cit type="translation">
+            <sense xml:lang="en-UK">title: Qānūn‑nāme‑i vilāyet‑i Üngürūs – “Code of regulations of the Hungarian province”</sense>
+         </cit>
+      </item>
+   </list>
+   <list type="index" subtype="astrEnt">
+      <item xml:id="d24e697">
+         <name xml:lang="ota-Latn-t" type="variant">ʿuṭārid</name>
+         <note>
+                                This name is not annotated! No annotation found.
+                            </note>
+      </item>
+      <item xml:id="d24e731">
+         <name xml:lang="ota-Latn-t" type="variant">ʿuṭārid</name>
+         <cit type="translation">
+            <sense xml:lang="en-UK">sth.</sense>
+         </cit>
+      </item>
+      <item xml:id="d24e962">
+         <name xml:lang="ota-Latn-t" type="variant">müşterī</name>
+         <note>
+                                This name is not annotated! No annotation found.
+                            </note>
+      </item>
+   </list>
+</back>

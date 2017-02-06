@@ -4,16 +4,79 @@
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:mec="http://mecmua.priv"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
-    exclude-result-prefixes="xs xd mec tei"
+    xmlns:t="urn:mec-descr-processing:test-data"
+    exclude-result-prefixes="xs xd mec tei t xsl tei"
     version="2.0">
     <xd:doc scope="stylesheet">
         <xd:desc>Merges and disambiguates entity descriptions as found in mecmua documents 
         </xd:desc>
     </xd:doc>
+    <xsl:include href="generate-common-tagsDecl-unify.xsl"/>
+    
+    <xsl:output method="xml" indent="yes"/>
         
     <!--<xsl:variable name="missing_info_marker" select="'info_missing'"/>-->
     <!-- will lead to validation failures becaus it generates ref="" -->
     <xsl:variable name="missing_info_marker" select="''"/>
+    
+    <t:tagsDeclDoc>tests/mec-descr-processing/short-indexes.xml</t:tagsDeclDoc>
+    
+    <t:testData>
+        <t:setup/>                  
+        <t:case type="name">
+            <t:in>
+                <t:name>Ebū l‑Qāsım</t:name>
+                <t:commentXML  xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="d24e199">
+                        <persName xml:lang="ota-Latn-t" type="variant">Ebū l‑Qāsım</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Maḥmūd</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Aḥmad</persName>
+                        <occupation>the Prophet of Islam</occupation>
+                        <death>632</death>
+                        <floruit from-custom="n.a."/>
+                    </person>
+                </t:commentXML>
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-Bsp.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>d24e199</t:expected>            
+        </t:case>
+        <t:case type="name">
+            <t:in>
+                <t:name>Muḥammed</t:name>
+                <t:commentXML xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="d24e368">
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Ebū l-Qāsim</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammad</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Maḥmūd</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammed Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">[Muḥammed] Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+                        <occupation>the Prophet of Islam</occupation>
+                        <death>632</death>
+                        <floruit from-custom="n.a"/>
+                    </person>
+                </t:commentXML>
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-Bsp.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>d24e199</t:expected>            
+        </t:case>
+        <t:case type="name">
+            <t:in>
+                <t:name>Muḥammad</t:name>
+                <t:commentXML/>              
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-Bsp.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>d24e199</t:expected>            
+        </t:case>
+    </t:testData>
     
     <xd:doc>
         <xd:desc>Find an id to reference for a person using an explicit tagsDecl XML fragment
@@ -62,21 +125,132 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:sequence select="$ret"/>
+        <xsl:if test="$ret">
+            <xsl:sequence select="$ret"/>
+        </xsl:if>
     </xsl:function>
-        
-    <xd:doc>
-        <xd:desc>Removes trailing whitespace only.</xd:desc>
-    </xd:doc>
-    <xsl:function name="mec:trimEntAttr" as="xs:string*">
-        <xsl:param name="nodesToClean" as="element()*"/>
-        <xsl:for-each select="($nodesToClean|$nodesToClean//*)">
-            <xsl:variable name="trimmedText" select="replace(string-join(./text(), ''), '\s+$', '')"/>
-            <xsl:if test="$trimmedText ne ''">
-                <xsl:value-of select="$trimmedText"/>
-            </xsl:if>
-        </xsl:for-each>      
-    </xsl:function>
+    
+    <t:testData>
+        <t:setup>           
+            <t:candidates xmlns="http://www.tei-c.org/ns/1.0">                   
+                <person xml:id="d24e199">
+                    <persName xml:lang="ota-Latn-t" type="variant">Ebū l‑Qāsım</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Maḥmūd</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Aḥmad</persName>
+                    <occupation>the Prophet of Islam</occupation>
+                    <death>632</death>
+                    <floruit from-custom="n.a."/>
+                </person>
+                <person xml:id="d24e368">
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Ebū l-Qāsim</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammad</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Maḥmūd</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammed Muṣṭafā</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">[Muḥammed] Muṣṭafā</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+                    <occupation>the Prophet of Islam</occupation>
+                    <death>632</death>
+                    <floruit from-custom="n.a."/>
+                </person>
+                <person xml:id="d24e441">
+                    <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammad</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammed Muṣṭafā</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammad Muṣṭafā</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammed el-Muṣṭafā</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Aḥmad</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Resūlullāh</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Ḥażret‑i Resūl</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Ḥażret‑i Resūlullāh</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Peyġamber</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Resūl</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammadin Muṣṭafā</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Muḥammad al‑Muṣṭafā</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Abī l‑Qāsimi Muḥammad</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Ḥabīb‑i ekrem</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">Abi l-Qāsimi Muḥammadi bni ʿAbdillāhi bni ʿAbdilmuṭṭalib</persName>
+                    <occupation>the Prophet of Islam</occupation>
+                    <death>632</death>
+                    <floruit from-custom="n.a."/>
+                </person>
+            </t:candidates>
+        </t:setup>
+        <t:case type="disamb">
+            <t:in>
+                <t:comment xmlns="http://www.tei-c.org/ns/1.0">                   
+                   <person xml:id="d24e199">
+                       <persName xml:lang="ota-Latn-t" type="variant">Ebū l‑Qāsım</persName>
+                       <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+                       <persName xml:lang="ota-Latn-t" type="variant">Maḥmūd</persName>
+                       <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+                       <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+                       <persName xml:lang="ota-Latn-t" type="variant">Aḥmad</persName>
+                       <occupation>the Prophet of Islam</occupation>
+                       <death>632</death>
+                       <floruit from-custom="n.a."/>
+                   </person>    
+               </t:comment>
+            </t:in>
+            <t:expectes>d24e199</t:expectes>
+        </t:case>
+        <t:case type="disamb">
+            <t:in>
+                <t:comment xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="d24e368">
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Ebū l-Qāsim</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammad</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Maḥmūd</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammed Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">[Muḥammed] Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+                        <occupation>the Prophet of Islam</occupation>
+                        <death>632</death>
+                        <floruit from-custom="n.a."/>
+                    </person>    
+                </t:comment>
+            </t:in>           
+            <t:expectes>d24e199</t:expectes>
+        </t:case>
+        <t:case type="disamb">
+            <t:in>
+                <t:comment xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="d24e441">
+                        <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammad</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammed Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammad Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammed el-Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Aḥmad</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Resūlullāh</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Ḥażret‑i Resūl</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Ḥażret‑i Resūlullāh</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Peyġamber</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Resūl</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammadin Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Muḥammad al‑Muṣṭafā</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Abī l‑Qāsimi Muḥammad</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Ḥabīb‑i ekrem</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Abi l-Qāsimi Muḥammadi bni ʿAbdillāhi bni ʿAbdilmuṭṭalib</persName>
+                        <occupation>the Prophet of Islam</occupation>
+                        <death>632</death>
+                        <floruit from-custom="n.a."/>
+                    </person>   
+                </t:comment>
+            </t:in>           
+            <t:expectes>d24e199</t:expectes>
+        </t:case>
+    </t:testData>
     
     <xd:doc>
         <xd:desc>Disambiguate by checking a comment against candidates.</xd:desc>
@@ -92,7 +266,10 @@
                 </mec:s>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:sequence select="mec:disambiguate($comment, $candidates, $similarityPoints)"/>
+        <xsl:variable name="ret" select="mec:disambiguate($comment, $candidates, $similarityPoints)"/>
+        <xsl:if test="$ret">
+            <xsl:sequence select="$ret"/>
+        </xsl:if>
     </xsl:function>
     
     <xd:doc>
@@ -280,6 +457,64 @@
             <xsl:value-of select="normalize-space(translate(., '‑/[]!?*', '-'))"/>
         </xsl:for-each>        
     </xsl:function>
+       
+    <xd:doc>
+        <xd:desc>Remove texts containing n.a. when comparing</xd:desc>
+    </xd:doc>
+    <!--    <xsl:template match="*[contains(text()[1], 'n.a.')]" mode="prepare-comment"/>-->
+    
+    <xd:doc>
+        <xd:desc>Remove attributes containing n.a. when comparing</xd:desc>
+    </xd:doc>    
+    <!--    <xsl:template match="@*[contains(., 'n.a.')]" mode="prepare-comment"/>-->
+    
+    <xd:doc>
+        <xd:desc>Create a copy for comparing</xd:desc>
+    </xd:doc>
+    <xsl:template match="*" mode="prepare-comment">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="prepare-comment"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Create a copy for comparing</xd:desc>
+    </xd:doc>
+    <xsl:template match="@*" mode="prepare-comment">
+        <xsl:copy> . </xsl:copy>
+    </xsl:template>
+    
+    <t:testData>
+        <t:setup/>                  
+        <t:case type="place">
+            <t:in>
+                <t:name>Üngürūs</t:name>
+                <t:commentXML  xmlns="http://www.tei-c.org/ns/1.0">
+                    <place xml:id="d24e909" type="country_name">
+                        <placeName xml:lang="ota-Latn-t" type="variant">Üngürūs</placeName>
+                        <placeName xml:lang="ota-Latn-t" type="variant">Macār</placeName>
+                        <placeName xml:lang="en-UK">Hungary</placeName>
+                        <location>
+                            <country>Hungary</country>
+                        </location>
+                        <note>means Hungary and Hungarian</note>
+                    </place>
+                </t:commentXML>
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-Bsp.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>d24e909</t:expected>            
+        </t:case>
+        <t:case type="place">
+            <t:in>
+                <t:name>Üngürūs</t:name>
+                <t:commentXML/>              
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-Bsp.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>d24e909</t:expected>            
+        </t:case>
+    </t:testData>
     
     <xd:doc>
         <xd:desc>Find an id to reference for a place using an explicit tagsDecl XML fragment
@@ -319,7 +554,37 @@
         </xsl:variable>
         <xsl:sequence select="$ret"/>        
     </xsl:function>
-        
+
+    <t:testData>
+        <t:setup/>                  
+        <t:case type="other">
+            <t:in>
+                <t:name>ḥayāti l‑qulūb</t:name>
+                <t:commentXML xmlns="http://www.tei-c.org/ns/1.0">
+                    <item xml:id="d24e560">
+                        <name xml:lang="ota-Latn-t" type="variant">ḥayāti l‑qulūb</name>
+                        <name xml:lang="ota-Latn-t" type="variant">Ḥayāt al‑qulūb</name>
+                        <cit type="translation">
+                            <sense xml:lang="en-UK"/>
+                        </cit>
+                    </item>
+                </t:commentXML>
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-Bsp.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>d24e560</t:expected>            
+        </t:case>
+        <t:case type="other">
+            <t:in>
+                <t:name>Ḥayāt al‑qulūb</t:name>
+                <t:commentXML/>              
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-Bsp.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>d24e560</t:expected>            
+        </t:case>
+    </t:testData>
+    
     <xd:doc>
         <xd:desc>Find an id to reference for one of the other named entities using an explicit tagsDecl XML fragment
         </xd:desc>
@@ -358,6 +623,71 @@
             </xsl:choose>
         </xsl:variable>          
         <xsl:sequence select="$ret"/>
-    </xsl:function>    
+    </xsl:function>
+    
+    <xsl:template match="t:testData">
+        <xsl:apply-templates select="t:case">
+<!--            <xsl:with-param name="thisId" select="t:setup/t:thisId" tunnel="yes"/>
+            <xsl:with-param name="type" select="t:setup/t:type" tunnel="yes"/>-->
+        </xsl:apply-templates>    
+    </xsl:template>
+    
+    <xsl:template match="t:setup"/>
+    
+    <xsl:template match="t:case[@type='disamb']">
+        <xsl:variable name="actual" select="data(mec:disambiguate(t:in/t:comment/*, ../t:setup/t:candidates/*)/@xml:id)"/>
+<!--        <xsl:variable name="comment" select="t:in/t:comment"/>
+        <xsl:variable name="actual">
+            <xsl:for-each select="../t:setup/t:candidates/*">
+                <mec:s type="envelop" ref="{./@xml:id}">
+                    <xsl:sequence select="mec:similarityPoints(., $comment, position())"/>
+                </mec:s>
+            </xsl:for-each>
+        </xsl:variable>-->
+        <xsl:if test="t:expected ne $actual">
+            <div type="case">
+                <xsl:sequence select="(data(t:in/t:comment/*/@xml:id), $actual)"/>
+            </div>
+        </xsl:if>
+    </xsl:template>
+       
+    <xsl:template match="t:case[@type='name']">
+        <xsl:variable name="tagsDecl">
+            <xsl:call-template name="unify-prepare">
+                <xsl:with-param name="c" select="doc(t:in/t:tagsDeclDoc)//tei:person"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:variable name="actual" select="mec:getRefIdPerson(t:in/t:name, t:in/t:commentN, t:in/t:commentXML/*, $tagsDecl)"/>
+        <xsl:variable name="ret" select="if ($actual ne t:expected) then (concat('Unexpectd result: ', $actual, ' for name ', t:in/t:name/text()), t:in/t:commentXML/*) else ()"/>
+        <xsl:sequence select="$ret"/>
+    </xsl:template>
+    
+    <xsl:template match="t:case[@type='place']">
+        <xsl:variable name="tagsDecl">
+            <xsl:call-template name="unify-prepare">
+                <xsl:with-param name="c" select="doc(t:in/t:tagsDeclDoc)//tei:place"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:variable name="actual" select="mec:getRefIdPlace(t:in/t:name, t:in/t:commentN, t:in/t:commentXML/*, $tagsDecl)"/>
+        <xsl:variable name="ret" select="if ($actual ne t:expected) then (concat('Unexpectd result: ', $actual, ' for name ', t:in/t:name/text()), t:in/t:commentXML/*) else ()"/>
+        <xsl:sequence select="$ret"/>
+    </xsl:template>
+    
+    <xsl:template match="t:case[@type='other']">
+        <xsl:variable name="tagsDecl">
+            <xsl:call-template name="unify-prepare">
+                <xsl:with-param name="c" select="doc(t:in/t:tagsDeclDoc)//tei:item"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <xsl:variable name="actual" select="mec:getRefIdOtherNames(t:in/t:name, t:in/t:commentN, t:in/t:commentXML/*, $tagsDecl)"/>
+        <xsl:variable name="ret" select="if ($actual ne t:expected) then (concat('Unexpectd result: ', $actual, ' for name ', t:in/t:name/text()), t:in/t:commentXML/*) else ()"/>
+        <xsl:sequence select="$ret"/>
+    </xsl:template>
+    
+    <xsl:template match="xsl:stylesheet">
+        <div type="testResults">
+            <xsl:apply-templates select="t:testData"/>
+        </div>
+    </xsl:template>  
     
 </xsl:stylesheet>

@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Indexes</title>
+         </titleStmt>
+         <publicationStmt>
+            <p>Publication Information</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Information about the source</p>
+         </sourceDesc>
+      </fileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <listPerson>
+            <person xml:id="uni_darling_d25e1606" copyOf="d25e1606">
+               <persName xml:lang="ota-Latn-t" type="variant">ʿAlī ʿAbidīn</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e1652" copyOf="d25e1652">
+               <persName xml:lang="ota-Latn-t" type="variant">Aḥmed ʿAlī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_sima_d25e19691" copyOf="d25e1890">
+               <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e1928" copyOf="d25e1928">
+               <persName xml:lang="ota-Latn-t" type="variant">ʿAlī Ḥüseyn</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e3380" copyOf="d25e3380">
+               <persName xml:lang="ota-Latn-t" type="variant">Kemālī</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammad Kamālī</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Meḥemmed Kemālī</persName>
+               <occupation>Janissary (salaried soldier in the standing infantry corps), controller of the financial administration (muqābeleci)</occupation>
+               <death>in the last years of the reign of Sultan Murād III (1574-95)</death>
+               <floruit from-custom="n.a."/>
+               <note>Meḥemmed Kemālī Defterdār-zāde; further names given in 16th and 17th century sources: İsmāʿīl, İsmāʿīl Kemāleddīn, Balāṭī-zāde; writer of the mes̱nevī on the folios 31v-49v of this manuscript and probably the actual owner of this manuscript</note>
+            </person>
+            <person xml:id="uni_darling_d25e3722" copyOf="d25e3722">
+               <persName xml:lang="ota-Latn-t" type="variant">Aḥmed Meḥmed</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e3766" copyOf="d25e3766">
+               <persName xml:lang="ota-Latn-t" type="variant">ʿAlī Süleymān</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e4998" copyOf="d25e4998">
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥasan Bedī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_ömer_d25e71178" copyOf="d25e5035">
+               <persName xml:lang="ota-Latn-t" type="variant">ʿAlī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5046" copyOf="d25e5046">
+               <persName xml:lang="ota-Latn-t" type="variant">Fīrūz</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5090" copyOf="d25e5090">
+               <persName xml:lang="ota-Latn-t" type="variant">ʿAlī Mürīd Aġa</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5117" copyOf="d25e5117">
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥüsrev Bayrām</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5451" copyOf="d25e5451">
+               <persName xml:lang="ota-Latn-t" type="variant">Fīrūz Ḥüseyn</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5488" copyOf="d25e5488">
+               <persName xml:lang="ota-Latn-t" type="variant">Süleymān </persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5497" copyOf="d25e5497">
+               <persName xml:lang="ota-Latn-t" type="variant">Bedī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5541" copyOf="d25e5541">
+               <persName xml:lang="ota-Latn-t" type="variant">Velī Ḥüseyn</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5579" copyOf="d25e5579">
+               <persName xml:lang="ota-Latn-t" type="variant">Tüccār Beşīr</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5902" copyOf="d25e5902">
+               <persName xml:lang="ota-Latn-t" type="variant">Bedī Ḥüseyn Aġa</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5929" copyOf="d25e5929">
+               <persName xml:lang="ota-Latn-t" type="variant">Bayrām ʿĀbidīn</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e5973" copyOf="d25e5973">
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥüseyn Bayrām Aġa</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e6000" copyOf="d25e6000">
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥüseyn ʿAbdī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e6350" copyOf="d25e6350">
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥüsrev Sinān</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e6388" copyOf="d25e6388">
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥasan Sinān</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e6432" copyOf="d25e6432">
+               <persName xml:lang="ota-Latn-t" type="variant">Receb ʿĀbidīn Aġa</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e6467" copyOf="d25e6467">
+               <persName xml:lang="ota-Latn-t" type="variant">Aḥmed Sinān</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e6793" copyOf="d25e6793">
+               <persName xml:lang="ota-Latn-t" type="variant">Fīrūz Ḫürrem</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_sima_d25e20006" copyOf="d25e6841">
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥasan</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e6895" copyOf="d25e6895">
+               <persName xml:lang="ota-Latn-t" type="variant">ʿAlī ʿĀbidīn Dündār</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e6920" copyOf="d25e6920">
+               <persName xml:lang="ota-Latn-t" type="variant">Receb Şaʿbān</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e7814" copyOf="d25e7814">
+               <persName xml:lang="ota-Latn-t" type="variant">Aḥmed Süleymān</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e7838" copyOf="d25e7838">
+               <persName xml:lang="ota-Latn-t" type="variant">Süleymān Bayrām</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e8361" copyOf="d25e8361">
+               <persName xml:lang="ota-Latn-t" type="variant">Fīrūz Bedī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_darling_d25e8384" copyOf="d25e8384">
+               <persName xml:lang="ota-Latn-t" type="variant">Fīrūz Ḥasan</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_hausmittel_d25e3359" copyOf="d25e13921">
+               <persName xml:lang="ota-Latn-t" type="variant">Zeyd</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d25e32802" copyOf="d25e13953">
+               <persName xml:lang="ota-Latn-t" type="variant">Beşr</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d25e1301" copyOf="d25e13985">
+               <persName xml:lang="ota-Latn-t" type="variant">Bekr</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_hausmittel_d25e3374" copyOf="d25e14017">
+               <persName xml:lang="ota-Latn-t" type="variant">ʿAmr</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in various documents</note>
+            </person>
+            <person xml:id="uni_darling_d25e20043" copyOf="d25e20043">
+               <persName xml:lang="ota-Latn-t" type="variant">Sinān Paşa</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Sinān</persName>
+               <occupation>the master of the standards, tents and the military band of the sultan (mīr‑i ʿalem), commander of the Janissary Corps (yeñiçeri aġası), governor general of Buda (beglerbegi), governor general of Rūmėli, grand vizier</occupation>
+               <death>September 1590</death>
+               <floruit from-custom="n.a."/>
+               <note>aka: Yūsuf Paşa; cf. Selânikî Mustafa Efendi: Tarih-i Selânikî.</note>
+            </person>
+            <person xml:id="uni_hausmittel_d25e9781" copyOf="d25e20201">
+               <persName xml:lang="ota-Latn-t" type="variant">Yūsuf</persName>
+               <occupation>Biblical prophet</occupation>
+               <death/>
+               <note>Yūsuf bin Yaʿqūb, Joseph; “…, in the Ḳurʾān and later Islamic literature parallels, the Joseph of the Hebrew Bible and Jewish and Christian tradition.” cf. EI2, s.v. Yūsuf .</note>
+            </person>
+            <person xml:id="uni_darling_d25e26581" copyOf="d25e26581">
+               <persName xml:lang="ota-Latn-t" type="variant">Bū ʿAlī</persName>
+               <occupation>physician, philosopher</occupation>
+               <death>1037</death>
+               <floruit from-custom="n.a."/>
+               <note>Avicenna; cf. EI2, s.v. Ibn Sīnā.</note>
+            </person>
+            <person xml:id="uni_darling_d25e41962" copyOf="d25e26969">
+               <persName xml:lang="ota-Latn-t" type="variant">Murād</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Murādī</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Murād Ḫān</persName>
+               <occupation>Sultan and poet</occupation>
+               <death>1595</death>
+               <floruit from-custom="1574" to-custom="1595"/>
+               <note>Murād bin Selīm; Sultan Murād III</note>
+            </person>
+            <person xml:id="uni_hausmittel_d25e129" copyOf="d25e27293">
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammad</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammed</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Maḥmūd</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muṣṭafā</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Aḥmed</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammed Muṣṭafā</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammed el‑Muṣṭafā</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Peyġamber</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥażret‑i Re‑ // sūl</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammadin Muṣṭafā</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammadin il‑Muṣṭafā</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Resūlullāh</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Resūl</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥażret‑i Resūl</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammad Muṣṭafā</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammed el-Muṣṭafā</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Aḥmad</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥażret‑i Resūlullāh</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammad al‑Muṣṭafā</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Abī l‑Qāsimi Muḥammad</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Ḥabīb‑i ekrem</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Abi l-Qāsimi Muḥammadi bni ʿAbdillāhi bni ʿAbdilmuṭṭalib</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammad al-Muṣṭafā</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Peyġamper</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Resūl Ḥażret</persName>
+               <persName xml:lang="ota-Latn-t" type="variant">Muḥammed // Muṣṭafā</persName>
+               <occupation>the Prophet of Islam</occupation>
+               <death>632</death>
+               <floruit from-custom="n.a."/>
+            </person>
+         </listPerson>
+          <listPlace>
+              <place xml:id="uni_faide_d25e402" copyOf="d25e1457" type="town">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Budūn</placeName>
+                  <placeName xml:lang="ota-Latn-t" type="variant">Būdīm</placeName>
+                  <placeName xml:lang="ota-Latn-t" type="variant">Būdīn</placeName>
+                  <placeName xml:lang="en-UK">Budapest</placeName>
+                  <placeName xml:lang="ota-Latn-t" type="variant">Būdūn</placeName>
+                  <location>
+                      <country>Hungary</country>
+                  </location>
+                  <note>today that part of Budapest which is west from the Danube; Hungarian: Buda</note>
+              </place>
+              <place xml:id="uni_faide_d25e138445" copyOf="d25e8800" type="country_name">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Üngürūs</placeName>
+                  <placeName xml:lang="ota-Latn-t" type="variant">Macār</placeName>
+                  <placeName xml:lang="en-UK">Hungary</placeName>
+                  <placeName xml:lang="ota-Latn-t" type="variant">Māçār</placeName>
+                  <location>
+                      <country>Hungary</country>
+                  </location>
+                  <note>means Hungary and Hungarian</note>
+              </place>
+              <place xml:id="uni_hausmittel_d25e9761"
+                  copyOf="d25e20331"
+                  type="country_name">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Mıṣr</placeName>
+                  <placeName xml:lang="ota-Latn-t" type="variant">Mıṣır</placeName>
+                  <placeName xml:lang="en-UK">Egypt</placeName>
+                  <location>
+                      <country>Egypt</country>
+                  </location>
+              </place>
+              <place xml:id="uni_ömer_d25e28802" copyOf="d25e27018" type="town">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Yanıq</placeName>
+                  <placeName xml:lang="en-UK">Győr</placeName>
+                  <location>
+                      <country>northwest Hungary</country>
+                  </location>
+                  <note>German: Raab; conquered by the Ottomans in 1594 (reconquered by the Austrians in 1598</note>
+              </place>
+              <place xml:id="uni_darling_d25e27282"
+                  copyOf="d25e27282"
+                  type="land__name_of_people">
+                  <placeName xml:lang="ota-Latn-t" type="variant">ʿOs̱mānīye</placeName>
+                  <placeName xml:lang="en-UK">Ottoman, Ottoman Empire, Ottoman lands</placeName>
+                  <location>
+                      <country>n.a.</country>
+                  </location>
+              </place>
+              <place xml:id="uni_darling_d25e28089" copyOf="d25e28089" type="river">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Ṭūna</placeName>
+                  <placeName xml:lang="en-UK">Danube, Donau, Tuna</placeName>
+                  <location>
+                      <country>n.a.</country>
+                  </location>
+              </place>
+              <place xml:id="uni_darling_d25e28104" copyOf="d25e28104" type="town">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Qomārān</placeName>
+                  <placeName xml:lang="en-UK">Komárno</placeName>
+                  <location>
+                      <country>Slovakia</country>
+                  </location>
+                  <note>Hungarian: Komárom, German: Komorn</note>
+              </place>
+              <place xml:id="uni_ömer_d25e28321" copyOf="d25e28293" type="town">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Peç</placeName>
+                  <placeName xml:lang="ota-Latn-t" type="variant">Beç</placeName>
+                  <placeName xml:lang="en-UK">Vienna</placeName>
+                  <placeName xml:lang="ota-Latn-t" type="variant">Bec</placeName>
+                  <location>
+                      <country>Austria</country>
+                  </location>
+                  <note>Peç is actually the name used for Fünfkirchen, Pećs in Hungary (also Beçūy, Peçūy) but as there is following the term “qıralını” it is likelier that Vienna is meant</note>
+              </place>
+              <place xml:id="uni_ömer_d25e28364"
+                  copyOf="d25e28317"
+                  type="country_name__name_of_people">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Alaman</placeName>
+                  <placeName xml:lang="en-UK">Germany; German</placeName>
+                  <placeName xml:lang="ota-Latn-t" type="variant">Alamān</placeName>
+                  <location>
+                      <country>Germany</country>
+                  </location>
+              </place>
+              <place xml:id="uni_ömer_d25e26649" copyOf="d25e28955" type="town">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Sigetvār</placeName>
+                  <placeName xml:lang="en-UK">Szigetvár</placeName>
+                  <location>
+                      <country>Southern Hungary</country>
+                  </location>
+                  <note>town in Baranya County</note>
+              </place>
+              <place xml:id="uni_darling_d25e29031" copyOf="d25e29031" type="town">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Segedīn</placeName>
+                  <placeName xml:lang="en-UK">Szeged, Szegedin</placeName>
+                  <location>
+                      <country>Hungary</country>
+                  </location>
+                  <note>county town of Csongrád county</note>
+              </place>
+              <place xml:id="uni_darling_d25e29083"
+                  copyOf="d25e29083"
+                  type="name_of_people">
+                  <placeName xml:lang="ota-Latn-t" type="variant">Türk</placeName>
+                  <placeName xml:lang="ota-Latn-t" type="variant">Etrāk</placeName>
+                  <placeName xml:lang="en-UK">Turkish</placeName>
+                  <location>
+                      <country>n.a.</country>
+                  </location>
+              </place>
+          </listPlace>
+          <list type="index" subtype="illness">
+              <item xml:id="uni_darling_d25e592" copyOf="d25e592">
+                  <name xml:lang="ota-Latn-t" type="variant">qulaq ṣaġırlıġı</name>
+                  <name xml:lang="ota-Latn-t" type="variant">qulaq kim işitmez ola</name>
+                  <cit type="translation">
+                      <sense xml:lang="la">Surditas</sense>
+                      <sense xml:lang="en-UK">Deafness</sense>
+                  </cit>
+              </item>
+              <item xml:id="uni_darling_d25e162195" copyOf="d25e162195">
+                  <name xml:lang="ota-Latn-t" type="variant">cıban</name>
+                  <cit type="translation">
+                      <sense xml:lang="la">Ulcus</sense>
+                      <sense xml:lang="en-UK">Ulcer (blister, blain)</sense>
+                  </cit>
+              </item>
+              <item xml:id="uni_darling_d25e185021" copyOf="d25e185021">
+                  <name xml:lang="ota-Latn-t" type="variant">ḥabs‑i bevl</name>
+                  <cit type="translation">
+                      
+                      <sense xml:lang="en-UK">suppressing the urge to urinate</sense>
+                  </cit>
+                  <note>can mean also: Urinary retention; ischuria</note>
+              </item>
+              <item xml:id="uni_faide_d25e58954" copyOf="d25e190204">
+                  <name xml:lang="ota-Latn-t" type="variant">nāzile</name>
+                  <name>Nāzile</name>
+                  <cit type="translation">
+                      <sense xml:lang="la">Destillatio</sense>
+                      <sense xml:lang="en-UK">Rhinitis</sense>
+                  </cit>
+              </item>
+          </list>
+          <list type="index" subtype="auxSubst">
+              <item xml:id="uni_faide_d25e40946" copyOf="d25e613">
+                  <name>ṣarb sirke</name>
+                  <cit type="translation">
+                      
+                      <sense xml:lang="en-UK">Sour vinegar</sense>
+                  </cit>
+              </item>
+              <item xml:id="uni_darling_d25e52333" copyOf="d25e52333">
+                  <name xml:lang="ota-Latn-t" type="variant">rūġan‑i bādām</name>
+                  <name xml:lang="ota-Latn-t" type="variant">dühn‑i bādem</name>
+                  <cit type="translation">
+                      <sense xml:lang="la">Oleum amygdalae</sense>
+                      <sense xml:lang="en-UK">Almond oil</sense>
+                  </cit>
+              </item>
+              <item xml:id="uni_darling_d25e52389" copyOf="d25e52389">
+                  <name xml:lang="ota-Latn-t" type="variant">nafṭ</name>
+                  <cit type="translation">
+                      
+                      <sense xml:lang="en-UK">Naphtha</sense>
+                  </cit>
+              </item>
+              <item xml:id="uni_darling_d25e183290" copyOf="d25e183290">
+                  <name xml:lang="ota-Latn-t" type="variant">gül‑be‑şeker</name>
+                  <cit type="translation">
+                      
+                      <sense xml:lang="en-UK">rose jam</sense>
+                  </cit>
+              </item>
+              <item xml:id="uni_darling_d25e183402" copyOf="d25e183402">
+                  <name xml:lang="ota-Latn-t" type="variant">nān</name>
+                  <name xml:lang="ota-Latn-t" type="variant">etmek</name>
+                  <cit type="translation">
+                      <sense xml:lang="la">Panis</sense>
+                      <sense xml:lang="en-UK">Bread</sense>
+                  </cit>
+              </item>
+              <item xml:id="uni_darling_d25e189421" copyOf="d25e189421">
+                  <name xml:lang="ota-Latn-t" type="variant">maʿcūn</name>
+                  <cit type="translation">
+                      
+                      <sense xml:lang="en-UK">paste</sense>
+                  </cit>
+              </item>
+              <item xml:id="uni_faide_d25e42596" copyOf="d25e190115">
+                  <name>zeyt yaġı</name>
+                  <cit type="translation">
+                      <sense xml:lang="la">Oleum</sense>
+                      <sense xml:lang="en-UK">Olive oil</sense>
+                  </cit>
+              </item>
+              <item xml:id="uni_faide_d25e28287" copyOf="d25e190297">
+                  <name>sirke</name>
+                  <cit type="translation">
+                      <sense xml:lang="la">Acetum</sense>
+                      <sense xml:lang="en-UK">Vinegar</sense>
+                  </cit>
+              </item>
+          </list>
+      </body>
+   </text>
+</TEI>
