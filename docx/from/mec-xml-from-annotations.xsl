@@ -3,14 +3,15 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:t="urn:mec-xml-from-annotations:test-data"
+    xmlns:mec="http://mecmua.priv"
     xmlns="http://www.tei-c.org/ns/1.0"
-    exclude-result-prefixes="xs xd t"
+    exclude-result-prefixes="xs xd mec t"
     version="2.0">
     <xd:doc scope="stylesheet">
         <xd:desc>Contains templates that parse annotation strings to generate XML
         </xd:desc>
-    </xd:doc>
-        
+    </xd:doc> 
+    
     <xsl:output method="xml" indent="yes"/>
     
     <xd:doc>
@@ -363,13 +364,13 @@
                 regex="{$nameRegExp}">
                 <xsl:matching-substring>
                     <persName xml:lang="ota-Latn-t" type="variant">
-                        <xsl:value-of select="$wordInText"/>
+                        <xsl:value-of select="mec:getCleanName($wordInText)"/>
                     </persName>
                     <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
                         <xsl:if test="replace(., '\s', '') ne $na">
                             <persName xml:lang="ota-Latn-t" type="variant">                                                    
                                 <xsl:value-of
-                                    select="normalize-space(.)"/>
+                                    select="mec:getCleanName(.)"/>
                             </persName>
                         </xsl:if>
                     </xsl:for-each>
@@ -433,13 +434,13 @@
             regex="{$nameRegExpRXD}">
             <xsl:matching-substring>
                 <persName xml:lang="ota-Latn-t">
-                    <xsl:value-of select="$wordInText"/>
+                    <xsl:value-of select="mec:getCleanName($wordInText)"/>
                 </persName>
                 <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
                     <xsl:if test="replace(., '\s', '') ne $na">
                         <persName xml:lang="ota-Latn-t" type="variant">                                                    
                             <xsl:value-of
-                                select="normalize-space(.)"/>
+                                select="mec:getCleanName(.)"/>
                         </persName>
                     </xsl:if>
                 </xsl:for-each>
@@ -478,7 +479,7 @@
             </xsl:matching-substring>
             <xsl:non-matching-substring>
                 <persName xml:lang="ota-Latn-t">
-                    <xsl:value-of select="$wordInText"/>
+                    <xsl:value-of select="mec:getCleanName($wordInText)"/>
                 </persName>
                 <xsl:choose>
                     <xsl:when test="$annotationText = ' '">
@@ -493,6 +494,16 @@
             </xsl:non-matching-substring>
         </xsl:analyze-string>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>replaces a binding dash with a simple dash, replaces annotation markers /[]!?*</xd:desc>
+    </xd:doc>
+    <xsl:function name="mec:getCleanName" as="xs:string+">
+        <xsl:param name="name" as="xs:string+"/>
+        <xsl:for-each select="$name">
+            <xsl:value-of select="normalize-space(translate(., '‑/[]!?*', '-'))"/>
+        </xsl:for-each>        
+    </xsl:function>
     
     <xd:doc>
         <xd:desc>Try parse a description for a place
@@ -562,11 +573,11 @@
                         />
                     </xsl:attribute>
                     <placeName xml:lang="ota-Latn-t" type="variant">
-                        <xsl:value-of select="$wordInText"/>
+                        <xsl:value-of select="mec:getCleanName($wordInText)"/>
                     </placeName>
                     <xsl:for-each select="tokenize(regex-group($placeMaka), '[,;]')">
                         <placeName xml:lang="ota-Latn-t" type="variant">
-                            <xsl:value-of select="normalize-space(.)"/>
+                            <xsl:value-of select="mec:getCleanName(.)"/>
                         </placeName>
                     </xsl:for-each>
                     <placeName xml:lang="en-UK">
@@ -586,7 +597,7 @@
                 </xsl:matching-substring>
                 <xsl:non-matching-substring>
                     <placeName xml:lang="ota-Latn-t">
-                        <xsl:value-of select="$wordInText"/>
+                        <xsl:value-of select="mec:getCleanName($wordInText)"/>
                     </placeName>
                     <xsl:choose>
                         <xsl:when test="$annotationText = ' '">
@@ -660,7 +671,7 @@
             </orth>-->
             <!--            <xsl:if test="lower-case($wordInText) ne $wordInText">-->
             <name xml:lang="ota-Latn-t" type="variant">
-                <xsl:value-of select="concat(lower-case(substring($wordInText, 1, 1)), substring($wordInText, 2))"/>    
+                <xsl:value-of select="mec:getCleanName(concat(lower-case(substring($wordInText, 1, 1)), substring($wordInText, 2)))"/>    
             </name>
             <!--            </xsl:if>-->
             <xsl:analyze-string select="$annotationText" regex="{$otherRegExp}">
@@ -668,7 +679,7 @@
                     <xsl:for-each select="tokenize(if (regex-group($otherMaka) eq '') then regex-group($otherMakaAlt) else regex-group($otherMaka), '[,;]')">
                         <name xml:lang="ota-Latn-t" type="variant">                                                    
                             <xsl:value-of
-                                select="normalize-space(.)"/>
+                                select="mec:getCleanName(.)"/>
                         </name>
                     </xsl:for-each>
                     <cit type="translation">

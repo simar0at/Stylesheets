@@ -44,7 +44,6 @@
     <xsl:output method="xml" indent="yes"/>
     
     <xsl:include href="mec-descr-processing.xsl"/>
-    <xsl:include href="mec-xml-from-annotations.xsl"/>
     
     <xd:doc>
         <xd:desc>Links to facsimile need to be offset
@@ -627,19 +626,29 @@ This is a work in progress. If you find any new or alternative readings or have 
     <xsl:template name="_generateIndexLists">
         <!-- context of caller (=$pass0) -->
         <xsl:variable name="names" select="$pass0//w:r[descendant::w:rStyle/@w:val=$nameStyle]"/>
+        <xsl:variable name="namesXML" as="element(tei:person)*">           
+            <xsl:for-each select="$names">
+                <xsl:call-template name="_generatePersonNameXML"/>
+            </xsl:for-each>    
+        </xsl:variable>
         <xsl:variable name="places" select="$pass0//w:r[descendant::w:rStyle/@w:val=$placeStyle]"/>
+        <xsl:variable name="placesXML" as="element(tei:place)*">           
+            <xsl:for-each select="$places">
+                <xsl:call-template name="_generatePlaceNameXML"/>
+            </xsl:for-each>    
+        </xsl:variable>
         <xsl:if test="exists($pass0//w:rStyle[@w:val=$nameStyle])">
             <listPerson>
-                <xsl:for-each select="$names">
-                    <xsl:call-template name="_generatePersonNameXML"/>
-                </xsl:for-each>
+                <xsl:call-template name="unify-prepare">
+                    <xsl:with-param name="c" select="$namesXML"/>
+                </xsl:call-template>
             </listPerson>                    
         </xsl:if>
         <xsl:if test="exists($pass0//w:rStyle[@w:val=$placeStyle])">
             <listPlace>
-                <xsl:for-each select="$places">
-                    <xsl:call-template name="_generatePlaceNameXML"/>
-                </xsl:for-each>
+                <xsl:call-template name="unify-prepare">
+                    <xsl:with-param name="c" select="$placesXML"/>
+                </xsl:call-template>
             </listPlace>            
         </xsl:if>
         <xsl:if test="exists($pass0//w:rStyle[@w:val=$otherStyles])">
@@ -647,10 +656,15 @@ This is a work in progress. If you find any new or alternative readings or have 
                 group-by="mec:mapStyle(./descendant::w:rStyle/@w:val)">
                 <xsl:variable name="currentStyle" select="current-grouping-key()"/>
                 <xsl:variable name="otherNames" select="current-group()"/>
-                <list type="index" subtype="{$currentStyle}">
+                <xsl:variable name="otherNamesXML" as="element(tei:item)*">                    
                     <xsl:for-each select="$otherNames">
                         <xsl:call-template name="_generateOtherNameXML"/>
-                    </xsl:for-each>
+                    </xsl:for-each>                    
+                </xsl:variable>
+                <list type="index" subtype="{$currentStyle}">
+                    <xsl:call-template name="unify-prepare">
+                        <xsl:with-param name="c" select="$otherNamesXML"/>
+                    </xsl:call-template>
                 </list>
             </xsl:for-each-group>           
         </xsl:if>

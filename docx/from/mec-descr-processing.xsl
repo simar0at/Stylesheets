@@ -12,6 +12,7 @@
         </xd:desc>
     </xd:doc>
     <xsl:include href="generate-common-tagsDecl-unify.xsl"/>
+    <xsl:include href="mec-xml-from-annotations.xsl"/>
     
     <xsl:output method="xml" indent="yes"/>
         
@@ -22,7 +23,16 @@
     <t:tagsDeclDoc>tests/mec-descr-processing/short-indexes.xml</t:tagsDeclDoc>
     
     <t:testData>
-        <t:setup/>                  
+        <t:setup/>
+        <t:case type="name">
+            <t:in>
+                <t:name>Abi [!] l-Qāsimi // Muḥammadi bni ʿAbdillāhi bni ʿAbdilmuṭṭalib</t:name>
+                <t:commentXML/>              
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-Faide.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>d25e57</t:expected>            
+        </t:case>                  
         <t:case type="name">
             <t:in>
                 <t:name>Ebū l‑Qāsım</t:name>
@@ -446,16 +456,6 @@
         <xsl:for-each select="$name">
             <xsl:value-of select="concat(lower-case(substring(., 1, 1)), substring(., 2))"/>
         </xsl:for-each>
-    </xsl:function>
-    
-    <xd:doc>
-        <xd:desc>replaces a binding dash with a simple dash, replaces annotation markers /[]!?*</xd:desc>
-    </xd:doc>
-    <xsl:function name="mec:getCleanName" as="xs:string+">
-        <xsl:param name="name" as="xs:string+"/>
-        <xsl:for-each select="$name">
-            <xsl:value-of select="normalize-space(translate(., '‑/[]!?*', '-'))"/>
-        </xsl:for-each>        
     </xsl:function>
        
     <xd:doc>
