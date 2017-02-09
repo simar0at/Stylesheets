@@ -88,6 +88,19 @@
         <t:case type="group-key">
             <t:in>
                 <t:c xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="d25e90546">
+                        <persName xml:lang="ota-Latn-t" type="variant">Kākāʾil</persName>
+                        <occupation>angel</occupation>
+                        <death>n.a.</death>
+                        <floruit from-custom="n.a."/>
+                    </person>
+                </t:c>
+            </t:in>
+            <t:expected>angeln.a.n.a.Kākāʾil</t:expected>
+        </t:case>
+        <t:case type="group-key">
+            <t:in>
+                <t:c xmlns="http://www.tei-c.org/ns/1.0">
                     <place xml:id="d25e116889" type="unknown">
                         <placeName xml:lang="ota-Latn-t" type="variant">...</placeName>
                         <location>
@@ -113,6 +126,21 @@
             </t:in>
             <t:expected>Ḫvārezm Shah122012001220s.v. Khwārazm-Shāhs</t:expected>
         </t:case>
+        <t:case type="group-key">
+            <t:in>
+                <t:c xmlns="http://www.tei-c.org/ns/1.0">
+                    <place xml:id="d25e36444" type="halting_place__residence">
+                        <placeName xml:lang="ota-Latn-t" type="variant">Elmalu</placeName>
+                        <placeName xml:lang="en-UK">n.a.</placeName>
+                        <location>
+                            <country>n.a.</country>
+                        </location>
+                        <note>place is not determinable</note>
+                    </place>
+                </t:c>
+            </t:in>
+            <t:expected>halting_place__residencen.a.n.a.Elmalu</t:expected>
+        </t:case>
     </t:testData>
 
     <xsl:function name="local:gen-group-key" as="xs:string">
@@ -121,7 +149,9 @@
         <xsl:variable name="placeKey" select="concat($c/@type, $c/tei:placeName[@xml:lang = 'en-UK'], $c/tei:location/tei:country)" as="xs:string"/>
         <xsl:variable name="otherKey" select="string-join($c/tei:cit/tei:sense, '')" as="xs:string"/>
         <xsl:variable name="nameKeyIfIdentityUndeterminable" select="if (lower-case($c/tei:note) eq 'not determinable' or 
+                                                                         contains(lower-case($c/tei:occupation), 'angel') or
                                                                          contains(lower-case($c/tei:note), 'identity is not determinable') or
+                                                                         contains(lower-case($c/tei:note), 'place is not determinable') or
                                                                          contains(lower-case($c/tei:note), 'involved party occurring in a fatwa') or
                                                                          $c/@type eq 'unknown')
                                                                      then $c/(tei:persName|tei:placeName|tei:name)[1] 
@@ -161,9 +191,9 @@
                     <xsl:variable name="otherElements">
                         <xsl:for-each select="$whole-group except .">
                             <xsl:element name="{local-name()}" namespace="{namespace-uri()}">
-                                <xsl:attribute name="group-key">
+<!--                                <xsl:attribute name="group-key">
                                     <xsl:value-of select="$group-key"/>
-                                </xsl:attribute>
+                                </xsl:attribute>  -->                       
                                 <xsl:sequence
                                     select="@* | (tei:persName | tei:placeName | tei:name)[1] | * except (tei:persName | tei:placeName | tei:name | tei:note)"/>
                                 <note xmlns="http://www.tei-c.org/ns/1.0">not annotated annotation moved</note>
@@ -183,7 +213,7 @@
     <t:testData_>
         <t:case type="unify">
             <t:in>
-                <t:indexListsDoc>tests/mec-descr-processing/tagsDecl-Bsp.xml</t:indexListsDoc>
+                <t:indexListsPreparedDoc>tests/mec-descr-processing/tagsDecl-Bsp.xml</t:indexListsPreparedDoc>
                 <t:copyUsed>false</t:copyUsed>
             </t:in>
             <t:expected/>
@@ -191,17 +221,22 @@
     </t:testData_>
 
     <xsl:template match="tei:listPerson | tei:listPlace | tei:list" mode="unify">
-        <xsl:param name="indexLists" tunnel="yes"/>
+        <xsl:param name="indexListsPrepared" tunnel="yes"/>
         <xsl:variable name="prepared" as="element()">
-            <xsl:element name="{local-name()}" namespace="{namespace-uri()}">
+            <xsl:element name="{local-name()}" namespace="{namespace-uri()}">                
+                <xsl:sequence select="@*"/>
                 <xsl:call-template name="unify-prepare">
-                    <xsl:with-param name="c" select="tei:person | tei:place | tei:item"/>
+                    <xsl:with-param name="c"
+                        select="$indexListsPrepared//(tei:person | tei:place | tei:item)"/>
                 </xsl:call-template>
             </xsl:element>
         </xsl:variable>
-        <xsl:apply-templates mode="unify">
-            <xsl:with-param name="indexLists" select="$prepared" tunnel="yes"/>
-        </xsl:apply-templates>
+        <xsl:element name="{local-name()}" namespace="{namespace-uri()}">
+            <xsl:sequence select="@*"/>
+            <xsl:apply-templates mode="unify">
+                <xsl:with-param name="indexListsPrepared" select="$prepared" tunnel="yes"/>
+            </xsl:apply-templates>
+        </xsl:element>
     </xsl:template>
 
     <xd:doc>
@@ -213,29 +248,29 @@
     <xsl:template match="tei:person | tei:place | tei:item" mode="unify">
         <xsl:param name="group-key" select="''"/>
         <xsl:param name="copyUsed" select="true()" tunnel="yes" as="xs:boolean"/>
-        <xsl:param name="indexLists" required="yes" tunnel="yes" as="element()"/>
+        <xsl:param name="indexListsPrepared" required="yes" tunnel="yes" as="element()"/>
         <xsl:variable name="existingUnifiedRefId">
             <xsl:choose>
                 <xsl:when test=". instance of element(tei:person)">
                     <xsl:value-of
-                        select="mec:getRefIdPerson(mec:trimEntAttr((tei:persName[not(mec:trimEntAttr(.) = 'n.a.')])), '???', ., $indexLists)"
+                        select="mec:getRefIdPerson(mec:trimEntAttr((tei:persName[not(mec:trimEntAttr(.) = 'n.a.')])), '???', ., $indexListsPrepared)"
                     />
                 </xsl:when>
                 <xsl:when test=". instance of element(tei:place)">
                     <xsl:value-of
-                        select="mec:getRefIdPlace(mec:trimEntAttr((tei:placeName[not(mec:trimEntAttr(.) = 'n.a.')])), '???', ., $indexLists)"
+                        select="mec:getRefIdPlace(mec:trimEntAttr((tei:placeName[not(mec:trimEntAttr(.) = 'n.a.')])), '???', ., $indexListsPrepared)"
                     />
                 </xsl:when>
                 <xsl:when test=". instance of element(tei:item)">
                     <xsl:value-of
-                        select="mec:getRefIdOtherNames(mec:trimEntAttr(tei:name[not(mec:trimEntAttr(.) = 'n.a.')]), '???', ., $indexLists)"
+                        select="mec:getRefIdOtherNames(mec:trimEntAttr(tei:name[not(mec:trimEntAttr(.) = 'n.a.')]), '???', ., $indexListsPrepared)"
                     />
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="externalDecl" select="$indexLists//*[@xml:id = $existingUnifiedRefId]"/>
+        <xsl:variable name="externalDecl" select="$indexListsPrepared//*[@xml:id = $existingUnifiedRefId]"/>
         <xsl:variable name="group-key"
-            select="$indexLists//*[@xml:id = $existingUnifiedRefId]/@group-key"/>
+            select="$indexListsPrepared//*[@xml:id = $existingUnifiedRefId]/@group-key"/>
         <xsl:variable name="externalIsLocal"
             select="local:createUniID(/, @xml:id) eq data($externalDecl/@xml:id)[1]"/>
         <xsl:copy>
@@ -245,9 +280,11 @@
             <xsl:attribute name="copyOf">
                 <xsl:value-of select="data(@xml:id)"/>
             </xsl:attribute>
-            <xsl:attribute name="group-key">
-                <xsl:value-of select="data($group-key)"/>
-            </xsl:attribute>
+            <xsl:if test="$group-key">
+                <xsl:attribute name="group-key">
+                    <xsl:value-of select="data($group-key)"/>
+                </xsl:attribute>
+            </xsl:if>
             <xsl:apply-templates
                 select="(@* except (@xml:id | @copyOf)) | * | text() | processing-instruction() | comment()"
                 mode="unify">
@@ -306,11 +343,15 @@
                 <xsl:variable name="this" select="."/>
                 <xsl:variable name="thisTexts" select="mec:trimEntAttr($this)"/>
                 <xsl:variable name="externalData" select="$externalDecl//tei:name"/>
+                <xsl:variable name="ret">
                 <xsl:copy>
+                    <xsl:sequence select="@*"/>
                     <xsl:apply-templates mode="unify"/>
                     <xsl:apply-templates mode="unify"
                         select="$externalData[not(mec:trimEntAttr(.) = $thisTexts)]/*"/>
                 </xsl:copy>
+                </xsl:variable>
+                <xsl:sequence select="$ret"/>                
             </xsl:when>
             <xsl:otherwise>
                 <xsl:sequence select="."/>
@@ -345,10 +386,10 @@
     <xsl:template match="t:setup"/>
 
     <xsl:template match="t:case[@type = 'unify']">
-        <xsl:variable name="indexLists" select="doc(t:in/t:indexListsDoc)/*"/>
+        <xsl:variable name="indexListsPrepared" select="doc(t:in/t:indexListsPreparedDoc)/*"/>
         <!--        <xsl:variable name="actual">-->
-        <xsl:apply-templates select="$indexLists" mode="unify">
-            <xsl:with-param name="indexLists" select="$indexLists" tunnel="yes"/>
+        <xsl:apply-templates select="$indexListsPrepared" mode="unify">
+            <xsl:with-param name="indexListsPrepared" select="$indexListsPrepared" tunnel="yes"/>
             <xsl:with-param name="copyUsed" select="t:in/t:copyUsed" tunnel="yes"/>
         </xsl:apply-templates>
         <!--        </xsl:variable>
