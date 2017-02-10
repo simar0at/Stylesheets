@@ -130,9 +130,9 @@
                 <xsl:sequence select="$comments"/>
             </xsl:result-document>
         </xsl:if>
-        <xsl:result-document href="tagsDecl.xml">
+<!--        <xsl:result-document href="tagsDecl.xml">
             <xsl:sequence select="$tagsDecl"/>
-        </xsl:result-document>
+        </xsl:result-document>-->
         <xsl:apply-imports/>
     </xsl:template>
     
@@ -156,7 +156,7 @@
                 <xsl:choose>
                     <xsl:when test="$key = 'x' or count($cg intersect //w:r) &lt; 2">
                         <xsl:for-each select="$cg">
-                            <xsl:if test="empty($cg intersect //w:r) or not(empty($cg//(w:t|w:tab|w:noBreakHyphen))) or (string-join($cg//w:t, '') ne '')">                            
+                            <xsl:if test="empty($cg intersect //w:r) or not(empty($cg//(w:t|w:tab|w:noBreakHyphen|w:br))) or (string-join($cg//w:t, '') ne '')">                            
                                 <xsl:copy>
                                     <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass0"/>
                                 </xsl:copy>
@@ -169,10 +169,10 @@
                                 <xsl:apply-templates select="*|@*|processing-instruction()|comment()|text()" mode="pass0"/>
                             </xsl:copy>
                         </xsl:for-each>
-                        <xsl:if test="empty($cg intersect //w:r) or not(empty($cg//w:t)) or (string-join($cg//w:t, '') ne '')">                            
+                        <xsl:if test="empty($cg intersect //w:r) or not(empty($cg//(w:t|w:br))) or (string-join($cg//w:t, '') ne '')">                            
                             <w:r>
                                 <xsl:apply-templates select="$cg[1]/w:rPr" mode="pass0"/>
-                                <xsl:apply-templates select="$cg//(w:t|w:tab|w:noBreakHyphen)" mode="pass0"/>
+                                <xsl:apply-templates select="$cg//(w:t|w:tab|w:noBreakHyphen|w:br)" mode="pass0"/>
                             </w:r>
                         </xsl:if>
                     </xsl:otherwise>
