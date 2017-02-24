@@ -182,11 +182,15 @@ of this software, even if advised of the possibility of such damage.
    </doc>
    <xsl:template name="paragraph-wp-base">
    	<xsl:param name="style"/>
+   	<xsl:param name="preserve-space" select="false()"/>
    	<xsl:element name="p">
        <xsl:if test="string($style) and not($style='Default' or $style='Default Style')">
 	 <xsl:attribute name="rend">
 	   <xsl:value-of select="$style"/>
 	 </xsl:attribute>
+       </xsl:if>
+   		<xsl:if test="$preserve-space">
+   			<xsl:attribute name="space" namespace="http://www.w3.org/XML/1998/namespace">preserve</xsl:attribute>
        </xsl:if>
        <xsl:variable name="retrievedStyles">
          <!-- Do we want to preserve word styles? -->
