@@ -12,7 +12,7 @@
         </xd:desc>
     </xd:doc> 
     
-    <xsl:output method="xml" indent="yes"/>
+<!--    <xsl:output method="xml" indent="yes"/>-->
     
     <xd:doc>
         <xd:desc>A string that describes that this data was not determinable

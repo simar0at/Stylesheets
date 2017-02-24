@@ -14,7 +14,7 @@
     <xsl:include href="generate-common-tagsDecl-unify.xsl"/>
     <xsl:include href="mec-xml-from-annotations.xsl"/>
     
-    <xsl:output method="xml" indent="yes"/>
+<!--    <xsl:output method="xml" indent="yes"/>-->
         
     <!--<xsl:variable name="missing_info_marker" select="'info_missing'"/>-->
     <!-- will lead to validation failures becaus it generates ref="" -->
@@ -596,8 +596,8 @@
         <xsl:param name="tagsDecl" as="node()+"/>
         <xsl:variable name="cleanName" as="xs:string+" select="mec:getCleanName($name)"/>
         <xsl:variable name="lcName" as="xs:string+" select="mec:getLcName($name)"/>
-        <xsl:variable name="lcCleanName" as="xs:string+" select="mec:getCleanName(mec:getLcName($name))"/>
-        <xsl:variable name="allPossibleMatchingNamesComment" select="$tagsDecl//tei:item[some $name in ($cleanName, $lcName, $name) satisfies $name = mec:trimEntAttr(tei:name[mec:trimEntAttr(.) != 'n.a.'])]"/>
+        <xsl:variable name="lcCleanName" as="xs:string+" select="mec:getCleanName($lcName)"/>
+        <xsl:variable name="allPossibleMatchingNamesComment" select="$tagsDecl//tei:item[some $name in ($lcCleanName, $cleanName, $lcName, $name) satisfies $name = mec:trimEntAttr(tei:name[mec:trimEntAttr(.) != 'n.a.'])]"/>
         <xsl:variable name="allMatchingNamesComment"
             select="$allPossibleMatchingNamesComment[not(contains(.//tei:note, 'not annotated'))]"/>
         <xsl:variable name="firstMatchingNamesId" select="$allMatchingNamesComment[1]/@xml:id"/>
