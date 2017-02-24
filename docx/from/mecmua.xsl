@@ -215,6 +215,8 @@
         <xsl:variable name="docPropsCustom" select="doc(concat($wordDirectory,'/docProps/custom.xml'))"/>
         <xsl:variable name="editionDate" select="$docPropsCustom/csp:Properties/csp:property[@name = 'Edition-date']"/>
         <xsl:variable name="lastModified" select="substring-before($docProps/cp:coreProperties/dcterms:modified,'T')"/>
+        <xsl:text xml:space="preserve">
+</xsl:text>
         <teiHeader>
             <fileDesc>
                 <titleStmt>
@@ -356,7 +358,8 @@ This is a work in progress. If you find any new or alternative readings or have 
             <revisionDesc>
                 <change when="{substring-before(tei:whatsTheDate(),'T')}" who="{$docPropsCustom/csp:Properties/csp:property[@name = 'Encodedby']}"/>
             </revisionDesc>
-        </teiHeader>
+        </teiHeader><xsl:text xml:space="preserve">
+</xsl:text>
     </xsl:template>
     
     <xd:doc>
@@ -490,19 +493,42 @@ This is a work in progress. If you find any new or alternative readings or have 
                 <xsl:variable name="rv" select="replace($folDesc, '\d+', '')"/>
                 <xsl:variable name="vplus1" select="if ($rv eq 'v') then 1 else 0" as="xs:decimal"/>
                 <xsl:variable name="folNum" select="xs:decimal(replace($folDesc, '[rv]', ''))" as="xs:decimal"/>
-                <pb n="{concat($codId, ' ', format-number($folNum, '000'), $rv)}" facs="{concat($codId, '/', format-number((($folNum - 1) * 2) + $firstFolioOffset + $vplus1, '00000000'))}"/>
+                <pb n="{concat($codId, ' ', format-number($folNum, '000'), $rv)}" facs="{concat($codId, '/', format-number((($folNum - 1) * 2) + $firstFolioOffset + $vplus1, '00000000'))}"/><xsl:text xml:space="preserve">
+</xsl:text>
                 <p rend="{$folioDescStyle}">
                     <hi rend="{$folioCommentaries}">
                     <xsl:value-of select="concat($codId, ': ', $folDesc)"/>
                     </hi>
-                </p>
+                </p><xsl:text xml:space="preserve">
+</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-                <p>
-                    <xsl:apply-templates/>
-                </p>
+                <p xml:space="preserve"><xsl:apply-templates/></p><xsl:text xml:space="preserve">
+</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc xmlns="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>Create the basic text; worry later about dividing it up
+            Added forced newlines to be able to navigate if XML is not indented
+        </xd:desc>
+    </xd:doc>
+    <xsl:template match="w:body">
+        <text><xsl:text xml:space="preserve">
+</xsl:text>
+            <!-- Create forme work -->
+            <xsl:call-template name="extract-forme-work"/>
+            <xsl:call-template name="create-tei-front"/>
+            <!-- create TEI body -->
+            <body><xsl:text xml:space="preserve">
+</xsl:text>
+                <xsl:call-template name="mainProcess"/>
+            </body><xsl:text xml:space="preserve">
+</xsl:text>
+            <xsl:call-template name="create-tei-back"/>
+        </text><xsl:text xml:space="preserve">
+</xsl:text>
     </xsl:template>
     
     <xd:doc>
@@ -1009,6 +1035,7 @@ This is a work in progress. If you find any new or alternative readings or have 
             <xsl:otherwise>
                 <xsl:call-template name="paragraph-wp-base">
                     <xsl:with-param name="style" select="$style"/>
+                    <xsl:with-param name="preserve-space" select="true()"/>
                 </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
@@ -1085,4 +1112,9 @@ This is a work in progress. If you find any new or alternative readings or have 
     </xd:doc>
     <xsl:template match="tei:pb[not(@n)]" mode="pass2"/>
     
+    <xd:doc>
+        <xd:desc>Zap empty paragraphs and divs</xd:desc>
+    </xd:doc>    
+    <xsl:template match="tei:p[normalize-space(.) eq '']" mode="pass2"><lb/></xsl:template>    
+    <xsl:template match="tei:div[normalize-space(.) eq '']" mode="pass2"/>
 </xsl:stylesheet>
