@@ -420,7 +420,7 @@ of this software, even if advised of the possibility of such damage.
         <xsl:variable name="t">
             <xsl:choose>
                 <xsl:when test="@xml:space='preserve' and string-length(normalize-space(.))=0">
-                    <seg><xsl:text> </xsl:text></seg>
+                    <seg xml:space="preserve"><xsl:text> </xsl:text></seg>
                 </xsl:when>
                 <xsl:when test="@xml:space='preserve'">
                     <xsl:value-of select="."/>
@@ -867,7 +867,8 @@ of this software, even if advised of the possibility of such damage.
 	  <cb/>
 	</xsl:when>
 	<xsl:otherwise>
-	  <lb/>
+		<lb/><xsl:text xml:space="preserve">
+</xsl:text>
 	</xsl:otherwise>
       </xsl:choose>
     </xsl:template>
