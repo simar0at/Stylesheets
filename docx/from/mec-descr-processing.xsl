@@ -447,16 +447,6 @@
             <xsl:sequence select="($otherAttributesSimilar/self::mec:s)"/>
         </xsl:if>
     </xsl:function>
-    
-    <xd:doc>
-        <xd:desc>Lowercases a word or first character of a phrase</xd:desc>
-    </xd:doc>
-    <xsl:function name="mec:getLcName" as="xs:string+">
-        <xsl:param name="name" as="xs:string+"/>
-        <xsl:for-each select="$name">
-            <xsl:value-of select="concat(lower-case(substring(., 1, 1)), substring(., 2))"/>
-        </xsl:for-each>
-    </xsl:function>
        
     <xd:doc>
         <xd:desc>Remove texts containing n.a. when comparing</xd:desc>
@@ -582,7 +572,7 @@
                 <t:commentN>0</t:commentN>
             </t:in>
             <t:expected>d24e560</t:expected>            
-        </t:xcase>                  
+        </t:case>                  
         <t:case type="other">
             <t:in>
                 <t:name>ʿAqreb</t:name>
@@ -590,7 +580,34 @@
                 <t:tagsDeclDoc>tests/mec-descr-processing/tagsDeclFelek-iAzamAqreb.xml</t:tagsDeclDoc>
                 <t:commentN>0</t:commentN>
             </t:in>
-            <t:expected>d24e560</t:expected>            
+            <t:expected>test_aqreb</t:expected>            
+        </t:case>                  
+        <t:case type="other">
+            <t:in>
+                <t:name>felek-i aʿẓam</t:name>
+                <t:commentXML xmlns="http://www.tei-c.org/ns/1.0"/>                
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDeclFelek-iAzamAqreb.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>test_felek-iAzam</t:expected>            
+        </t:case>                  
+        <t:case type="other">
+            <t:in>
+                <t:name>Felek-i Aʿẓam</t:name>
+                <t:commentXML xmlns="http://www.tei-c.org/ns/1.0"/>                
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDeclFelek-iAzamAqreb.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>test_felek-iAzam</t:expected>            
+        </t:case>                  
+        <t:case type="other">
+            <t:in>
+                <t:name>[felek-i] aʿẓam</t:name>
+                <t:commentXML xmlns="http://www.tei-c.org/ns/1.0"/>                
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDeclFelek-iAzamAqreb.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>test_felek-iAzam</t:expected>            
         </t:case>
     </t:testData>
     
@@ -630,7 +647,7 @@
                     />
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:variable>          
+        </xsl:variable>
         <xsl:sequence select="$ret"/>
     </xsl:function>
     
@@ -683,9 +700,10 @@
     </xsl:template>
     
     <xsl:template match="t:case[@type='other']">
+        <xsl:variable name="indexItems" select="doc(t:in/t:tagsDeclDoc)//tei:item"/>
         <xsl:variable name="tagsDecl">
             <xsl:call-template name="unify-prepare">
-                <xsl:with-param name="c" select="doc(t:in/t:tagsDeclDoc)//tei:item"/>
+                <xsl:with-param name="c" select="$indexItems"/>
             </xsl:call-template>
         </xsl:variable>
         <xsl:variable name="actual" select="mec:getRefIdOtherNames(t:in/t:name, t:in/t:commentN, t:in/t:commentXML/*, $tagsDecl)"/>

@@ -171,7 +171,7 @@
         <xsl:variable name="this" select="."/>
         <xsl:variable name="names">
             <xsl:for-each-group select="$whole-group//(tei:persName | tei:placeName | tei:name)"
-                group-by="concat(lower-case(.), @xml:lang)">
+                group-by="concat(mec:getLcName(.), @xml:lang)">
                 <xsl:copy-of select="."/>
             </xsl:for-each-group>
         </xsl:variable>
@@ -310,6 +310,15 @@
             <xsl:if test="$trimmedText ne ''">
                 <xsl:value-of select="$trimmedText"/>
             </xsl:if>
+        </xsl:for-each>
+    </xsl:function> 
+    <xd:doc>
+        <xd:desc>Lowercases a word or first character of a phrase</xd:desc>
+    </xd:doc>
+    <xsl:function name="mec:getLcName" as="xs:string+">
+        <xsl:param name="name" as="xs:string+"/>
+        <xsl:for-each select="$name">
+            <xsl:value-of select="concat(lower-case(substring(., 1, 1)), substring(., 2))"/>
         </xsl:for-each>
     </xsl:function>
     <xsl:template match="tei:persName[position() = last()] | tei:placeName[position() = last()]"
