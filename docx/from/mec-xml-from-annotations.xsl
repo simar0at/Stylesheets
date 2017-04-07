@@ -302,6 +302,76 @@
                 </item>
             </t:expected>
         </t:case>
+        <t:case type="other">
+            <t:in>
+                <t:wordInText>ʿaqreb</t:wordInText>
+                <t:annotationText>aka: ʿAqreb  Latin: Scorpio English: Scorpio</t:annotationText>
+            </t:in>
+            <t:expected xmlns="http://www.tei-c.org/ns/1.0">
+                <item xml:id="d1e468">
+                    <name xml:lang="ota-Latn-t" type="variant">ʿaqreb</name>
+                    <name xml:lang="ota-Latn-t" type="variant">ʿAqreb</name>
+                    <cit type="translation">
+                        <sense xml:lang="la">Scorpio</sense>
+                        <sense xml:lang="en-UK">Scorpio</sense>
+                    </cit>
+                </item>
+            </t:expected>
+        </t:case>
+        <t:case type="other">
+            <t:in>
+                <t:wordInText>felekü‑l eflāk</t:wordInText>
+                <t:annotationText>aka: felek‑i Aʿẓam; Felek‑i Aṭlās; [felek‑i] aʿẓam Latin: primum mobile English: the ninth sphere</t:annotationText>
+            </t:in>
+            <t:expected xmlns="http://www.tei-c.org/ns/1.0">
+                <item xml:id="d1e468">
+                    <name xml:lang="ota-Latn-t" type="variant">felekü-l eflāk</name>
+                    <name xml:lang="ota-Latn-t" type="variant">felek-i Aʿẓam</name>
+                    <name xml:lang="ota-Latn-t" type="variant">Felek-i Aṭlās</name>
+                    <name xml:lang="ota-Latn-t" type="variant">felek-i aʿẓam</name>
+                    <cit type="translation">
+                        <sense xml:lang="la">primum mobile</sense>
+                        <sense xml:lang="en-UK">the ninth sphere</sense>
+                    </cit>
+                </item>
+            </t:expected>
+        </t:case>
+        <t:case type="other">
+            <t:in>
+                <t:wordInText>felek‑i aʿẓam</t:wordInText>
+                <t:annotationText>aka: felek‑i Aʿẓam; Felek‑i Aṭlās; [felek‑i] aʿẓam Latin: primum mobile English: the ninth sphere</t:annotationText>
+            </t:in>           
+            <t:expected xmlns="http://www.tei-c.org/ns/1.0">
+                <item xml:id="d1e480">
+                    <name xml:lang="ota-Latn-t" type="variant">felek-i aʿẓam</name>
+                    <name xml:lang="ota-Latn-t" type="variant">felek-i Aʿẓam</name>
+                    <name xml:lang="ota-Latn-t" type="variant">Felek-i Aṭlās</name>
+                    <name xml:lang="ota-Latn-t" type="variant">felek-i aʿẓam</name>
+                    <cit type="translation">
+                        <sense xml:lang="la">primum mobile</sense>
+                        <sense xml:lang="en-UK">the ninth sphere</sense>
+                    </cit>
+                </item>
+            </t:expected>
+        </t:case>
+        <t:case type="other">
+            <t:in>
+                <t:wordInText>Felek‑i Aʿẓam</t:wordInText>
+                <t:annotationText>aka: felek‑i Aʿẓam; Felek‑i Aṭlās; [felek‑i] aʿẓam Latin: primum mobile English: the ninth sphere</t:annotationText>
+            </t:in>           
+            <t:expected xmlns="http://www.tei-c.org/ns/1.0">
+                <item xml:id="d1e480">
+                    <name xml:lang="ota-Latn-t" type="variant">felek-i Aʿẓam</name>
+                    <name xml:lang="ota-Latn-t" type="variant">felek-i Aʿẓam</name>
+                    <name xml:lang="ota-Latn-t" type="variant">Felek-i Aṭlās</name>
+                    <name xml:lang="ota-Latn-t" type="variant">felek-i aʿẓam</name>
+                    <cit type="translation">
+                        <sense xml:lang="la">primum mobile</sense>
+                        <sense xml:lang="en-UK">the ninth sphere</sense>
+                    </cit>
+                </item>
+            </t:expected>
+        </t:case>
     </t:testData>
     
     <xd:doc>
@@ -363,7 +433,7 @@
             <xsl:analyze-string select="$annotationText"
                 regex="{$nameRegExp}">
                 <xsl:matching-substring>
-                    <persName xml:lang="ota-Latn-t" type="variant">
+                    <persName xml:lang="ota-Latn-t" type="preferred">
                         <xsl:value-of select="mec:getCleanName($wordInText)"/>
                     </persName>
                     <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
@@ -433,7 +503,7 @@
         <xsl:analyze-string select="$annotationText"
             regex="{$nameRegExpRXD}">
             <xsl:matching-substring>
-                <persName xml:lang="ota-Latn-t">
+                <persName xml:lang="ota-Latn-t" type="preferred">
                     <xsl:value-of select="mec:getCleanName($wordInText)"/>
                 </persName>
                 <xsl:for-each select="tokenize(regex-group($nameMaka), '[,;]')">
@@ -478,7 +548,7 @@
                 </xsl:if>
             </xsl:matching-substring>
             <xsl:non-matching-substring>
-                <persName xml:lang="ota-Latn-t">
+                <persName xml:lang="ota-Latn-t" type="preferred">
                     <xsl:value-of select="mec:getCleanName($wordInText)"/>
                 </persName>
                 <xsl:choose>

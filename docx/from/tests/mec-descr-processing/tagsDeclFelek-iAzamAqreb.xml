@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<back xmlns="http://www.tei-c.org/ns/1.0">
+   <list type="index" subtype="auxSubst">
+      <item xml:id="test_aqreb">
+         <name xml:lang="ota-Latn-t" type="variant">ʿaqreb</name>
+         <name xml:lang="ota-Latn-t" type="variant">ʿAqreb</name>
+         <cit type="translation">
+            <sense xml:lang="la">Scorpio</sense>
+            <sense xml:lang="en-UK">Scorpio</sense>
+         </cit>
+      </item>
+   </list>
+   <list type="index" subtype="astrEnt">
+      <item xml:id="test_felek-iAzam">
+         <name xml:lang="ota-Latn-t" type="variant">felekü-l eflāk</name>
+         <name xml:lang="ota-Latn-t" type="variant">felek-i Aʿẓam</name>
+         <name xml:lang="ota-Latn-t" type="variant">Felek-i Aṭlās</name>
+         <name xml:lang="ota-Latn-t" type="variant">felek-i aʿẓam</name>
+         <cit type="translation">
+            <sense xml:lang="la">primum mobile</sense>
+            <sense xml:lang="en-UK">the ninth sphere</sense>
+         </cit>
+      </item>
+   </list>
+</back>

@@ -582,6 +582,15 @@
                 <t:commentN>0</t:commentN>
             </t:in>
             <t:expected>d24e560</t:expected>            
+        </t:xcase>                  
+        <t:case type="other">
+            <t:in>
+                <t:name>ʿAqreb</t:name>
+                <t:commentXML xmlns="http://www.tei-c.org/ns/1.0"/>                
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDeclFelek-iAzamAqreb.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>d24e560</t:expected>            
         </t:case>
     </t:testData>
     
