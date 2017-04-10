@@ -480,6 +480,8 @@ This is a work in progress. If you find any new or alternative readings or have 
         </xsl:choose>
     </xsl:function>
     
+    <xsl:param name="facsAreNumberBased" select="true()"/>
+    
     <xd:doc>
         <xd:desc>Superseeds the default as page breaks of the described documents are not identical to the docx page breaks but denoted by the
         folio descriptions.</xd:desc>
@@ -493,7 +495,9 @@ This is a work in progress. If you find any new or alternative readings or have 
                 <xsl:variable name="rv" select="replace($folDesc, '\d+', '')"/>
                 <xsl:variable name="vplus1" select="if ($rv eq 'v') then 1 else 0" as="xs:decimal"/>
                 <xsl:variable name="folNum" select="xs:decimal(replace($folDesc, '[rv]', ''))" as="xs:decimal"/>
-                <pb n="{concat($codId, ' ', format-number($folNum, '000'), $rv)}" facs="{concat($codId, '/', format-number((($folNum - 1) * 2) + $firstFolioOffset + $vplus1, '00000000'))}"/><xsl:text xml:space="preserve">
+                <xsl:variable name="facsIdNumberBased" select="concat($codId, '/', format-number((($folNum - 1) * 2) + $firstFolioOffset + $vplus1, '00000000'))"/>
+                <xsl:variable name="facsIdDSCfolio" select="concat($codId, '/DSC_', format-number($folNum, '000'), $rv)"/>
+                <pb n="{concat($codId, ' ', format-number($folNum, '000'), $rv)}" facs="{if ($facsAreNumberBased) then $facsIdNumberBased else $facsIdDSCfolio}"/><xsl:text xml:space="preserve">
 </xsl:text>
                 <p rend="{$folioDescStyle}">
                     <hi rend="{$folioCommentaries}">
