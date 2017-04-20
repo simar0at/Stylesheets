@@ -231,7 +231,7 @@
                     </respStmt>
                 </titleStmt>
                 <editionStmt>
-                    <edition><note>Fully digitized Edition <xsl:value-of select="$editionDate"></xsl:value-of>. Preliminary version as of <xsl:value-of select="$lastModified"/>.
+                    <edition><note>Fully digitized Edition <xsl:value-of select="$editionDate"></xsl:value-of>. Converted from source document on <xsl:value-of select="$lastModified"/>.
 This is a work in progress. If you find any new or alternative readings or have any suggestions or comments please get in contact with us. mecmua.orientalistik@univie.ac.at</note>
                     </edition>
                     <xsl:for-each select="tokenize($docPropsCustom/csp:Properties/csp:property[@name = 'Finanzierung'], ';')">                        
