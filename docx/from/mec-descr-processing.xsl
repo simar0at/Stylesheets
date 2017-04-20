@@ -417,13 +417,15 @@
                 <mec:d type="country"/>
             </xsl:if>
             <!-- Matching specific to other things. -->
-            <xsl:for-each select="$comment//tei:sense/text()[1]">
-                <xsl:if test=". = ($candidate//tei:sense/text()[1], '')">
+            <xsl:for-each select="$comment//tei:sense/text()[1][. ne 'n.a.' and . ne 'not determinable']">
+                <xsl:variable name="lang" select="data(../@xml:lang)"/>
+                <xsl:if test=". = ($candidate//tei:sense[@xml:lang eq $lang]/text()[1], '')">
                     <mec:s type="sense"/>    
                 </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="$comment//tei:sense/text()[1]">
-                <xsl:if test=". != '' and not($candidate//tei:sense/text()[1] = '') and
+                <xsl:variable name="lang" select="data(../@xml:lang)"/>
+                <xsl:if test=". != '' and not($candidate//tei:sense[@xml:lang eq $lang]/text()[1] = '') and
                     not(. = $candidate//tei:sense/text()[1])">
                     <mec:d type="sense"/>    
                 </xsl:if>
