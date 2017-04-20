@@ -29,6 +29,35 @@
     <t:testData>
         <t:case type="group-key">
             <t:in>
+                <t:c xmlns="http://www.tei-c.org/ns/1.0">                    
+                    <person xml:id="d27e20063">
+                        <persName xml:lang="ota-Latn-t" type="preferred">Ḥasan</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">Ḥasan-i Baṣrī</persName>
+                        <occupation/>
+                        <death/>
+                        <note>identity is not determinable</note>
+                    </person>
+                </t:c>
+            </t:in>
+            <t:expected>identity is not determinableḤasanḤasan-i Baṣrī</t:expected>
+        </t:case>
+        <t:case type="group-key">
+            <t:in>
+                <t:c xmlns="http://www.tei-c.org/ns/1.0">                   
+                    <item xml:id="d27e75146">
+                        <name xml:lang="ota-Latn-t" type="variant">s-n-ḫām</name>
+                        <name xml:lang="ota-Latn-t" type="variant">rūmī qūqīyā</name>
+                        <cit type="translation">
+                            <sense xml:lang="la">n.a.</sense>
+                            <sense xml:lang="en-UK">not determinable</sense>
+                        </cit>
+                    </item>
+                </t:c>
+            </t:in>
+            <t:expected>n.a.not determinables-n-ḫāmrūmī qūqīyā</t:expected>
+        </t:case>
+        <t:case type="group-key">
+            <t:in>
                 <t:c xmlns="http://www.tei-c.org/ns/1.0">
                     <person xml:id="d25e57">
                         <persName xml:lang="ota-Latn-t" type="variant">Muḥammad</persName>
@@ -139,7 +168,7 @@
                     </place>
                 </t:c>
             </t:in>
-            <t:expected>halting_place__residencen.a.n.a.Elmalu</t:expected>
+            <t:expected>halting_place__residencen.a.n.a.Elmalun.a.</t:expected>
         </t:case>
     </t:testData>
 
@@ -149,12 +178,13 @@
         <xsl:variable name="placeKey" select="concat($c/@type, $c/tei:placeName[@xml:lang = 'en-UK'], $c/tei:location/tei:country)" as="xs:string"/>
         <xsl:variable name="otherKey" select="string-join($c/tei:cit/tei:sense, '')" as="xs:string"/>
         <xsl:variable name="nameKeyIfIdentityUndeterminable" select="if (lower-case($c/tei:note) eq 'not determinable' or 
+                                                                         lower-case($c//tei:sense[@xml:lang eq 'en-UK']) eq 'not determinable' or
                                                                          contains(lower-case($c/tei:occupation), 'angel') or
                                                                          contains(lower-case($c/tei:note), 'identity is not determinable') or
                                                                          contains(lower-case($c/tei:note), 'place is not determinable') or
                                                                          contains(lower-case($c/tei:note), 'involved party occurring in a fatwa') or
                                                                          $c/@type eq 'unknown')
-                                                                     then $c/(tei:persName|tei:placeName|tei:name)[1] 
+                                                                     then string-join($c/(tei:persName|tei:placeName|tei:name), '') 
                                                                      else ()" as="xs:string?"/>
         <xsl:variable name="noteKeyIfNotDeterminable" select="if (contains($c/tei:note, 'not determinable')) then $c/tei:note else ()" as="xs:string?"/>
         <xsl:variable name="SVKey" select="if (contains($c/tei:note, 's.v.')) then replace($c/tei:note, '^.*(s\.v\.[^\.,]*)[\.,]?.*$', '$1') else ()" as="xs:string?"/>
