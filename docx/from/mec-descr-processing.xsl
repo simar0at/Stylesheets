@@ -26,6 +26,62 @@
         <t:setup/>
         <t:case type="name">
             <t:in>
+                <t:name>ʿĀyşe</t:name>
+                <t:commentXML  xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="d27e131850">
+                        <persName xml:lang="ota-Latn-t" type="preferred">ʿĀyşe</persName>
+                        <occupation>n.a.</occupation>
+                        <death>n.a.</death>
+                        <floruit from-custom="n.a."/>
+                        <note>Alias for an involved party occurring in a fatwa</note>
+                    </person> 
+                </t:commentXML>
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-ayse.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>uni_faide_d27e131850</t:expected>
+        </t:case>
+        <t:case type="name">
+            <t:in>
+                <t:name>ʿĀyşe</t:name>
+                <t:commentXML  xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="d27e35159">
+                        <persName type="variant" xml:lang="ota-Latn-t">ʿĀʾiša</persName>
+                        <persName type="variant" xml:lang="ota-Latn-t">ʿĀyşe</persName>
+                        <persName type="variant" xml:lang="ota-Latn-t">ʿĀʾişe</persName>
+                        <occupation>third wife of the Prophet Muḥammad</occupation>
+                        <death>678</death>
+                        <floruit from-custom="n.a."/>
+                        <note>Cf. EI2, s.v. ʿĀʾisha Bint Abī Bakr.</note>
+                    </person>
+                </t:commentXML>
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-ayse.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>uni_ömer_d27e35159</t:expected>
+        </t:case>
+        <t:case type="name">
+            <t:in>
+                <t:name>ʿĀyşe</t:name>
+                <t:commentXML  xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="uni_ömer_d27e144836">
+                    <persName type="variant" xml:lang="ota-Latn-t">ʿĀyşe</persName>
+                    <occupation>n.a.</occupation>
+                    <death>n.a.</death>
+                    <floruit from-custom="n.a."/>
+                    <note>probably the daughter of the owner of the mecmūʿa; birthdate: 24th of May 1658</note>
+                </person>
+                </t:commentXML>
+                <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-ayse.xml</t:tagsDeclDoc>
+                <t:commentN>0</t:commentN>
+            </t:in>
+            <t:expected>uni_ömer_d27e144836</t:expected>
+        </t:case>
+    </t:testData>
+    <t:xtestData>
+        <t:setup/>
+        <t:case type="name">
+            <t:in>
                 <t:name>Abi [!] l-Qāsimi // Muḥammadi bni ʿAbdillāhi bni ʿAbdilmuṭṭalib</t:name>
                 <t:commentXML/>              
                 <t:tagsDeclDoc>tests/mec-descr-processing/tagsDecl-Faide.xml</t:tagsDeclDoc>
@@ -86,7 +142,7 @@
             </t:in>
             <t:expected>d24e199</t:expected>            
         </t:case>
-    </t:testData>
+    </t:xtestData>
     
     <xd:doc>
         <xd:desc>Find an id to reference for a person using an explicit tagsDecl XML fragment
@@ -259,6 +315,85 @@
                 </t:comment>
             </t:in>           
             <t:expectes>d24e199</t:expectes>
+        </t:case>
+    </t:testData>
+    
+    <t:testData>
+        <t:setup>
+            <t:candidates xmlns="http://www.tei-c.org/ns/1.0">
+                <person xml:id="d27e144836">
+                    <persName xml:lang="ota-Latn-t" type="preferred">ʿĀyşe</persName>
+                    <occupation>n.a.</occupation>
+                    <death>n.a.</death>
+                    <floruit from-custom="n.a."/>
+                    <note>probably the daughter of the owner of the mecmūʿa</note>
+                </person>
+                <person xml:id="d27e10665">
+                    <persName xml:lang="ota-Latn-t" type="preferred">ʿĀyşe</persName>
+                    <occupation>n.a.</occupation>
+                    <death>n.a.</death>
+                    <floruit from-custom="n.a."/>
+                    <note>probably the daughter of the owner of the mecmūʿa; birthdate: 24th of May 1658</note>
+                </person>
+                <person xml:id="d27e45978">
+                    <persName xml:lang="ota-Latn-t" type="preferred">ʿĀʾiša</persName>
+                    <persName xml:lang="ota-Latn-t" type="variant">ʿĀyşe</persName>
+                    <occupation>third wife of the Prophet Muḥammad</occupation>
+                    <death>678</death>
+                    <floruit from-custom="n.a."/>
+                    <note>Cf. EI2, s.v. ʿĀʾisha Bint Abī Bakr.</note>
+                </person>
+                <person xml:id="d27e131850">
+                    <persName xml:lang="ota-Latn-t" type="preferred">ʿĀyşe</persName>
+                    <occupation>n.a.</occupation>
+                    <death>n.a.</death>
+                    <floruit from-custom="n.a."/>
+                    <note>Alias for an involved party occurring in a fatwa</note>
+                </person>             
+            </t:candidates>
+        </t:setup>
+        <t:case type="disamb">
+            <t:in>
+                <t:comment xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="d27e45978">
+                        <persName xml:lang="ota-Latn-t" type="preferred">ʿĀʾiša</persName>
+                        <persName xml:lang="ota-Latn-t" type="variant">ʿĀyşe</persName>
+                        <occupation>third wife of the Prophet Muḥammad</occupation>
+                        <death>678</death>
+                        <floruit from-custom="n.a."/>
+                        <note>Cf. EI2, s.v. ʿĀʾisha Bint Abī Bakr.</note>
+                    </person>
+                </t:comment>
+            </t:in>
+            <t:expected>d27e45978</t:expected>              
+        </t:case>
+        <t:case type="disamb">
+            <t:in>
+                <t:comment xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="d27e131850">
+                        <persName xml:lang="ota-Latn-t" type="preferred">ʿĀyşe</persName>
+                        <occupation>n.a.</occupation>
+                        <death>n.a.</death>
+                        <floruit from-custom="n.a."/>
+                        <note>Alias for an involved party occurring in a fatwa</note>
+                    </person>                   
+                </t:comment>
+            </t:in>
+            <t:expected>d27e131850</t:expected>              
+        </t:case>
+        <t:case type="disamb">
+            <t:in>
+                <t:comment xmlns="http://www.tei-c.org/ns/1.0">
+                    <person xml:id="d27e10665">
+                        <persName xml:lang="ota-Latn-t" type="preferred">ʿĀyşe</persName>
+                        <occupation>n.a.</occupation>
+                        <death>n.a.</death>
+                        <floruit from-custom="n.a."/>
+                        <note>probably the daughter of the owner of the mecmūʿa; birthdate: 24th of May 1658</note>
+                    </person>                
+                </t:comment>
+            </t:in>
+            <t:expected>d27e10665</t:expected>              
         </t:case>
     </t:testData>
     
@@ -715,7 +850,7 @@
     
     <xsl:template match="xsl:stylesheet">
         <div type="testResults">
-            <xsl:apply-templates select="t:testData"/>
+            <xsl:apply-templates select="t:testData[//t:case[@type='name']]"/>
         </div>
     </xsl:template>  
     

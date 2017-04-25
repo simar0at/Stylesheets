@@ -1,0 +1,1390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title>Indexes</title>
+         </titleStmt>
+         <publicationStmt>
+            <p>Publication Information</p>
+         </publicationStmt>
+         <sourceDesc>
+            <p>Information about the source</p>
+         </sourceDesc>
+      </fileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <listPerson>
+            <person xml:id="uni_ömer_d27e103935">
+               <persName type="variant" xml:lang="ota-Latn-t">Muḥammed</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>is not the name of a certain person, is used here as an example name</note>
+            </person>
+            <person xml:id="uni_faide_d27e4077">
+               <persName type="variant" xml:lang="ota-Latn-t">Maḥmūd</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>is not the name of a certain person, is used here as an example name</note>
+            </person>
+            <person xml:id="uni_faide_d27e10449">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbdülvehhāb</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>probably the son of the owner of the mecmūʿa; birthdate: 23rd of May 1657</note>
+            </person>
+            <person xml:id="uni_ömer_d27e144836">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀyşe</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>probably the daughter of the owner of the mecmūʿa; birthdate: 24th of May 1658</note>
+            </person>
+            <person xml:id="uni_faide_d27e218">
+               <persName type="variant" xml:lang="ota-Latn-t">Muṣṭafā Efendi</persName>
+               <occupation>director of the financial administration of a province</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely</note>
+            </person>
+            <person xml:id="uni_faide_d27e231">
+               <persName type="variant" xml:lang="ota-Latn-t">Fażlī Beg</persName>
+               <occupation>deputy officer of a commander of a sancaq</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely</note>
+            </person>
+            <person xml:id="uni_sieverek_d27e9836">
+               <persName type="variant" xml:lang="ota-Latn-t">Muṣṭafā</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely; from the text we only understand that he is from İstolnī Belġrād and made the pilgrimage</note>
+            </person>
+            <person xml:id="uni_faide_d27e329">
+               <persName type="variant" xml:lang="ota-Latn-t">Kenʿān Paşa</persName>
+               <occupation>vizier</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely; at least two persons who could come into consideration: cf. Sicill‑i ʿOs̱mānī (1996), 3, p. 884f., s.v. Ken'an Paşa and Ken'an Paşa (Sarı) (Topal); EI2, s.v. Kenʿān Pasha.</note>
+            </person>
+            <person xml:id="uni_faide_d27e419">
+               <persName type="variant" xml:lang="ota-Latn-t">Fażlī Paşa</persName>
+               <occupation>commander of a fort; vizier</occupation>
+               <death>1657/58 ?</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely; cf. Sicill‑i ʿOs̱mānī (1996), 2, p. 512, s.v. Fazlî Fazlullah Paşa.</note>
+            </person>
+            <person xml:id="uni_faide_d27e458">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥaydar Beg</persName>
+               <occupation>governor-general of a vilāyet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e476">
+               <persName type="variant" xml:lang="ota-Latn-t">Cāfer Aġa- ẕāde</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely; there is one Caʿfer Aġa-zāde who could come into consideration but died very late in 1694, cf. Sicill‑i ʿOs̱mānī (1996), 4, p. 1347, s.v. Ramazan Efendi.</note>
+            </person>
+            <person xml:id="uni_faide_d27e2251">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAlqama</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e47665">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḫātim</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e49373">
+               <persName type="variant" xml:lang="ota-Latn-t">İbrāhīm</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e57278">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥācı Ḫalīl</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e78150">
+               <persName type="variant" xml:lang="ota-Latn-t">Nevrūz</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e78691">
+               <persName type="variant" xml:lang="ota-Latn-t">Ebū İsḥāq</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e78765">
+               <persName type="variant" xml:lang="ota-Latn-t">Bahāveddīn</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e78835">
+               <persName type="variant" xml:lang="ota-Latn-t">Aḥmed Buḫārī</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e88186">
+               <persName type="variant" xml:lang="ota-Latn-t">Abī Umāmata al-Bāhilī</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_ömer_d27e55555">
+               <persName type="variant" xml:lang="ota-Latn-t">Qāsım</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e130676">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṭāhir</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e130951">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥaẕīfe</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e131385">
+               <persName type="variant" xml:lang="ota-Latn-t">Seyyid Yaḥyā</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e131404">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṭaşqız Ḫᵛāce</persName>
+               <occupation/>
+               <death/>
+            </person>
+            <person xml:id="uni_faide_d27e708">
+               <persName type="variant" xml:lang="ota-Latn-t">İskender Beg</persName>
+               <occupation>commander of a sancaq</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e728">
+               <persName type="variant" xml:lang="ota-Latn-t">İbrāhīm Beg</persName>
+               <occupation>deputy officer of a commander of a sancaq</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e894">
+               <persName type="variant" xml:lang="ota-Latn-t">Yaḥyā Efendi</persName>
+               <occupation>n.a.</occupation>
+               <death>1659</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e912">
+               <persName type="variant" xml:lang="ota-Latn-t">Şehbāz Pāşā</persName>
+               <occupation>governor-general of a vilāyet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely; cf. Sicill‑i ʿOs̱mānī (1996), 5, p. 1571, s.v. Şehbâz Paşa.</note>
+            </person>
+            <person xml:id="uni_faide_d27e957">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṭuzlavī Selīm Efendi</persName>
+               <occupation>judge</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e978">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṭabbāq-ẕāde İbrāhīm ... Beg</persName>
+               <occupation>deputy officer of a commander of a sancaq</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>possibly identical with the aforementioned İbrāhīm Beg; identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e1028">
+               <persName type="variant" xml:lang="ota-Latn-t">Seyyidī Aḥmed Paşa</persName>
+               <occupation>commander of a fort</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e1289">
+               <persName type="variant" xml:lang="ota-Latn-t">Ẕeyd</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_ömer_d27e91967">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿÖmer</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d27e1347">
+               <persName type="variant" xml:lang="ota-Latn-t">Fāsiqī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d27e1361">
+               <persName type="variant" xml:lang="ota-Latn-t">Fācirī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d27e1781">
+               <persName type="variant" xml:lang="ota-Latn-t">Aḥmed Efendi</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Aḥmed Efendi Selānikī</persName>
+               <occupation>judge</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e1845">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿOs̱mān Beg</persName>
+               <occupation>governor-general of a vilāyet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e2075">
+               <persName type="variant" xml:lang="ota-Latn-t">imām-i aʿẓam</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ebū Ḥanīfe</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Abū Ḥanīfa</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">El-Nuʿmān</persName>
+               <occupation>theologian; religious lawyer; eponym of the school of the Ḥanafīs</occupation>
+               <death>767</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Abū Ḥanīfa al-Nuʿmān.</note>
+            </person>
+            <person xml:id="uni_faide_d27e2175">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAmmād</persName>
+               <occupation>teacher of Abū Ḥanīfa; teacher of religious law</occupation>
+               <death>737-8</death>
+               <floruit from-custom="n.a."/>
+               <note>very probably for Ḥammād; cf. EI2, s.v. Abū Ḥanīfa al-Nuʿmān.</note>
+            </person>
+            <person xml:id="uni_faide_d27e2282">
+               <persName type="variant" xml:lang="ota-Latn-t">Naḫaʿī</persName>
+               <occupation>traditionist, lawyer</occupation>
+               <death>ca. 717</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-Nakhaʿī, Ibrāhīm.</note>
+            </person>
+            <person xml:id="uni_faide_d27e2314">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbdullāh</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbdullāh ibn Mesʿūd</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">İbn Mesʿūd</persName>
+               <occupation>companion of the prophet Muḥammad and reader of the Qoran</occupation>
+               <death>652-3</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ibn Masʿūd.</note>
+            </person>
+            <person xml:id="uni_sieverek_d27e3828">
+               <persName type="variant" xml:lang="ota-Latn-t">Şīʾt</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Şiʾt</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Şīt</persName>
+               <occupation>third son of Adam and Eve; Prophet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Seth; cf. EI2, s.v. Shīth.</note>
+            </person>
+            <person xml:id="uni_sieverek_d27e5402">
+               <persName type="variant" xml:lang="ota-Latn-t">Cibrāʾīl</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ǧibrāʾīl</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Cibrāʾil</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ǧibrāʾil</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ǧabrāʾīl</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Cebrāʾil</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ǧabrāʾil</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Çebrāʾil</persName>
+               <occupation/>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>also Cibrīl, Hebrew Gabrīʾēl; cf. EI2, s.v. Djabrāʾīl.</note>
+            </person>
+            <person xml:id="uni_sieverek_d27e6166">
+               <persName type="variant" xml:lang="ota-Latn-t">Mīkāʾīl</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Mīkāʾil</persName>
+               <occupation>archangel</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Mīkāl.</note>
+            </person>
+            <person xml:id="uni_sieverek_d27e6182">
+               <persName type="variant" xml:lang="ota-Latn-t">İsrāfīl</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Isrāfīl</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Isrāfil</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">İsrā fīl</persName>
+               <occupation>archangel</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Isrāfīl.</note>
+            </person>
+            <person xml:id="uni_sieverek_d27e6195">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAzrāʾīl</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAzrāʾil</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAzāʾīl</persName>
+               <occupation>archangel; angel of death</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. ʿIzrāʾīl.</note>
+            </person>
+            <person xml:id="uni_faide_d27e6494">
+               <persName type="variant" xml:lang="ota-Latn-t">Bāyezīd-i Bisṭāmī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Bāyezīd</persName>
+               <occupation>Islamic mystic</occupation>
+               <death>874/877-8.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Abū Yazīd (Bāyazīd) Ṭayfur b. ʿĪsā b. Surūshān al-Bisṭāmī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e6522">
+               <persName type="variant" xml:lang="ota-Latn-t">İbrāhīm Edhem</persName>
+               <occupation>Islamic ascet</occupation>
+               <death>777-8</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ibrāhīm b. Adham.</note>
+            </person>
+            <person xml:id="uni_faide_d27e6592">
+               <persName type="variant" xml:lang="ota-Latn-t">Maḥmūd-i Duʿāʾī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+            </person>
+            <person xml:id="uni_faide_d27e6620">
+               <persName type="variant" xml:lang="ota-Latn-t">Sancar-i Mānī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+            </person>
+            <person xml:id="uni_faide_d27e6649">
+               <persName type="variant" xml:lang="ota-Latn-t">Mūsā</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+            </person>
+            <person xml:id="uni_faide_d27e6673">
+               <persName type="variant" xml:lang="ota-Latn-t">İsmāʿīl</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+            </person>
+            <person xml:id="uni_faide_d27e7246">
+               <persName type="variant" xml:lang="ota-Latn-t">bnu ʿAbbās</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ibn ʿAbbās</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">bni ʿAbbās</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbbās</persName>
+               <occupation>scholar of the first generation of Muslims</occupation>
+               <death>686-8</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. ʿAbd Allāh b. al-ʿAbbās.</note>
+            </person>
+            <person xml:id="uni_faide_d27e7637">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbdü l-ġanī bin ʿAbdülcelīl</persName>
+               <occupation>writer</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>very probably the author of this short treatise (on fol. 5v-9v) about the characterisitics of each day of the week and what to do and not to do on which day; identity is not determinable definitely</note>
+            </person>
+            <person xml:id="uni_ömer_d27e38487">
+               <persName type="variant" xml:lang="ota-Latn-t">Naṣārā</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Naṣārīye</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Naṣārī</persName>
+               <occupation>Christians</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Christian community</note>
+            </person>
+            <person xml:id="uni_faide_d27e9748">
+               <persName type="variant" xml:lang="ota-Latn-t">Qābil</persName>
+               <occupation>son Ḳābīl of Adam and Eve</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Hābīl wa Ḳābīl.</note>
+            </person>
+            <person xml:id="uni_faide_d27e9758">
+               <persName type="variant" xml:lang="ota-Latn-t">Hābil</persName>
+               <occupation>son Hābīl of Adam and Eve</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Hābīl wa Ḳābīl.</note>
+            </person>
+            <person xml:id="uni_faide_d27e10568">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥüseyn Beg</persName>
+               <occupation>deputy officer of a commander of a sancaq</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely</note>
+            </person>
+            <person xml:id="uni_faide_d27e11042">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿŪc bin ʿUnūq</persName>
+               <occupation>the Biblical Og, the giant king of Bashan</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>ʿĀc bin ʿAnaq or ʿAnāq; Arabic name of the Biblical; cf. EI2, s.v. ʿŪdj.</note>
+            </person>
+            <person xml:id="uni_faide_d27e11063">
+               <persName type="variant" xml:lang="ota-Latn-t">Nemrūd</persName>
+               <occupation>the Nimrod of the Bible</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Namrūd.</note>
+            </person>
+            <person xml:id="uni_faide_d27e11073">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀd</persName>
+               <occupation>ancient tribe</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>a nation that lived after the time of Noah; cf. EI2, s.v. ʿĀd.</note>
+            </person>
+            <person xml:id="uni_faide_d27e11084">
+               <persName type="variant" xml:lang="ota-Latn-t">Şeddād</persName>
+               <occupation>“personage associated with the legendary town of Iram Dhāt al-ʿImād”</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. ʿĀd and Shaddād b. ʿĀd.</note>
+            </person>
+            <person xml:id="uni_faide_d27e11097">
+               <persName type="variant" xml:lang="ota-Latn-t">Qārūn</persName>
+               <occupation>the Biblical Korah</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ḳārūn.</note>
+            </person>
+            <person xml:id="uni_faide_d27e11107">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṣāliḥ</persName>
+               <occupation>a prophet sent to the people Thamūd</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ṣāliḥ.</note>
+            </person>
+            <person xml:id="uni_faide_d27e11118">
+               <persName type="variant" xml:lang="ota-Latn-t">Lūṭ</persName>
+               <occupation>the Biblical Lot</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Lūṭ.</note>
+            </person>
+            <person xml:id="uni_faide_d27e11128">
+               <persName type="variant" xml:lang="ota-Latn-t">Hūd</persName>
+               <occupation>the earliest of the five “Arab” prophets</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Hūd.</note>
+            </person>
+            <person xml:id="uni_faide_d27e11227">
+               <persName type="variant" xml:lang="ota-Latn-t">Yūnus</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥūt</persName>
+               <occupation>the prophet Jonah</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Yūnus.</note>
+            </person>
+            <person xml:id="uni_faide_d27e12754">
+               <persName type="variant" xml:lang="ota-Latn-t">Bilqīs</persName>
+               <occupation>Queen of Sheba</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="10th cent. BC"/>
+               <note>Cf. EI2, s.v. Bilḳīs.</note>
+            </person>
+            <person xml:id="uni_faide_d27e12784">
+               <persName type="variant" xml:lang="ota-Latn-t">Zelīḥā</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">n.a</persName>
+               <occupation>Potiphar’s wife</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Yūsuf and Zulakhā.</note>
+            </person>
+            <person xml:id="uni_faide_d27e12821">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṣafūrā</persName>
+               <occupation>Zipporah, the wife of Moses</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Source</note>
+            </person>
+            <person xml:id="uni_faide_d27e12854">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥadīce</persName>
+               <occupation>first wife of Muḥammad</occupation>
+               <death>619</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Khadīdja.</note>
+            </person>
+            <person xml:id="uni_ömer_d27e38448">
+               <persName type="variant" xml:lang="ota-Latn-t">Yahūdīler</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Yahūdī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Yehūdā</persName>
+               <occupation>n.a</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Jewish community</note>
+            </person>
+            <person xml:id="uni_hausmittel_d27e7607">
+               <persName type="variant" xml:lang="ota-Latn-t">Bāqi</persName>
+               <occupation>Ottoman poet</occupation>
+               <death>1600</death>
+               <floruit from-custom="n.a."/>
+               <note>Maḥmūd ʿAbdulbāqī; cf. EI2, s.v. Bāḳī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e14577">
+               <persName type="variant" xml:lang="ota-Latn-t">Muṣṭafā</persName>
+               <occupation>Janissary soldier</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>date: 18th of December 1657; identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e15003">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥüseyn Çavuş</persName>
+               <occupation>marshal; messenger</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_sieverek_d27e28098">
+               <persName type="variant" xml:lang="ota-Latn-t">Yūnus</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Yūnus Emre</persName>
+               <occupation>Anatolian Turkish mystic poet</occupation>
+               <death>1320-21</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Yūnus Emre.</note>
+            </person>
+            <person xml:id="uni_hausmittel_d27e4582">
+               <persName type="variant" xml:lang="ota-Latn-t">Hüdāyī</persName>
+               <occupation>mystic and poet (teacher and preacher )</occupation>
+               <death>1628-29</death>
+               <floruit from-custom="n.a."/>
+               <note>Maḥmūd b. Fażlullāh b. Maḥmūd, cf. EI2 s.v. Hüdāʾī.</note>
+            </person>
+            <person xml:id="uni_hausmittel_d27e10685">
+               <persName type="variant" xml:lang="ota-Latn-t">Mecnūn</persName>
+               <occupation>the hero of a romantic love story</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Madjnūn Laylā.</note>
+            </person>
+            <person xml:id="uni_sieverek_d27e24613">
+               <persName type="variant" xml:lang="ota-Latn-t">Leylā</persName>
+               <occupation>the heroine of a romantic love story</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Madjnūn Laylā.</note>
+            </person>
+            <person xml:id="uni_faide_d27e15622">
+               <persName type="variant" xml:lang="ota-Latn-t">Vāmıq</persName>
+               <occupation>the hero of a romantic love story; “the Lover”</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Wāmiḳ wa ʿAdhrāʾ.</note>
+            </person>
+            <person xml:id="uni_faide_d27e15633">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAẕrā</persName>
+               <occupation>the heroine of a romantic love story; “the Virgin”</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Wāmiḳ wa ʿAdhrāʾ.</note>
+            </person>
+            <person xml:id="uni_faide_d27e16105">
+               <persName type="variant" xml:lang="ota-Latn-t">Seyyid Naẓar</persName>
+               <occupation>poet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable; maybe a poem of one of several poets called “Yūnus”; cf. EI2, s.v. Yūnus Emre.</note>
+            </person>
+            <person xml:id="uni_faide_d27e16221">
+               <persName type="variant" xml:lang="ota-Latn-t">Hevāyī</persName>
+               <occupation>Ottoman poet</occupation>
+               <death>1608 (?)</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely; cf. İpekten et al.: Tezkirelere Göre Divan Edebiyatı İsimler Sözlüğü. Ankara 1988, p. 204f.</note>
+            </person>
+            <person xml:id="uni_faide_d27e17100">
+               <persName type="variant" xml:lang="ota-Latn-t">Dervīş</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Miskīn</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀşıq Dervīş</persName>
+               <occupation>mystic poet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely; could be a poem of ʿĀşıq Yūnus or of one of the poets called “Yūnus”; cf. EI2, s.v. Yūnus Emre.</note>
+            </person>
+            <person xml:id="uni_faide_d27e17385">
+               <persName type="variant" xml:lang="ota-Latn-t">Şemseddīn Aḥmed SivāṣīQara Şems</persName>
+               <occupation>founding saint of the mystical brotherhood Şemsīye; mystic poet</occupation>
+               <death>1597</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Shamsiyya.</note>
+            </person>
+            <person xml:id="uni_faide_d27e18007">
+               <persName type="variant" xml:lang="ota-Latn-t">İlḥān Oġlı</persName>
+               <occupation>mystic poet or folk poet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e18377">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥaqīqī</persName>
+               <occupation>mystic poet or folk poet</occupation>
+               <death>16th century</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely; cf. İpekten et al.: Tezkirelere Göre Divan Edebiyatı İsimler Sözlüğü. Ankara 1988, p. 171.</note>
+            </person>
+            <person xml:id="uni_faide_d27e18895">
+               <persName type="variant" xml:lang="ota-Latn-t">İblīs</persName>
+               <occupation>the devil</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Iblīs.</note>
+            </person>
+            <person xml:id="uni_faide_d27e18930">
+               <persName type="variant" xml:lang="ota-Latn-t">İdrīs</persName>
+               <occupation>prophet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Idrīs.</note>
+            </person>
+            <person xml:id="uni_sima_d27e16055">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbdülqādir</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbdülqādir Gīlānī</persName>
+               <occupation>theologian and preacher</occupation>
+               <death>1166</death>
+               <floruit from-custom="n.a."/>
+               <note>ʿAbd al-Qādir al-Ǧīlānī; “Ḥanbalite theologian, preacher and Ṣūfī, who gave his name to the order of the Ḳādiriyya”; cf. EI² s.v. ʿAbd al-Ḳādir al-Djīlānī.</note>
+            </person>
+            <person xml:id="uni_hausmittel_d27e5518">
+               <persName type="variant" xml:lang="ota-Latn-t">Eşref-oġlı Rūmī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Rūmī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Eşref-oġlı Rūmĭ</persName>
+               <occupation>Turkish poet and mystic</occupation>
+               <death>1469</death>
+               <floruit from-custom="n.a."/>
+               <note>ʿAbdullāh; cf. EI2, s.v. Eshrefoghlu.</note>
+            </person>
+            <person xml:id="uni_faide_d27e20146">
+               <persName type="variant" xml:lang="ota-Latn-t">Faqīhī</persName>
+               <occupation>mystic poet or folk poet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_hausmittel_d27e5812">
+               <persName type="variant" xml:lang="ota-Latn-t">Ẕākirī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ẕākirī</persName>
+               <occupation>mystic and poet, musician</occupation>
+               <death>1622</death>
+               <floruit from-custom="n.a."/>
+               <note>Ḥasan; cf. Vasfi Mahir Kocatürk: Tekke Şiiri Antolojisi. Türk Edebiyatında Dinî ve Tasavvufî Şiirler. Ankara 1968, p.273.</note>
+            </person>
+            <person xml:id="uni_faide_d27e21315">
+               <persName type="variant" xml:lang="ota-Latn-t">Bidlīsī</persName>
+               <occupation>poet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+            </person>
+            <person xml:id="uni_faide_d27e23211">
+               <persName type="variant" xml:lang="ota-Latn-t">Naʿīmā Efendi</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Naʿīmā</persName>
+               <occupation>Ottoman historian, secretary, “halberdier” (baltacı)</occupation>
+               <death>1716</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Naʿīmā.</note>
+            </person>
+            <person xml:id="uni_faide_d27e23549">
+               <persName type="variant" xml:lang="ota-Latn-t">Figārī</persName>
+               <occupation>poet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e23810">
+               <persName type="variant" xml:lang="ota-Latn-t">Naẓmī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Naẓmĭ</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Naẓmi</persName>
+               <occupation>Ottoman poet</occupation>
+               <death>1555 or thereafter</death>
+               <floruit from-custom="n.a."/>
+               <note>Edirneli Naẓmī; cf. EI2, s.v. Nażmī, Meḥmed (according to the Sidjill-i ʿOthmānī: Naẓmī Niẓāmī), Edirneli.</note>
+            </person>
+            <person xml:id="uni_faide_d27e28197">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥaṭāyī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ḫaṭāyī</persName>
+               <occupation>poet and shah of Persia and founder of the Ṣafavīd dynasty</occupation>
+               <death>1524</death>
+               <floruit from-custom="1501" to-custom="1524"/>
+               <note>identity is not determinable definitely; cf. EI2, s.v. Ismāʿīl I.</note>
+            </person>
+            <person xml:id="uni_faide_d27e31889">
+               <persName type="variant" xml:lang="ota-Latn-t">Zübeyr</persName>
+               <occupation>Companion of Muḥammad</occupation>
+               <death>656</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-Zubayr b. al-ʿAwwām.</note>
+            </person>
+            <person xml:id="uni_faide_d27e31901">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṭalḥa</persName>
+               <occupation>Companion of Muḥammad</occupation>
+               <death>656</death>
+               <floruit from-custom="n.a."/>
+               <note>Ṭalḥa b. ʿUbayd Allāh; cf. EI2, s.v. Ṭalḥa.</note>
+            </person>
+            <person xml:id="uni_faide_d27e31914">
+               <persName type="variant" xml:lang="ota-Latn-t">Saʿd</persName>
+               <occupation>Companion of Muḥammad</occupation>
+               <death>670-1 – 677-8</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Saʿd b. Abī Waḳḳāṣ.</note>
+            </person>
+            <person xml:id="uni_faide_d27e31926">
+               <persName type="variant" xml:lang="ota-Latn-t">Saʿīd</persName>
+               <occupation>Companion of Muḥammad</occupation>
+               <death>670-1</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Saʿīd b. Zayd.</note>
+            </person>
+            <person xml:id="uni_faide_d27e31975">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀmir</persName>
+               <occupation>early Meccan convert to Islam</occupation>
+               <death>ca. 639</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v.Abū ʿUbayda ʿĀmir b. Abd Allāh b. al-Djarrāḥ.</note>
+            </person>
+            <person xml:id="uni_faide_d27e32000">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbdurraḥmān</persName>
+               <occupation>most prominent early Muslim convert</occupation>
+               <death>652</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. ʿAbd al-Raḥmān b. ʿAwf.</note>
+            </person>
+            <person xml:id="uni_faide_d27e33163">
+               <persName type="variant" xml:lang="ota-Latn-t">Arisṭālī</persName>
+               <occupation>Greek philosopher</occupation>
+               <death>322 BC</death>
+               <floruit from-custom="n.a."/>
+               <note>Aristotle; cf. EI2, s.v. Arisṭūṭālīs or Arisṭū.</note>
+            </person>
+            <person xml:id="uni_faide_d27e33504">
+               <persName type="variant" xml:lang="ota-Latn-t">Aḥmed Yūnānī</persName>
+               <occupation>translator of the Enneads of Plotinus</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely; cf. EI2, s.v. al-Shaykh al-Yūnānī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e35180">
+               <persName type="variant" xml:lang="ota-Latn-t">Saʿdī-i Rūmī</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e35264">
+               <persName type="variant" xml:lang="ota-Latn-t">Sīrīn</persName>
+               <occupation>interpreter of dreams; Imām</occupation>
+               <death>728</death>
+               <floruit from-custom="n.a."/>
+               <note>Abū Bakr Muḥammad; cf. EI2, s.v. Ibn Sīrīn.</note>
+            </person>
+            <person xml:id="uni_faide_d27e35836">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṣadreddīn</persName>
+               <occupation>sheikh; head of a religious order</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable as there are too many sheikhs with this name</note>
+            </person>
+            <person xml:id="uni_faide_d27e35943">
+               <persName type="variant" xml:lang="ota-Latn-t">Aq Şemseddīn</persName>
+               <occupation>saint</occupation>
+               <death>1459</death>
+               <floruit from-custom="n.a."/>
+               <note>discoverer of the tomb of Abū Ayyūb; cf. EI2, s.v. Aḳ Shams al-Dīn</note>
+            </person>
+            <person xml:id="uni_sima_d27e1207">
+               <persName type="variant" xml:lang="ota-Latn-t">Hārūn</persName>
+               <occupation>the Aaron of the Bible</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Hārūn b. ʿImrān.</note>
+            </person>
+            <person xml:id="uni_faide_d27e37956">
+               <persName type="variant" xml:lang="ota-Latn-t">Ǧābir bin ʿAbdallāh</persName>
+               <occupation>Companion of the Prophet Muḥammad</occupation>
+               <death>697</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Djābir b. ʿAbd Allāh.</note>
+            </person>
+            <person xml:id="uni_faide_d27e38065">
+               <persName type="variant" xml:lang="ota-Latn-t">Ibn ʿUmar</persName>
+               <occupation>transmitter of traditions; son of the Caliph</occupation>
+               <death>693</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. ʿAbd Allāh b. ʿUmar b. al-Khaṭṭāb.</note>
+            </person>
+            <person xml:id="uni_faide_d27e38736">
+               <persName type="variant" xml:lang="ota-Latn-t">Zakariyyā</persName>
+               <occupation>Zechariah, father of John the Baptist (Yaḥyā)</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Zakariyyāʾ.</note>
+            </person>
+            <person xml:id="uni_faide_d27e39300">
+               <persName type="variant" xml:lang="ota-Latn-t">Yaḥyā Paşa-zāde</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e42013">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAlī Qoca sulṭān dedesi</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e43354">
+               <persName type="variant" xml:lang="ota-Latn-t">Evrenos Beg- zāde ʿĪsā Beg</persName>
+               <occupation>n.a.</occupation>
+               <death>15th century ?</death>
+               <floruit from-custom="n.a."/>
+               <note>son or grandson of Evrenos Beg (ġāzī) m. 1417; identity is not determinable definitely, cf. Sicill‑i ʿOs̱mānī (1996), 2, p. 500, s.v. Evrenos Meḥmed Bey (Gazi); EI2, s.v. Ewrenos Oghulları.</note>
+            </person>
+            <person xml:id="uni_faide_d27e45561">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṭaḥāwī</persName>
+               <occupation>Ḥanafī jurist</occupation>
+               <death>933</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-Ṭaḥāwī.</note>
+            </person>
+            <person xml:id="uni_ömer_d27e35159">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀʾiša</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀyşe</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀʾişe</persName>
+               <occupation>third wife of the Prophet Muḥammad</occupation>
+               <death>678</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. ʿĀʾisha Bint Abī Bakr.</note>
+            </person>
+            <person xml:id="uni_faide_d27e45964">
+               <persName type="variant" xml:lang="ota-Latn-t">Ibn ʿUyayna</persName>
+               <occupation>scholar</occupation>
+               <death>811</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Sufyān b. ʿUyayna.</note>
+            </person>
+            <person xml:id="uni_faide_d27e46104">
+               <persName type="variant" xml:lang="ota-Latn-t">bni l-Ǧawzī</persName>
+               <occupation>jurisconsult, traditionist, historian and preacher</occupation>
+               <death>1200</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ibn al-Djawzī.</note>
+            </person>
+            <person xml:id="uni_ömer_d27e72552">
+               <persName type="variant" xml:lang="ota-Latn-t">Maʿrūf-i Kerḥī</persName>
+               <occupation>ascetic and mystic of the Baġdād school</occupation>
+               <death>815-16</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Maʿrūf al-Karkhī.</note>
+            </person>
+            <person xml:id="uni_hausmittel_d27e3453">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAmr</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d27e49562">
+               <persName type="variant" xml:lang="ota-Latn-t">Mihrī</persName>
+               <occupation>Turkish poetess</occupation>
+               <death>1512</death>
+               <floruit from-custom="n.a."/>
+               <note>Mihrī Ḫātūn; cf. EI2, s.v. Mihrī Khātūn.</note>
+            </person>
+            <person xml:id="uni_faide_d27e49625">
+               <persName type="variant" xml:lang="ota-Latn-t">Hind</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d27e49719">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbdullāh</persName>
+               <occupation>n.a.</occupation>
+               <death>n. a.</death>
+               <floruit from-custom="n.a."/>
+               <note>the writer or scriber of this and some other mesʾele of the current manuscript</note>
+            </person>
+            <person xml:id="uni_faide_d27e50086">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥasan al-Baṣrī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥasan-i Baṣrī</persName>
+               <occupation>preacher</occupation>
+               <death>728</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ḥasan al-Baṣrī</note>
+            </person>
+            <person xml:id="uni_faide_d27e50412">
+               <persName type="variant" xml:lang="ota-Latn-t">Zāhid Qaḥr Ḫafār</persName>
+               <occupation>imam, prayer leader</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely</note>
+            </person>
+            <person xml:id="uni_faide_d27e50600">
+               <persName type="variant" xml:lang="ota-Latn-t">Saʿdaddīn bin al-Ḥamūn</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable definitely</note>
+            </person>
+            <person xml:id="uni_faide_d27e51634">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥadīce</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d27e51645">
+               <persName type="variant" xml:lang="ota-Latn-t">Fāṭima</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d27e51673">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀyişe</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀʾişe</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d27e51684">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀbide</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d27e51990">
+               <persName type="variant" xml:lang="ota-Latn-t">Zeyneb</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_faide_d27e53255">
+               <persName type="variant" xml:lang="ota-Latn-t">Dūldül</persName>
+               <occupation>the grey mule of the prophet Muḥammad</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Duldul.</note>
+            </person>
+            <person xml:id="uni_faide_d27e53486">
+               <persName type="variant" xml:lang="ota-Latn-t">Burāq</persName>
+               <occupation>the beast on which Muḥammad made his “night-journey”</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-Burāḳ.</note>
+            </person>
+            <person xml:id="uni_faide_d27e54924">
+               <persName type="variant" xml:lang="ota-Latn-t">Yaḥyā Çelebi</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e62367">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀşıq Paşa</persName>
+               <occupation>Turkish poet and mystic</occupation>
+               <death>1333</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. ʿĀshıḳ Pasha.</note>
+            </person>
+            <person xml:id="uni_faide_d27e62872">
+               <persName type="variant" xml:lang="ota-Latn-t">banī Isrāʾīl</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>“the children of Israel”, the Jewish people ; cf. EI2, s.v. Banū Isrāʾīl.</note>
+            </person>
+            <person xml:id="uni_faide_d27e62961">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥasan</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥasan bin ʿAlī</persName>
+               <occupation>grandson of the prophet Muḥammad; son of ʿAlī and Fāṭima</occupation>
+               <death>669-670</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. (al-)Ḥasan b. ʿAlī b. Abī Ṭālib.</note>
+            </person>
+            <person xml:id="uni_faide_d27e62973">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥüseyn</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥusayn</persName>
+               <occupation>grandson of the prophet Muḥammad; son of ʿAlī and Fāṭima</occupation>
+               <death>680</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. (al-)Ḥusayn b. ʿAlī b. Abī Ṭālib.</note>
+            </person>
+            <person xml:id="uni_faide_d27e64918">
+               <persName type="variant" xml:lang="ota-Latn-t">Anas bin Mālik</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Mālik</persName>
+               <occupation>jurist, Imām of the Mālikī school</occupation>
+               <death>796</death>
+               <floruit from-custom="n.a."/>
+               <note>Mālik bin Anas; cf. EI2, s.v. Malik b. Anas.</note>
+            </person>
+            <person xml:id="uni_faide_d27e65991">
+               <persName type="variant" xml:lang="ota-Latn-t">Süleymān Efendi</persName>
+               <occupation>sheikh; head preacher or teacher</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+            </person>
+            <person xml:id="uni_faide_d27e66011">
+               <persName type="variant" xml:lang="ota-Latn-t">Meḥemmed Paşa</persName>
+               <occupation>Grand vizier</occupation>
+               <death/>
+            </person>
+            <person xml:id="uni_ömer_d27e72591">
+               <persName type="variant" xml:lang="ota-Latn-t">Bilāl</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Bilāl-i Ḥabeşī</persName>
+               <occupation>companion of Muḥammad</occupation>
+               <death>638-39; 641-42</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Bilāl b. Rabāḥ.</note>
+            </person>
+            <person xml:id="uni_faide_d27e66439">
+               <persName type="variant" xml:lang="ota-Latn-t">Müslim</persName>
+               <occupation>collector of Prophetic traditions</occupation>
+               <death>875</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Muslim b. al-Ḥadjdjādj.</note>
+            </person>
+            <person xml:id="uni_faide_d27e66452">
+               <persName type="variant" xml:lang="ota-Latn-t">Buḥārī</persName>
+               <occupation>traditionist</occupation>
+               <death>870</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-Bukhārī, .Muḥammad b. Ismāʿīl.</note>
+            </person>
+            <person xml:id="uni_faide_d27e66527">
+               <persName type="variant" xml:lang="ota-Latn-t">İbn Amm Mektūm el-aʿmā</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Mektūm</persName>
+               <occupation>Muezzin</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e66615">
+               <persName type="variant" xml:lang="ota-Latn-t">Ebī Dāvud</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e66628">
+               <persName type="variant" xml:lang="ota-Latn-t">Ebī Serīre</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e68837">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbdallāh</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e71505">
+               <persName type="variant" xml:lang="ota-Latn-t">Qāżım Muṣṭafā Efendi</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e71736">
+               <persName type="variant" xml:lang="ota-Latn-t">Abī Hurayra</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Abū Hurayra</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Abā Hurayra</persName>
+               <occupation>Companion of the Prophet Muḥammad</occupation>
+               <death>676-679</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Abū Hurayra.</note>
+            </person>
+            <person xml:id="uni_faide_d27e71775">
+               <persName type="variant" xml:lang="ota-Latn-t">Nawawī</persName>
+               <occupation>Şāfiʿī jurist</occupation>
+               <death>1277</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-Nawawī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e71816">
+               <persName type="variant" xml:lang="ota-Latn-t">Ibn Malak</persName>
+               <occupation>author in the fields of fiqh and hadith</occupation>
+               <death>after 1421 (?)</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Firishte-Oghlu.</note>
+            </person>
+            <person xml:id="uni_faide_d27e72974">
+               <persName type="variant" xml:lang="ota-Latn-t">Abū Yaʿlā</persName>
+               <occupation>qadi, one of the masters of the Ḥanbālī school in Baghdad</occupation>
+               <death>1066</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ibn al-Farrāʾ,</note>
+            </person>
+            <person xml:id="uni_faide_d27e73016">
+               <persName type="variant" xml:lang="ota-Latn-t">Abī Wahb</persName>
+               <occupation>secretary, author</occupation>
+               <death>10th century</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ibn Wahb.</note>
+            </person>
+            <person xml:id="uni_faide_d27e73130">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṭabarānī</persName>
+               <occupation>traditionist</occupation>
+               <death>971</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-Ṭabarānī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e73316">
+               <persName type="variant" xml:lang="ota-Latn-t">Ibn Dāwūd</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Abū Dāwūd</persName>
+               <occupation>Ẓāhirī jurist; first codifier of Arabic “courtly love”</occupation>
+               <death>909</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ibn Dāwūd.</note>
+            </person>
+            <person xml:id="uni_faide_d27e73396">
+               <persName type="variant" xml:lang="ota-Latn-t">S̱enāyī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">S̱enāʾī</persName>
+               <occupation>Poet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Identity is not determinable definitely; cf. İpekten et al.: Tezkirelere Göre Divan Edebiyatı İsimler Sözlüğü. Ankara 1988, p. 437f.: six poets with the penname S̱enāʾī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e74288">
+               <persName type="variant" xml:lang="ota-Latn-t">Cinānī</persName>
+               <occupation>Ottoman poet</occupation>
+               <death>1595</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. Cihan Okuyucu: Cinânî (Hayâtı – Eserleri – Dîvânının tenkidli metni). 1994.</note>
+            </person>
+            <person xml:id="uni_faide_d27e76299">
+               <persName type="variant" xml:lang="ota-Latn-t">Buqrāṭ</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Buqrāt</persName>
+               <occupation>physician</occupation>
+               <death>ca. 375 BC</death>
+               <floruit from-custom="n.a."/>
+               <note>Hippocrates; cf. EI2, s.v. Buḳrāṭ.</note>
+            </person>
+            <person xml:id="uni_faide_d27e79984">
+               <persName type="variant" xml:lang="ota-Latn-t">Vāhī</persName>
+               <occupation>poet</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>the identity is not determinable</note>
+            </person>
+            <person xml:id="uni_hausmittel_d27e6359">
+               <persName type="variant" xml:lang="ota-Latn-t">Ferhād</persName>
+               <occupation>Heroe of the tragic love story “Ferhad and Shirin”</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Farhād wa‑Shīrīn.</note>
+            </person>
+            <person xml:id="uni_faide_d27e81128">
+               <persName type="variant" xml:lang="ota-Latn-t">Beyżāvī</persName>
+               <occupation>jurist, writer; qāḍī in Shiraz</occupation>
+               <death>1286; 1292; 1293; 1316</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-Bayḍāwī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e82326">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAlī Başa Cebeci</persName>
+               <occupation>armorer (?)</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>the identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e82772">
+               <persName type="variant" xml:lang="ota-Latn-t">Meḥmed Çelebi</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>the identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e88608">
+               <persName type="variant" xml:lang="ota-Latn-t">Tirmiḏī</persName>
+               <occupation>mystic</occupation>
+               <death>936-938</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-Tirmidhī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e88633">
+               <persName type="variant" xml:lang="ota-Latn-t">Ibn Ḥayyān</persName>
+               <occupation>historian</occupation>
+               <death>1076</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ibn Ḥayyān.</note>
+            </person>
+            <person xml:id="uni_faide_d27e88848">
+               <persName type="variant" xml:lang="ota-Latn-t">Salmān</persName>
+               <occupation>Companion of the prophet Muḥammad</occupation>
+               <death>655-6 / 656-7</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Salmān al-Fārisī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e88862">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAmmār</persName>
+               <occupation>Companion of the prophet Muḥammad</occupation>
+               <death>657</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. ʿAmmār b. Yāsir.</note>
+            </person>
+            <person xml:id="uni_faide_d27e115905">
+               <persName type="variant" xml:lang="ota-Latn-t">Meḥemmed Ḫān</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Muḥammad Ḫān</persName>
+               <occupation>Ottoman Sultan</occupation>
+               <death>1687</death>
+               <floruit from-custom="1648" to-custom="1687"/>
+               <note>Sultan Meḥmed IV.</note>
+            </person>
+            <person xml:id="uni_faide_d27e115931">
+               <persName type="variant" xml:lang="ota-Latn-t">İbrāhīm Ḫān</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Ibrāhīm Ḫān</persName>
+               <occupation>Ottoman Sultan</occupation>
+               <death>1648</death>
+               <floruit from-custom="1640" to-custom="1648"/>
+            </person>
+            <person xml:id="uni_faide_d27e115962">
+               <persName type="variant" xml:lang="ota-Latn-t">Murād Ḫān</persName>
+               <occupation>Ottoman Sultan</occupation>
+               <death>1640</death>
+               <floruit from-custom="1623" to-custom="1640"/>
+               <note>Sultan Murād IV.</note>
+            </person>
+            <person xml:id="uni_faide_d27e115988">
+               <persName type="variant" xml:lang="ota-Latn-t">Aḥmed Ḫān</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Aḥmad Ḫān</persName>
+               <occupation>Ottoman Sultan</occupation>
+               <death>1617</death>
+               <floruit from-custom="1603" to-custom="1617"/>
+               <note>Sultan Murād IV.</note>
+            </person>
+            <person xml:id="uni_faide_d27e122268">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḫātim-i Ṭay</persName>
+               <occupation>pre-Islamic poet</occupation>
+               <death>second half of the 6th century</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ḥātim al-Ṭāʾī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e129648">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḥamza</persName>
+               <occupation>paternal uncle of the prophet Muḥammad</occupation>
+               <death>625</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ḥamza b. ʿAbd al-Muṭṭalib.</note>
+            </person>
+            <person xml:id="uni_faide_d27e129667">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿAbbās</persName>
+               <occupation>paternal uncle of the prophet Muḥammad</occupation>
+               <death>653</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-ʿAbbās b. ʿAbd al-Muṭṭalib.</note>
+            </person>
+            <person xml:id="uni_ömer_d27e3220">
+               <persName type="variant" xml:lang="ota-Latn-t">Muḥyīddīn-i ʿArabī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Muḥammed ibn ʿArabī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Muḥyīddīn</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Muḥyī- ddīn-i ʿArabī</persName>
+               <occupation>Ṣūfī</occupation>
+               <death>1240</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ibn al‑ʿArabī.</note>
+            </person>
+            <person xml:id="uni_sima_d27e506">
+               <persName type="variant" xml:lang="ota-Latn-t">Fāṭima</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Zehrā</persName>
+               <occupation>daughter of the prophet Muḥammad</occupation>
+               <death>633</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Fāṭima.</note>
+            </person>
+            <person xml:id="uni_faide_d27e130713">
+               <persName type="variant" xml:lang="ota-Latn-t">Aqīye</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e130732">
+               <persName type="variant" xml:lang="ota-Latn-t">Ümm Güls̱ūm</persName>
+               <occupation>daughter of the prophet Muḥammad</occupation>
+               <death>630</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Umm Kulthūm.</note>
+            </person>
+            <person xml:id="uni_faide_d27e130785">
+               <persName type="variant" xml:lang="ota-Latn-t">D-v-ṣ-a</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>identity is not determinable</note>
+            </person>
+            <person xml:id="uni_faide_d27e131121">
+               <persName type="variant" xml:lang="ota-Latn-t">Şāfiʿī</persName>
+               <occupation>eponym of the Şāfiʿī school</occupation>
+               <death>820</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. al-Shāfiʿī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e131156">
+               <persName type="variant" xml:lang="ota-Latn-t">Aḥmed Ḥanbal</persName>
+               <occupation>theologian, jurist and traditionalist; founder of the Ḥanbalī school</occupation>
+               <death/>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Aḥmad b. Ḥanbal.</note>
+            </person>
+            <person xml:id="uni_faide_d27e131198">
+               <persName type="variant" xml:lang="ota-Latn-t">Üveys el-Arnī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Üveys el-Qarānī</persName>
+               <occupation>legendary younger contemporary of Muḥammad</occupation>
+               <death>657</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Uways al-Ḳaranī.</note>
+            </person>
+            <person xml:id="uni_ömer_d27e2307">
+               <persName type="variant" xml:lang="ota-Latn-t">Cüneyd-i Baġdādī</persName>
+               <persName type="variant" xml:lang="ota-Latn-t">Aḥmed bin Cüneyd</persName>
+               <occupation>Ṣūfī</occupation>
+               <death>910</death>
+               <floruit from-custom="n.a."/>
+               <note>Abu ‘l‑Qāsim bin Muḥammad bin al‑Ǧunayd …; cf. EI2, s.v. al‑Djunayd.</note>
+            </person>
+            <person xml:id="uni_faide_d27e131344">
+               <persName type="variant" xml:lang="ota-Latn-t">Ṣadreddīn-i Qonevī</persName>
+               <occupation>disciple of Ibn al-ʿArabī; mystic author</occupation>
+               <death>1274</death>
+               <floruit from-custom="n.a."/>
+               <note>Cf. EI2, s.v. Ṣadr al-Dīn Muḥammad b. Isḥāḳ b. Muḥammad b. Yūnus al-Ḳūnawī.</note>
+            </person>
+            <person xml:id="uni_faide_d27e131850">
+               <persName type="variant" xml:lang="ota-Latn-t">ʿĀyşe</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_hausmittel_d27e3494">
+               <persName type="variant" xml:lang="ota-Latn-t">Beşir</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+            <person xml:id="uni_hausmittel_d27e3524">
+               <persName type="variant" xml:lang="ota-Latn-t">Ḫālid</persName>
+               <occupation>n.a.</occupation>
+               <death>n.a.</death>
+               <floruit from-custom="n.a."/>
+               <note>Alias for an involved party occurring in a fatwa</note>
+            </person>
+          </listPerson>
+      </body>
+   </text>
+</TEI>
